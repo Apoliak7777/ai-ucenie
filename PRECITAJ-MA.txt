@@ -12,17 +12,22 @@ robots.txt          povoľuje indexovanie, ochranu údajov drží mimo Googlu
 sitemap.xml         jedna adresa, pri zmene webu prepíš lastmod
 .nojekyll           vypína Jekyll na GitHub Pages, nechať
 
-Nasadenie
----------
-Nahraj súbory do jedného priečinka na webserveri. Nič sa nekompiluje,
-žiadne závislosti — funguje to ako obyčajný statický web.
+Kde to beží
+-----------
+Repo:  https://github.com/Apoliak7777/ai-ucenie
+Web:   https://apoliak7777.github.io/ai-ucenie/   (GitHub Pages z vetvy main)
+Odkaz na web je aj v hlavičke repa vpravo hore (About).
+Zmena webu = push do main, o minútu-dve je zmena naživo.
 
-Cez GitHub Pages (rovnako ako ipinfo.apoliak.online):
-  1. nové PUBLIC repo, nahrať tieto súbory
-  2. pridať súbor CNAME s jediným riadkom:  ai.apoliak.online
-  3. na Hostingeri pridať CNAME záznam: ai  ->  apoliak7777.github.io
-  4. v repo Settings -> Pages zapnúť Pages a počkať na HTTPS certifikát
+Nasadenie na vlastnú doménu (až raz)
+------------------------------------
+  1. pridať do repa súbor CNAME s jediným riadkom:  ai.apoliak.online
+  2. na Hostingeri pridať CNAME záznam: ai  ->  apoliak7777.github.io
+  3. v repo Settings -> Pages doplniť custom domain a počkať na HTTPS
+Stará github.io adresa potom sama presmeruje na doménu.
 Repo musí zostať public, na Free účte Pages z private repa nefunguje.
+POZOR: odkazy v 404.html sú absolútne na github.io — po prechode na
+doménu ich netreba meniť (presmerujú sa), ale môžu sa prepísať na doménu.
 
 Kde si upravíš termíny
 ----------------------
