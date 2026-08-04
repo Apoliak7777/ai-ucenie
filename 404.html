@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="sk">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Stránka sa nenašla — AI Učenie</title>
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#0C0912">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%23FF4D6D'/%3E%3Ctext x='32' y='44' font-family='Arial,Helvetica,sans-serif' font-weight='800' font-size='32' text-anchor='middle' fill='%23fff'%3EAI%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@800&family=Manrope:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0C0912; --bg-2:#151125; --text:#F5F2FA; --dim:#A49CBC;
+  --rose:#FF4D6D; --rose-deep:#E03A58; --lilac:#B9A7FF; --edge:rgba(245,242,250,.13);
+  --display:"Unbounded",'Segoe UI',system-ui,sans-serif;
+  --body:"Manrope",system-ui,-apple-system,sans-serif;
+}
+*,*::before,*::after{box-sizing:border-box}
+body{margin:0;min-height:100vh;display:grid;place-items:center;padding:32px 20px;
+  background:var(--bg);color:var(--text);font-family:var(--body);line-height:1.6;
+  -webkit-font-smoothing:antialiased;text-align:center;
+  background-image:radial-gradient(760px 520px at 82% -12%,rgba(255,77,109,.17),transparent 68%),
+                   radial-gradient(560px 420px at 4% 8%,rgba(185,167,255,.11),transparent 70%);
+  background-repeat:no-repeat}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--lilac);outline-offset:3px;border-radius:8px}
+.brandline{display:inline-flex;align-items:center;gap:9px;text-decoration:none;
+  font-family:var(--display);font-weight:800;font-size:.9rem;letter-spacing:-.02em;margin-bottom:30px}
+.brandline span{width:25px;height:25px;border-radius:8px;background:var(--rose);display:grid;place-items:center;font-size:.66rem;color:#fff}
+.code{font-family:var(--display);font-weight:800;font-size:clamp(4rem,16vw,7rem);line-height:.9;letter-spacing:-.05em;margin:0;color:var(--rose)}
+h1{font-family:var(--display);font-weight:800;font-size:clamp(1.5rem,4vw,2.1rem);letter-spacing:-.03em;line-height:1.1;margin:18px 0 0}
+p{color:var(--dim);margin:14px auto 0;max-width:44ch}
+.row{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-top:28px}
+.cta{display:inline-flex;align-items:center;justify-content:center;font-weight:700;font-size:.96rem;
+  padding:14px 24px;border-radius:999px;border:1px solid transparent;text-decoration:none;
+  background:var(--rose);color:#fff;box-shadow:0 12px 28px -14px rgba(255,77,109,.8);transition:background .16s,transform .16s}
+.cta:hover{background:var(--rose-deep);transform:translateY(-2px)}
+.cta--line{background:transparent;color:var(--text);border-color:var(--edge);box-shadow:none}
+.cta--line:hover{background:rgba(245,242,250,.06);border-color:var(--text)}
+</style>
+</head>
+<body>
+  <main>
+    <a class="brandline" href="/"><span>AI</span>AI Učenie</a>
+    <p class="code">404</p>
+    <h1>Táto stránka tu nie je</h1>
+    <p>Buď si sa preklikol, alebo som ju presunul. Termín si vieš vybrať na hlavnej stránke.</p>
+    <div class="row">
+      <a class="cta" href="/#termin">Vybrať si termín</a>
+      <a class="cta cta--line" href="mailto:alexpoliak21@gmail.com">Napísať mi</a>
+    </div>
+  </main>
+</body>
+</html>

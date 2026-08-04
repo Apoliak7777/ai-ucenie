@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="sk">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ochrana údajov — AI Učenie</title>
+<meta name="description" content="Aké údaje pri rezervácii hodiny zbieram, načo ich potrebujem a ako dlho ich mám.">
+<meta name="theme-color" content="#0C0912">
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@600;800&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0C0912; --bg-2:#151125; --text:#F5F2FA; --dim:#A49CBC;
+  --rose:#FF4D6D; --lilac:#B9A7FF; --edge:rgba(245,242,250,.13); --edge-2:rgba(245,242,250,.06);
+  --display:"Unbounded",'Segoe UI',system-ui,sans-serif;
+  --body:"Manrope",system-ui,-apple-system,sans-serif;
+}
+*,*::before,*::after{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);font-family:var(--body);
+  font-size:clamp(15.5px,.9vw + 13px,17px);line-height:1.65;-webkit-font-smoothing:antialiased;
+  background-image:radial-gradient(700px 500px at 85% -10%,rgba(255,77,109,.14),transparent 70%);background-repeat:no-repeat}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--lilac);outline-offset:3px;border-radius:6px}
+.shell{max-width:760px;margin-inline:auto;padding:0 clamp(18px,5vw,40px)}
+.nav{border-bottom:1px solid var(--edge-2)}
+.nav__in{display:flex;align-items:center;height:70px;gap:18px}
+.logo{display:flex;align-items:center;gap:10px;text-decoration:none;font-family:var(--display);font-weight:800;font-size:.96rem;letter-spacing:-.02em}
+.logo span{width:26px;height:26px;border-radius:8px;background:var(--rose);display:grid;place-items:center;font-size:.68rem;color:#fff}
+.back{margin-left:auto;font-size:.9rem;color:var(--dim);text-decoration:none}
+.back:hover{color:var(--text)}
+h1{font-family:var(--display);font-weight:800;font-size:clamp(1.9rem,5vw,2.9rem);letter-spacing:-.035em;line-height:1.05;margin:clamp(44px,7vw,72px) 0 0}
+.sub{color:var(--dim);margin:16px 0 0}
+h2{font-family:var(--display);font-weight:600;font-size:1.06rem;letter-spacing:-.01em;margin:40px 0 10px}
+p,ul{margin:0 0 14px}
+ul{padding-left:20px}
+li{margin-bottom:6px}
+strong{font-weight:700}
+.box{border:1px solid var(--edge);border-radius:16px;background:var(--bg-2);padding:22px 24px;margin:34px 0 0}
+.box p{margin:0 0 6px}
+.box p:last-child{margin:0}
+.box a{color:var(--text);text-decoration:none;border-bottom:1px solid var(--rose)}
+.foot{border-top:1px solid var(--edge-2);margin-top:56px;padding-block:26px;font-size:.85rem;color:var(--dim);display:flex;flex-wrap:wrap;gap:12px 24px}
+.foot a{text-decoration:none}
+.date{font-size:.85rem;color:var(--dim)}
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="shell nav__in">
+    <a class="logo" href="index.html"><span>AI</span>AI Učenie</a>
+    <a class="back" href="index.html">← Späť na stránku</a>
+  </div>
+</header>
+
+<main class="shell">
+  <h1>Ochrana údajov</h1>
+  <p class="sub">Krátko a bez právnickej hatmatilky: čo o tebe potrebujem vedieť, keď si rezervuješ hodinu, a čo s tým robím.</p>
+
+  <h2>Kto údaje spracúva</h2>
+  <p>Stránku ai.apoliak.online a hodiny prevádzkujem ja, <strong>Alex Poliak</strong>, ako fyzická osoba. Kontakt: <a href="mailto:alexpoliak21@gmail.com">alexpoliak21@gmail.com</a>, 0902 464 022.</p>
+
+  <h2>Aké údaje zbieram</h2>
+  <ul>
+    <li>Meno, e-mail a telefónne číslo, ktoré vyplníš do rezervácie.</li>
+    <li>Poznámku o tom, na čom chceš pracovať, ak ju napíšeš.</li>
+    <li>Údaje o platbe, ktoré vidím na bankovom výpise, keď hodinu uhradíš prevodom.</li>
+  </ul>
+
+  <h2>Načo ich potrebujem</h2>
+  <p>Iba na to, aby sme sa dohodli na termíne, aby som ti vedel poslať odkaz na meeting, podklady na platbu a po hodine zápis. Nikam ťa nezapisujem a nikomu tvoje údaje nepredávam.</p>
+
+  <h2>Kde údaje sú</h2>
+  <!-- POZOR: keď v index.html zapneš ENDPOINT (rezervácie cez externú službu),
+       treba tu doplniť, že formulár prechádza cez tú službu ako sprostredkovateľa. -->
+  <p>Rezervácia mi príde ako e-mail, takže tvoje meno, mail a číslo mám v e-mailovej schránke. Videohovor beží cez Google Meet alebo Zoom — tam sa spracúva len to, čo si sám zadáš pri pripojení.</p>
+
+  <h2>Ako dlho ich mám</h2>
+  <p>Komunikáciu si držím, kým spolu riešime hodiny, plus rozumný čas potom, keby si sa ozval znova. Doklady o platbe musím podľa zákona uchovať dlhšie. Keď mi napíšeš, že si mám tvoje údaje vymazať, zmažem korešpondenciu aj kontakt.</p>
+
+  <h2>Cookies a meranie</h2>
+  <p>Táto stránka nepoužíva sledovacie cookies ani analytiku. Nič sa ti tu nemeria.</p>
+
+  <h2>Čo môžeš žiadať</h2>
+  <ul>
+    <li>Aby som ti povedal, aké údaje o tebe mám.</li>
+    <li>Aby som ich opravil alebo vymazal.</li>
+    <li>Aby som ich prestal používať.</li>
+    <li>Podať sťažnosť na Úrad na ochranu osobných údajov Slovenskej republiky, ak si myslíš, že s tým zaobchádzam zle.</li>
+  </ul>
+  <p>Stačí mail na <a href="mailto:alexpoliak21@gmail.com">alexpoliak21@gmail.com</a> a ozvem sa do niekoľkých dní.</p>
+
+  <div class="box">
+    <p><strong>Nahrávanie hodín</strong></p>
+    <p>Hodiny nenahrávam. Ak si nahrávku vyslovene vyžiadaš, nahrám ju, pošlem ti ju a potom ju u seba zmažem.</p>
+  </div>
+
+  <p class="date" style="margin-top:34px">Naposledy upravené: august 2026</p>
+</main>
+
+<footer class="shell foot">
+  <span>AI Učenie · ai.apoliak.online</span>
+  <a href="index.html">Späť na stránku</a>
+</footer>
+
+</body>
+</html>

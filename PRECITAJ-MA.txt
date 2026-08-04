@@ -1,0 +1,82 @@
+AI UČENIE — ai.apoliak.online
+=============================
+
+Obsah
+-----
+index.html          hlavná stránka (rezervácia, kto ťa učí, cenník, otázky)
+ochrana-udajov.html podstránka, odkazuje sa na ňu z formulára a z pätičky
+404.html            stránka pre neexistujúce adresy (GitHub Pages ju berie sám)
+og-image.png        obrázok 1200x630 na zdieľanie odkazu
+og-image.svg        zdroj toho obrázka (uprav tu, PNG potom vyrenderuj znova)
+robots.txt          povoľuje indexovanie, ochranu údajov drží mimo Googlu
+sitemap.xml         jedna adresa, pri zmene webu prepíš lastmod
+.nojekyll           vypína Jekyll na GitHub Pages, nechať
+
+Nasadenie
+---------
+Nahraj súbory do jedného priečinka na webserveri. Nič sa nekompiluje,
+žiadne závislosti — funguje to ako obyčajný statický web.
+
+Cez GitHub Pages (rovnako ako ipinfo.apoliak.online):
+  1. nové PUBLIC repo, nahrať tieto súbory
+  2. pridať súbor CNAME s jediným riadkom:  ai.apoliak.online
+  3. na Hostingeri pridať CNAME záznam: ai  ->  apoliak7777.github.io
+  4. v repo Settings -> Pages zapnúť Pages a počkať na HTTPS certifikát
+Repo musí zostať public, na Free účte Pages z private repa nefunguje.
+
+Kde si upravíš termíny
+----------------------
+V index.html, na začiatku <script> úplne dole v súbore:
+
+  PLAN        časy podľa dňa v týždni (1 = pondelok ... 6 = sobota, 0 = nedeľa)
+              Časy idú po 75 minútach = 60 min hodina + 15 min pauza.
+  OBSADENE    obsadené termíny vo formáte "2026-07-28 9:00"
+  POCET_DNI   koľko dní s voľnými termínmi sa ponúkne
+  MOJ_MAIL    kam chodia rezervácie
+
+Odosielanie rezervácií
+----------------------
+Tam istá časť skriptu:
+
+  ENDPOINT        prázdne  = klientovi sa otvorí jeho mail s vyplnenou
+                             rezerváciou (funguje hneď, ale ak nemá
+                             nastavený mailový program, rezervácia sa stratí)
+                  vyplnené = rezervácia sa odošle na pozadí a klient
+                             nemusí nikam klikať
+  ENDPOINT_EXTRA  polia, ktoré tá služba vyžaduje (napr. access_key)
+
+Príklad pre Web3Forms (bez servera, zdarma):
+  ENDPOINT = "https://api.web3forms.com/submit";
+  ENDPOINT_EXTRA = { access_key: "tvoj-kluc", subject: "Nová rezervácia — AI Učenie" };
+
+Keď odoslanie zlyhá, web sám ukáže chybu a otvorí mail ako záložnú cestu.
+Formulár má aj skrytú pascu na roboty (pole "web") — ak ho niekto vyplní,
+rezervácia sa neodošle.
+
+POZOR: keď ENDPOINT zapneš, doplň do ochrana-udajov.html do sekcie
+"Kde údaje sú", že formulár prechádza cez tú službu (je tam komentár).
+
+Čo ešte zostáva dorobiť
+-----------------------
+1. zapnúť ENDPOINT a poslať klientovi automatický potvrdzovací mail
+2. napojenie termínov na kalendár, aby OBSADENE nebolo ručne
+   (teraz sa rezervovaný termín skryje len tomu, kto ho práve zadal —
+   dvaja ľudia si stále vedia rezervovať ten istý čas)
+3. odkaz na ai.apoliak.online doplniť aj do webu apoliak.online
+4. živnosť pred prvou prijatou platbou (zatiaľ web len ako projekt)
+
+Rozhodnuté
+----------
+- fotka nebude, ostáva iniciálka v gradiente
+- sekcia Príklady je bez čísel — ukazuje zmenu postupu
+  (predtým / po hodine), nič sa nemusí dokladovať
+- nasadenie na doménu ai.apoliak.online až neskôr, zatiaľ len GitHub
+
+Čo už je dorobené (nad rámec prvej verzie)
+------------------------------------------
+- výber balíka priamo v rezervácii (1 h / 2 h za sebou / 3 h / 6 h / tím)
+- kontrola pri odoslaní, že vybraný termín medzitým neprešiel
+- funguje aj bez JavaScriptu (obsah vidno, v rezervácii je mail a telefón)
+- pripomienky v .ics súbore (deň vopred + hodinu pred hodinou)
+- tieň na pravej hrane dní, aby bolo na mobile vidno, že sa dajú posúvať
+- aria atribúty pre čítače obrazovky, 404 stránka, zjednotené farby

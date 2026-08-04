@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /ochrana-udajov.html
+
+Sitemap: https://ai.apoliak.online/sitemap.xml
