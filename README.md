@@ -91,7 +91,8 @@ ai-ucenie/
 ├── robots.txt            # indexovanie povolené, GDPR stránka mimo
 ├── sitemap.xml           # jedna URL
 ├── .nojekyll             # vypína Jekyll na GitHub Pages
-└── PRECITAJ-MA.txt       # poznámky k úpravám a nasadeniu
+├── PRECITAJ-MA.txt       # poznámky k úpravám a nasadeniu
+└── server/               # rezervačný backend + inštalátor na VPS (vlastný README)
 ```
 
 ---
@@ -113,17 +114,13 @@ Všetko sa nastavuje na jednom mieste — na začiatku `<script>` bloku v `index
 
 | Premenná | Význam |
 |---|---|
-| `ENDPOINT` | prázdne = klientovi sa otvorí predvyplnený e-mail; vyplnené = rezervácia sa odošle `fetch`-om na pozadí |
-| `ENDPOINT_EXTRA` | polia navyše, ktoré služba vyžaduje (napr. `access_key`) |
+| `ENDPOINT` | `/api/rezervacia` = vlastný backend zo `server/` (predvolené); prázdne = klientovi sa otvorí predvyplnený e-mail |
+| `OBSADENE_URL` | `/api/obsadene` — odtiaľ si widget pri načítaní stiahne už obsadené termíny |
+| `ENDPOINT_EXTRA` | polia navyše, keby sa `ENDPOINT` nasmeroval na externú službu (napr. `access_key` pre Web3Forms) |
 
-Príklad pre Web3Forms:
+Backend zapíše rezerváciu do SQLite, termín drží obsadený pre všetkých (druhý záujemca dostane 409 a widget ho vráti na výber) a pošle mail tebe aj potvrdenie klientovi. Podrobnosti v [`server/README.md`](server/README.md).
 
-```js
-var ENDPOINT = "https://api.web3forms.com/submit";
-var ENDPOINT_EXTRA = { access_key: "tvoj-kluc", subject: "Nová rezervácia — AI Učenie" };
-```
-
-Keď odoslanie zlyhá, widget zobrazí chybu a sám ponúkne e-mail ako záložnú cestu.
+Keď backend neodpovedá, widget zobrazí chybu a sám ponúkne e-mail ako záložnú cestu.
 
 ---
 
@@ -140,14 +137,16 @@ Keď odoslanie zlyhá, widget zobrazí chybu a sám ponúkne e-mail ako záložn
 
 ## 🌍 Nasadenie
 
-Stránka je pripravená na GitHub Pages s vlastnou doménou `ai.apoliak.online` (CNAME záznam `ai → apoliak7777.github.io`). Zatiaľ beží len ako repozitár — nasadenie príde neskôr.
+Ostrá verzia beží na vlastnom VPS (Debian 12, nginx + Python backend) na doméne `ai.apoliak.online`, ktorá naň mieri A záznamom. Nasadenie aj aktualizácia sú v [`server/README.md`](server/README.md) — jeden skript `server/instaluj.sh`.
+
+GitHub Pages (`apoliak7777.github.io/ai-ucenie/`) slúži len ako náhľad: `/api/` tam neexistuje, takže rezervácia tam padne na záložný `mailto:`.
 
 ---
 
 ## ⚠️ Známe obmedzenia
 
-- 🗓️ **`OBSADENE` je ručný zoznam** - dvaja ľudia si vedia rezervovať ten istý čas; obsadenosť treba po každej rezervácii doplniť ručne, kým nepribudne napojenie na kalendár.
-- 📮 **Bez endpointu ide rezervácia cez `mailto:`** - ak klient nemá v systéme nastavený mailový program, rezervácia sa nemusí odoslať.
+- 🗓️ **Obsadenosť drží backend, nie kalendár** - termíny dohodnuté mimo stránky (telefón, mail) treba dopísať do `OBSADENE` v `index.html`, inak ich widget ponúka ďalej.
+- 📮 **Keď backend nebeží, ide rezervácia cez `mailto:`** - ak klient nemá v systéme nastavený mailový program, rezervácia sa nemusí odoslať.
 - 🕐 **Časy sú v slovenskom čase** - widget neprepočítava časové pásma, na stránke je to uvedené.
 
 ---

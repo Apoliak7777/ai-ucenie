@@ -97,6 +97,12 @@ h1 em{font-style:normal;color:var(--rose)}
 .trust{display:flex;flex-wrap:wrap;justify-content:center;gap:8px 22px;margin-top:22px;font-size:.86rem;color:var(--dim)}
 .trust span{display:flex;align-items:center;gap:7px}
 .trust svg{flex:none;color:var(--rose)}
+.zaruka{display:inline-flex;align-items:flex-start;gap:9px;margin:18px auto 0;max-width:56ch;
+  padding:10px 18px;border-radius:999px;text-align:left;font-size:.9rem;line-height:1.45;
+  color:var(--text);background:rgba(125,224,176,.07);border:1px solid rgba(125,224,176,.22)}
+.zaruka svg{flex:none;margin-top:2px;color:var(--mint)}
+.zaruka strong{color:var(--mint);font-weight:700}
+@media (max-width:560px){.zaruka{border-radius:16px}}
 
 /* ---------- rezervačná karta ---------- */
 .bk{margin-top:clamp(28px,4vw,44px);border-radius:24px;padding:1px;text-align:left;
@@ -317,6 +323,8 @@ h1 em{font-style:normal;color:var(--rose)}
       <span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg> Google Meet alebo Zoom</span>
       <span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg> Zápis a postupy po hodine</span>
     </div>
+
+    <p class="zaruka"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg> <span>Napíš mi do rezervácie, na čom chceš pracovať. Ak uvidím, že ti hodina nemá čo dať, poviem ti to <strong>ešte pred platbou</strong> — a termín zrušíme.</span></p>
 
     <!-- ================= REZERVÁCIA ================= -->
     <div class="bk" id="termin">
@@ -633,7 +641,8 @@ h1 em{font-style:normal;color:var(--rose)}
        ENDPOINT = "https://api.web3forms.com/submit";
        ENDPOINT_EXTRA = { access_key: "sem-vloz-kluc", subject: "Nová rezervácia — AI Učenie" };
      Ak odoslanie zlyhá, web sám ponúkne mail ako záložnú cestu. */
-  var ENDPOINT = "";
+  var ENDPOINT = "/api/rezervacia";      /* vlastný backend na VPS, viď server/ */
+  var OBSADENE_URL = "/api/obsadene";    /* odtiaľ si widget stiahne už obsadené termíny */
   var ENDPOINT_EXTRA = {};
   /* ========================================================== */
 
@@ -787,6 +796,23 @@ h1 em{font-style:normal;color:var(--rose)}
     $("termin").scrollIntoView({ behavior: "smooth", block: "start" });
   }
 
+  /* obsadené termíny zo servera — nech ich nevidí ani ďalší návštevník */
+  if (ENDPOINT && OBSADENE_URL){
+    fetch(OBSADENE_URL, { headers: { "Accept": "application/json" } })
+      .then(function(r){ return r.ok ? r.json() : null; })
+      .then(function(j){
+        if (!j || !j.obsadene || !j.obsadene.length) return;
+        j.obsadene.forEach(function(slot){
+          if (OBSADENE.indexOf(slot) === -1) OBSADENE.push(slot);
+          dni.forEach(function(den){
+            den.casy.forEach(function(c){ if (den.kluc + " " + c.cas === slot) c.obsadene = true; });
+          });
+        });
+        kresliCasy();
+      })
+      .catch(function(){});
+  }
+
   $("bkForm").addEventListener("submit", function(ev){
     ev.preventDefault();
     if (posielam) return;
@@ -858,12 +884,21 @@ h1 em{font-style:normal;color:var(--rose)}
       headers: { "Content-Type": "application/json", "Accept": "application/json" },
       body: JSON.stringify(data)
     }).then(function(r){
+      if (r.status === 409){
+        return r.json().catch(function(){ return {}; }).then(function(j){
+          busy(false);
+          zablokuj(vybrany.slot);
+          chyba(j.chyba || "Tento termín si medzitým vzal niekto iný. Klikni na Zmeniť a vyber si iný.");
+          throw { obsadene: true };
+        });
+      }
       if (!r.ok) throw new Error("HTTP " + r.status);
       busy(false);
       zablokuj(vybrany.slot);
       $("mailBtn").textContent = "Napísať mi mail";
       hotovo("Držím ti " + vybrany.label + ". Ozvem sa do 24 hodín s odkazom na meeting a podkladmi na platbu.");
-    }).catch(function(){
+    }).catch(function(e){
+      if (e && e.obsadene) return;
       busy(false);
       chyba("Odoslanie mi teraz nevyšlo. Skús to prosím znova, alebo mi termín pošli mailom.");
       $("mailBtn").textContent = "Poslať rezerváciu mailom";

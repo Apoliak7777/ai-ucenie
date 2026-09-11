@@ -1,0 +1,3 @@
+server/nastavenia.env
+server/rezervacie.sqlite
+server/__pycache__/

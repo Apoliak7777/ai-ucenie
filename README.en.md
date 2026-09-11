@@ -91,7 +91,8 @@ ai-ucenie/
 ├── robots.txt            # indexing allowed, privacy page excluded
 ├── sitemap.xml           # single URL
 ├── .nojekyll             # disables Jekyll on GitHub Pages
-└── PRECITAJ-MA.txt       # editing and deployment notes (Slovak)
+├── PRECITAJ-MA.txt       # editing and deployment notes (Slovak)
+└── server/               # booking backend + VPS installer (own README, Slovak)
 ```
 
 ---
@@ -113,17 +114,13 @@ Everything is configured in one place — at the top of the `<script>` block in 
 
 | Variable | Meaning |
 |---|---|
-| `ENDPOINT` | empty = a pre-filled e-mail opens for the client; set = the booking is sent via `fetch` in the background |
-| `ENDPOINT_EXTRA` | extra fields the service requires (e.g. `access_key`) |
+| `ENDPOINT` | `/api/rezervacia` = the site's own backend from `server/` (default); empty = a pre-filled e-mail opens for the client |
+| `OBSADENE_URL` | `/api/obsadene` — the widget fetches already-taken slots from here on load |
+| `ENDPOINT_EXTRA` | extra fields in case `ENDPOINT` points at an external service (e.g. `access_key` for Web3Forms) |
 
-Example for Web3Forms:
+The backend stores the booking in SQLite, keeps the slot taken for everyone (a second visitor gets 409 and is sent back to pick another) and e-mails you plus a confirmation to the client. Details in [`server/README.md`](server/README.md) (Slovak).
 
-```js
-var ENDPOINT = "https://api.web3forms.com/submit";
-var ENDPOINT_EXTRA = { access_key: "your-key", subject: "Nová rezervácia — AI Učenie" };
-```
-
-When delivery fails, the widget shows an error and offers e-mail as the fallback path on its own.
+When the backend does not respond, the widget shows an error and offers e-mail as the fallback path on its own.
 
 ---
 
@@ -140,14 +137,16 @@ When delivery fails, the widget shows an error and offers e-mail as the fallback
 
 ## 🌍 Deployment
 
-The site is ready for GitHub Pages with the custom domain `ai.apoliak.online` (CNAME record `ai → apoliak7777.github.io`). For now it lives as a repository only — deployment comes later.
+Production runs on a private VPS (Debian 12, nginx + Python backend) under `ai.apoliak.online`, which points at it with an A record. Deployment and updates are one script, `server/instaluj.sh` — see [`server/README.md`](server/README.md).
+
+GitHub Pages (`apoliak7777.github.io/ai-ucenie/`) is a preview only: `/api/` does not exist there, so bookings fall back to `mailto:`.
 
 ---
 
 ## ⚠️ Known Limitations
 
-- 🗓️ **`OBSADENE` is a manual list** - two people can book the same slot; taken slots must be added by hand after every booking until a calendar integration exists.
-- 📮 **Without an endpoint, bookings go through `mailto:`** - if the client has no mail client configured, the booking may never be sent.
+- 🗓️ **Availability lives in the backend, not a calendar** - slots agreed outside the site (phone, e-mail) must be added to `OBSADENE` in `index.html`, otherwise the widget keeps offering them.
+- 📮 **When the backend is down, bookings go through `mailto:`** - if the client has no mail client configured, the booking may never be sent.
 - 🕐 **Times are in Slovak time** - the widget does not convert time zones; the page says so.
 
 ---

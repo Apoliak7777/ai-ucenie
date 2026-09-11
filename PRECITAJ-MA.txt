@@ -14,20 +14,24 @@ sitemap.xml         jedna adresa, pri zmene webu prepíš lastmod
 
 Kde to beží
 -----------
-Repo:  https://github.com/Apoliak7777/ai-ucenie
-Web:   https://apoliak7777.github.io/ai-ucenie/   (GitHub Pages z vetvy main)
-Odkaz na web je aj v hlavičke repa vpravo hore (About).
-Zmena webu = push do main, o minútu-dve je zmena naživo.
+Repo:    https://github.com/Apoliak7777/ai-ucenie
+Ostrá:   https://ai.apoliak.online/   (vlastný VPS, Frankfurt — nginx + Python backend zo server/)
+Náhľad:  https://apoliak7777.github.io/ai-ucenie/   (GitHub Pages, bez /api → rezervácia tam ide cez mailto)
+Zmena webu = push do main, potom na VPS:
+  cd /var/www/ai-ucenie && git pull && systemctl restart ai-ucenie
+(GitHub Pages sa aktualizuje sám o minútu-dve.)
 
-Nasadenie na vlastnú doménu (až raz)
+Nasadenie na VPS (ai.apoliak.online)
 ------------------------------------
-  1. pridať do repa súbor CNAME s jediným riadkom:  ai.apoliak.online
-  2. na Hostingeri pridať CNAME záznam: ai  ->  apoliak7777.github.io
-  3. v repo Settings -> Pages doplniť custom domain a počkať na HTTPS
-Stará github.io adresa potom sama presmeruje na doménu.
-Repo musí zostať public, na Free účte Pages z private repa nefunguje.
-POZOR: odkazy v 404.html sú absolútne na github.io — po prechode na
-doménu ich netreba meniť (presmerujú sa), ale môžu sa prepísať na doménu.
+DNS: ai.apoliak.online mieri A záznamom na VPS (172.93.185.182), nič sa v ňom nemení.
+Na serveri ako root, jednorazovo:
+  git clone https://github.com/Apoliak7777/ai-ucenie.git /var/www/ai-ucenie
+  bash /var/www/ai-ucenie/server/instaluj.sh
+Prvý beh vytvorí server/nastavenia.env a zastaví sa — doplniť SMTP_HESLO
+(heslo schránky apoliak@apoliak.online) a pustiť skript znova. Skript nainštaluje
+balíky, systemd službu ai-ucenie, nginx vhost a certifikát Let's Encrypt.
+Celý postup, log a databáza: server/README.md
+Repo môže zostať public — v ňom nie je žiadne heslo (nastavenia.env je v .gitignore).
 
 Kde si upravíš termíny
 ----------------------
@@ -43,39 +47,46 @@ Odosielanie rezervácií
 ----------------------
 Tam istá časť skriptu:
 
-  ENDPOINT        prázdne  = klientovi sa otvorí jeho mail s vyplnenou
-                             rezerváciou (funguje hneď, ale ak nemá
-                             nastavený mailový program, rezervácia sa stratí)
-                  vyplnené = rezervácia sa odošle na pozadí a klient
-                             nemusí nikam klikať
-  ENDPOINT_EXTRA  polia, ktoré tá služba vyžaduje (napr. access_key)
+  ENDPOINT        "/api/rezervacia" = vlastný backend zo server/ (predvolené):
+                  rezervácia sa zapíše do databázy na VPS, termín ostane
+                  obsadený pre všetkých, mne príde mail a klientovi potvrdenie
+                  prázdne = klientovi sa otvorí jeho mail s vyplnenou rezerváciou
+                  (ak nemá nastavený mailový program, rezervácia sa stratí)
+  OBSADENE_URL    "/api/obsadene" — odtiaľ si widget pri načítaní stiahne
+                  obsadené termíny, takže ich nevidí ani ďalší návštevník
+  ENDPOINT_EXTRA  polia navyše, keby sa ENDPOINT nasmeroval na externú
+                  službu (napr. access_key pre Web3Forms)
 
-Príklad pre Web3Forms (bez servera, zdarma):
-  ENDPOINT = "https://api.web3forms.com/submit";
-  ENDPOINT_EXTRA = { access_key: "tvoj-kluc", subject: "Nová rezervácia — AI Učenie" };
-
-Keď odoslanie zlyhá, web sám ukáže chybu a otvorí mail ako záložnú cestu.
+Keď si termín medzitým vzal niekto iný, backend vráti 409 a widget človeka
+vráti na výber s hláškou — NEpresmeruje ho na mail.
+Keď backend neodpovedá vôbec, web ukáže chybu a otvorí mail ako záložnú cestu.
 Formulár má aj skrytú pascu na roboty (pole "web") — ak ho niekto vyplní,
-rezervácia sa neodošle.
+rezervácia sa neodošle (backend to ticho zahodí tiež).
 
-POZOR: keď ENDPOINT zapneš, doplň do ochrana-udajov.html do sekcie
-"Kde údaje sú", že formulár prechádza cez tú službu (je tam komentár).
+Termíny dohodnuté mimo stránky (telefón, mail) dopíš do OBSADENE v index.html,
+backend o nich nevie.
+POZOR: keby sa ENDPOINT niekedy presmeroval na cudziu službu, doplň ju do
+ochrana-udajov.html do sekcie "Kde údaje sú" ako sprostredkovateľa.
 
 Čo ešte zostáva dorobiť
 -----------------------
-1. zapnúť ENDPOINT a poslať klientovi automatický potvrdzovací mail
-2. napojenie termínov na kalendár, aby OBSADENE nebolo ručne
-   (teraz sa rezervovaný termín skryje len tomu, kto ho práve zadal —
-   dvaja ľudia si stále vedia rezervovať ten istý čas)
-3. odkaz na ai.apoliak.online doplniť aj do webu apoliak.online
-4. živnosť pred prvou prijatou platbou (zatiaľ web len ako projekt)
+1. odkaz na ai.apoliak.online doplniť aj do webu apoliak.online
+2. živnosť pred prvou prijatou platbou (zatiaľ web len ako projekt)
+3. platba kartou (Stripe) namiesto prevodu vopred — menej odpadne ľudí
+4. fotka namiesto iniciálky a krátke video-ukážka (dôvera, viď nižšie)
+
+Hotové (09/2026): vlastný backend na VPS — rezervácia sa nestratí, klient
+dostane potvrdenie, termín ostáva obsadený pre všetkých.
 
 Rozhodnuté
 ----------
 - fotka nebude, ostáva iniciálka v gradiente
 - sekcia Príklady je bez čísel — ukazuje zmenu postupu
   (predtým / po hodine), nič sa nemusí dokladovať
-- nasadenie na doménu ai.apoliak.online až neskôr, zatiaľ len GitHub
+- ostrá verzia beží na vlastnom VPS, GitHub Pages je len náhľad
+- garancia „ak ti hodina nemá čo dať, poviem ti to pred platbou" je
+  vytiahnutá z FAQ do hero (zelený pás pod nadpisom) — je to najsilnejší
+  argument na stránke, vo FAQ ju nikto nevidel
 
 Čo už je dorobené (nad rámec prvej verzie)
 ------------------------------------------
