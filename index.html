@@ -101,7 +101,7 @@ section{scroll-margin-top:20px}
 .top{display:flex;align-items:center;justify-content:space-between;gap:20px;height:72px}
 .brand{font-family:var(--display);font-weight:500;font-size:1.3rem;letter-spacing:-.01em;text-decoration:none;color:var(--ink)}
 .top nav{display:flex;align-items:center;gap:clamp(14px,2.2vw,28px);font-size:.93rem;font-weight:600}
-.top nav a:not(.cta){color:var(--ink-2);text-decoration:none;transition:color .25s var(--ease)}
+.top nav a:not(.cta){color:var(--ink-2);text-decoration:none;padding:10px 0;transition:color .25s var(--ease)}
 .top nav a:not(.cta):hover{color:var(--ink)}
 .top nav .cta{padding:10px 16px;font-size:.92rem}
 @media (max-width:767px){.top nav a{display:none}}
@@ -115,7 +115,7 @@ section{scroll-margin-top:20px}
 .sheet{background:var(--surface);border:1px solid var(--box-line);border-top:3px solid var(--acc);border-radius:var(--r-sheet);
   box-shadow:var(--shadow);padding:clamp(20px,2.4vw,28px) clamp(20px,2.6vw,30px);transform:rotate(-1.5deg);transform-origin:50% 50%}
 .sheet__head{display:flex;justify-content:space-between;gap:12px;font-size:.78rem;font-weight:600;color:var(--muted);margin-bottom:10px}
-.sheet__title{font-size:1.5rem;margin-bottom:12px}
+.sheet__title{font-family:var(--display);font-weight:500;font-size:1.5rem;line-height:1.2;letter-spacing:-.012em;margin:0 0 12px}
 .sheet__steps{margin:0;padding-left:1.3em;display:grid;gap:9px;font-size:.92rem;line-height:1.5;color:var(--ink-2)}
 .sheet__steps li::marker{font-weight:700;color:var(--ink)}
 .sheet__steps b{color:var(--ink)}
@@ -145,6 +145,7 @@ section{scroll-margin-top:20px}
 .pr__cell p{color:var(--ink-2);text-wrap:pretty}
 .pr__po{background:var(--acc-soft);border-left:3px solid var(--acc);border-radius:0 var(--r) var(--r) 0;padding:14px 16px}
 .pr__po p{color:var(--ink)}
+.pr__po small{color:var(--ink-2)}   /* na tónovanom podklade má --muted kontrast pod 4,5:1 */
 @media (max-width:899px){.pr{grid-template-columns:1fr}}
 @media (max-width:560px){.pr__dvoj{grid-template-columns:1fr}}
 
@@ -168,7 +169,7 @@ section{scroll-margin-top:20px}
 .kto__name{font-family:var(--display);font-size:1.35rem;color:var(--ink)}
 .kto__role{color:var(--muted);font-size:.95rem;margin-top:-8px}
 .kto__links{display:flex;flex-wrap:wrap;gap:8px 22px;margin-top:4px;font-weight:600}
-.kto__links a{color:var(--ink);text-decoration:none;border-bottom:1px solid var(--acc-line);transition:border-color .25s var(--ease)}
+.kto__links a{color:var(--ink);text-decoration:none;padding:8px 0;border-bottom:1px solid var(--acc-line);transition:border-color .25s var(--ease)}
 .kto__links a:hover{border-color:var(--acc)}
 @media (max-width:899px){.kto{grid-template-columns:1fr}.foto{max-width:320px}}
 
@@ -238,7 +239,7 @@ section{scroll-margin-top:20px}
 .bk__note a{color:var(--ink)}
 .chosen{display:flex;align-items:center;justify-content:space-between;gap:14px;padding:12px 14px;
   border-radius:var(--r);background:var(--acc-soft);margin-bottom:18px}
-.chosen small{display:block;font-size:.78rem;color:var(--muted)}
+.chosen small{display:block;font-size:.78rem;color:var(--ink-2)}
 .chosen strong{font-weight:700}
 #changeBtn{font-weight:600;font-size:.86rem;background:transparent;border:1px solid var(--acc-line);color:var(--acc);
   border-radius:var(--r);padding:7px 13px;cursor:pointer;white-space:nowrap;transition:background-color .25s var(--ease)}
@@ -275,7 +276,7 @@ section{scroll-margin-top:20px}
 @media (max-width:767px){.strip{grid-template-columns:1fr}}
 .foot{display:flex;flex-wrap:wrap;gap:12px 28px;align-items:center;padding:8px 0 44px;font-size:.88rem;color:var(--muted)}
 .foot nav{display:flex;flex-wrap:wrap;gap:8px 20px;margin-left:auto}
-.foot a{color:var(--ink-2);text-decoration:none}
+.foot a{color:var(--ink-2);text-decoration:none;display:inline-block;padding:9px 0}
 .foot a:hover{color:var(--ink)}
 .foot .brand{font-size:1.1rem}
 
@@ -347,7 +348,7 @@ section{scroll-margin-top:20px}
     <figure class="sheet-wrap">
       <div class="sheet" role="img" aria-label="Ukážka zápisu z hodiny na tému upomienky dodávateľom">
         <div class="sheet__head"><span>Zápis z hodiny</span><span>ukážka</span></div>
-        <h3 class="sheet__title">Upomienky dodávateľom</h3>
+        <p class="sheet__title">Upomienky dodávateľom</p>
         <ol class="sheet__steps">
           <li><b>Nastav si tón raz.</b> Do ChatGPT alebo Claude ulož zadanie: „Píšeš za mňa maily dodávateľom. Krátko, slušne, bez fráz, na konci vždy termín.“</li>
           <li><b>Daj mu len fakty.</b> Číslo faktúry, suma, splatnosť, koľko dní po. Nič viac.</li>
