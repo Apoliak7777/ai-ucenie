@@ -30,12 +30,15 @@ Nasadenie na Cloudflare Pages (ai.apoliak.online) — jednorazovo, 5 klikov
      Variable name: DB
   3. Settings → Variables and Secrets → Add → typ Secret, meno SMTP_HESLO,
      hodnota = heslo schránky apoliak@apoliak.online
+     a druhé tajomstvo ADMIN_HESLO = heslo, ktorým sa prihlásiš do /admin
   4. Deployments → ⋯ pri poslednom → Retry deployment (aby bežal s DB a heslom)
   5. Custom domains → Set up a custom domain → ai.apoliak.online
      a u Hostingera (hpanel → Domény → apoliak.online → DNS) zmeniť záznam "ai"
      z typu A (172.93.185.182) na CNAME → ai-ucenie.pages.dev
-Tabuľku v D1 si backend vytvorí sám pri prvom dopyte. Rezervácie vidno v
-D1 → ai-ucenie → Explore data. Log Functions: Deployments → View details → Functions.
+Tabuľku v D1 si backend vytvorí sám pri prvom dopyte. Rezervácie vidíš na
+https://ai.apoliak.online/admin (meno ľubovoľné, heslo ADMIN_HESLO): meno, mail,
+telefón, balík, poznámka, kedy prišla; tlačidlo Zmazať uvoľní termín späť do ponuky.
+Log Functions: Deployments → View details → Functions.
 Repo môže zostať public — heslo je len v Cloudflare, v repe nie je nikde.
 
 Záloha: tá istá logika v Pythone pre vlastný VPS je v server/ (README tam).
@@ -46,7 +49,8 @@ Kde si upravíš termíny
 V index.html, na začiatku <script> úplne dole v súbore:
 
   PLAN        časy podľa dňa v týždni (1 = pondelok ... 6 = sobota, 0 = nedeľa)
-              Časy idú po 75 minútach = 60 min hodina + 15 min pauza.
+              Po až Pi od 15:00, časy idú po 70 minútach = 60 min hodina + 10 min pauza
+              (15:00, 16:10, 17:20, 18:30, 19:40). Víkend prázdny.
   OBSADENE    obsadené termíny vo formáte "2026-07-28 9:00"
   POCET_DNI   koľko dní s voľnými termínmi sa ponúkne
   MOJ_MAIL    kam chodia rezervácie

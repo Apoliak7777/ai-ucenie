@@ -50,7 +50,7 @@ The user interface is entirely in Slovak (`<html lang="sk">`). Design: paper and
 ## ✨ Features
 
 - 📅 **Three-step booking widget** - pick a slot → contact details → confirmation, with visual step states and animated transitions.
-- 🗓️ **Automatic free slots** - the next `POCET_DNI` days are generated from the weekly `PLAN`; today's slots are only offered 2 hours ahead and Sundays are skipped.
+- 🗓️ **Automatic free slots** - the next `POCET_DNI` days are generated from the weekly `PLAN`; today's slots are only offered 2 hours ahead and weekends are skipped.
 - 📦 **Package picker inside the booking** - single hour, two in a row, 3 h / 6 h bundle or a small team; the choice is included in the submitted data.
 - 📮 **Two delivery paths** - `fetch` to a custom endpoint (e.g. Web3Forms), with automatic fallback to a pre-filled `mailto:` when no endpoint is set or the request fails.
 - 🕳️ **Honeypot** - a hidden `web` field; when a spam bot fills it in, the booking is silently dropped.
@@ -108,7 +108,7 @@ Everything is configured in one place — at the top of the `<script>` block in 
 
 | Variable | Meaning |
 |---|---|
-| `PLAN` | times per weekday (`1` = Monday … `6` = Saturday, `0` = Sunday); slots run every 75 minutes = 60 min lesson + 15 min break |
+| `PLAN` | times per weekday (`1` = Monday … `6` = Saturday, `0` = Sunday); Monday to Friday from 15:00, slots every 70 minutes = 60 min lesson + 10 min break |
 | `OBSADENE` | manual list of taken slots in the `"2026-07-28 9:00"` format |
 | `POCET_DNI` | how many days with free slots to offer |
 | `MOJ_MAIL` | where bookings are delivered |
@@ -150,7 +150,9 @@ When the backend does not respond, the widget shows an error and offers e-mail a
 4. Deployments → Retry deployment (so it runs with the bindings).
 5. Custom domains → Set up → `ai.apoliak.online`; at Hostinger change the `ai` record from A to **CNAME → `ai-ucenie.pages.dev`**.
 
-Local testing: `npm install`, put `SMTP_HESLO=…` into `.dev.vars` (template `.dev.vars.vzor`), `npm run dev` → `http://127.0.0.1:8788`.
+Local testing: `npm install`, put `SMTP_HESLO=…` and `ADMIN_HESLO=…` into `.dev.vars` (template `.dev.vars.vzor`), `npm run dev` → `http://127.0.0.1:8788`.
+
+**Bookings overview:** `/admin` (Functions in `functions/admin/`, logic in `lib/admin.js`). HTTP Basic login, the password is the `ADMIN_HESLO` secret; the page lists upcoming and past bookings with all details and a Delete button that frees the slot again. Kept out of search indexes (`robots.txt`, `X-Robots-Tag`).
 
 GitHub Pages (`apoliak7777.github.io/ai-ucenie/`) is a preview only: `/api/` does not exist there, so bookings fall back to `mailto:`. The VPS fallback (same logic in Python) lives in [`server/README.md`](server/README.md).
 

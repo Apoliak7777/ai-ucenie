@@ -497,7 +497,7 @@ section{scroll-margin-top:20px}
       <div class="q"><h3>Ako to platím?</h3><p>Prevodom na účet pred hodinou. Po potvrdení termínu ti pošlem mailom číslo účtu, sumu a variabilný symbol.</p></div>
       <div class="q"><h3>Môžem tam otvoriť firemné dokumenty?</h3><p>Časť hodiny venujeme presne tomuto: čo do AI patrí a čo nie. Ukážem ti, ako údaje klientov a interné čísla nahradiť zástupnými, aby výsledok fungoval a dáta zostali u teba.</p></div>
       <div class="q"><h3>Nahráva sa meeting?</h3><p>Len ak si to vyslovene želáš. Vtedy ti nahrávku pošlem spolu so zápisom. Inak nie.</p></div>
-      <div class="q"><h3>Dá sa dohodnúť dve hodiny za sebou?</h3><p>Áno. Rezervuj prvý čas a v druhom kroku vyber „Dve hodiny za sebou“. Medzi hodinami dávam 15 minút pauzu.</p></div>
+      <div class="q"><h3>Dá sa dohodnúť dve hodiny za sebou?</h3><p>Áno. Rezervuj prvý čas a v druhom kroku vyber „Dve hodiny za sebou“. Medzi hodinami dávam 10 minút pauzu.</p></div>
       <div class="q"><h3>Ako viem, či mi to pomôže?</h3><p>Do rezervácie mi napíš, na čom chceš pracovať. Ak uvidím, že ti hodina nemá čo dať, ozvem sa ešte pred platbou a termín zrušíme. Nebudem ti brať peniaze za niečo, čo ti nepomôže.</p></div>
     </div>
   </section>
@@ -524,7 +524,7 @@ section{scroll-margin-top:20px}
           <div class="dayrow" id="dayrow"></div>
         </div>
         <div class="times" id="times"></div>
-        <p class="bk__note">Hodina má 60 minút, medzi hodinami mám 15 minút pauzu. Ak chceš dve za sebou, vyber si v ďalšom kroku balík. Časy sú v slovenskom čase.</p>
+        <p class="bk__note">Termíny sú v pracovné dni od 15:00. Hodina má 60 minút, medzi hodinami mám 10 minút pauzu. Ak chceš dve za sebou, vyber si v ďalšom kroku balík. Časy sú v slovenskom čase.</p>
         <noscript>
           <p class="bk__note">Na výber termínu potrebuješ zapnutý JavaScript. Ak ho nemáš, napíš mi na
             <a href="mailto:alexpoliak21@gmail.com">alexpoliak21@gmail.com</a> alebo zavolaj na
@@ -645,7 +645,7 @@ section{scroll-margin-top:20px}
     { "@type": "Question", "name": "Nahráva sa meeting?",
       "acceptedAnswer": { "@type": "Answer", "text": "Len ak si to vyslovene želáš. Vtedy nahrávku pošlem spolu so zápisom. Inak nie." } },
     { "@type": "Question", "name": "Dá sa dohodnúť dve hodiny za sebou?",
-      "acceptedAnswer": { "@type": "Answer", "text": "Áno. Rezervuj prvý čas a v druhom kroku vyber možnosť Dve hodiny za sebou. Medzi hodinami je 15 minút pauza." } },
+      "acceptedAnswer": { "@type": "Answer", "text": "Áno. Rezervuj prvý čas a v druhom kroku vyber možnosť Dve hodiny za sebou. Medzi hodinami je 10 minút pauza." } },
     { "@type": "Question", "name": "Ako viem, či mi to pomôže?",
       "acceptedAnswer": { "@type": "Answer", "text": "Do rezervácie napíš, na čom chceš pracovať. Ak hodina nemá čo dať, ozvem sa ešte pred platbou a termín zrušíme." } }
   ]
@@ -658,16 +658,17 @@ section{scroll-margin-top:20px}
 
   /* ==========================================================
      NASTAVENIE TERMÍNOV: jediné miesto, kde to upravuješ
-     Hodina 60 min + 15 min pauza, preto časy idú po 75 minútach.
+     Hodina 60 min + 10 min pauza, preto časy idú po 70 minútach.
+     Pondelok až piatok od 15:00, posledná hodina 19:40 až 20:40.
      Kľúč = deň v týždni (1 = pondelok ... 6 = sobota, 0 = nedeľa)
      ========================================================== */
   var PLAN = {
-    1: ["9:00","10:15","17:00","18:15"],
-    2: ["9:00","10:15","17:00","18:15"],
-    3: ["9:00","10:15","17:00","18:15"],
-    4: ["9:00","10:15","17:00","18:15"],
-    5: ["9:00","10:15","17:00"],
-    6: ["10:00","11:15"],
+    1: ["15:00","16:10","17:20","18:30","19:40"],
+    2: ["15:00","16:10","17:20","18:30","19:40"],
+    3: ["15:00","16:10","17:20","18:30","19:40"],
+    4: ["15:00","16:10","17:20","18:30","19:40"],
+    5: ["15:00","16:10","17:20","18:30","19:40"],
+    6: [],
     0: []
   };
   var OBSADENE = [];        /* termíny dohodnuté mimo stránky, napr. "2026-07-28 9:00" */

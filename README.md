@@ -50,7 +50,7 @@ Používateľské rozhranie je kompletne v slovenčine (`<html lang="sk">`). Diz
 ## ✨ Funkcie
 
 - 📅 **Trojkrokový rezervačný widget** - výber termínu → kontakt → potvrdenie, s vizuálnym stavom krokov a animovanými prechodmi.
-- 🗓️ **Automatické voľné termíny** - z týždenného plánu `PLAN` sa vygeneruje najbližších `POCET_DNI` dní; dnešné termíny sa ponúkajú len 2 hodiny dopredu a nedeľa sa vynecháva.
+- 🗓️ **Automatické voľné termíny** - z týždenného plánu `PLAN` sa vygeneruje najbližších `POCET_DNI` dní; dnešné termíny sa ponúkajú len 2 hodiny dopredu a víkend sa vynecháva.
 - 📦 **Výber balíka priamo v rezervácii** - jedna hodina, dve za sebou, balík 3 h / 6 h alebo malý tím; vybraný balík ide aj do odoslaných dát.
 - 📮 **Dve cesty odoslania** - `fetch` na vlastný endpoint (napr. Web3Forms), s automatickým návratom na predvyplnený `mailto:` keď endpoint nie je nastavený alebo zlyhá.
 - 🕳️ **Pasca na roboty** - skryté pole `web`; keď ho spam bot vyplní, rezervácia sa ticho zahodí.
@@ -108,7 +108,7 @@ Všetko sa nastavuje na jednom mieste — na začiatku `<script>` bloku v `index
 
 | Premenná | Význam |
 |---|---|
-| `PLAN` | časy podľa dňa v týždni (`1` = pondelok … `6` = sobota, `0` = nedeľa); sloty idú po 75 minútach = 60 min hodina + 15 min pauza |
+| `PLAN` | časy podľa dňa v týždni (`1` = pondelok … `6` = sobota, `0` = nedeľa); pondelok až piatok od 15:00, sloty po 70 minútach = 60 min hodina + 10 min pauza |
 | `OBSADENE` | ručný zoznam obsadených termínov vo formáte `"2026-07-28 9:00"` |
 | `POCET_DNI` | koľko dní s voľnými termínmi sa ponúkne |
 | `MOJ_MAIL` | kam chodia rezervácie |
@@ -150,7 +150,9 @@ Keď backend neodpovedá, widget zobrazí chybu a sám ponúkne e-mail ako zálo
 4. Deployments → Retry deployment (aby bežal s bindingmi).
 5. Custom domains → Set up → `ai.apoliak.online`; u Hostingera zmeniť záznam `ai` z A na **CNAME → `ai-ucenie.pages.dev`**.
 
-Lokálne skúšanie: `npm install`, do `.dev.vars` dať `SMTP_HESLO=…` (vzor `.dev.vars.vzor`), `npm run dev` → `http://127.0.0.1:8788`.
+Lokálne skúšanie: `npm install`, do `.dev.vars` dať `SMTP_HESLO=…` a `ADMIN_HESLO=…` (vzor `.dev.vars.vzor`), `npm run dev` → `http://127.0.0.1:8788`.
+
+**Prehľad rezervácií:** `/admin` (Functions `functions/admin/`, logika `lib/admin.js`). Prihlásenie cez HTTP Basic, heslo je tajomstvo `ADMIN_HESLO`; stránka ukáže nadchádzajúce a prebehnuté rezervácie so všetkými údajmi a tlačidlom Zmazať, ktoré termín uvoľní späť do ponuky. Je mimo indexu (`robots.txt`, `X-Robots-Tag`).
 
 GitHub Pages (`apoliak7777.github.io/ai-ucenie/`) slúži len ako náhľad: `/api/` tam neexistuje, takže rezervácia tam padne na záložný `mailto:`. Záložná cesta na vlastný VPS (rovnaká logika v Pythone) je v [`server/README.md`](server/README.md).
 
