@@ -9,7 +9,7 @@ ochrana-udajov.html podstránka, odkazuje sa na ňu z formulára a z pätičky
 og-image.png        obrázok 1200x630 na zdieľanie odkazu
 og-image.svg        zdroj toho obrázka (uprav tu, PNG potom vyrenderuj znova:
                     otvoriť SVG v prehliadači z priečinka repa a odfotiť 1200x630)
-fonts/              písma Bricolage Grotesque + Manrope, hostované tu (nie Google Fonts)
+fonts/              písma Newsreader (nadpisy, jedna váha 500) + Manrope (text), hostované tu (nie Google Fonts)
 robots.txt          povoľuje indexovanie, ochranu údajov drží mimo Googlu
 sitemap.xml         jedna adresa, pri zmene webu prepíš lastmod
 .nojekyll           vypína Jekyll na GitHub Pages, nechať
@@ -90,11 +90,14 @@ obsadený pre všetkých. Lokálne skúšanie: npm install, .dev.vars, npm run d
 
 Rozhodnuté
 ----------
-- dizajn 09/2026: svetlá téma (tmavá podľa systému), jeden zelený akcent,
-  písma Bricolage Grotesque (nadpisy) + Manrope (text) uložené vo fonts/,
-  žiadne Google Fonts, žiadne gradienty, žiadne ikony, žiadne eyebrowy nad
-  sekciami, v texte žiadne pomlčky; rezervácia stojí na desktope hneď vedľa
-  nadpisu, na mobile pod ním
+- dizajn 09/2026 (tretia verzia, po Alexovom „vyzerá to ako AI“): papier a atrament,
+  svetlá téma (tmavá podľa systému), jeden modrý akcent, nadpisy serifom Newsreader,
+  text Manrope, obe písma vo fonts/; žiadne Google Fonts, gradienty, ikony, karty,
+  eyebrowy ani pomlčky v texte. Poradie: hero (sľub + ukážka zápisu z hodiny) ->
+  ako hodina prebieha (10/40/10 minút) -> tri príklady predtým/po -> pre koho áno/nie ->
+  kto ťa učí -> cena s kotvou na skupinové kurzy (150 až 550 €) -> otázky -> rezervácia
+  (widget na konci, na mobile lepiaci pás s cenou a tlačidlom) -> kontakt.
+  Ukážka zápisu v hero je skutočný vzor dokumentu, ktorý klient dostane, nie fiktívne UI.
 - fotka: kým nie je, stojí v sekcii Kto ťa učí monogram AP; skutočná fotka
   (na výšku, 4:5, aspoň 800x1000) je to najlepšie, čo sa dá pre dôveru
   spraviť: kupuje sa hodina s konkrétnym človekom; do HTML je pripravený

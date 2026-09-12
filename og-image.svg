@@ -1,29 +1,29 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
   <!-- Zdroj obrázka na zdieľanie odkazu. PNG sa z neho renderuje v prehliadači (fonts/ vedľa). -->
   <style>
-    @font-face{font-family:'Bricolage Grotesque';font-weight:200 800;src:url('fonts/bricolage-grotesque-latin-ext.woff2') format('woff2');unicode-range:U+0100-02BA,U+1E00-1EFF}
-    @font-face{font-family:'Bricolage Grotesque';font-weight:200 800;src:url('fonts/bricolage-grotesque-latin.woff2') format('woff2');unicode-range:U+0000-00FF,U+2000-206F,U+20AC}
+    @font-face{font-family:'Newsreader';font-weight:500;src:url('fonts/newsreader-500-latin-ext.woff2') format('woff2');unicode-range:U+0100-02BA,U+1E00-1EFF}
+    @font-face{font-family:'Newsreader';font-weight:500;src:url('fonts/newsreader-500-latin.woff2') format('woff2');unicode-range:U+0000-00FF,U+2000-206F,U+20AC}
     @font-face{font-family:'Manrope';font-weight:200 800;src:url('fonts/manrope-latin-ext.woff2') format('woff2');unicode-range:U+0100-02BA,U+1E00-1EFF}
     @font-face{font-family:'Manrope';font-weight:200 800;src:url('fonts/manrope-latin.woff2') format('woff2');unicode-range:U+0000-00FF,U+2000-206F,U+20AC}
-    .d{font-family:'Bricolage Grotesque','Segoe UI',sans-serif}
+    .d{font-family:'Newsreader',Georgia,serif;font-weight:500}
     .b{font-family:'Manrope','Segoe UI',sans-serif}
   </style>
 
-  <rect width="1200" height="630" fill="#F4F5F7"/>
+  <rect width="1200" height="630" fill="#F8F7F4"/>
+  <rect x="0" y="0" width="1200" height="6" fill="#1F45D8"/>
 
   <!-- značka -->
-  <text x="88" y="106" class="d" font-size="30" font-weight="700" fill="#17191C" letter-spacing="-.6">AI Učenie</text>
+  <text x="88" y="112" class="d" font-size="34" fill="#151517">AI Učenie</text>
 
   <!-- nadpis -->
-  <text x="88" y="286" class="d" font-size="78" font-weight="800" fill="#17191C" letter-spacing="-2.6">Za jednu hodinu ti AI</text>
-  <text x="88" y="368" class="d" font-size="78" font-weight="800" fill="#17191C" letter-spacing="-2.6">začne šetriť celý týždeň</text>
-  <rect x="88" y="396" width="120" height="6" rx="3" fill="#1D7A4D"/>
+  <text x="88" y="300" class="d" font-size="88" fill="#151517" letter-spacing="-1.5">Naučím ťa AI na tvojej</text>
+  <text x="88" y="392" class="d" font-size="88" fill="#151517" letter-spacing="-1.5">vlastnej robote.</text>
 
-  <text x="88" y="452" class="b" font-size="27" font-weight="500" fill="#3C4147">Zdieľame obrazovku a naučím ťa AI na tvojich vlastných úlohách.</text>
+  <text x="88" y="456" class="b" font-size="27" font-weight="500" fill="#3A3A3E">Jedna hodina online, jeden na jedného, na tvojom maili, tabuľke alebo e-shope.</text>
 
   <!-- cena -->
-  <text x="88" y="560" class="d" font-size="72" font-weight="800" fill="#17191C" letter-spacing="-2.8">25 €</text>
-  <text x="258" y="558" class="b" font-size="24" font-weight="600" fill="#646B73">za 60 minút, jeden na jedného</text>
+  <text x="88" y="562" class="d" font-size="72" fill="#151517" letter-spacing="-2">25 €</text>
+  <text x="262" y="558" class="b" font-size="24" font-weight="600" fill="#6E6E74">za 60 minút, bez predplatného</text>
 
-  <text x="1112" y="558" class="b" font-size="24" font-weight="600" fill="#646B73" text-anchor="end">ai.apoliak.online</text>
+  <text x="1112" y="558" class="b" font-size="24" font-weight="600" fill="#6E6E74" text-anchor="end">ai.apoliak.online</text>
 </svg>

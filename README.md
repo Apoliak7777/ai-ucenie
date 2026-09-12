@@ -43,7 +43,7 @@
 
 Celý web žije v jednom súbore `index.html`: markup, CSS aj JavaScript sú inline. Nie je tu backend, build step ani package manager. Rezervačný widget si sám vypočíta voľné termíny z týždenného plánu, klient si vyberie deň, čas a balík, a rezervácia odíde buď na vlastný endpoint, alebo cez predvyplnený e-mail.
 
-Používateľské rozhranie je kompletne v slovenčine (`<html lang="sk">`). Dizajn: svetlá téma s tmavou podľa systému, jeden akcent, písma hostované priamo v repe, žiadne cudzie požiadavky pri načítaní.
+Používateľské rozhranie je kompletne v slovenčine (`<html lang="sk">`). Dizajn: papier a atrament, svetlá téma s tmavou podľa systému, jeden modrý akcent, nadpisy serifom Newsreader, písma hostované priamo v repe, žiadne cudzie požiadavky pri načítaní. V hero stojí skutočná ukážka zápisu, ktorý klient po hodine dostane; rezervačný widget je na konci stránky, na mobile ho pripomína lepiaci pás.
 
 ---
 
@@ -88,7 +88,7 @@ ai-ucenie/
 ├── 404.html              # vlastná stránka pre neexistujúce adresy
 ├── og-image.png          # obrázok 1200×630 na zdieľanie odkazu
 ├── og-image.svg          # zdroj OG obrázka (písma z fonts/, PNG sa z neho fotí v prehliadači)
-├── fonts/                # Bricolage Grotesque + Manrope, hostované tu, nie na Google Fonts
+├── fonts/                # Newsreader (nadpisy) + Manrope (text), hostované tu, nie na Google Fonts
 ├── robots.txt            # indexovanie povolené, GDPR stránka mimo
 ├── sitemap.xml           # jedna URL
 ├── .nojekyll             # vypína Jekyll na GitHub Pages
