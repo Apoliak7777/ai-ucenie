@@ -102,6 +102,9 @@ Rozhodnuté
   kto ťa učí -> cena s kotvou na skupinové kurzy (150 až 550 €) -> otázky -> rezervácia
   (widget na konci, na mobile lepiaci pás s cenou a tlačidlom) -> kontakt.
   Ukážka zápisu v hero je skutočný vzor dokumentu, ktorý klient dostane, nie fiktívne UI.
+- cieľovka sú FIRMY a živnostníci (Alex 12.09.): otázky sú písané pre majiteľa firmy
+  (viac ľudí naraz, údaje klientov, naše odvetvie, ako to platíme), otázka o nahrávaní
+  meetingu je vyhodená, tímová cena 39 € je v hero aj pri cene; tykanie ostáva
 - fotka: kým nie je, stojí v sekcii Kto ťa učí monogram AP; skutočná fotka
   (na výšku, 4:5, aspoň 800x1000) je to najlepšie, čo sa dá pre dôveru
   spraviť: kupuje sa hodina s konkrétnym človekom; do HTML je pripravený
