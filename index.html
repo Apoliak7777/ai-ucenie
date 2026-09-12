@@ -3,11 +3,12 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>AI Učenie — súkromná online hodina jeden na jedného za 25 €</title>
+<title>AI Učenie: súkromná online hodina jeden na jedného za 25 €</title>
 <meta name="description" content="Súkromný online meeting jeden na jedného. Zdieľame obrazovku a naučím ťa robiť tvoju vlastnú prácu s AI. 25 € za 60 minút.">
-<meta name="theme-color" content="#0C0912">
+<meta name="theme-color" content="#F4F5F7">
+<meta name="theme-color" media="(prefers-color-scheme: dark)" content="#121417">
 <link rel="canonical" href="https://ai.apoliak.online/">
-<meta property="og:title" content="AI Učenie — 25 € za hodinu, jeden na jedného">
+<meta property="og:title" content="AI Učenie: 25 € za hodinu, jeden na jedného">
 <meta property="og:description" content="Vyber si termín, zdieľame obrazovku a naučím ťa AI na tvojich vlastných úlohách.">
 <meta property="og:url" content="https://ai.apoliak.online/">
 <meta property="og:type" content="website">
@@ -16,287 +17,279 @@
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="AI Učenie — 25 € za hodinu, jeden na jedného">
+<meta name="twitter:title" content="AI Učenie: 25 € za hodinu, jeden na jedného">
 <meta name="twitter:description" content="Vyber si termín, zdieľame obrazovku a naučím ťa AI na tvojich vlastných úlohách.">
 <meta name="twitter:image" content="https://ai.apoliak.online/og-image.png">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%23FF4D6D'/%3E%3Ctext x='32' y='44' font-family='Arial,Helvetica,sans-serif' font-weight='800' font-size='32' text-anchor='middle' fill='%23fff'%3EAI%3C/text%3E%3C/svg%3E">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@600;800&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%231D7A4D'/%3E%3Ctext x='32' y='43' font-family='Segoe UI,Arial,sans-serif' font-weight='800' font-size='30' text-anchor='middle' fill='%23fff'%3EAI%3C/text%3E%3C/svg%3E">
+<link rel="preload" href="fonts/bricolage-grotesque-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="fonts/bricolage-grotesque-latin-ext.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="fonts/manrope-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="fonts/manrope-latin-ext.woff2" as="font" type="font/woff2" crossorigin>
+<script>document.documentElement.classList.add("js");</script>
 <style>
+/* Písma sú hostované tu, nie na Google Fonts: žiadny cudzí dopyt pri načítaní stránky. */
+@font-face{font-family:'Bricolage Grotesque';font-style:normal;font-weight:200 800;font-display:swap;src:url('fonts/bricolage-grotesque-latin-ext.woff2') format('woff2');unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF}
+@font-face{font-family:'Bricolage Grotesque';font-style:normal;font-weight:200 800;font-display:swap;src:url('fonts/bricolage-grotesque-latin.woff2') format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+@font-face{font-family:'Manrope';font-style:normal;font-weight:200 800;font-display:swap;src:url('fonts/manrope-latin-ext.woff2') format('woff2');unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF}
+@font-face{font-family:'Manrope';font-style:normal;font-weight:200 800;font-display:swap;src:url('fonts/manrope-latin.woff2') format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+
+/* ---------- tokeny ----------
+   Jedna téma pre celú stránku (svetlá, tmavá podľa systému), jeden akcent (zelená),
+   jedna škála zaoblení: boxy 20 px, prvky 10 px, tlačidlá pilulka. */
 :root{
-  --bg:#0C0912; --bg-2:#151125; --card:#141024;
-  --text:#F5F2FA; --dim:#A49CBC;
-  --rose:#FF4D6D; --rose-deep:#E03A58; --lilac:#B9A7FF; --mint:#7DE0B0;
-  --edge:rgba(245,242,250,.13); --edge-2:rgba(245,242,250,.06);
-  --display:"Unbounded",'Segoe UI',system-ui,sans-serif;
-  --body:"Manrope",system-ui,-apple-system,sans-serif;
-  --pad:clamp(18px,4.5vw,52px); --gap:clamp(52px,7vw,104px);
+  color-scheme:light dark;
+  --bg:#F4F5F7; --surface:#FFFFFF; --surface-2:#EBEDF0;
+  --ink:#17191C; --ink-2:#3C4147; --muted:#646B73;
+  --line:rgba(23,25,28,.10); --box-line:transparent;
+  --acc:#1D7A4D; --acc-hover:#176640; --acc-ink:#FFFFFF;
+  --acc-soft:rgba(29,122,77,.09); --acc-line:rgba(29,122,77,.30);
+  --err:#B3261E;
+  --shadow:0 30px 70px -40px rgba(23,25,28,.28),0 2px 6px -2px rgba(23,25,28,.06);
+  --display:"Bricolage Grotesque","Segoe UI",system-ui,sans-serif;
+  --body:"Manrope","Segoe UI",system-ui,sans-serif;
+  --ease:cubic-bezier(.32,.72,0,1);
+  --r-box:20px; --r-el:10px; --r-pill:999px;
+  --pad:clamp(20px,5vw,48px);
+  --gap:clamp(72px,9vw,128px);
 }
-@media (max-width:700px){:root{--gap:46px}}
+@media (prefers-color-scheme:dark){
+  :root{
+    --bg:#121417; --surface:#1A1D21; --surface-2:#23272C;
+    --ink:#ECEEF0; --ink-2:#C9CED4; --muted:#9AA1A9;
+    --line:rgba(236,238,240,.12); --box-line:rgba(236,238,240,.10);
+    --acc:#5BC48A; --acc-hover:#74D19D; --acc-ink:#0E1A13;
+    --acc-soft:rgba(91,196,138,.12); --acc-line:rgba(91,196,138,.36);
+    --err:#F2A19A;
+    --shadow:0 30px 70px -40px rgba(0,0,0,.75),0 2px 6px -2px rgba(0,0,0,.45);
+  }
+}
 
+/* ---------- základ ---------- */
 *,*::before,*::after{box-sizing:border-box}
-html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
-@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
-section[id],div[id]{scroll-margin-top:22px}
-body{
-  margin:0;background:var(--bg);color:var(--text);
-  font-family:var(--body);font-size:clamp(15.5px,.9vw + 13px,17px);line-height:1.6;
-  -webkit-font-smoothing:antialiased;overflow-x:hidden;
-  background-image:
-    radial-gradient(820px 560px at 84% -12%, rgba(255,77,109,.17), transparent 68%),
-    radial-gradient(620px 460px at 2% 6%, rgba(185,167,255,.11), transparent 70%);
-  background-repeat:no-repeat;
-}
-body::after{
-  content:"";position:fixed;inset:0;pointer-events:none;z-index:2;opacity:.035;
-  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)'/%3E%3C/svg%3E");
-}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--body);
+  font-size:clamp(15.5px,.3vw + 14.5px,17px);line-height:1.6;font-optical-sizing:auto;
+  -webkit-tap-highlight-color:transparent}
+h1,h2,h3{font-family:var(--display);font-optical-sizing:auto;margin:0;text-wrap:balance}
+h1{font-weight:800;font-size:clamp(2rem,1rem + 2vw,2.45rem);line-height:1.04;letter-spacing:-.028em}
+h2{font-weight:700;font-size:clamp(1.7rem,1rem + 1.9vw,2.35rem);line-height:1.08;letter-spacing:-.022em;max-width:24ch}
+h3{font-weight:600;font-size:1.15rem;line-height:1.25;letter-spacing:-.01em}
+p{margin:0}
 a{color:inherit}
-::selection{background:var(--rose);color:#fff}
-:focus-visible{outline:2px solid var(--lilac);outline-offset:3px;border-radius:8px}
-button{font:inherit}
+button{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--acc);outline-offset:3px;border-radius:6px}
+.shell{max-width:1180px;margin-inline:auto;padding-inline:var(--pad)}
+.lead{font-size:1.1rem;color:var(--ink-2);max-width:52ch;text-wrap:pretty}
+.jump{position:absolute;left:-9999px;top:12px;z-index:5;padding:10px 14px;background:var(--surface);border-radius:var(--r-el);box-shadow:var(--shadow)}
+.jump:focus{left:12px}
+section{scroll-margin-top:24px}
 
-.shell{max-width:1080px;margin-inline:auto;padding-inline:var(--pad);position:relative;z-index:1}
-.zone{padding-block:var(--gap)}
-h1,h2,h3{font-family:var(--display);font-weight:800;line-height:1.03;letter-spacing:-.03em;margin:0}
-h1{font-size:clamp(2.1rem,5.6vw,3.8rem)}
-h2{font-size:clamp(1.6rem,3.4vw,2.4rem)}
-h3{font-size:1.02rem;font-weight:600;letter-spacing:-.01em;line-height:1.3}
-h1 em{font-style:normal;color:var(--rose)}
-.kicker{font-size:.78rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--lilac);margin:0 0 14px}
-.lead{font-size:clamp(1rem,.5vw + .9rem,1.13rem);color:var(--dim);margin:18px 0 0}
-.cta{display:inline-flex;align-items:center;justify-content:center;gap:9px;font-weight:700;font-size:.96rem;
-  padding:15px 24px;border-radius:999px;border:1px solid transparent;cursor:pointer;
-  background:var(--rose);color:#fff;text-decoration:none;box-shadow:0 12px 28px -14px rgba(255,77,109,.8);
-  transition:transform .16s,background .16s}
-.cta:hover{background:var(--rose-deep);transform:translateY(-2px)}
-.cta:active{transform:translateY(0)}
-.cta--line{background:transparent;color:var(--text);border-color:var(--edge);box-shadow:none}
-.cta--line:hover{background:rgba(245,242,250,.06);border-color:var(--text)}
-.jump{position:absolute;left:-9999px}
-.jump:focus{left:14px;top:14px;background:var(--rose);color:#fff;padding:10px 16px;border-radius:8px;z-index:99}
+/* ---------- tlačidlá ---------- */
+.cta{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:13px 22px;
+  border-radius:var(--r-pill);background:var(--acc);color:var(--acc-ink);font-weight:700;font-size:.98rem;
+  border:1px solid transparent;text-decoration:none;cursor:pointer;white-space:nowrap;
+  transition:background-color .3s var(--ease),transform .3s var(--ease),border-color .3s var(--ease)}
+.cta:hover{background:var(--acc-hover);transform:translateY(-1px)}
+.cta:active{transform:translateY(0) scale(.98)}
+.cta:disabled{opacity:.7;cursor:progress;transform:none}
+.cta--line{background:transparent;color:var(--ink);border-color:var(--line)}
+.cta--line:hover{background:transparent;border-color:var(--ink)}
+.cta--ghost{background:transparent;color:var(--ink-2);border-color:transparent;padding-inline:8px}
+.cta--ghost:hover{background:transparent;color:var(--ink);transform:none;text-decoration:underline;text-underline-offset:4px}
 
-.reveal{opacity:0;transform:translateY(16px);transition:opacity .6s ease,transform .6s ease}
-.reveal.is-in{opacity:1;transform:none}
-@media (prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none}}
-
-/* ---------- hlavička v obsahu ---------- */
-.brandline{display:inline-flex;align-items:center;gap:9px;text-decoration:none;
-  font-family:var(--display);font-weight:800;font-size:.9rem;letter-spacing:-.02em}
-.brandline span{width:25px;height:25px;border-radius:8px;background:var(--rose);display:grid;place-items:center;font-size:.66rem;color:#fff}
+/* ---------- hlavička ---------- */
+.top{display:flex;align-items:center;justify-content:space-between;gap:20px;height:72px}
+.brand{font-family:var(--display);font-weight:700;font-size:1.06rem;letter-spacing:-.02em;text-decoration:none;color:var(--ink)}
+.top nav{display:flex;align-items:center;gap:clamp(14px,2.2vw,26px);font-size:.93rem;font-weight:600}
+.top nav a:not(.cta){color:var(--ink-2);text-decoration:none;transition:color .25s var(--ease)}
+.top nav a:not(.cta):hover{color:var(--ink)}
+.top nav .cta{padding:10px 18px;font-size:.92rem}
+@media (max-width:767px){.top nav a{display:none}}
 
 /* ---------- hero ---------- */
-.hero{padding-top:clamp(24px,3.5vw,40px);text-align:center}
-.pill{display:inline-flex;align-items:center;gap:9px;border:1px solid var(--edge);border-radius:999px;
-  padding:6px 14px;font-size:.75rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--dim);margin:clamp(24px,4vw,34px) 0 0}
-.pill i{width:6px;height:6px;border-radius:50%;background:var(--rose);animation:beat 2.2s infinite}
-@keyframes beat{0%,100%{opacity:1}50%{opacity:.3}}
-.hero h1{margin:18px auto 0;max-width:18ch}
-.hero .lead{max-width:50ch;margin-inline:auto}
-.trust{display:flex;flex-wrap:wrap;justify-content:center;gap:8px 22px;margin-top:22px;font-size:.86rem;color:var(--dim)}
-.trust span{display:flex;align-items:center;gap:7px}
-.trust svg{flex:none;color:var(--rose)}
-.zaruka{display:inline-flex;align-items:flex-start;gap:9px;margin:18px auto 0;max-width:56ch;
-  padding:10px 18px;border-radius:999px;text-align:left;font-size:.9rem;line-height:1.45;
-  color:var(--text);background:rgba(125,224,176,.07);border:1px solid rgba(125,224,176,.22)}
-.zaruka svg{flex:none;margin-top:2px;color:var(--mint)}
-.zaruka strong{color:var(--mint);font-weight:700}
-@media (max-width:560px){.zaruka{border-radius:16px}}
+.hero{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(28px,4vw,56px);
+  align-items:center;padding-top:clamp(20px,4vw,56px)}
+.hero__text{display:grid;gap:22px;justify-items:start}
+.hero__cta{display:flex;flex-wrap:wrap;gap:10px 14px;align-items:center}
+.hero>*,.bk,.dayscroll,.dayrow{min-width:0}
+/* na desktope je widget hneď vedľa textu, tlačidlo naň by scrollovalo o nič; na mobile ho treba */
+@media (min-width:900px){.hero__cta .cta:not(.cta--line){display:none}}
+@media (max-width:899px){.hero{grid-template-columns:minmax(0,1fr)}}
 
-/* ---------- rezervačná karta ---------- */
-.bk{margin-top:clamp(28px,4vw,44px);border-radius:24px;padding:1px;text-align:left;
-  background:linear-gradient(155deg,rgba(255,77,109,.6),rgba(185,167,255,.26) 45%,rgba(245,242,250,.05));
-  box-shadow:0 40px 80px -50px rgba(255,77,109,.5)}
-.bk__in{background:var(--card);border-radius:23px;padding:clamp(16px,2.6vw,26px)}
-.bk__steps{display:flex;gap:6px;margin-bottom:18px}
-.bk__step{flex:1;display:flex;align-items:center;gap:8px;padding-bottom:10px;border-bottom:2px solid var(--edge-2);
-  font-size:.73rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:rgba(164,156,188,.78)}
-.bk__step i{width:19px;height:19px;border-radius:50%;background:rgba(245,242,250,.07);display:grid;place-items:center;
-  font-style:normal;font-size:.68rem;flex:none;transition:background .25s,color .25s}
-.bk__step.is-on{color:var(--text);border-bottom-color:var(--rose)}
-.bk__step.is-on i{background:var(--rose);color:#fff}
-.bk__step.is-done i{background:var(--mint);color:#0C0912}
-@media (max-width:430px){.bk__step{font-size:.66rem;letter-spacing:.06em;gap:6px}}
-
+/* ---------- rezervačný widget ---------- */
+.bk{background:var(--surface);border:1px solid var(--box-line);border-radius:var(--r-box);
+  box-shadow:var(--shadow);padding:clamp(18px,2.4vw,28px)}
+.bk__steps{display:flex;flex-wrap:wrap;gap:6px 18px;font-size:.8rem;font-weight:600;color:var(--muted);margin:0 0 18px}
+.bk__step{margin:0;display:inline-flex;align-items:center;gap:7px;transition:color .3s var(--ease)}
+.bk__step i{font-style:normal;display:inline-grid;place-items:center;width:20px;height:20px;border-radius:50%;
+  background:var(--surface-2);color:var(--ink-2);font-size:.72rem;font-weight:700;transition:background-color .3s var(--ease),color .3s var(--ease)}
+.bk__step.is-on{color:var(--ink)}
+.bk__step.is-on i{background:var(--acc);color:var(--acc-ink)}
+.bk__step.is-done i{background:var(--acc-soft);color:var(--acc)}
 .panel{display:none}
-.panel.is-on{display:block;animation:slide .32s ease}
-@keyframes slide{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
-@media (prefers-reduced-motion:reduce){.panel.is-on{animation:none}}
-
-.bk__head{display:flex;flex-wrap:wrap;align-items:baseline;gap:6px 12px;margin-bottom:16px}
-.bk__head h3{font-size:1.15rem;font-weight:800;margin:0}
-.bk__price{margin-left:auto;font-family:var(--display);font-weight:800;font-size:1.02rem;letter-spacing:-.03em;white-space:nowrap}
-.bk__price small{font-family:var(--body);font-weight:600;font-size:.75rem;color:var(--dim);margin-left:4px}
-.bk__note{margin:16px 0 0;font-size:.82rem;color:var(--dim)}
-
+.panel.is-on{display:block;animation:objav .45s var(--ease)}
+@keyframes objav{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+.bk__head{display:flex;align-items:baseline;justify-content:space-between;gap:12px;margin-bottom:14px}
+.bk__price{font-family:var(--display);font-weight:700;font-size:1.15rem;letter-spacing:-.01em;white-space:nowrap;font-variant-numeric:tabular-nums}
+.bk__price small{font-family:var(--body);font-weight:500;font-size:.8rem;color:var(--muted);margin-left:4px}
 .dayscroll{position:relative}
-.dayscroll::after{content:"";position:absolute;top:0;right:0;bottom:6px;width:52px;pointer-events:none;
-  background:linear-gradient(90deg,rgba(20,16,36,0),var(--card) 78%);opacity:1;transition:opacity .2s}
+.dayscroll::after{content:"";position:absolute;top:0;right:0;bottom:4px;width:44px;pointer-events:none;
+  background:linear-gradient(90deg,transparent,var(--surface));transition:opacity .3s var(--ease)}
 .dayscroll.is-end::after{opacity:0}
-.dayrow{display:flex;gap:7px;overflow-x:auto;padding-bottom:6px;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+.dayrow{display:flex;gap:8px;overflow-x:auto;padding-bottom:4px;scrollbar-width:none;scroll-snap-type:x proximity}
 .dayrow::-webkit-scrollbar{display:none}
-.daychip{flex:0 0 auto;min-width:62px;padding:8px 11px 9px;border-radius:13px;border:1px solid var(--edge);
-  background:transparent;color:var(--text);cursor:pointer;text-align:center;transition:background .16s,border-color .16s}
-.daychip small{display:block;font-size:.66rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--dim)}
-.daychip b{display:block;font-size:.95rem;font-weight:700;margin-top:2px}
-.daychip:hover{border-color:var(--rose)}
-.daychip.is-on{background:rgba(255,77,109,.16);border-color:var(--rose)}
-.daychip.is-on small{color:var(--rose)}
+.daychip{flex:none;min-width:66px;padding:8px 10px;border-radius:var(--r-el);border:1px solid var(--line);
+  background:var(--surface);display:grid;gap:1px;text-align:center;cursor:pointer;scroll-snap-align:start;
+  transition:border-color .25s var(--ease),background-color .25s var(--ease),color .25s var(--ease)}
+.daychip small{font-size:.68rem;font-weight:600;letter-spacing:.05em;text-transform:uppercase;color:var(--muted)}
+.daychip b{font-size:.96rem;font-weight:700;font-variant-numeric:tabular-nums}
+.daychip:hover{border-color:var(--ink)}
+.daychip.is-on{background:var(--ink);border-color:var(--ink);color:var(--bg)}
+.daychip.is-on small{color:inherit;opacity:.72}
+.times{display:grid;grid-template-columns:repeat(auto-fill,minmax(86px,1fr));gap:8px;margin-top:12px}
+.slot{padding:11px 8px;border-radius:var(--r-el);border:1px solid var(--line);background:var(--surface);
+  font-weight:600;cursor:pointer;font-variant-numeric:tabular-nums;
+  transition:border-color .25s var(--ease),background-color .25s var(--ease),transform .25s var(--ease)}
+.slot:hover{border-color:var(--ink)}
+.slot:active{transform:scale(.98)}
+.slot:disabled{color:var(--muted);text-decoration:line-through;background:var(--surface-2);border-color:transparent;cursor:not-allowed}
+.times__none{grid-column:1/-1;margin:0;padding:12px 14px;border-radius:var(--r-el);background:var(--surface-2);font-size:.92rem;color:var(--ink-2)}
+.bk__note{margin-top:14px;font-size:.86rem;color:var(--muted);text-wrap:pretty}
+.bk__note a{color:var(--ink)}
 
-.times{display:grid;grid-template-columns:repeat(auto-fill,minmax(84px,1fr));gap:8px;margin-top:14px}
-.slot{padding:12px 8px;border-radius:12px;border:1px solid var(--edge);background:transparent;color:var(--text);
-  font-size:.92rem;font-weight:600;cursor:pointer;transition:background .16s,border-color .16s,transform .12s}
-.slot:hover:not(:disabled){background:rgba(255,77,109,.15);border-color:var(--rose);transform:translateY(-1px)}
-.slot:disabled{color:rgba(164,156,188,.35);border-color:var(--edge-2);cursor:not-allowed;text-decoration:line-through}
-.times__none{grid-column:1/-1;margin:2px 0;font-size:.9rem;color:var(--dim)}
+.chosen{display:flex;align-items:center;justify-content:space-between;gap:14px;padding:12px 14px;
+  border-radius:var(--r-el);background:var(--acc-soft);margin-bottom:18px}
+.chosen small{display:block;font-size:.78rem;color:var(--muted)}
+.chosen strong{font-weight:700}
+#changeBtn{font-weight:600;font-size:.86rem;background:transparent;border:1px solid var(--acc-line);color:var(--acc);
+  border-radius:var(--r-pill);padding:7px 13px;cursor:pointer;white-space:nowrap;transition:background-color .25s var(--ease)}
+#changeBtn:hover{background:var(--surface)}
+.form{display:grid;gap:14px}
+.field{display:grid;gap:6px}
+.field label{font-size:.86rem;font-weight:600;color:var(--ink-2)}
+.field input,.field select,.field textarea{width:100%;padding:12px 14px;border:1px solid var(--line);border-radius:var(--r-el);
+  background:var(--surface);color:var(--ink);font:inherit;line-height:1.4;
+  transition:border-color .25s var(--ease),box-shadow .25s var(--ease)}
+.field input::placeholder,.field textarea::placeholder{color:var(--muted);opacity:.8}
+.field input:focus,.field select:focus,.field textarea:focus{outline:none;border-color:var(--acc);box-shadow:0 0 0 3px var(--acc-soft)}
+.field textarea{min-height:96px;resize:vertical}
+.pair{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media (max-width:560px){.pair{grid-template-columns:1fr}}
+.trap{position:absolute;left:-10000px;top:auto;width:1px;height:1px;overflow:hidden}
+.msg{min-height:1.3em;font-size:.9rem;font-weight:600;color:var(--err)}
+.garancia{padding:10px 0 2px 14px;border-left:3px solid var(--acc);font-size:.9rem;color:var(--ink-2);text-wrap:pretty}
+.garancia strong{color:var(--ink)}
+.gdpr{font-size:.82rem;color:var(--muted)}
+.gdpr a{color:var(--ink-2)}
+.done{display:grid;gap:12px;justify-items:start}
+.done__tick{width:44px;height:44px;border-radius:50%;background:var(--acc-soft);color:var(--acc);display:grid;place-items:center}
+.done__row{display:flex;flex-wrap:wrap;gap:10px;margin-top:6px}
 
-.chosen{display:flex;align-items:center;gap:12px;padding:13px 15px;border-radius:14px;margin-bottom:16px;
-  background:rgba(255,77,109,.12);border:1px solid rgba(255,77,109,.4)}
-.chosen small{display:block;font-size:.68rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--rose)}
-.chosen strong{font-size:1rem;font-weight:700}
-.chosen button{margin-left:auto;background:transparent;border:1px solid var(--edge);color:var(--text);
-  border-radius:999px;padding:8px 14px;font-size:.82rem;font-weight:600;cursor:pointer;white-space:nowrap}
-.chosen button:hover{border-color:var(--text)}
+/* ---------- sekcie ---------- */
+.zone{padding-top:var(--gap)}
+.sec__lead{margin-top:16px}
 
-.form{display:grid;gap:11px}
-.field{display:grid;gap:5px}
-.field label{font-size:.71rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--dim)}
-.field input,.field textarea,.field select{font-family:var(--body);font-size:.98rem;color:var(--text);background:rgba(12,9,18,.6);
-  border:1px solid var(--edge);border-radius:12px;padding:11px 13px;width:100%;transition:border-color .16s}
-.field input::placeholder,.field textarea::placeholder{color:rgba(164,156,188,.4)}
-.field input:focus,.field textarea:focus,.field select:focus{border-color:var(--lilac);outline:none}
-.field select{appearance:none;-webkit-appearance:none;cursor:pointer;padding-right:38px;
-  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1.5 6 6.5l5-5' fill='none' stroke='%23FF4D6D' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
-  background-repeat:no-repeat;background-position:right 14px center}
-.field select option{background:#141024;color:var(--text)}
-.field textarea{min-height:72px;resize:vertical}
-.pair{display:grid;grid-template-columns:1fr 1fr;gap:11px}
-@media (max-width:430px){.pair{grid-template-columns:1fr}}
-.msg{margin:0;font-size:.87rem;font-weight:600;color:var(--rose)}
-.msg:empty{display:none}
-.trap{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
-.cta[aria-busy="true"]{opacity:.72;cursor:progress}
-.gdpr{margin:0;font-size:.77rem;color:var(--dim)}
-.form .cta{width:100%;margin-top:2px}
+/* Ako to funguje: štyri textové stĺpce, žiadne karty */
+.ako{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:28px clamp(22px,3vw,40px);margin-top:40px}
+.ako article{border-top:1px solid var(--line);padding-top:18px;display:grid;gap:10px;align-content:start}
+.ako p{color:var(--ink-2);text-wrap:pretty}
+@media (max-width:899px){.ako{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:520px){.ako{grid-template-columns:1fr}}
 
-.done{text-align:center;padding:6px 0 2px}
-.done__tick{width:50px;height:50px;border-radius:50%;background:rgba(125,224,176,.13);color:var(--mint);
-  display:grid;place-items:center;margin:0 auto 14px}
-.done h3{font-size:1.3rem;font-weight:800;margin-bottom:8px}
-.done p{color:var(--dim);font-size:.93rem;margin:0 auto;max-width:40ch}
-.done__row{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-top:20px}
-.done__row .cta{width:auto}
+/* Kto ťa učí: fotka vľavo, text vpravo */
+.kto{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:clamp(28px,5vw,72px);align-items:center}
+.foto{aspect-ratio:4/5;border-radius:var(--r-box);background:var(--acc-soft);display:grid;place-items:center;overflow:hidden;max-width:440px}
+.foto img{width:100%;height:100%;object-fit:cover;display:block}
+.foto__mono{font-family:var(--display);font-weight:800;font-size:clamp(4.5rem,9vw,7.5rem);letter-spacing:-.06em;color:var(--acc);line-height:1}
+.kto__text{display:grid;gap:14px}
+.kto__text h2{margin-bottom:8px}
+.kto__text p{color:var(--ink-2);text-wrap:pretty;max-width:60ch}
+.kto__name{font-family:var(--display);font-weight:600;font-size:1.15rem;color:var(--ink);letter-spacing:-.01em}
+.kto__role{color:var(--muted);font-size:.95rem;margin-top:-10px}
+.kto__links{display:flex;flex-wrap:wrap;gap:8px 22px;margin-top:6px;font-weight:600}
+.kto__links a{color:var(--ink);text-decoration:none;border-bottom:1px solid var(--acc-line);transition:border-color .25s var(--ease)}
+.kto__links a:hover{border-color:var(--acc)}
+@media (max-width:899px){.kto{grid-template-columns:1fr}.foto{max-width:360px}}
 
-/* ---------- štyri karty ---------- */
-.quad{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:34px}
-.tile{border:1px solid var(--edge-2);border-radius:18px;padding:22px 20px 24px;background:var(--bg-2);transition:border-color .2s,transform .2s}
-.tile:hover{border-color:var(--edge);transform:translateY(-3px)}
-.tile svg{color:var(--rose);margin-bottom:14px}
-.tile h3{margin:0 0 7px}
-.tile p{margin:0;font-size:.89rem;color:var(--dim)}
-@media (max-width:900px){.quad{grid-template-columns:repeat(2,1fr)}}
-@media (max-width:520px){.quad{grid-template-columns:1fr;gap:10px}}
+/* Príklady: porovnávacia tabuľka predtým / po hodine */
+.cmp{margin-top:36px;border-top:1px solid var(--line)}
+.cmp__head,.cmp__row{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.5fr) minmax(0,1.5fr);gap:0 clamp(18px,3vw,40px)}
+.cmp__head{padding:14px 0 10px;font-size:.9rem;font-weight:700;color:var(--muted)}
+.cmp__row{padding:24px 0;border-top:1px solid var(--line)}
+.cmp__row h3{align-self:start}
+.cmp__cell p{color:var(--ink-2);text-wrap:pretty}
+.cmp__cell small{display:none}
+.cmp__after{background:var(--acc-soft);border-left:3px solid var(--acc);border-radius:0 var(--r-el) var(--r-el) 0;padding:14px 16px}
+.cmp__after p{color:var(--ink)}
+@media (max-width:899px){
+  .cmp__head{display:none}
+  .cmp__row{grid-template-columns:1fr;gap:12px}
+  .cmp__cell small{display:block;font-size:.8rem;font-weight:700;color:var(--muted);margin-bottom:4px}
+}
 
-/* ---------- príklady: predtým / po hodine ---------- */
-.rows{margin-top:34px;display:grid;gap:10px}
-.row{border:1px solid var(--edge-2);border-radius:18px;background:var(--bg-2);padding:20px clamp(16px,2.4vw,24px)}
-.row h3{margin:0 0 12px}
-.ba{display:grid;grid-template-columns:96px 1fr;gap:6px 14px;align-items:baseline;margin-top:10px;
-  padding-left:12px;border-left:2px solid rgba(245,242,250,.1)}
-.ba small{color:var(--dim);font-weight:700;letter-spacing:.08em;text-transform:uppercase;font-size:.68rem}
-.ba p{margin:0;font-size:.9rem;color:var(--dim)}
-.ba--after{border-left-color:var(--rose)}
-.ba--after small{color:var(--rose)}
-.ba--after p{color:var(--text)}
-@media (max-width:520px){.ba{grid-template-columns:1fr;gap:2px}}
+/* Cenník: jeden veľký dlaždicový blok a zoznam balíkov */
+.price{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:18px;margin-top:36px}
+.price__main{background:var(--ink);color:var(--bg);border-radius:var(--r-box);padding:clamp(24px,3vw,36px);
+  display:flex;flex-direction:column;gap:16px;align-items:flex-start}
+.price__num{font-family:var(--display);font-weight:800;font-size:clamp(3.4rem,6vw,4.8rem);line-height:.95;letter-spacing:-.04em;font-variant-numeric:tabular-nums}
+.price__per{font-weight:600;opacity:.75;margin-top:-6px}
+.price__main p:not(.price__num):not(.price__per){opacity:.85;text-wrap:pretty;max-width:36ch}
+.price__main .cta{margin-top:auto}
+.packs{list-style:none;margin:0;padding:4px clamp(18px,2.6vw,28px);background:var(--surface);border:1px solid var(--box-line);
+  border-radius:var(--r-box);box-shadow:var(--shadow);display:flex;flex-direction:column;justify-content:center}
+.pack{display:grid;grid-template-columns:minmax(0,1fr) auto;grid-template-areas:"name sum" "desc rate";gap:2px 18px;
+  padding:18px 0;border-top:1px solid var(--line);align-items:baseline}
+.pack:first-child{border-top:0}
+.pack__name{grid-area:name;font-weight:700}
+.pack__desc{grid-area:desc;font-size:.9rem;color:var(--muted)}
+.pack__rate{grid-area:rate;font-size:.86rem;color:var(--muted);text-align:right;white-space:nowrap;font-variant-numeric:tabular-nums}
+.pack__sum{grid-area:sum;font-family:var(--display);font-weight:700;font-size:1.35rem;letter-spacing:-.02em;text-align:right;font-variant-numeric:tabular-nums}
+.fine{margin-top:18px;font-size:.9rem;color:var(--muted);max-width:70ch;text-wrap:pretty}
+@media (max-width:899px){.price{grid-template-columns:1fr}}
 
-/* ---------- cenník ---------- */
-.rate{display:grid;grid-template-columns:auto 1fr;gap:clamp(18px,3.5vw,40px);align-items:center;
-  border:1px solid rgba(255,77,109,.55);border-radius:20px;padding:clamp(22px,3.2vw,34px);margin-top:34px;
-  background:linear-gradient(135deg,rgba(255,77,109,.15),rgba(185,167,255,.07))}
-.rate__num{font-family:var(--display);font-weight:800;font-size:clamp(3.4rem,9vw,5.8rem);line-height:.88;letter-spacing:-.05em;margin:0}
-.rate__num sup{font-size:.32em;vertical-align:super;font-weight:600;margin-left:5px}
-.rate p{margin:0}
-.rate p + p{margin-top:7px;color:var(--dim);font-size:.9rem}
-@media (max-width:560px){.rate{grid-template-columns:1fr;gap:14px}}
-.packs{list-style:none;margin:12px 0 0;padding:0;display:grid;gap:1px;background:var(--edge-2);border:1px solid var(--edge-2);border-radius:18px;overflow:hidden}
-.pack{background:var(--bg-2);display:grid;grid-template-columns:1fr auto auto;gap:10px clamp(12px,2.5vw,26px);align-items:center;padding:18px clamp(16px,2.4vw,24px)}
-.pack__name{font-weight:700}
-.pack__name small{display:block;font-weight:500;font-size:.84rem;color:var(--dim);margin-top:2px}
-.pack__rate{font-size:.87rem;color:var(--lilac);font-weight:600;white-space:nowrap}
-.pack__sum{font-family:var(--display);font-weight:800;font-size:1.3rem;letter-spacing:-.03em;white-space:nowrap}
-@media (max-width:560px){.pack{grid-template-columns:1fr auto}.pack__rate{grid-column:1;font-size:.82rem}}
-.fine{margin:18px 0 0;font-size:.82rem;color:var(--dim);max-width:62ch}
+/* Otázky: všetky otvorené, v dvoch stĺpcoch */
+.qs{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:30px clamp(28px,4vw,60px);margin-top:36px}
+.q h3{font-family:var(--body);font-weight:700;font-size:1.02rem;letter-spacing:0;margin-bottom:6px;text-wrap:pretty}
+.q p{color:var(--ink-2);text-wrap:pretty}
+@media (max-width:767px){.qs{grid-template-columns:1fr}}
 
-/* ---------- otázky ---------- */
-.qs{margin-top:34px;display:grid;gap:9px}
-.q{border:1px solid var(--edge-2);border-radius:15px;background:var(--bg-2);overflow:hidden}
-.q summary{cursor:pointer;list-style:none;padding:16px 20px;display:flex;gap:14px;align-items:center;font-weight:700;font-size:.98rem}
-.q summary::-webkit-details-marker{display:none}
-.q summary::after{content:"";margin-left:auto;width:8px;height:8px;border-right:2px solid var(--rose);border-bottom:2px solid var(--rose);
-  transform:rotate(45deg) translateY(-2px);flex:none;transition:transform .2s}
-.q[open] summary::after{transform:rotate(225deg) translateY(-2px)}
-.q p{margin:0;padding:0 20px 18px;color:var(--dim);font-size:.92rem;max-width:72ch}
+/* Kontakt */
+.strip{margin-top:var(--gap);padding:clamp(28px,4vw,44px) 0;border-top:1px solid var(--line);
+  display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:24px;align-items:center}
+.strip p{color:var(--ink-2);margin-top:10px;max-width:46ch;text-wrap:pretty}
+.strip__links{display:grid;gap:6px;justify-items:start}
+.strip__links a{font-family:var(--display);font-weight:600;font-size:clamp(1.15rem,2vw,1.5rem);letter-spacing:-.01em;
+  color:var(--ink);text-decoration:none;border-bottom:2px solid transparent;transition:border-color .25s var(--ease)}
+.strip__links a:hover{border-color:var(--acc)}
+@media (max-width:767px){.strip{grid-template-columns:1fr}}
 
-/* ---------- kontakt ---------- */
-.strip{display:flex;flex-wrap:wrap;gap:20px;align-items:center;justify-content:space-between;
-  border:1px solid var(--edge);border-radius:20px;padding:clamp(22px,3.2vw,34px);background:var(--bg-2)}
-.strip h2{font-size:clamp(1.3rem,2.6vw,1.7rem)}
-.strip p{margin:8px 0 0;color:var(--dim);font-size:.92rem}
-.strip__links{display:flex;flex-wrap:wrap;gap:10px}
-.strip__links a{display:inline-flex;align-items:center;gap:8px;border:1px solid var(--edge);border-radius:999px;
-  padding:12px 18px;text-decoration:none;font-weight:600;font-size:.92rem;transition:border-color .16s,background .16s}
-.strip__links a:hover{border-color:var(--rose);background:rgba(255,77,109,.1)}
+/* Pätička */
+.foot{display:flex;flex-wrap:wrap;gap:12px 28px;align-items:center;padding:8px 0 44px;font-size:.88rem;color:var(--muted)}
+.foot nav{display:flex;flex-wrap:wrap;gap:8px 20px;margin-left:auto}
+.foot a{color:var(--ink-2);text-decoration:none}
+.foot a:hover{color:var(--ink)}
+.foot .brand{font-size:.98rem}
 
-.foot{border-top:1px solid var(--edge-2);margin-top:var(--gap);padding-block:26px;display:flex;flex-wrap:wrap;
-  gap:12px 26px;align-items:center;font-size:.83rem;color:var(--dim)}
-.foot nav{margin-left:auto;display:flex;gap:20px}
-.foot a{text-decoration:none}
-.foot a:hover{color:var(--text)}
-
-/* ---------- kto ťa učí ---------- */
-.who{display:grid;grid-template-columns:auto 1fr;gap:clamp(20px,3.5vw,38px);align-items:start;
-  border:1px solid var(--edge-2);border-radius:20px;background:var(--bg-2);padding:clamp(22px,3.2vw,34px);margin-top:34px}
-.who__ava{width:104px;height:104px;border-radius:22px;object-fit:cover;display:grid;place-items:center;flex:none;
-  background:linear-gradient(150deg,var(--rose),#B9A7FF);color:#fff;
-  font-family:var(--display);font-weight:800;font-size:2.4rem;letter-spacing:-.04em}
-.who h3{font-family:var(--display);font-size:1.25rem;font-weight:800;letter-spacing:-.03em;margin:0 0 2px}
-.who__role{font-size:.8rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--lilac);margin:0 0 14px}
-.who p{margin:0 0 11px;font-size:.94rem;color:var(--dim)}
-.who p:last-of-type{margin-bottom:0}
-.who p strong{color:var(--text)}
-.who__links{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
-.who__links a{display:inline-flex;align-items:center;gap:7px;border:1px solid var(--edge);border-radius:999px;
-  padding:9px 15px;text-decoration:none;font-size:.85rem;font-weight:600;transition:border-color .16s,background .16s}
-.who__links a:hover{border-color:var(--rose);background:rgba(255,77,109,.1)}
-@media (max-width:560px){.who{grid-template-columns:1fr}.who__ava{width:76px;height:76px;border-radius:18px;font-size:1.8rem}}
+/* ---------- pohyb ---------- */
+.js .reveal{opacity:0;transform:translateY(18px);transition:opacity .8s var(--ease),transform .8s var(--ease)}
+.js .reveal.is-in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  .js .reveal{opacity:1;transform:none;transition:none}
+  .panel.is-on{animation:none}
+  .cta,.slot,.daychip{transition:none}
+}
 </style>
-<!-- bez JavaScriptu sa sekcie nikdy neodhalia — toto ich nechá viditeľné -->
-<noscript><style>.reveal{opacity:1;transform:none}.dayscroll::after{display:none}</style></noscript>
 
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Service",
-  "name": "AI Učenie — súkromná online hodina jeden na jedného",
-  "serviceType": "Súkromné školenie práce s AI",
+  "name": "AI Učenie: súkromná online hodina práce s AI",
+  "serviceType": "Individuálne online školenie práce s AI",
   "url": "https://ai.apoliak.online/",
-  "description": "Súkromný online meeting jeden na jedného. Zdieľame obrazovku a naučím ťa robiť tvoju vlastnú prácu s AI.",
-  "provider": {
-    "@type": "Person",
-    "name": "Alex Poliak",
-    "email": "alexpoliak21@gmail.com",
-    "telephone": "+421902464022",
-    "url": "https://apoliak.online/",
-    "sameAs": ["https://github.com/Apoliak7777"]
-  },
-  "areaServed": "Slovensko",
-  "availableChannel": {
-    "@type": "ServiceChannel",
-    "serviceUrl": "https://ai.apoliak.online/#termin",
-    "serviceType": "Online"
-  },
+  "areaServed": "SK",
+  "provider": { "@type": "Person", "name": "Alex Poliak", "url": "https://apoliak.online" },
   "offers": {
     "@type": "Offer",
     "price": "25",
@@ -310,108 +303,114 @@ h1 em{font-style:normal;color:var(--rose)}
 <body>
 <a class="jump" href="#start">Preskočiť na obsah</a>
 
+<header class="shell top">
+  <a class="brand" href="./">AI Učenie</a>
+  <nav aria-label="Hlavná navigácia">
+    <a href="#ako">Ako to funguje</a>
+    <a href="#cennik">Cenník</a>
+    <a href="#otazky">Otázky</a>
+    <a class="cta" href="#termin">Vybrať termín</a>
+  </nav>
+</header>
+
 <main id="start">
 
   <!-- ================= HERO ================= -->
   <section class="shell hero">
-    <a class="brandline" href="./"><span>AI</span>AI Učenie</a>
-    <p class="pill"><i aria-hidden="true"></i> Súkromne · jeden na jedného · online</p>
-    <h1>Za jednu hodinu ti AI začne <em>šetriť celý týždeň</em></h1>
-    <p class="lead">Zdieľame obrazovku, otvoríme veci, ktoré reálne robíš v práci, a naučím ťa robiť ich s AI. Bez prednášky, bez teórie.</p>
-    <div class="trust">
-      <span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg> Bez predplatného</span>
-      <span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg> Google Meet alebo Zoom</span>
-      <span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg> Zápis a postupy po hodine</span>
+    <div class="hero__text">
+      <h1>Za jednu hodinu ti AI začne šetriť celý týždeň</h1>
+      <p class="lead">Zdieľame obrazovku, otvoríme veci, ktoré reálne robíš v práci, a naučím ťa robiť ich s AI. Bez prednášky, bez teórie.</p>
+      <div class="hero__cta">
+        <a class="cta" href="#termin">Vybrať termín</a>
+        <a class="cta cta--line" href="#ako">Ako hodina prebieha</a>
+      </div>
     </div>
-
-    <p class="zaruka"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg> <span>Napíš mi do rezervácie, na čom chceš pracovať. Ak uvidím, že ti hodina nemá čo dať, poviem ti to <strong>ešte pred platbou</strong> — a termín zrušíme.</span></p>
 
     <!-- ================= REZERVÁCIA ================= -->
     <div class="bk" id="termin">
-      <div class="bk__in">
-        <div class="bk__steps">
-          <p class="bk__step is-on" id="st1"><i>1</i>Termín</p>
-          <p class="bk__step" id="st2"><i>2</i>Kontakt</p>
-          <p class="bk__step" id="st3"><i>3</i>Hotovo</p>
-        </div>
+      <div class="bk__steps">
+        <p class="bk__step is-on" id="st1"><i>1</i>Termín</p>
+        <p class="bk__step" id="st2"><i>2</i>Kontakt</p>
+        <p class="bk__step" id="st3"><i>3</i>Hotovo</p>
+      </div>
 
-        <!-- krok 1 -->
-        <div class="panel is-on" id="p1">
-          <div class="bk__head">
-            <h3>Kedy ti to sedí?</h3>
-            <span class="bk__price">25 €<small>/ 60 min</small></span>
-          </div>
-          <div class="dayscroll" id="dayscroll">
-            <div class="dayrow" id="dayrow"></div>
-          </div>
-          <div class="times" id="times"></div>
-          <p class="bk__note">Hodina má 60 minút, medzi hodinami mám 15 minút pauzu. Ak chceš dve za sebou, vyber si v ďalšom kroku balík. Časy sú v slovenskom čase.</p>
-          <noscript>
-            <p class="bk__note">Na výber termínu potrebuješ zapnutý JavaScript. Ak ho nemáš, napíš mi na
-              <a href="mailto:alexpoliak21@gmail.com">alexpoliak21@gmail.com</a> alebo zavolaj na
-              <a href="tel:+421902464022">0902 464 022</a> a termín dohodneme priamo.</p>
-          </noscript>
+      <!-- krok 1 -->
+      <div class="panel is-on" id="p1">
+        <div class="bk__head">
+          <h3>Kedy ti to sedí?</h3>
+          <span class="bk__price">25 €<small>za 60 min</small></span>
         </div>
+        <div class="dayscroll" id="dayscroll">
+          <div class="dayrow" id="dayrow"></div>
+        </div>
+        <div class="times" id="times"></div>
+        <p class="bk__note">Hodina má 60 minút a beží cez Google Meet alebo Zoom, medzi hodinami mám 15 minút pauzu. Ak chceš dve za sebou, vyber si v ďalšom kroku balík. Časy sú v slovenskom čase.</p>
+        <noscript>
+          <p class="bk__note">Na výber termínu potrebuješ zapnutý JavaScript. Ak ho nemáš, napíš mi na
+            <a href="mailto:alexpoliak21@gmail.com">alexpoliak21@gmail.com</a> alebo zavolaj na
+            <a href="tel:+421902464022">0902 464 022</a> a termín dohodneme priamo.</p>
+        </noscript>
+      </div>
 
-        <!-- krok 2 -->
-        <div class="panel" id="p2">
-          <div class="chosen">
-            <div>
-              <small>Vybraný termín</small>
-              <strong id="chosenText">—</strong>
-            </div>
-            <button type="button" id="changeBtn">Zmeniť</button>
+      <!-- krok 2 -->
+      <div class="panel" id="p2">
+        <div class="chosen">
+          <div>
+            <small>Vybraný termín</small>
+            <strong id="chosenText">…</strong>
           </div>
-          <form class="form" id="bkForm" novalidate>
+          <button type="button" id="changeBtn">Zmeniť</button>
+        </div>
+        <form class="form" id="bkForm" novalidate>
+          <div class="field">
+            <label for="f-name">Meno a priezvisko</label>
+            <input id="f-name" name="meno" type="text" autocomplete="name" placeholder="Ján Novák">
+          </div>
+          <div class="pair">
             <div class="field">
-              <label for="f-name">Meno a priezvisko</label>
-              <input id="f-name" name="meno" type="text" autocomplete="name" placeholder="Ján Novák">
-            </div>
-            <div class="pair">
-              <div class="field">
-                <label for="f-mail">E-mail</label>
-                <input id="f-mail" name="mail" type="email" autocomplete="email" placeholder="jan@firma.sk">
-              </div>
-              <div class="field">
-                <label for="f-tel">Telefón</label>
-                <input id="f-tel" name="tel" type="tel" autocomplete="tel" placeholder="0900 123 456">
-              </div>
+              <label for="f-mail">E-mail</label>
+              <input id="f-mail" name="mail" type="email" autocomplete="email" spellcheck="false" inputmode="email" placeholder="jan@firma.sk">
             </div>
             <div class="field">
-              <label for="f-balik">Čo si rezervuješ?</label>
-              <select id="f-balik" name="balik">
-                <option>Jedna hodina — 25 €</option>
-                <option>Dve hodiny za sebou — 50 €</option>
-                <option>Balík 3 hodiny — 69 € (23 € / hodina)</option>
-                <option>Balík 6 hodín — 132 € (22 € / hodina)</option>
-                <option>Malý tím, 2 až 4 ľudia — 39 € za hodinu</option>
-              </select>
+              <label for="f-tel">Telefón</label>
+              <input id="f-tel" name="tel" type="tel" autocomplete="tel" inputmode="tel" placeholder="0900 123 456">
             </div>
-            <div class="field">
-              <label for="f-note">Na čom chceš pracovať? (nepovinné)</label>
-              <textarea id="f-note" name="poznamka" placeholder="Napr. písanie mailov zákazníkom a popisy do e-shopu."></textarea>
-            </div>
-            <!-- pasca na roboty — človek toto pole nevidí, robot ho vyplní -->
-            <div class="trap" aria-hidden="true">
-              <label for="f-web">Webová stránka</label>
-              <input id="f-web" name="web" type="text" tabindex="-1" autocomplete="off">
-            </div>
-            <p class="msg" id="msg" role="alert"></p>
-            <button class="cta" type="submit" id="sendBtn">Potvrdiť rezerváciu</button>
-            <p class="gdpr">Kontakt použijem len na dohodnutie termínu. Viac v <a href="ochrana-udajov.html">ochrane údajov</a>.</p>
-          </form>
-        </div>
+          </div>
+          <div class="field">
+            <label for="f-balik">Čo si rezervuješ?</label>
+            <select id="f-balik" name="balik">
+              <option>Jedna hodina (25 €)</option>
+              <option>Dve hodiny za sebou (50 €)</option>
+              <option>Balík 3 hodiny (69 €, 23 € za hodinu)</option>
+              <option>Balík 6 hodín (132 €, 22 € za hodinu)</option>
+              <option>Malý tím, 2 až 4 ľudia (39 € za hodinu)</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="f-note">Na čom chceš pracovať? (nepovinné)</label>
+            <textarea id="f-note" name="poznamka" placeholder="Napr. písanie mailov zákazníkom a popisy do e-shopu…"></textarea>
+          </div>
+          <!-- pasca na roboty: človek toto pole nevidí, robot ho vyplní -->
+          <div class="trap" aria-hidden="true">
+            <label for="f-web">Webová stránka</label>
+            <input id="f-web" name="web" type="text" tabindex="-1" autocomplete="off">
+          </div>
+          <p class="garancia">Ak z tvojej poznámky uvidím, že ti hodina nemá čo dať, poviem ti to <strong>ešte pred platbou</strong> a termín zrušíme.</p>
+          <p class="msg" id="msg" role="alert"></p>
+          <button class="cta" type="submit" id="sendBtn">Potvrdiť rezerváciu</button>
+          <p class="gdpr">Kontakt použijem len na dohodnutie termínu. Viac v <a href="ochrana-udajov.html">ochrane údajov</a>.</p>
+        </form>
+      </div>
 
-        <!-- krok 3 -->
-        <div class="panel" id="p3">
-          <div class="done">
-            <div class="done__tick"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></div>
-            <h3>Termín je odoslaný</h3>
-            <p id="doneText">Ozvem sa ti do 24 hodín s odkazom na meeting a podkladmi na platbu.</p>
-            <div class="done__row">
-              <button class="cta" type="button" id="icsBtn">Pridať do kalendára</button>
-              <a class="cta cta--line" href="mailto:alexpoliak21@gmail.com" id="mailBtn">Neotvoril sa mail?</a>
-            </div>
+      <!-- krok 3 -->
+      <div class="panel" id="p3">
+        <div class="done">
+          <div class="done__tick"><!-- Phosphor Icons: Check --><svg width="22" height="22" viewBox="0 0 256 256" fill="currentColor" aria-hidden="true"><path d="M229.66,77.66l-128,128a8,8,0,0,1-11.32,0l-56-56a8,8,0,0,1,11.32-11.32L96,188.69,218.34,66.34a8,8,0,0,1,11.32,11.32Z"/></svg></div>
+          <h3>Termín je odoslaný</h3>
+          <p id="doneText">Ozvem sa ti do 24 hodín s odkazom na meeting a podkladmi na platbu.</p>
+          <div class="done__row">
+            <button class="cta" type="button" id="icsBtn">Pridať do kalendára</button>
+            <a class="cta cta--line" href="mailto:alexpoliak21@gmail.com" id="mailBtn">Neotvoril sa mail?</a>
           </div>
         </div>
       </div>
@@ -419,27 +418,22 @@ h1 em{font-style:normal;color:var(--rose)}
   </section>
 
   <!-- ================= AKO TO FUNGUJE ================= -->
-  <section class="shell zone reveal">
-    <p class="kicker">Ako to funguje</p>
-    <h2>Hodina, ktorá sa točí<br>okolo tvojej obrazovky</h2>
-    <div class="quad">
-      <article class="tile">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+  <section class="shell zone reveal" id="ako">
+    <h2>Hodina, ktorá sa točí okolo tvojej obrazovky</h2>
+    <div class="ako">
+      <article>
         <h3>Tvoje reálne úlohy</h3>
         <p>Otvoríš svoj mail, tabuľku, e-shop. Nepracujeme na vymyslených príkladoch.</p>
       </article>
-      <article class="tile">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20a8 8 0 1 0-8-8"/><path d="M4 12H2m2 0 3-3"/><path d="M12 8v4l3 2"/></svg>
+      <article>
         <h3>Väčšinu času robíš ty</h3>
         <p>Klávesnicu držíš ty, ja opravujem za chodu. Preto si to zapamätáš.</p>
       </article>
-      <article class="tile">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M9 15h6M9 11h3"/></svg>
+      <article>
         <h3>Zápis do jednej strany</h3>
         <p>Po hodine ti pošlem hotové postupy, ktoré sme použili. Nemusíš si nič písať.</p>
       </article>
-      <article class="tile">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v18M5 8l7-5 7 5"/><path d="M5 8v8l7 5 7-5V8"/></svg>
+      <article>
         <h3>Bez záväzku</h3>
         <p>Platíš hodinu, ktorú si rezervuješ. Žiadne predplatné ani kurz na tri mesiace.</p>
       </article>
@@ -448,18 +442,19 @@ h1 em{font-style:normal;color:var(--rose)}
 
   <!-- ================= KTO ŤA UČÍ ================= -->
   <section class="shell zone reveal" id="kto">
-    <p class="kicker">Kto ťa učí</p>
-    <h2>Žiadna agentúra,<br>na hodine sme len my dvaja</h2>
-
-    <div class="who">
-      <div class="who__ava" aria-hidden="true">A</div>
-      <div>
-        <h3>Alex Poliak</h3>
-        <p class="who__role">Weby na mieru · AI v každodennej práci</p>
-        <p>Robím weby na mieru — <strong>sám, bez agentúry</strong>. AI používam každý deň na to isté, čo budeš robiť ty: písanie textov, prechádzanie tabuliek, opakovanú administratívu. Nie na prednášky o tom, ako AI zmení svet.</p>
+    <div class="kto">
+      <!-- TODO: fotka Alexa, formát na výšku 4:5, aspoň 800×1000 px:
+           <img src="alex.jpg" width="800" height="1000" alt="Alex Poliak" loading="lazy">
+           Kým fotka nie je, stojí tu monogram. -->
+      <div class="foto" aria-hidden="true"><span class="foto__mono">AP</span></div>
+      <div class="kto__text">
+        <h2>Žiadna agentúra, na hodine sme len my dvaja</h2>
+        <p class="kto__name">Alex Poliak</p>
+        <p class="kto__role">Weby na mieru · AI v každodennej práci</p>
+        <p>Robím weby na mieru. Sám, bez agentúry. AI používam každý deň na to isté, čo budeš robiť ty: písanie textov, prechádzanie tabuliek, opakovanú administratívu. Nie na prednášky o tom, ako AI zmení svet.</p>
         <p>Preto tá hodina vyzerá tak, ako vyzerá: otvoríš svoju prácu, klávesnicu držíš ty a ja ti hovorím, kde to ide rýchlejšie. Čo som na tebe nevyskúšal, to ti nebudem odporúčať.</p>
         <p>Ak si chceš najprv pozrieť, čo reálne robím, kód mám verejne na GitHube a weby na apoliak.online.</p>
-        <div class="who__links">
+        <div class="kto__links">
           <a href="https://apoliak.online" target="_blank" rel="noopener">apoliak.online</a>
           <a href="https://github.com/Apoliak7777" target="_blank" rel="noopener">github.com/Apoliak7777</a>
           <a href="tel:+421902464022">0902 464 022</a>
@@ -470,44 +465,44 @@ h1 em{font-style:normal;color:var(--rose)}
 
   <!-- ================= PRÍKLADY ================= -->
   <section class="shell zone reveal" id="priklady">
-    <p class="kicker">Príklady úloh</p>
-    <h2>Tri veci, ktoré ľudia<br>riešia najčastejšie</h2>
-    <p class="lead">Nebudem ti sľubovať vymyslené čísla. Radšej ti presne ukážem, ako sa tá istá robota zmení.</p>
+    <h2>Tri veci, ktoré ľudia riešia najčastejšie</h2>
+    <p class="lead sec__lead">Nebudem ti sľubovať vymyslené čísla. Radšej ti presne ukážem, ako sa tá istá robota zmení.</p>
 
-    <div class="rows">
-      <article class="row">
+    <div class="cmp">
+      <div class="cmp__head" aria-hidden="true">
+        <span></span><span>Predtým</span><span>Po hodine</span>
+      </div>
+      <article class="cmp__row">
         <h3>Upomienka dodávateľovi</h3>
-        <div class="ba">
+        <div class="cmp__cell">
           <small>Predtým</small>
           <p>Otvoríš starý mail, prepisuješ ho, hľadáš správny tón a dvakrát to celé zmažeš.</p>
         </div>
-        <div class="ba ba--after">
+        <div class="cmp__cell cmp__after">
           <small>Po hodine</small>
           <p>Máš uložené zadanie so svojím tónom. Napíšeš dve vety o situácii, AI z nich spraví celý mail a ty ho len prečítaš a pošleš.</p>
         </div>
       </article>
-
-      <article class="row">
+      <article class="cmp__row">
         <h3>Popisy do e-shopu</h3>
-        <div class="ba">
+        <div class="cmp__cell">
           <small>Predtým</small>
           <p>Desať produktov, každý text vymýšľaš od nuly a do večera hotové nie sú.</p>
         </div>
-        <div class="ba ba--after">
+        <div class="cmp__cell cmp__after">
           <small>Po hodine</small>
           <p>Vložíš tabuľku parametrov a jeden vzorový popis. AI drží tvoj štýl pri všetkých desiatich naraz, ty už len dolaďuješ detaily.</p>
         </div>
       </article>
-
-      <article class="row">
+      <article class="cmp__row">
         <h3>Mesačný prehľad</h3>
-        <div class="ba">
+        <div class="cmp__cell">
           <small>Predtým</small>
           <p>Vzorce, ktoré si už nepamätáš, a text hlásenia skladáš každý mesiac nanovo.</p>
         </div>
-        <div class="ba ba--after">
+        <div class="cmp__cell cmp__after">
           <small>Po hodine</small>
-          <p>AI ti vzorec napíše aj vysvetlí. Prehľad vzniká zo šablóny minulého mesiaca — mení sa len to, čo sa naozaj stalo.</p>
+          <p>AI ti vzorec napíše aj vysvetlí. Prehľad vzniká zo šablóny minulého mesiaca a mení sa len to, čo sa naozaj stalo.</p>
         </div>
       </article>
     </div>
@@ -515,50 +510,52 @@ h1 em{font-style:normal;color:var(--rose)}
 
   <!-- ================= CENNÍK ================= -->
   <section class="shell zone reveal" id="cennik">
-    <p class="kicker">Cenník</p>
     <h2>Jedna cena, jedna hodina</h2>
 
-    <div class="rate">
-      <p class="rate__num">25<sup>€</sup></p>
-      <div>
-        <p><strong>Za 60 minút súkromnej hodiny.</strong> Platíš iba hodiny, ktoré si rezervuješ.</p>
-        <p>Celá hodina ide na tvoje úlohy — neplatíš za prednášku, ktorú si vieš pozrieť na internete. Po hodine ti pošlem zápis a postupy, ktoré sme použili.</p>
+    <div class="price">
+      <div class="price__main">
+        <p class="price__num">25 €</p>
+        <p class="price__per">za 60 minút súkromnej hodiny</p>
+        <p>Platíš iba hodiny, ktoré si rezervuješ. Celá hodina ide na tvoje úlohy, nie na prednášku, ktorú si vieš pozrieť na internete. Po hodine ti pošlem zápis a postupy, ktoré sme použili.</p>
+        <a class="cta" href="#termin">Vybrať termín</a>
       </div>
+
+      <ul class="packs">
+        <li class="pack">
+          <span class="pack__name">Tri hodiny</span>
+          <span class="pack__desc">Tri samostatné termíny, platnosť 4 mesiace</span>
+          <span class="pack__rate">23 € za hodinu</span>
+          <span class="pack__sum">69 €</span>
+        </li>
+        <li class="pack">
+          <span class="pack__name">Šesť hodín</span>
+          <span class="pack__desc">Vieš ich rozdeliť aj medzi dvoch ľudí, platnosť 6 mesiacov</span>
+          <span class="pack__rate">22 € za hodinu</span>
+          <span class="pack__sum">132 €</span>
+        </li>
+        <li class="pack">
+          <span class="pack__name">Malý tím</span>
+          <span class="pack__desc">Dvaja až štyria ľudia pri jednej obrazovke, cena za celú hodinu</span>
+          <span class="pack__rate">jedna hodina</span>
+          <span class="pack__sum">39 €</span>
+        </li>
+      </ul>
     </div>
 
-    <ul class="packs">
-      <li class="pack">
-        <span class="pack__name">Tri hodiny<small>Tri samostatné termíny, platnosť 4 mesiace</small></span>
-        <span class="pack__rate">23 € / hodina</span>
-        <span class="pack__sum">69 €</span>
-      </li>
-      <li class="pack">
-        <span class="pack__name">Šesť hodín<small>Vieš ich rozdeliť aj medzi dvoch ľudí, platnosť 6 mesiacov</small></span>
-        <span class="pack__rate">22 € / hodina</span>
-        <span class="pack__sum">132 €</span>
-      </li>
-      <li class="pack">
-        <span class="pack__name">Malý tím<small>Dvaja až štyria ľudia pri jednej obrazovke, cena za celú hodinu</small></span>
-        <span class="pack__rate">jedna hodina</span>
-        <span class="pack__sum">39 €</span>
-      </li>
-    </ul>
-
-    <p class="fine">Platí sa prevodom na účet pred hodinou — číslo účtu a sumu ti pošlem mailom po potvrdení termínu. Termín vieš presunúť najneskôr 24 hodín predtým, bez poplatku.</p>
+    <p class="fine">Platí sa prevodom na účet pred hodinou. Číslo účtu a sumu ti pošlem mailom po potvrdení termínu. Termín vieš presunúť najneskôr 24 hodín predtým, bez poplatku.</p>
   </section>
 
   <!-- ================= OTÁZKY ================= -->
   <section class="shell zone reveal" id="otazky">
-    <p class="kicker">Otázky</p>
-    <h2>Na čo sa ľudia pýtajú<br>pred prvou hodinou</h2>
+    <h2>Na čo sa ľudia pýtajú pred prvou hodinou</h2>
     <div class="qs">
-      <details class="q"><summary>Musím mať zaplatenú verziu AI?</summary><p>Nemusíš. Začneme na bezplatných verziách a počas hodiny uvidíš, kde ti platená naozaj niečo pridá a kde je to jedno. Nič ti nepredávam.</p></details>
-      <details class="q"><summary>Neviem o AI nič. Nebude to strata času?</summary><p>Naopak, s úplným začiatkom ide práca najrýchlejšie, lebo nemáš zlé návyky. Stačí, keď prídeš s dvomi alebo tromi úlohami zo svojej práce.</p></details>
-      <details class="q"><summary>Ako to platím?</summary><p>Prevodom na účet pred hodinou. Po potvrdení termínu ti pošlem mailom číslo účtu, sumu a variabilný symbol.</p></details>
-      <details class="q"><summary>Môžem tam otvoriť firemné dokumenty?</summary><p>Časť hodiny venujeme presne tomuto: čo do AI patrí a čo nie. Ukážem ti, ako údaje klientov a interné čísla nahradiť zástupnými, aby výsledok fungoval a dáta zostali u teba.</p></details>
-      <details class="q"><summary>Nahráva sa meeting?</summary><p>Len ak si to vyslovene želáš — vtedy ti nahrávku pošlem spolu so zápisom. Inak nie.</p></details>
-      <details class="q"><summary>Dá sa dohodnúť dve hodiny za sebou?</summary><p>Áno. Rezervuj prvý čas a v druhom kroku vyber „Dve hodiny za sebou". Medzi hodinami dávam 15 minút pauzu.</p></details>
-      <details class="q"><summary>Ako viem, či mi to pomôže?</summary><p>Do rezervácie mi napíš, na čom chceš pracovať. Ak uvidím, že ti hodina nemá čo dať, ozvem sa ešte pred platbou a termín zrušíme — nebudem ti brať peniaze za niečo, čo ti nepomôže.</p></details>
+      <div class="q"><h3>Musím mať zaplatenú verziu AI?</h3><p>Nemusíš. Začneme na bezplatných verziách a počas hodiny uvidíš, kde ti platená naozaj niečo pridá a kde je to jedno. Nič ti nepredávam.</p></div>
+      <div class="q"><h3>Neviem o AI nič. Nebude to strata času?</h3><p>Naopak, s úplným začiatkom ide práca najrýchlejšie, lebo nemáš zlé návyky. Stačí, keď prídeš s dvomi alebo tromi úlohami zo svojej práce.</p></div>
+      <div class="q"><h3>Ako to platím?</h3><p>Prevodom na účet pred hodinou. Po potvrdení termínu ti pošlem mailom číslo účtu, sumu a variabilný symbol.</p></div>
+      <div class="q"><h3>Môžem tam otvoriť firemné dokumenty?</h3><p>Časť hodiny venujeme presne tomuto: čo do AI patrí a čo nie. Ukážem ti, ako údaje klientov a interné čísla nahradiť zástupnými, aby výsledok fungoval a dáta zostali u teba.</p></div>
+      <div class="q"><h3>Nahráva sa meeting?</h3><p>Len ak si to vyslovene želáš. Vtedy ti nahrávku pošlem spolu so zápisom. Inak nie.</p></div>
+      <div class="q"><h3>Dá sa dohodnúť dve hodiny za sebou?</h3><p>Áno. Rezervuj prvý čas a v druhom kroku vyber „Dve hodiny za sebou“. Medzi hodinami dávam 15 minút pauzu.</p></div>
+      <div class="q"><h3>Ako viem, či mi to pomôže?</h3><p>Do rezervácie mi napíš, na čom chceš pracovať. Ak uvidím, že ti hodina nemá čo dať, ozvem sa ešte pred platbou a termín zrušíme. Nebudem ti brať peniaze za niečo, čo ti nepomôže.</p></div>
     </div>
   </section>
 
@@ -579,9 +576,9 @@ h1 em{font-style:normal;color:var(--rose)}
 </main>
 
 <footer class="shell foot">
-  <a class="brandline" href="./"><span>AI</span>AI Učenie</a>
+  <a class="brand" href="./">AI Učenie</a>
   <span>ai.apoliak.online</span>
-  <nav>
+  <nav aria-label="Pätička">
     <a href="#cennik">Cenník</a>
     <a href="#otazky">Otázky</a>
     <a href="https://apoliak.online" target="_blank" rel="noopener">Weby na mieru</a>
@@ -603,7 +600,7 @@ h1 em{font-style:normal;color:var(--rose)}
     { "@type": "Question", "name": "Môžem tam otvoriť firemné dokumenty?",
       "acceptedAnswer": { "@type": "Answer", "text": "Časť hodiny venujeme presne tomuto: čo do AI patrí a čo nie, a ako údaje klientov a interné čísla nahradiť zástupnými." } },
     { "@type": "Question", "name": "Nahráva sa meeting?",
-      "acceptedAnswer": { "@type": "Answer", "text": "Len ak si to vyslovene želáš — vtedy nahrávku pošlem spolu so zápisom. Inak nie." } },
+      "acceptedAnswer": { "@type": "Answer", "text": "Len ak si to vyslovene želáš. Vtedy nahrávku pošlem spolu so zápisom. Inak nie." } },
     { "@type": "Question", "name": "Dá sa dohodnúť dve hodiny za sebou?",
       "acceptedAnswer": { "@type": "Answer", "text": "Áno. Rezervuj prvý čas a v druhom kroku vyber možnosť Dve hodiny za sebou. Medzi hodinami je 15 minút pauza." } },
     { "@type": "Question", "name": "Ako viem, či mi to pomôže?",
@@ -617,7 +614,7 @@ h1 em{font-style:normal;color:var(--rose)}
   "use strict";
 
   /* ==========================================================
-     NASTAVENIE TERMÍNOV — jediné miesto, kde to upravuješ
+     NASTAVENIE TERMÍNOV: jediné miesto, kde to upravuješ
      Hodina 60 min + 15 min pauza, preto časy idú po 75 minútach.
      Kľúč = deň v týždni (1 = pondelok ... 6 = sobota, 0 = nedeľa)
      ========================================================== */
@@ -630,18 +627,16 @@ h1 em{font-style:normal;color:var(--rose)}
     6: ["10:00","11:15"],
     0: []
   };
-  var OBSADENE = [];        /* napr. "2026-07-28 9:00" */
+  var OBSADENE = [];        /* termíny dohodnuté mimo stránky, napr. "2026-07-28 9:00" */
   var POCET_DNI = 10;       /* koľko dní s voľnými termínmi ponúknuť */
   var MOJ_MAIL = "alexpoliak21@gmail.com";
 
   /* Kam sa rezervácia odošle.
-     Prázdne  = klientovi sa otvorí mail (funguje hneď, ale rezervácia sa môže stratiť).
-     Vyplnené = rezervácia ide na pozadí na túto adresu a klient nemusí nikam klikať.
-     Príklad pre Web3Forms:
-       ENDPOINT = "https://api.web3forms.com/submit";
-       ENDPOINT_EXTRA = { access_key: "sem-vloz-kluc", subject: "Nová rezervácia — AI Učenie" };
+     "/api/rezervacia" = vlastný backend (functions/api/), rezervácia ide na pozadí,
+                         klient nemusí nikam klikať a termín ostane obsadený pre všetkých.
+     Prázdne            = klientovi sa otvorí mail (funguje hneď, ale rezervácia sa môže stratiť).
      Ak odoslanie zlyhá, web sám ponúkne mail ako záložnú cestu. */
-  var ENDPOINT = "/api/rezervacia";      /* vlastný backend na VPS, viď server/ */
+  var ENDPOINT = "/api/rezervacia";
   var OBSADENE_URL = "/api/obsadene";    /* odtiaľ si widget stiahne už obsadené termíny */
   var ENDPOINT_EXTRA = {};
   /* ========================================================== */
@@ -706,13 +701,13 @@ h1 em{font-style:normal;color:var(--rose)}
     dayrow.appendChild(b);
   });
 
-  /* tieň na pravej hrane hovorí, že dni sa dajú posúvať — na konci zmizne */
+  /* tieň na pravej hrane hovorí, že dni sa dajú posúvať; na konci zmizne */
   var dayscroll = $("dayscroll");
   function kontrolaPosunu(){
     var koniec = dayrow.scrollLeft + dayrow.clientWidth >= dayrow.scrollWidth - 2;
     dayscroll.classList.toggle("is-end", koniec);
   }
-  dayrow.addEventListener("scroll", kontrolaPosunu);
+  dayrow.addEventListener("scroll", kontrolaPosunu, { passive: true });
   window.addEventListener("resize", kontrolaPosunu);
   kontrolaPosunu();
 
@@ -720,7 +715,7 @@ h1 em{font-style:normal;color:var(--rose)}
     timesEl.innerHTML = "";
     var den = dni[aktivny];
     if (!den){
-      timesEl.innerHTML = '<p class="times__none">Momentálne nemám voľné termíny — napíš mi mail a dohodneme sa.</p>';
+      timesEl.innerHTML = '<p class="times__none">Momentálne nemám voľné termíny. Napíš mi mail a dohodneme sa.</p>';
       return;
     }
     den.casy.forEach(function(c){
@@ -731,7 +726,7 @@ h1 em{font-style:normal;color:var(--rose)}
       if (c.obsadene){
         b.disabled = true;
         b.title = "Obsadené";
-        b.setAttribute("aria-label", den.popis + " o " + c.cas + " — obsadené");
+        b.setAttribute("aria-label", den.popis + " o " + c.cas + ", obsadené");
       } else {
         b.setAttribute("aria-label", den.popis + " o " + c.cas);
         b.addEventListener("click", function(){ vyber(den, c); });
@@ -796,7 +791,7 @@ h1 em{font-style:normal;color:var(--rose)}
     $("termin").scrollIntoView({ behavior: "smooth", block: "start" });
   }
 
-  /* obsadené termíny zo servera — nech ich nevidí ani ďalší návštevník */
+  /* obsadené termíny zo servera, nech ich nevidí ani ďalší návštevník */
   if (ENDPOINT && OBSADENE_URL){
     fetch(OBSADENE_URL, { headers: { "Accept": "application/json" } })
       .then(function(r){ return r.ok ? r.json() : null; })
@@ -825,17 +820,17 @@ h1 em{font-style:normal;color:var(--rose)}
 
     if (!vybrany) return krok(1);
     if (meno.length < 3) return chyba("Napíš mi prosím meno.", $("f-name"));
-    if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(mail)) return chyba("E-mail nevyzerá správne.", $("f-mail"));
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(mail)) return chyba("E-mail nevyzerá správne, skontroluj ho prosím.", $("f-mail"));
     if (tel.replace(/\D/g, "").length < 9) return chyba("Telefón musí mať aspoň 9 číslic.", $("f-tel"));
 
-    /* stránka mohla byť otvorená pol dňa — termín musí stále platiť */
+    /* stránka mohla byť otvorená pol dňa, termín musí stále platiť */
     if (vybrany.start.getTime() - Date.now() < 120 * 60 * 1000){
       zablokuj(vybrany.slot);
       vybrany = null;
       krok(1);
       msg.textContent = "";
       timesEl.insertAdjacentHTML("afterbegin",
-        '<p class="times__none">Tento termín už medzitým prešiel — vyber si prosím iný.</p>');
+        '<p class="times__none">Tento termín už medzitým prešiel. Vyber si prosím iný.</p>');
       return;
     }
     msg.textContent = "";
@@ -845,14 +840,14 @@ h1 em{font-style:normal;color:var(--rose)}
                "Meno: " + meno + "\n" +
                "E-mail: " + mail + "\n" +
                "Telefón: " + tel + "\n" +
-               "Na čom chce pracovať: " + (pozn || "—") + "\n";
+               "Na čom chce pracovať: " + (pozn || "-") + "\n";
 
     var odkaz = "mailto:" + MOJ_MAIL +
-                "?subject=" + encodeURIComponent("Rezervácia hodiny — " + vybrany.label) +
+                "?subject=" + encodeURIComponent("Rezervácia hodiny: " + vybrany.label) +
                 "&body=" + encodeURIComponent(telo);
     $("mailBtn").setAttribute("href", odkaz);
 
-    /* robot vyplnil skrytú pascu — nič neposielame, ale nech si myslí, že prešiel */
+    /* robot vyplnil skrytú pascu: nič neposielame, ale nech si myslí, že prešiel */
     if ($("f-web").value){
       hotovo("Termín je zapísaný. Ozvem sa ti mailom.");
       return;
@@ -862,7 +857,7 @@ h1 em{font-style:normal;color:var(--rose)}
     if (!ENDPOINT){
       window.location.href = odkaz;
       $("mailBtn").textContent = "Neotvoril sa mail?";
-      hotovo("Držím ti " + vybrany.label + ". Skontroluj, či sa ti otvoril mail a rezerváciu odošli — potom sa ti do 24 hodín ozvem s odkazom na meeting a podkladmi na platbu.");
+      hotovo("Držím ti " + vybrany.label + ". Skontroluj, či sa ti otvoril mail a rezerváciu odošli. Potom sa ti do 24 hodín ozvem s odkazom na meeting a podkladmi na platbu.");
       return;
     }
 
@@ -873,7 +868,7 @@ h1 em{font-style:normal;color:var(--rose)}
       meno: meno,
       mail: mail,
       tel: tel,
-      poznamka: pozn || "—",
+      poznamka: pozn || "-",
       sprava: telo
     };
     Object.keys(ENDPOINT_EXTRA).forEach(function(k){ data[k] = ENDPOINT_EXTRA[k]; });

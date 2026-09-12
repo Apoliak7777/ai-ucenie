@@ -1,45 +1,29 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
-  <defs>
-    <linearGradient id="mark" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0" stop-color="#FF4D6D"/>
-      <stop offset="1" stop-color="#B9A7FF"/>
-    </linearGradient>
-    <radialGradient id="glowA" cx="50%" cy="50%" r="50%">
-      <stop offset="0" stop-color="#FF4D6D" stop-opacity=".42"/>
-      <stop offset="1" stop-color="#FF4D6D" stop-opacity="0"/>
-    </radialGradient>
-    <radialGradient id="glowB" cx="50%" cy="50%" r="50%">
-      <stop offset="0" stop-color="#B9A7FF" stop-opacity=".30"/>
-      <stop offset="1" stop-color="#B9A7FF" stop-opacity="0"/>
-    </radialGradient>
-  </defs>
+  <!-- Zdroj obrázka na zdieľanie odkazu. PNG sa z neho renderuje v prehliadači (fonts/ vedľa). -->
+  <style>
+    @font-face{font-family:'Bricolage Grotesque';font-weight:200 800;src:url('fonts/bricolage-grotesque-latin-ext.woff2') format('woff2');unicode-range:U+0100-02BA,U+1E00-1EFF}
+    @font-face{font-family:'Bricolage Grotesque';font-weight:200 800;src:url('fonts/bricolage-grotesque-latin.woff2') format('woff2');unicode-range:U+0000-00FF,U+2000-206F,U+20AC}
+    @font-face{font-family:'Manrope';font-weight:200 800;src:url('fonts/manrope-latin-ext.woff2') format('woff2');unicode-range:U+0100-02BA,U+1E00-1EFF}
+    @font-face{font-family:'Manrope';font-weight:200 800;src:url('fonts/manrope-latin.woff2') format('woff2');unicode-range:U+0000-00FF,U+2000-206F,U+20AC}
+    .d{font-family:'Bricolage Grotesque','Segoe UI',sans-serif}
+    .b{font-family:'Manrope','Segoe UI',sans-serif}
+  </style>
 
-  <rect width="1200" height="630" fill="#0C0912"/>
-  <ellipse cx="1010" cy="-40" rx="620" ry="430" fill="url(#glowA)"/>
-  <ellipse cx="60" cy="120" rx="480" ry="360" fill="url(#glowB)"/>
+  <rect width="1200" height="630" fill="#F4F5F7"/>
 
-  <g font-family="Segoe UI, Arial, Helvetica, sans-serif">
-    <!-- značka -->
-    <rect x="80" y="74" width="52" height="52" rx="15" fill="url(#mark)"/>
-    <text x="106" y="108" font-size="22" font-weight="800" fill="#fff" text-anchor="middle">AI</text>
-    <text x="148" y="108" font-size="27" font-weight="700" fill="#F5F2FA" letter-spacing="-.5">AI Učenie</text>
+  <!-- značka -->
+  <text x="88" y="106" class="d" font-size="30" font-weight="700" fill="#17191C" letter-spacing="-.6">AI Učenie</text>
 
-    <!-- štítok -->
-    <rect x="80" y="176" width="474" height="42" rx="21" fill="none" stroke="#F5F2FA" stroke-opacity=".22"/>
-    <circle cx="106" cy="197" r="5" fill="#FF4D6D"/>
-    <text x="122" y="204" font-size="17" font-weight="600" fill="#A49CBC" letter-spacing="1.6">SÚKROMNE · JEDEN NA JEDNÉHO · ONLINE</text>
+  <!-- nadpis -->
+  <text x="88" y="286" class="d" font-size="78" font-weight="800" fill="#17191C" letter-spacing="-2.6">Za jednu hodinu ti AI</text>
+  <text x="88" y="368" class="d" font-size="78" font-weight="800" fill="#17191C" letter-spacing="-2.6">začne šetriť celý týždeň</text>
+  <rect x="88" y="396" width="120" height="6" rx="3" fill="#1D7A4D"/>
 
-    <!-- nadpis -->
-    <text x="80" y="316" font-size="70" font-weight="800" fill="#F5F2FA" letter-spacing="-2.4">Za jednu hodinu ti AI</text>
-    <text x="80" y="392" font-size="70" font-weight="800" fill="#FF4D6D" letter-spacing="-2.4">začne šetriť celý týždeň</text>
+  <text x="88" y="452" class="b" font-size="27" font-weight="500" fill="#3C4147">Zdieľame obrazovku a naučím ťa AI na tvojich vlastných úlohách.</text>
 
-    <text x="80" y="452" font-size="26" font-weight="500" fill="#A49CBC">Zdieľame obrazovku a naučím ťa AI na tvojich vlastných úlohách.</text>
+  <!-- cena -->
+  <text x="88" y="560" class="d" font-size="72" font-weight="800" fill="#17191C" letter-spacing="-2.8">25 €</text>
+  <text x="258" y="558" class="b" font-size="24" font-weight="600" fill="#646B73">za 60 minút, jeden na jedného</text>
 
-    <!-- cena -->
-    <text x="80" y="566" font-size="76" font-weight="800" fill="#F5F2FA" letter-spacing="-3">25 €</text>
-    <text x="252" y="562" font-size="24" font-weight="600" fill="#A49CBC">za 60 minút</text>
-    <text x="252" y="528" font-size="19" font-weight="600" fill="#7DE0B0" letter-spacing="1.4">BEZ PREDPLATNÉHO</text>
-
-    <text x="1120" y="566" font-size="24" font-weight="600" fill="#A49CBC" text-anchor="end">ai.apoliak.online</text>
-  </g>
+  <text x="1112" y="558" class="b" font-size="24" font-weight="600" fill="#646B73" text-anchor="end">ai.apoliak.online</text>
 </svg>

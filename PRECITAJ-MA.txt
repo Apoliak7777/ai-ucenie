@@ -7,7 +7,9 @@ index.html          hlavná stránka (rezervácia, kto ťa učí, cenník, otáz
 ochrana-udajov.html podstránka, odkazuje sa na ňu z formulára a z pätičky
 404.html            stránka pre neexistujúce adresy (GitHub Pages ju berie sám)
 og-image.png        obrázok 1200x630 na zdieľanie odkazu
-og-image.svg        zdroj toho obrázka (uprav tu, PNG potom vyrenderuj znova)
+og-image.svg        zdroj toho obrázka (uprav tu, PNG potom vyrenderuj znova:
+                    otvoriť SVG v prehliadači z priečinka repa a odfotiť 1200x630)
+fonts/              písma Bricolage Grotesque + Manrope, hostované tu (nie Google Fonts)
 robots.txt          povoľuje indexovanie, ochranu údajov drží mimo Googlu
 sitemap.xml         jedna adresa, pri zmene webu prepíš lastmod
 .nojekyll           vypína Jekyll na GitHub Pages, nechať
@@ -79,7 +81,8 @@ ochrana-udajov.html do sekcie "Kde údaje sú" ako sprostredkovateľa.
 1. odkaz na ai.apoliak.online doplniť aj do webu apoliak.online
 2. živnosť pred prvou prijatou platbou (zatiaľ web len ako projekt)
 3. platba kartou (Stripe) namiesto prevodu vopred — menej odpadne ľudí
-4. fotka namiesto iniciálky a krátke video-ukážka (dôvera, viď nižšie)
+4. fotka namiesto monogramu (miesto je pripravené v index.html, sekcia Kto ťa učí)
+   a krátke video-ukážka jednej úlohy (dôvera)
 
 Hotové (09/2026): vlastný backend (Cloudflare Functions + D1, záloha v Pythone
 pre VPS) — rezervácia sa nestratí, klient dostane potvrdenie, termín ostáva
@@ -87,7 +90,15 @@ obsadený pre všetkých. Lokálne skúšanie: npm install, .dev.vars, npm run d
 
 Rozhodnuté
 ----------
-- fotka nebude, ostáva iniciálka v gradiente
+- dizajn 09/2026: svetlá téma (tmavá podľa systému), jeden zelený akcent,
+  písma Bricolage Grotesque (nadpisy) + Manrope (text) uložené vo fonts/,
+  žiadne Google Fonts, žiadne gradienty, žiadne ikony, žiadne eyebrowy nad
+  sekciami, v texte žiadne pomlčky; rezervácia stojí na desktope hneď vedľa
+  nadpisu, na mobile pod ním
+- fotka: kým nie je, stojí v sekcii Kto ťa učí monogram AP; skutočná fotka
+  (na výšku, 4:5, aspoň 800x1000) je to najlepšie, čo sa dá pre dôveru
+  spraviť: kupuje sa hodina s konkrétnym človekom; do HTML je pripravený
+  komentár, kam ju dať
 - sekcia Príklady je bez čísel — ukazuje zmenu postupu
   (predtým / po hodine), nič sa nemusí dokladovať
 - ostrá verzia beží na Cloudflare Pages (nie VPS, nie GitHub Pages) — Alex VPS

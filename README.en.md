@@ -43,7 +43,7 @@
 
 The whole site lives in a single `index.html` file: markup, CSS and JavaScript are inline. There is no backend, no build step and no package manager. The booking widget computes free slots from a weekly plan, the client picks a day, time and package, and the booking is delivered either to a custom endpoint or via a pre-filled e-mail.
 
-The user interface is entirely in Slovak (`<html lang="sk">`) and the site is ready to be deployed as GitHub Pages on the `ai.apoliak.online` domain.
+The user interface is entirely in Slovak (`<html lang="sk">`). Design: light theme with a system dark variant, one accent, fonts self-hosted in the repo, no third-party requests on load.
 
 ---
 
@@ -87,7 +87,8 @@ ai-ucenie/
 ├── ochrana-udajov.html   # privacy policy subpage (noindex)
 ├── 404.html              # custom not-found page
 ├── og-image.png          # 1200×630 link-sharing image
-├── og-image.svg          # OG image source
+├── og-image.svg          # OG image source (fonts from fonts/, PNG is a browser capture of it)
+├── fonts/                # Bricolage Grotesque + Manrope, self-hosted, no Google Fonts
 ├── robots.txt            # indexing allowed, privacy page excluded
 ├── sitemap.xml           # single URL
 ├── .nojekyll             # disables Jekyll on GitHub Pages

@@ -3,56 +3,65 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Ochrana údajov — AI Učenie</title>
+<title>Ochrana údajov: AI Učenie</title>
 <meta name="description" content="Aké údaje pri rezervácii hodiny zbieram, načo ich potrebujem a ako dlho ich mám.">
-<meta name="theme-color" content="#0C0912">
+<meta name="theme-color" content="#F4F5F7">
+<meta name="theme-color" media="(prefers-color-scheme: dark)" content="#121417">
 <meta name="robots" content="noindex">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@600;800&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%231D7A4D'/%3E%3Ctext x='32' y='43' font-family='Segoe UI,Arial,sans-serif' font-weight='800' font-size='30' text-anchor='middle' fill='%23fff'%3EAI%3C/text%3E%3C/svg%3E">
 <style>
+@font-face{font-family:'Bricolage Grotesque';font-style:normal;font-weight:200 800;font-display:swap;src:url('fonts/bricolage-grotesque-latin-ext.woff2') format('woff2');unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF}
+@font-face{font-family:'Bricolage Grotesque';font-style:normal;font-weight:200 800;font-display:swap;src:url('fonts/bricolage-grotesque-latin.woff2') format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+@font-face{font-family:'Manrope';font-style:normal;font-weight:200 800;font-display:swap;src:url('fonts/manrope-latin-ext.woff2') format('woff2');unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF}
+@font-face{font-family:'Manrope';font-style:normal;font-weight:200 800;font-display:swap;src:url('fonts/manrope-latin.woff2') format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
 :root{
-  --bg:#0C0912; --bg-2:#151125; --text:#F5F2FA; --dim:#A49CBC;
-  --rose:#FF4D6D; --lilac:#B9A7FF; --edge:rgba(245,242,250,.13); --edge-2:rgba(245,242,250,.06);
-  --display:"Unbounded",'Segoe UI',system-ui,sans-serif;
-  --body:"Manrope",system-ui,-apple-system,sans-serif;
+  color-scheme:light dark;
+  --bg:#F4F5F7; --surface:#FFFFFF; --ink:#17191C; --ink-2:#3C4147; --muted:#646B73;
+  --line:rgba(23,25,28,.10); --box-line:transparent;
+  --acc:#1D7A4D; --acc-line:rgba(29,122,77,.30);
+  --shadow:0 30px 70px -40px rgba(23,25,28,.28),0 2px 6px -2px rgba(23,25,28,.06);
+  --display:"Bricolage Grotesque","Segoe UI",system-ui,sans-serif;
+  --body:"Manrope","Segoe UI",system-ui,sans-serif;
+  --ease:cubic-bezier(.32,.72,0,1);
+}
+@media (prefers-color-scheme:dark){
+  :root{--bg:#121417; --surface:#1A1D21; --ink:#ECEEF0; --ink-2:#C9CED4; --muted:#9AA1A9;
+    --line:rgba(236,238,240,.12); --box-line:rgba(236,238,240,.10); --acc:#5BC48A; --acc-line:rgba(91,196,138,.36);
+    --shadow:0 30px 70px -40px rgba(0,0,0,.75),0 2px 6px -2px rgba(0,0,0,.45)}
 }
 *,*::before,*::after{box-sizing:border-box}
-body{margin:0;background:var(--bg);color:var(--text);font-family:var(--body);
-  font-size:clamp(15.5px,.9vw + 13px,17px);line-height:1.65;-webkit-font-smoothing:antialiased;
-  background-image:radial-gradient(700px 500px at 85% -10%,rgba(255,77,109,.14),transparent 70%);background-repeat:no-repeat}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--body);
+  font-size:clamp(15.5px,.3vw + 14.5px,17px);line-height:1.65}
 a{color:inherit}
-:focus-visible{outline:2px solid var(--lilac);outline-offset:3px;border-radius:6px}
-.shell{max-width:760px;margin-inline:auto;padding:0 clamp(18px,5vw,40px)}
-.nav{border-bottom:1px solid var(--edge-2)}
-.nav__in{display:flex;align-items:center;height:70px;gap:18px}
-.logo{display:flex;align-items:center;gap:10px;text-decoration:none;font-family:var(--display);font-weight:800;font-size:.96rem;letter-spacing:-.02em}
-.logo span{width:26px;height:26px;border-radius:8px;background:var(--rose);display:grid;place-items:center;font-size:.68rem;color:#fff}
-.back{margin-left:auto;font-size:.9rem;color:var(--dim);text-decoration:none}
-.back:hover{color:var(--text)}
-h1{font-family:var(--display);font-weight:800;font-size:clamp(1.9rem,5vw,2.9rem);letter-spacing:-.035em;line-height:1.05;margin:clamp(44px,7vw,72px) 0 0}
-.sub{color:var(--dim);margin:16px 0 0}
-h2{font-family:var(--display);font-weight:600;font-size:1.06rem;letter-spacing:-.01em;margin:40px 0 10px}
-p,ul{margin:0 0 14px}
+:focus-visible{outline:2px solid var(--acc);outline-offset:3px;border-radius:6px}
+.shell{max-width:760px;margin-inline:auto;padding-inline:clamp(20px,5vw,40px)}
+.top{display:flex;align-items:center;justify-content:space-between;height:72px;gap:18px}
+.brand{text-decoration:none;font-family:var(--display);font-weight:700;font-size:1.06rem;letter-spacing:-.02em}
+.back{font-size:.92rem;font-weight:600;color:var(--ink-2);text-decoration:none;transition:color .25s var(--ease)}
+.back:hover{color:var(--ink)}
+h1{font-family:var(--display);font-weight:700;font-size:clamp(1.9rem,5vw,2.6rem);letter-spacing:-.022em;line-height:1.08;margin:clamp(36px,6vw,64px) 0 0;text-wrap:balance}
+.sub{color:var(--ink-2);margin:16px 0 0;text-wrap:pretty}
+h2{font-family:var(--display);font-weight:600;font-size:1.15rem;letter-spacing:-.01em;margin:40px 0 10px}
+p,ul{margin:0 0 14px;color:var(--ink-2)}
 ul{padding-left:20px}
 li{margin-bottom:6px}
-strong{font-weight:700}
-.box{border:1px solid var(--edge);border-radius:16px;background:var(--bg-2);padding:22px 24px;margin:34px 0 0}
+strong{font-weight:700;color:var(--ink)}
+.box{border:1px solid var(--box-line);border-radius:20px;background:var(--surface);box-shadow:var(--shadow);padding:22px 24px;margin:34px 0 0}
 .box p{margin:0 0 6px}
 .box p:last-child{margin:0}
-.box a{color:var(--text);text-decoration:none;border-bottom:1px solid var(--rose)}
-.foot{border-top:1px solid var(--edge-2);margin-top:56px;padding-block:26px;font-size:.85rem;color:var(--dim);display:flex;flex-wrap:wrap;gap:12px 24px}
-.foot a{text-decoration:none}
-.date{font-size:.85rem;color:var(--dim)}
+main a{color:var(--ink);text-decoration:none;border-bottom:1px solid var(--acc-line);transition:border-color .25s var(--ease)}
+main a:hover{border-color:var(--acc)}
+.date{font-size:.88rem;color:var(--muted);margin-top:34px}
+.foot{border-top:1px solid var(--line);margin-top:56px;padding-block:26px 44px;font-size:.88rem;color:var(--muted);display:flex;flex-wrap:wrap;gap:12px 24px}
+.foot a{text-decoration:none;color:var(--ink-2)}
+.foot a:hover{color:var(--ink)}
 </style>
 </head>
 <body>
 
-<header class="nav">
-  <div class="shell nav__in">
-    <a class="logo" href="index.html"><span>AI</span>AI Učenie</a>
-    <a class="back" href="index.html">← Späť na stránku</a>
-  </div>
+<header class="shell top">
+  <a class="brand" href="index.html">AI Učenie</a>
+  <a class="back" href="index.html">Späť na stránku</a>
 </header>
 
 <main class="shell">
@@ -73,15 +82,15 @@ strong{font-weight:700}
   <p>Iba na to, aby sme sa dohodli na termíne, aby som ti vedel poslať odkaz na meeting, podklady na platbu a po hodine zápis. Nikam ťa nezapisujem a nikomu tvoje údaje nepredávam.</p>
 
   <h2>Kde údaje sú</h2>
-  <!-- Rezervácie spracúva vlastný backend (server/), nie cudzia služba. Keby sa to niekedy
-       presmerovalo na externú službu, treba ju tu uviesť ako sprostredkovateľa. -->
-  <p>Rezervácia sa zapíše do databázy na mojom serveri (Frankfurt, Nemecko — v EÚ) a zároveň mi príde ako e-mail, takže tvoje meno, mail a číslo mám na serveri a v e-mailovej schránke. Potvrdenie ti odchádza z mojej schránky. Videohovor beží cez Google Meet alebo Zoom — tam sa spracúva len to, čo si sám zadáš pri pripojení.</p>
+  <!-- Stránka aj rezervácie bežia na Cloudflare Pages (databáza D1). Keby sa to niekedy presunulo
+       inam, treba tu uviesť nového prevádzkovateľa infraštruktúry. -->
+  <p>Rezervácia sa uloží do databázy stránky, ktorú prevádzkuje Cloudflare (spracúva ju v mojom mene ako sprostredkovateľ), a zároveň mi príde ako e-mail. Tvoje meno, mail a číslo mám teda v tej databáze a v e-mailovej schránke. Potvrdenie ti odchádza z mojej schránky. Videohovor beží cez Google Meet alebo Zoom, tam sa spracúva len to, čo si sám zadáš pri pripojení.</p>
 
   <h2>Ako dlho ich mám</h2>
   <p>Komunikáciu si držím, kým spolu riešime hodiny, plus rozumný čas potom, keby si sa ozval znova. Doklady o platbe musím podľa zákona uchovať dlhšie. Keď mi napíšeš, že si mám tvoje údaje vymazať, zmažem korešpondenciu aj kontakt.</p>
 
   <h2>Cookies a meranie</h2>
-  <p>Táto stránka nepoužíva sledovacie cookies ani analytiku. Nič sa ti tu nemeria.</p>
+  <p>Táto stránka nepoužíva sledovacie cookies ani analytiku. Písma sú uložené priamo na stránke, takže sa pri načítaní nič nesťahuje od tretích strán.</p>
 
   <h2>Čo môžeš žiadať</h2>
   <ul>
@@ -97,7 +106,7 @@ strong{font-weight:700}
     <p>Hodiny nenahrávam. Ak si nahrávku vyslovene vyžiadaš, nahrám ju, pošlem ti ju a potom ju u seba zmažem.</p>
   </div>
 
-  <p class="date" style="margin-top:34px">Naposledy upravené: august 2026</p>
+  <p class="date">Naposledy upravené: september 2026</p>
 </main>
 
 <footer class="shell foot">
