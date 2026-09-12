@@ -1,0 +1,3 @@
+# Lokálne tajomstvá pre `npm run dev` — skopíruj ako .dev.vars (je v .gitignore).
+# V produkcii sa to isté nastavuje v Cloudflare: Pages projekt → Settings → Variables and Secrets.
+SMTP_HESLO=

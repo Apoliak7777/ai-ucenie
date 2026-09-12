@@ -92,7 +92,11 @@ ai-ucenie/
 ├── sitemap.xml           # single URL
 ├── .nojekyll             # disables Jekyll on GitHub Pages
 ├── PRECITAJ-MA.txt       # editing and deployment notes (Slovak)
-└── server/               # booking backend + VPS installer (own README, Slovak)
+├── functions/api/        # booking backend for Cloudflare Pages (Functions + D1)
+├── lib/rezervacie.js     # shared Functions code: validation, D1, SMTP
+├── schema.sql            # bookings table (also auto-created on first request)
+├── package.json          # worker-mailer + wrangler for local testing
+└── server/               # same logic in Python for a VPS — fallback path (own README, Slovak)
 ```
 
 ---
@@ -114,11 +118,11 @@ Everything is configured in one place — at the top of the `<script>` block in 
 
 | Variable | Meaning |
 |---|---|
-| `ENDPOINT` | `/api/rezervacia` = the site's own backend from `server/` (default); empty = a pre-filled e-mail opens for the client |
+| `ENDPOINT` | `/api/rezervacia` = the site's own backend (`functions/api/`, default); empty = a pre-filled e-mail opens for the client |
 | `OBSADENE_URL` | `/api/obsadene` — the widget fetches already-taken slots from here on load |
 | `ENDPOINT_EXTRA` | extra fields in case `ENDPOINT` points at an external service (e.g. `access_key` for Web3Forms) |
 
-The backend stores the booking in SQLite, keeps the slot taken for everyone (a second visitor gets 409 and is sent back to pick another) and e-mails you plus a confirmation to the client. Details in [`server/README.md`](server/README.md) (Slovak).
+The backend (Cloudflare Pages Functions) stores the booking in D1, keeps the slot taken for everyone (a second visitor gets 409 and is sent back to pick another) and, via the SMTP of `apoliak@apoliak.online`, e-mails you plus a confirmation to the client. The only Cloudflare setup is the `SMTP_HESLO` secret and the `DB` D1 binding — everything else has defaults in `lib/rezervacie.js`.
 
 When the backend does not respond, the widget shows an error and offers e-mail as the fallback path on its own.
 
@@ -137,9 +141,17 @@ When the backend does not respond, the widget shows an error and offers e-mail a
 
 ## 🌍 Deployment
 
-Production runs on a private VPS (Debian 12, nginx + Python backend) under `ai.apoliak.online`, which points at it with an A record. Deployment and updates are one script, `server/instaluj.sh` — see [`server/README.md`](server/README.md).
+**Production: Cloudflare Pages** — static files and `/api/` from one repo, deploy = push to `main`, free.
 
-GitHub Pages (`apoliak7777.github.io/ai-ucenie/`) is a preview only: `/api/` does not exist there, so bookings fall back to `mailto:`.
+1. Cloudflare → Workers & Pages → Create → Pages → Connect to Git → `Apoliak7777/ai-ucenie`. Empty build command, output directory `/`.
+2. Project → Settings → Bindings → Add → D1 database → create `ai-ucenie`, variable name **`DB`**.
+3. Settings → Variables and Secrets → Add → Secret **`SMTP_HESLO`** = password of `apoliak@apoliak.online`.
+4. Deployments → Retry deployment (so it runs with the bindings).
+5. Custom domains → Set up → `ai.apoliak.online`; at Hostinger change the `ai` record from A to **CNAME → `ai-ucenie.pages.dev`**.
+
+Local testing: `npm install`, put `SMTP_HESLO=…` into `.dev.vars` (template `.dev.vars.vzor`), `npm run dev` → `http://127.0.0.1:8788`.
+
+GitHub Pages (`apoliak7777.github.io/ai-ucenie/`) is a preview only: `/api/` does not exist there, so bookings fall back to `mailto:`. The VPS fallback (same logic in Python) lives in [`server/README.md`](server/README.md).
 
 ---
 
@@ -147,6 +159,7 @@ GitHub Pages (`apoliak7777.github.io/ai-ucenie/`) is a preview only: `/api/` doe
 
 - 🗓️ **Availability lives in the backend, not a calendar** - slots agreed outside the site (phone, e-mail) must be added to `OBSADENE` in `index.html`, otherwise the widget keeps offering them.
 - 📮 **When the backend is down, bookings go through `mailto:`** - if the client has no mail client configured, the booking may never be sent.
+- ✉️ **E-mails are best effort** - the booking is always stored; if SMTP fails (wrong password, outage) it is in the Functions log and the booking stays in D1.
 - 🕐 **Times are in Slovak time** - the widget does not convert time zones; the page says so.
 
 ---

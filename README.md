@@ -92,7 +92,11 @@ ai-ucenie/
 ├── sitemap.xml           # jedna URL
 ├── .nojekyll             # vypína Jekyll na GitHub Pages
 ├── PRECITAJ-MA.txt       # poznámky k úpravám a nasadeniu
-└── server/               # rezervačný backend + inštalátor na VPS (vlastný README)
+├── functions/api/        # rezervačný backend pre Cloudflare Pages (Functions + D1)
+├── lib/rezervacie.js     # spoločný kód Functions: validácia, D1, SMTP
+├── schema.sql            # tabuľka rezervácií (vzniká aj sama pri prvom dopyte)
+├── package.json          # worker-mailer + wrangler na lokálne skúšanie
+└── server/               # tá istá logika v Pythone pre VPS — záložná cesta (vlastný README)
 ```
 
 ---
@@ -114,11 +118,11 @@ Všetko sa nastavuje na jednom mieste — na začiatku `<script>` bloku v `index
 
 | Premenná | Význam |
 |---|---|
-| `ENDPOINT` | `/api/rezervacia` = vlastný backend zo `server/` (predvolené); prázdne = klientovi sa otvorí predvyplnený e-mail |
+| `ENDPOINT` | `/api/rezervacia` = vlastný backend (`functions/api/`, predvolené); prázdne = klientovi sa otvorí predvyplnený e-mail |
 | `OBSADENE_URL` | `/api/obsadene` — odtiaľ si widget pri načítaní stiahne už obsadené termíny |
 | `ENDPOINT_EXTRA` | polia navyše, keby sa `ENDPOINT` nasmeroval na externú službu (napr. `access_key` pre Web3Forms) |
 
-Backend zapíše rezerváciu do SQLite, termín drží obsadený pre všetkých (druhý záujemca dostane 409 a widget ho vráti na výber) a pošle mail tebe aj potvrdenie klientovi. Podrobnosti v [`server/README.md`](server/README.md).
+Backend (Cloudflare Pages Functions) zapíše rezerváciu do D1, termín drží obsadený pre všetkých (druhý záujemca dostane 409 a widget ho vráti na výber) a cez SMTP schránky `apoliak@apoliak.online` pošle mail tebe aj potvrdenie klientovi. Jediné, čo treba nastaviť v Cloudflare, je tajomstvo `SMTP_HESLO` a D1 binding `DB` — zvyšok má predvolené hodnoty v `lib/rezervacie.js`.
 
 Keď backend neodpovedá, widget zobrazí chybu a sám ponúkne e-mail ako záložnú cestu.
 
@@ -137,9 +141,17 @@ Keď backend neodpovedá, widget zobrazí chybu a sám ponúkne e-mail ako zálo
 
 ## 🌍 Nasadenie
 
-Ostrá verzia beží na vlastnom VPS (Debian 12, nginx + Python backend) na doméne `ai.apoliak.online`, ktorá naň mieri A záznamom. Nasadenie aj aktualizácia sú v [`server/README.md`](server/README.md) — jeden skript `server/instaluj.sh`.
+**Ostrá verzia: Cloudflare Pages** — statika aj `/api/` z jedného repa, nasadenie = push do `main`, 0 €.
 
-GitHub Pages (`apoliak7777.github.io/ai-ucenie/`) slúži len ako náhľad: `/api/` tam neexistuje, takže rezervácia tam padne na záložný `mailto:`.
+1. Cloudflare → Workers & Pages → Create → Pages → Connect to Git → `Apoliak7777/ai-ucenie`. Build command prázdny, output directory `/`.
+2. Projekt → Settings → Bindings → Add → D1 database → vytvoriť `ai-ucenie`, variable name **`DB`**.
+3. Settings → Variables and Secrets → Add → Secret **`SMTP_HESLO`** = heslo schránky `apoliak@apoliak.online`.
+4. Deployments → Retry deployment (aby bežal s bindingmi).
+5. Custom domains → Set up → `ai.apoliak.online`; u Hostingera zmeniť záznam `ai` z A na **CNAME → `ai-ucenie.pages.dev`**.
+
+Lokálne skúšanie: `npm install`, do `.dev.vars` dať `SMTP_HESLO=…` (vzor `.dev.vars.vzor`), `npm run dev` → `http://127.0.0.1:8788`.
+
+GitHub Pages (`apoliak7777.github.io/ai-ucenie/`) slúži len ako náhľad: `/api/` tam neexistuje, takže rezervácia tam padne na záložný `mailto:`. Záložná cesta na vlastný VPS (rovnaká logika v Pythone) je v [`server/README.md`](server/README.md).
 
 ---
 
@@ -147,6 +159,7 @@ GitHub Pages (`apoliak7777.github.io/ai-ucenie/`) slúži len ako náhľad: `/ap
 
 - 🗓️ **Obsadenosť drží backend, nie kalendár** - termíny dohodnuté mimo stránky (telefón, mail) treba dopísať do `OBSADENE` v `index.html`, inak ich widget ponúka ďalej.
 - 📮 **Keď backend nebeží, ide rezervácia cez `mailto:`** - ak klient nemá v systéme nastavený mailový program, rezervácia sa nemusí odoslať.
+- ✉️ **Maily sú „best effort“** - rezervácia sa zapíše vždy; keď SMTP zlyhá (zlé heslo, výpadok), je to v logu Functions a rezervácia ostáva v D1.
 - 🕐 **Časy sú v slovenskom čase** - widget neprepočítava časové pásma, na stránke je to uvedené.
 
 ---

@@ -15,23 +15,29 @@ sitemap.xml         jedna adresa, pri zmene webu prepíš lastmod
 Kde to beží
 -----------
 Repo:    https://github.com/Apoliak7777/ai-ucenie
-Ostrá:   https://ai.apoliak.online/   (vlastný VPS, Frankfurt — nginx + Python backend zo server/)
+Ostrá:   https://ai.apoliak.online/   (Cloudflare Pages — statika + /api Functions + D1, 0 €)
 Náhľad:  https://apoliak7777.github.io/ai-ucenie/   (GitHub Pages, bez /api → rezervácia tam ide cez mailto)
-Zmena webu = push do main, potom na VPS:
-  cd /var/www/ai-ucenie && git pull && systemctl restart ai-ucenie
-(GitHub Pages sa aktualizuje sám o minútu-dve.)
+Zmena webu = push do main. Cloudflare aj GitHub Pages sa prestavajú samy do minúty-dvoch.
 
-Nasadenie na VPS (ai.apoliak.online)
-------------------------------------
-DNS: ai.apoliak.online mieri A záznamom na VPS (172.93.185.182), nič sa v ňom nemení.
-Na serveri ako root, jednorazovo:
-  git clone https://github.com/Apoliak7777/ai-ucenie.git /var/www/ai-ucenie
-  bash /var/www/ai-ucenie/server/instaluj.sh
-Prvý beh vytvorí server/nastavenia.env a zastaví sa — doplniť SMTP_HESLO
-(heslo schránky apoliak@apoliak.online) a pustiť skript znova. Skript nainštaluje
-balíky, systemd službu ai-ucenie, nginx vhost a certifikát Let's Encrypt.
-Celý postup, log a databáza: server/README.md
-Repo môže zostať public — v ňom nie je žiadne heslo (nastavenia.env je v .gitignore).
+Nasadenie na Cloudflare Pages (ai.apoliak.online) — jednorazovo, 5 klikov
+--------------------------------------------------------------------------
+  1. dash.cloudflare.com → Workers & Pages → Create → Pages → Connect to Git
+     → repo Apoliak7777/ai-ucenie, názov projektu ai-ucenie,
+     build command PRÁZDNY, output directory "/" → Save and Deploy
+  2. projekt → Settings → Bindings → Add → D1 database → Create new: ai-ucenie,
+     Variable name: DB
+  3. Settings → Variables and Secrets → Add → typ Secret, meno SMTP_HESLO,
+     hodnota = heslo schránky apoliak@apoliak.online
+  4. Deployments → ⋯ pri poslednom → Retry deployment (aby bežal s DB a heslom)
+  5. Custom domains → Set up a custom domain → ai.apoliak.online
+     a u Hostingera (hpanel → Domény → apoliak.online → DNS) zmeniť záznam "ai"
+     z typu A (172.93.185.182) na CNAME → ai-ucenie.pages.dev
+Tabuľku v D1 si backend vytvorí sám pri prvom dopyte. Rezervácie vidno v
+D1 → ai-ucenie → Explore data. Log Functions: Deployments → View details → Functions.
+Repo môže zostať public — heslo je len v Cloudflare, v repe nie je nikde.
+
+Záloha: tá istá logika v Pythone pre vlastný VPS je v server/ (README tam).
+Ak by sa niekedy išlo na VPS, prepnúť DNS "ai" späť na A záznam servera.
 
 Kde si upravíš termíny
 ----------------------
@@ -47,8 +53,8 @@ Odosielanie rezervácií
 ----------------------
 Tam istá časť skriptu:
 
-  ENDPOINT        "/api/rezervacia" = vlastný backend zo server/ (predvolené):
-                  rezervácia sa zapíše do databázy na VPS, termín ostane
+  ENDPOINT        "/api/rezervacia" = vlastný backend (functions/api/, predvolené):
+                  rezervácia sa zapíše do D1 na Cloudflare, termín ostane
                   obsadený pre všetkých, mne príde mail a klientovi potvrdenie
                   prázdne = klientovi sa otvorí jeho mail s vyplnenou rezerváciou
                   (ak nemá nastavený mailový program, rezervácia sa stratí)
@@ -75,15 +81,18 @@ ochrana-udajov.html do sekcie "Kde údaje sú" ako sprostredkovateľa.
 3. platba kartou (Stripe) namiesto prevodu vopred — menej odpadne ľudí
 4. fotka namiesto iniciálky a krátke video-ukážka (dôvera, viď nižšie)
 
-Hotové (09/2026): vlastný backend na VPS — rezervácia sa nestratí, klient
-dostane potvrdenie, termín ostáva obsadený pre všetkých.
+Hotové (09/2026): vlastný backend (Cloudflare Functions + D1, záloha v Pythone
+pre VPS) — rezervácia sa nestratí, klient dostane potvrdenie, termín ostáva
+obsadený pre všetkých. Lokálne skúšanie: npm install, .dev.vars, npm run dev.
 
 Rozhodnuté
 ----------
 - fotka nebude, ostáva iniciálka v gradiente
 - sekcia Príklady je bez čísel — ukazuje zmenu postupu
   (predtým / po hodine), nič sa nemusí dokladovať
-- ostrá verzia beží na vlastnom VPS, GitHub Pages je len náhľad
+- ostrá verzia beží na Cloudflare Pages (nie VPS, nie GitHub Pages) — Alex VPS
+  nepoužíva a nechce spravovať; GitHub Pages nevie /api, takže rezervácia by
+  tam išla cez mailto; subdoména ostáva ai.apoliak.online (je v celej stránke)
 - garancia „ak ti hodina nemá čo dať, poviem ti to pred platbou" je
   vytiahnutá z FAQ do hero (zelený pás pod nadpisom) — je to najsilnejší
   argument na stránke, vo FAQ ju nikto nevidel

@@ -1,4 +1,7 @@
-# Rezervačný backend
+# Rezervačný backend — záložná cesta pre vlastný VPS
+
+> Ostrá verzia beží na **Cloudflare Pages** (`functions/api/` + D1), viď hlavný README.
+> Toto je tá istá logika v Pythone pre prípad, že by sa stránka niekedy sťahovala na vlastný server.
 
 Malý server v čistom Pythone (bez závislostí), ktorý stránke doplní to, čo statika nevie:
 

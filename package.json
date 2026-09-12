@@ -1,0 +1,17 @@
+{
+  "name": "ai-ucenie",
+  "private": true,
+  "description": "ai.apoliak.online — statická stránka + rezervačné Functions pre Cloudflare Pages",
+  "scripts": {
+    "dev": "wrangler pages dev . --d1 DB --compatibility-date 2026-09-01 --port 8788 --ip 127.0.0.1"
+  },
+  "dependencies": {
+    "worker-mailer": "^1.2.1"
+  },
+  "devDependencies": {
+    "wrangler": "^4"
+  },
+  "allowScripts": {
+    "workerd@1.20260911.1": true
+  }
+}
