@@ -4,3 +4,5 @@ server/__pycache__/
 node_modules/
 .wrangler/
 .dev.vars
+worker/.dev.vars
+worker/.wrangler/

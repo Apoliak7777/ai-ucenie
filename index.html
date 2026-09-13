@@ -729,13 +729,17 @@ section{scroll-margin-top:20px}
   var POCET_DNI = 10;       /* koľko dní s voľnými termínmi ponúknuť */
   var MOJ_MAIL = "info@aiucenie.online";
 
-  /* Kam sa rezervácia odošle.
-     "/api/rezervacia" = vlastný backend (functions/api/), rezervácia ide na pozadí,
-                         klient nemusí nikam klikať a termín ostane obsadený pre všetkých.
-     Prázdne            = klientovi sa otvorí mail (funguje hneď, ale rezervácia sa môže stratiť).
+  /* Kam sa rezervácia odošle: na Worker (rezervácia ide na pozadí, klient nemusí nikam
+     klikať a termín ostane obsadený pre všetkých). Keď ENDPOINT vyprázdniš, klientovi sa
+     otvorí mail (funguje hneď, ale rezervácia sa môže stratiť).
      Ak odoslanie zlyhá, web sám ponúkne mail ako záložnú cestu. */
-  var ENDPOINT = "/api/rezervacia";
-  var OBSADENE_URL = "/api/obsadene";    /* odtiaľ si widget stiahne už obsadené termíny */
+  /* Adresa Workera s rezerváciami (stránka beží na GitHub Pages, Worker na Cloudflare).
+     Po nasadení (npm run api:deploy) sem patrí https://ai-ucenie.<účet>.workers.dev.
+     Pri lokálnom skúšaní sa použije wrangler dev na porte 8787. */
+  var API = "https://ai-ucenie.WORKERS-UCET.workers.dev";
+  if (location.hostname === "127.0.0.1" || location.hostname === "localhost") API = "http://127.0.0.1:8787";
+  var ENDPOINT = API + "/api/rezervacia";
+  var OBSADENE_URL = API + "/api/obsadene";    /* odtiaľ si widget stiahne už obsadené termíny */
   var ENDPOINT_EXTRA = {};
   /* ========================================================== */
 

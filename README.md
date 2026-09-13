@@ -93,10 +93,12 @@ ai-ucenie/
 ├── sitemap.xml           # jedna URL
 ├── .nojekyll             # vypína Jekyll na GitHub Pages
 ├── PRECITAJ-MA.txt       # poznámky k úpravám a nasadeniu
-├── functions/api/        # rezervačný backend pre Cloudflare Pages (Functions + D1)
-├── lib/rezervacie.js     # spoločný kód Functions: validácia, D1, SMTP
+├── admin/index.html      # prehľad rezervácií za heslom (statika, dáta z Workera)
+├── worker/               # Cloudflare Worker: rezervácie + admin API (index.js, wrangler.toml)
+├── lib/                  # spoločná logika: rezervacie.js (validácia, D1, SMTP, CORS), admin.js
+├── functions/            # tá istá logika ako Pages Functions (keby stránka bežala celá na Pages)
 ├── schema.sql            # tabuľka rezervácií (vzniká aj sama pri prvom dopyte)
-├── package.json          # worker-mailer + wrangler na lokálne skúšanie
+├── package.json          # worker-mailer + wrangler (api:dev, api:deploy, api:logs)
 └── server/               # tá istá logika v Pythone pre VPS — záložná cesta (vlastný README)
 ```
 
@@ -119,13 +121,14 @@ Všetko sa nastavuje na jednom mieste — na začiatku `<script>` bloku v `index
 
 | Premenná | Význam |
 |---|---|
-| `ENDPOINT` | `/api/rezervacia` = vlastný backend (`functions/api/`, predvolené); prázdne = klientovi sa otvorí predvyplnený e-mail |
-| `OBSADENE_URL` | `/api/obsadene` — odtiaľ si widget pri načítaní stiahne už obsadené termíny |
-| `ENDPOINT_EXTRA` | polia navyše, keby sa `ENDPOINT` nasmeroval na externú službu (napr. `access_key` pre Web3Forms) |
+| `API` | adresa Workera (`https://ai-ucenie.<účet>.workers.dev`); na localhoste sa automaticky použije `http://127.0.0.1:8787` |
+| `ENDPOINT` | `API + "/api/rezervacia"` (predvolené); prázdne = klientovi sa otvorí predvyplnený e-mail |
+| `OBSADENE_URL` | `API + "/api/obsadene"` — odtiaľ si widget pri načítaní stiahne už obsadené termíny |
+| `ENDPOINT_EXTRA` | polia navyše, keby sa `ENDPOINT` nasmeroval na externú službu |
 
-Backend (Cloudflare Pages Functions) zapíše rezerváciu do D1, termín drží obsadený pre všetkých (druhý záujemca dostane 409 a widget ho vráti na výber) a cez SMTP schránky `info@aiucenie.online` pošle mail tebe aj potvrdenie klientovi. Jediné, čo treba nastaviť v Cloudflare, je tajomstvo `SMTP_HESLO` a D1 binding `DB` — zvyšok má predvolené hodnoty v `lib/rezervacie.js`.
+Stránka beží na GitHub Pages, ktorý vie len statické súbory, preto rezervácie spracúva **Cloudflare Worker** (`worker/`, logika v `lib/`): zapíše rezerváciu do D1, termín drží obsadený pre všetkých (druhý záujemca dostane 409 a widget ho vráti na výber) a cez SMTP schránky `info@aiucenie.online` pošle mail tebe aj potvrdenie klientovi. Worker prijíma dopyty len z `aiucenie.online`, `www.aiucenie.online`, `apoliak7777.github.io` a localhostu (CORS). Jediné, čo treba nastaviť v Cloudflare, sú tajomstvá `SMTP_HESLO` a `ADMIN_HESLO` a D1 databáza — zvyšok má predvolené hodnoty v `lib/rezervacie.js`.
 
-Keď backend neodpovedá, widget zobrazí chybu a sám ponúkne e-mail ako záložnú cestu.
+Keď Worker neodpovedá, widget zobrazí chybu a sám ponúkne e-mail ako záložnú cestu.
 
 ---
 
@@ -142,20 +145,20 @@ Keď backend neodpovedá, widget zobrazí chybu a sám ponúkne e-mail ako zálo
 
 ## 🌍 Nasadenie
 
-**Ostrá verzia: Cloudflare Pages** — statika aj `/api/` z jedného repa, nasadenie = push do `main`, 0 €.
+**Stránka: GitHub Pages** z vetvy `main` (súbor `CNAME` = `aiucenie.online`, A záznamy u Hostingera mieria na GitHub). Nasadenie = push do `main`.
 
-0. `aiucenie.online` je apex doména, preto jej DNS musí riadiť Cloudflare: Add a domain → skontrolovať, že sa skopírovali mailové záznamy Hostingeru (MX, SPF, DKIM, DMARC, všetky DNS only) → u Hostingera prepnúť nameservery na tie z Cloudflare. Presný zoznam záznamov je v `PRECITAJ-MA.txt`.
-1. Cloudflare → Workers & Pages → Create → Pages → Connect to Git → `Apoliak7777/ai-ucenie`. Build command prázdny, output directory `/`.
-2. Projekt → Settings → Bindings → Add → D1 database → vytvoriť `ai-ucenie`, variable name **`DB`**.
-3. Settings → Variables and Secrets → Add → Secret **`SMTP_HESLO`** = heslo schránky `info@aiucenie.online`, Secret **`ADMIN_HESLO`** = heslo do `/admin`.
-4. Deployments → Retry deployment (aby bežal s bindingmi).
-5. Custom domains → Set up → `aiucenie.online` a `www.aiucenie.online` (DNS je na Cloudflare, záznamy vzniknú samy).
+**Rezervácie a admin API: Cloudflare Worker** (zadarmo, bez zmeny DNS):
 
-Lokálne skúšanie: `npm install`, do `.dev.vars` dať `SMTP_HESLO=…` a `ADMIN_HESLO=…` (vzor `.dev.vars.vzor`), `npm run dev` → `http://127.0.0.1:8788`.
+1. účet na dash.cloudflare.com, potom `npx wrangler login`
+2. `npx wrangler d1 create ai-ucenie` → `database_id` do `worker/wrangler.toml`
+3. `npx wrangler secret put SMTP_HESLO -c worker/wrangler.toml` (heslo `info@aiucenie.online`) a `npx wrangler secret put ADMIN_HESLO -c worker/wrangler.toml` (heslo do `/admin`)
+4. `npm run api:deploy` → vypíše `https://ai-ucenie.<účet>.workers.dev`; tú adresu zapísať do premennej `API` v `index.html` a `admin/index.html` a pushnúť
 
-**Prehľad rezervácií:** `/admin` (Functions `functions/admin/`, logika `lib/admin.js`). Prihlásenie cez HTTP Basic, heslo je tajomstvo `ADMIN_HESLO`; stránka ukáže nadchádzajúce a prebehnuté rezervácie so všetkými údajmi a tlačidlom Zmazať, ktoré termín uvoľní späť do ponuky. Je mimo indexu (`robots.txt`, `X-Robots-Tag`).
+Lokálne skúšanie v rovnakom rozložení: `npm install`, `worker/.dev.vars` podľa `worker/.dev.vars.vzor`, `npm run api:dev` (Worker na 8787) a `python -m http.server 8791` (statika), otvoriť `http://127.0.0.1:8791/`.
 
-GitHub Pages (`apoliak7777.github.io/ai-ucenie/`) slúži len ako náhľad: `/api/` tam neexistuje, takže rezervácia tam padne na záložný `mailto:`. Záložná cesta na vlastný VPS (rovnaká logika v Pythone) je v [`server/README.md`](server/README.md).
+**Prehľad rezervácií:** `/admin/` je statická stránka (`admin/index.html`), ktorá si po zadaní hesla ťahá dáta z Workera (`Authorization: Bearer`, tajomstvo `ADMIN_HESLO`); ukáže nadchádzajúce a prebehnuté rezervácie so všetkými údajmi a tlačidlom Zmazať, ktoré termín uvoľní späť do ponuky. Je mimo indexu (`robots.txt`, `noindex`).
+
+Alternatívy: celá stránka na Cloudflare Pages (`functions/` sú pripravené, apex doména vtedy potrebuje DNS na Cloudflare, v HTML `API = ""`) alebo vlastný VPS (rovnaká logika v Pythone v [`server/README.md`](server/README.md)).
 
 ---
 
@@ -163,7 +166,7 @@ GitHub Pages (`apoliak7777.github.io/ai-ucenie/`) slúži len ako náhľad: `/ap
 
 - 🗓️ **Obsadenosť drží backend, nie kalendár** - termíny dohodnuté mimo stránky (telefón, mail) treba dopísať do `OBSADENE` v `index.html`, inak ich widget ponúka ďalej.
 - 📮 **Keď backend nebeží, ide rezervácia cez `mailto:`** - ak klient nemá v systéme nastavený mailový program, rezervácia sa nemusí odoslať.
-- ✉️ **Maily sú „best effort“** - rezervácia sa zapíše vždy; keď SMTP zlyhá (zlé heslo, výpadok), je to v logu Functions a rezervácia ostáva v D1.
+- ✉️ **Maily sú „best effort“** - rezervácia sa zapíše vždy; keď SMTP zlyhá (zlé heslo, výpadok), je to v logu Workera (`npm run api:logs`) a rezervácia ostáva v D1 aj v `/admin`.
 - 🕐 **Časy sú v slovenskom čase** - widget neprepočítava časové pásma, na stránke je to uvedené.
 
 ---
