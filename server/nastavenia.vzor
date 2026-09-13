@@ -1,6 +1,6 @@
-# Nastavenia rezervačného backendu.
-# Skopíruj tento súbor ako nastavenia.env (do toho istého priečinka) a vyplň.
-# nastavenia.env je v .gitignore — heslo sa do repa nikdy nedostane.
+# Nastavenia API rezervácií na VPS.
+# Inštalátor (instaluj.sh) si tento súbor skopíruje ako nastavenia.env a doplní heslá.
+# nastavenia.env je v .gitignore — heslá sa do repa nikdy nedostanú.
 
 # Schránka, z ktorej odchádzajú potvrdenia (Hostinger).
 SMTP_SERVER=smtp.hostinger.com
@@ -10,6 +10,9 @@ SMTP_HESLO=
 
 # Kam chodia nové rezervácie.
 MOJ_MAIL=info@aiucenie.online
+
+# Heslo do /admin na stránke.
+ADMIN_HESLO=
 
 # Voliteľné.
 ZNACKA=AI Učenie

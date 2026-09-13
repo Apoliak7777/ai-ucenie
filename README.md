@@ -93,13 +93,11 @@ ai-ucenie/
 ├── sitemap.xml           # jedna URL
 ├── .nojekyll             # vypína Jekyll na GitHub Pages
 ├── PRECITAJ-MA.txt       # poznámky k úpravám a nasadeniu
-├── admin/index.html      # prehľad rezervácií za heslom (statika, dáta z Workera)
-├── worker/               # Cloudflare Worker: rezervácie + admin API (index.js, wrangler.toml)
-├── lib/                  # spoločná logika: rezervacie.js (validácia, D1, SMTP, CORS), admin.js
-├── functions/            # tá istá logika ako Pages Functions (keby stránka bežala celá na Pages)
+├── admin/index.html      # prehľad rezervácií za heslom (statika, dáta z API na VPS)
+├── server/               # API rezervácií na VPS: rezervacie.py, instaluj.sh (vlastný README)
+├── worker/, lib/, functions/   # tá istá logika pre Cloudflare (Worker / Pages Functions), nepoužité
 ├── schema.sql            # tabuľka rezervácií (vzniká aj sama pri prvom dopyte)
-├── package.json          # worker-mailer + wrangler (api:dev, api:deploy, api:logs)
-└── server/               # tá istá logika v Pythone pre VPS — záložná cesta (vlastný README)
+└── package.json          # worker-mailer + wrangler, len pre Cloudflare alternatívu
 ```
 
 ---
@@ -121,14 +119,14 @@ Všetko sa nastavuje na jednom mieste — na začiatku `<script>` bloku v `index
 
 | Premenná | Význam |
 |---|---|
-| `API` | adresa Workera (`https://ai-ucenie.<účet>.workers.dev`); na localhoste sa automaticky použije `http://127.0.0.1:8787` |
+| `API` | adresa API na VPS (`https://ai.apoliak.online`); na localhoste sa automaticky použije `http://127.0.0.1:8787` |
 | `ENDPOINT` | `API + "/api/rezervacia"` (predvolené); prázdne = klientovi sa otvorí predvyplnený e-mail |
 | `OBSADENE_URL` | `API + "/api/obsadene"` — odtiaľ si widget pri načítaní stiahne už obsadené termíny |
 | `ENDPOINT_EXTRA` | polia navyše, keby sa `ENDPOINT` nasmeroval na externú službu |
 
-Stránka beží na GitHub Pages, ktorý vie len statické súbory, preto rezervácie spracúva **Cloudflare Worker** (`worker/`, logika v `lib/`): zapíše rezerváciu do D1, termín drží obsadený pre všetkých (druhý záujemca dostane 409 a widget ho vráti na výber) a cez SMTP schránky `info@aiucenie.online` pošle mail tebe aj potvrdenie klientovi. Worker prijíma dopyty len z `aiucenie.online`, `www.aiucenie.online`, `apoliak7777.github.io` a localhostu (CORS). Jediné, čo treba nastaviť v Cloudflare, sú tajomstvá `SMTP_HESLO` a `ADMIN_HESLO` a D1 databáza — zvyšok má predvolené hodnoty v `lib/rezervacie.js`.
+Stránka beží na GitHub Pages, ktorý vie len statické súbory, preto rezervácie spracúva malý server v Pythone na vlastnom VPS (`server/`): zapíše rezerváciu do SQLite, termín drží obsadený pre všetkých (druhý záujemca dostane 409 a widget ho vráti na výber) a cez SMTP schránky `info@aiucenie.online` pošle mail tebe aj potvrdenie klientovi. API prijíma dopyty len z `aiucenie.online`, `www.aiucenie.online`, `apoliak7777.github.io` a localhostu (CORS).
 
-Keď Worker neodpovedá, widget zobrazí chybu a sám ponúkne e-mail ako záložnú cestu.
+Keď API neodpovedá, widget zobrazí chybu a sám ponúkne e-mail ako záložnú cestu.
 
 ---
 
@@ -147,18 +145,19 @@ Keď Worker neodpovedá, widget zobrazí chybu a sám ponúkne e-mail ako zálo�
 
 **Stránka: GitHub Pages** z vetvy `main` (súbor `CNAME` = `aiucenie.online`, A záznamy u Hostingera mieria na GitHub). Nasadenie = push do `main`.
 
-**Rezervácie a admin API: Cloudflare Worker** (zadarmo, bez zmeny DNS):
+**API rezervácií: vlastný VPS**, jeden príkaz na serveri ako root (pri prvom behu sa spýta na heslo schránky a heslo do `/admin`):
 
-1. účet na dash.cloudflare.com, potom `npx wrangler login`
-2. `npx wrangler d1 create ai-ucenie` → `database_id` do `worker/wrangler.toml`
-3. `npx wrangler secret put SMTP_HESLO -c worker/wrangler.toml` (heslo `info@aiucenie.online`) a `npx wrangler secret put ADMIN_HESLO -c worker/wrangler.toml` (heslo do `/admin`)
-4. `npm run api:deploy` → vypíše `https://ai-ucenie.<účet>.workers.dev`; tú adresu zapísať do premennej `API` v `index.html` a `admin/index.html` a pushnúť
+```bash
+curl -fsSL https://raw.githubusercontent.com/Apoliak7777/ai-ucenie/main/server/instaluj.sh | bash
+```
 
-Lokálne skúšanie v rovnakom rozložení: `npm install`, `worker/.dev.vars` podľa `worker/.dev.vars.vzor`, `npm run api:dev` (Worker na 8787) a `python -m http.server 8791` (statika), otvoriť `http://127.0.0.1:8791/`.
+Ten istý príkaz slúži aj na aktualizáciu. Podrobnosti v [`server/README.md`](server/README.md).
 
-**Prehľad rezervácií:** `/admin/` je statická stránka (`admin/index.html`), ktorá si po zadaní hesla ťahá dáta z Workera (`Authorization: Bearer`, tajomstvo `ADMIN_HESLO`); ukáže nadchádzajúce a prebehnuté rezervácie so všetkými údajmi a tlačidlom Zmazať, ktoré termín uvoľní späť do ponuky. Je mimo indexu (`robots.txt`, `noindex`).
+Lokálne skúšanie v rovnakom rozložení: `server/nastavenia.env` podľa `server/nastavenia.vzor`, `python server/rezervacie.py` (API na 8787) a `python -m http.server 8791` (statika), otvoriť `http://127.0.0.1:8791/`.
 
-Alternatívy: celá stránka na Cloudflare Pages (`functions/` sú pripravené, apex doména vtedy potrebuje DNS na Cloudflare, v HTML `API = ""`) alebo vlastný VPS (rovnaká logika v Pythone v [`server/README.md`](server/README.md)).
+**Prehľad rezervácií:** `/admin/` je statická stránka (`admin/index.html`), ktorá si po zadaní hesla ťahá dáta z API (`Authorization: Bearer`, heslo `ADMIN_HESLO` v `server/nastavenia.env`); ukáže nadchádzajúce a prebehnuté rezervácie so všetkými údajmi a tlačidlom Zmazať, ktoré termín uvoľní späť do ponuky. Je mimo indexu (`robots.txt`, `noindex`).
+
+Alternatíva (nepoužitá): tá istá logika ako Cloudflare Worker (`worker/`, `lib/`) alebo Pages Functions (`functions/`).
 
 ---
 
@@ -166,7 +165,7 @@ Alternatívy: celá stránka na Cloudflare Pages (`functions/` sú pripravené, 
 
 - 🗓️ **Obsadenosť drží backend, nie kalendár** - termíny dohodnuté mimo stránky (telefón, mail) treba dopísať do `OBSADENE` v `index.html`, inak ich widget ponúka ďalej.
 - 📮 **Keď backend nebeží, ide rezervácia cez `mailto:`** - ak klient nemá v systéme nastavený mailový program, rezervácia sa nemusí odoslať.
-- ✉️ **Maily sú „best effort“** - rezervácia sa zapíše vždy; keď SMTP zlyhá (zlé heslo, výpadok), je to v logu Workera (`npm run api:logs`) a rezervácia ostáva v D1 aj v `/admin`.
+- ✉️ **Maily sú „best effort“** - rezervácia sa zapíše vždy; keď SMTP zlyhá (zlé heslo, výpadok), je to v logu na serveri (`journalctl -u ai-ucenie -f`) a rezervácia ostáva v databáze aj v `/admin`.
 - 🕐 **Časy sú v slovenskom čase** - widget neprepočítava časové pásma, na stránke je to uvedené.
 
 ---

@@ -1,17 +1,21 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-Rezervačný backend pre aiucenie.online.
+Rezervačný backend pre aiucenie.online. Beží na Alexovom VPS, stránka sama je na GitHub Pages.
 
-Robí tri veci, ktoré statická stránka nevie:
-  1. zapíše rezerváciu natrvalo (SQLite), takže sa nestratí
-  2. drží termín obsadený aj pre ostatných návštevníkov
-  3. pošle mail sebe aj potvrdenie tomu, kto sa objednal
+Čo robí:
+  POST   /api/rezervacia            zapíše rezerváciu (SQLite), termín ostane obsadený pre všetkých,
+                                    pošle mail Alexovi aj potvrdenie klientovi
+  GET    /api/obsadene              zoznam obsadených termínov pre widget
+  GET    /admin/api/rezervacie      zoznam rezervácií (heslo v hlavičke Authorization: Bearer …)
+  DELETE /admin/api/rezervacie/ID   zmaže rezerváciu, termín sa uvoľní
 
-Beží pod systemd, počúva len na localhoste, nginx ho vystavuje na /api/.
+Stránka na aiucenie.online sem volá cez CORS, preto sa odpovedá len povoleným doménam.
+Beží pod systemd, počúva len na localhoste, nginx ho vystavuje s HTTPS.
 Nastavenia sa čítajú zo súboru nastavenia.env vedľa tohto skriptu.
 """
 
+import hmac
 import json
 import os
 import re
@@ -42,7 +46,7 @@ def nacitaj_nastavenia():
                 continue
             k, v = riadok.split("=", 1)
             n[k.strip()] = v.strip().strip('"').strip("'")
-    for povinne in ("SMTP_SERVER", "SMTP_PORT", "SMTP_UZIVATEL", "SMTP_HESLO", "MOJ_MAIL"):
+    for povinne in ("SMTP_SERVER", "SMTP_PORT", "SMTP_UZIVATEL", "SMTP_HESLO", "MOJ_MAIL", "ADMIN_HESLO"):
         if not n.get(povinne):
             sys.exit("V nastavenia.env chýba " + povinne)
     return n
@@ -52,6 +56,14 @@ N = nacitaj_nastavenia()
 PORT = int(N.get("PORT", "8787"))
 ZNACKA = N.get("ZNACKA", "AI Učenie")
 WEB = N.get("WEB", "aiucenie.online")
+
+# odkiaľ smie stránka volať (CORS); localhost je na lokálne skúšanie
+POVOLENE_ORIGINY = {"https://aiucenie.online", "https://www.aiucenie.online", "https://apoliak7777.github.io"}
+LOKALNY_ORIGIN = re.compile(r"^http://(127\.0\.0\.1|localhost)(:\d+)?$")
+
+
+def povoleny_origin(origin):
+    return bool(origin) and (origin in POVOLENE_ORIGINY or bool(LOKALNY_ORIGIN.match(origin)))
 
 
 # ---------- databáza ----------
@@ -121,8 +133,23 @@ class Obsluha(BaseHTTPRequestHandler):
     sys_version = ""
 
     def log_message(self, tvar, *argumenty):
-        sys.stdout.write("%s %s\n" % (self.address_string(), tvar % argumenty))
+        sys.stdout.write("%s %s\n" % (self.klient_ip(), tvar % argumenty))
         sys.stdout.flush()
+
+    def klient_ip(self):
+        return self.headers.get("X-Real-IP") or self.client_address[0]
+
+    def cesta(self):
+        return self.path.split("?", 1)[0].rstrip("/") or "/"
+
+    def cors(self):
+        origin = self.headers.get("Origin") or ""
+        if povoleny_origin(origin):
+            self.send_header("Access-Control-Allow-Origin", origin)
+            self.send_header("Access-Control-Allow-Methods", "GET, POST, DELETE, OPTIONS")
+            self.send_header("Access-Control-Allow-Headers", "Content-Type, Authorization")
+            self.send_header("Access-Control-Max-Age", "86400")
+            self.send_header("Vary", "Origin")
 
     def odpovedz(self, kod, telo):
         data = json.dumps(telo, ensure_ascii=False).encode("utf-8")
@@ -130,22 +157,62 @@ class Obsluha(BaseHTTPRequestHandler):
         self.send_header("Content-Type", "application/json; charset=utf-8")
         self.send_header("Content-Length", str(len(data)))
         self.send_header("Cache-Control", "no-store")
+        self.cors()
         self.end_headers()
         self.wfile.write(data)
 
-    def klient_ip(self):
-        return self.headers.get("X-Real-IP") or self.client_address[0]
+    def overeny(self):
+        h = self.headers.get("Authorization") or ""
+        return h.startswith("Bearer ") and hmac.compare_digest(h[7:].strip(), N["ADMIN_HESLO"])
+
+    def do_OPTIONS(self):
+        self.send_response(204)
+        self.cors()
+        self.send_header("Content-Length", "0")
+        self.end_headers()
+
+    def do_HEAD(self):
+        # monitorovacie nástroje sa pýtajú HEAD; stačí potvrdiť, že server žije
+        self.send_response(200)
+        self.send_header("Content-Length", "0")
+        self.end_headers()
 
     def do_GET(self):
-        if self.path.rstrip("/") == "/api/obsadene":
+        cesta = self.cesta()
+        if cesta == "/":
+            return self.odpovedz(200, {"ok": True, "sluzba": "AI Učenie rezervácie", "stranka": "https://%s/" % WEB})
+        if cesta == "/api/obsadene":
             spoj = db()
             sloty = [r[0] for r in spoj.execute("SELECT slot FROM rezervacie")]
             spoj.close()
             return self.odpovedz(200, {"obsadene": sloty})
+        if cesta == "/admin/api/rezervacie":
+            if not self.overeny():
+                return self.odpovedz(401, {"ok": False, "chyba": "Nesprávne heslo."})
+            spoj = db()
+            spoj.row_factory = sqlite3.Row
+            riadky = [dict(r) for r in spoj.execute(
+                "SELECT id, slot, termin, balik, meno, mail, tel, poznamka, kedy FROM rezervacie ORDER BY slot")]
+            spoj.close()
+            return self.odpovedz(200, {"rezervacie": riadky})
         return self.odpovedz(404, {"ok": False, "chyba": "Neznáma adresa."})
 
+    def do_DELETE(self):
+        m = re.match(r"^/admin/api/rezervacie/(\d+)$", self.cesta())
+        if not m:
+            return self.odpovedz(404, {"ok": False, "chyba": "Neznáma adresa."})
+        if not self.overeny():
+            return self.odpovedz(401, {"ok": False, "chyba": "Nesprávne heslo."})
+        with zamok:
+            spoj = db()
+            kurzor = spoj.execute("DELETE FROM rezervacie WHERE id = ?", (int(m.group(1)),))
+            spoj.commit()
+            zmazane = kurzor.rowcount
+            spoj.close()
+        return self.odpovedz(200, {"ok": True, "zmazane": zmazane})
+
     def do_POST(self):
-        if self.path.rstrip("/") != "/api/rezervacia":
+        if self.cesta() != "/api/rezervacia":
             return self.odpovedz(404, {"ok": False, "chyba": "Neznáma adresa."})
 
         try:
@@ -207,8 +274,9 @@ class Obsluha(BaseHTTPRequestHandler):
             "Meno:     %s\n"
             "E-mail:   %s\n"
             "Telefón:  %s\n\n"
-            "Na čom chce pracovať:\n%s\n"
-        ) % (termin, balik, meno, mail, tel or "—", poznamka or "—")
+            "Na čom chce pracovať:\n%s\n\n"
+            "Všetky rezervácie: https://%s/admin/\n"
+        ) % (termin, balik, meno, mail, tel or "—", poznamka or "—", WEB)
 
         oslovenie = meno.split()[0] if meno.split() else meno
         jeho = (
@@ -229,7 +297,7 @@ class Obsluha(BaseHTTPRequestHandler):
                 chyby.append("%s: %s" % (komu, e))
 
         if chyby:
-            # rezervácia je zapísaná, len mail neodišiel — nech je to vidieť v logu
+            # rezervácia je zapísaná a v /admin ju vidno, len mail neodišiel — nech je to v logu
             sys.stdout.write("MAIL ZLYHAL -> %s\n" % "; ".join(chyby))
             sys.stdout.flush()
 

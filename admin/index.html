@@ -97,16 +97,15 @@ h2 span{font-family:var(--body);font-size:.9rem;font-weight:600;color:var(--mute
     <div class="zoznam" id="z1"></div>
     <h2>Prebehnuté <span id="n2"></span></h2>
     <div class="zoznam" id="z2"></div>
-    <p class="foot">Prihlásenie platí do zavretia karty. Heslo sa mení príkazom <code>npx wrangler secret put ADMIN_HESLO -c worker/wrangler.toml</code>.</p>
+    <p class="foot">Prihlásenie platí do zavretia karty. Heslo sa mení na serveri v <code>server/nastavenia.env</code>.</p>
   </section>
 </main>
 <script>
 (function(){
   "use strict";
 
-  /* Adresa Workera s rezerváciami. Po nasadení (npm run api:deploy) sem patrí
-     https://ai-ucenie.<účet>.workers.dev. Pri lokálnom skúšaní sa použije wrangler dev na 8787. */
-  var API = "https://ai-ucenie.WORKERS-UCET.workers.dev";
+  /* Adresa API s rezerváciami (Alexov VPS, server/). Pri lokálnom skúšaní sa použije server na 8787. */
+  var API = "https://ai.apoliak.online";
   if (location.hostname === "127.0.0.1" || location.hostname === "localhost") API = "http://127.0.0.1:8787";
 
   var $ = function(id){ return document.getElementById(id); };

@@ -93,13 +93,11 @@ ai-ucenie/
 ├── sitemap.xml           # single URL
 ├── .nojekyll             # disables Jekyll on GitHub Pages
 ├── PRECITAJ-MA.txt       # editing and deployment notes (Slovak)
-├── admin/index.html      # password-protected bookings overview (static, data from the Worker)
-├── worker/               # Cloudflare Worker: bookings + admin API (index.js, wrangler.toml)
-├── lib/                  # shared logic: rezervacie.js (validation, D1, SMTP, CORS), admin.js
-├── functions/            # the same logic as Pages Functions (if the site ever runs fully on Pages)
+├── admin/index.html      # password-protected bookings overview (static, data from the VPS API)
+├── server/               # bookings API on the VPS: rezervacie.py, instaluj.sh (own README, Slovak)
+├── worker/, lib/, functions/   # the same logic for Cloudflare (Worker / Pages Functions), unused
 ├── schema.sql            # bookings table (also auto-created on first request)
-├── package.json          # worker-mailer + wrangler (api:dev, api:deploy, api:logs)
-└── server/               # same logic in Python for a VPS — fallback path (own README, Slovak)
+└── package.json          # worker-mailer + wrangler, only for the Cloudflare alternative
 ```
 
 ---
@@ -121,14 +119,14 @@ Everything is configured in one place — at the top of the `<script>` block in 
 
 | Variable | Meaning |
 |---|---|
-| `API` | Worker address (`https://ai-ucenie.<account>.workers.dev`); on localhost `http://127.0.0.1:8787` is used automatically |
+| `API` | VPS API address (`https://ai.apoliak.online`); on localhost `http://127.0.0.1:8787` is used automatically |
 | `ENDPOINT` | `API + "/api/rezervacia"` (default); empty = a pre-filled e-mail opens for the client |
 | `OBSADENE_URL` | `API + "/api/obsadene"` — the widget fetches already-taken slots from here on load |
 | `ENDPOINT_EXTRA` | extra fields in case `ENDPOINT` points at an external service |
 
-The site is hosted on GitHub Pages, which serves static files only, so bookings are handled by a **Cloudflare Worker** (`worker/`, logic in `lib/`): it stores the booking in D1, keeps the slot taken for everyone (a second visitor gets 409 and is sent back to pick another) and, via the SMTP of `info@aiucenie.online`, e-mails you plus a confirmation to the client. The Worker only accepts requests from `aiucenie.online`, `www.aiucenie.online`, `apoliak7777.github.io` and localhost (CORS). The only Cloudflare setup is the `SMTP_HESLO` and `ADMIN_HESLO` secrets plus a D1 database — everything else has defaults in `lib/rezervacie.js`.
+The site is hosted on GitHub Pages, which serves static files only, so bookings are handled by a small Python server on a private VPS (`server/`): it stores the booking in SQLite, keeps the slot taken for everyone (a second visitor gets 409 and is sent back to pick another) and, via the SMTP of `info@aiucenie.online`, e-mails you plus a confirmation to the client. The API only accepts requests from `aiucenie.online`, `www.aiucenie.online`, `apoliak7777.github.io` and localhost (CORS).
 
-When the Worker does not respond, the widget shows an error and offers e-mail as the fallback path on its own.
+When the API does not respond, the widget shows an error and offers e-mail as the fallback path on its own.
 
 ---
 
@@ -147,18 +145,19 @@ When the Worker does not respond, the widget shows an error and offers e-mail as
 
 **Site: GitHub Pages** from `main` (`CNAME` = `aiucenie.online`, A records at Hostinger point to GitHub). Deploy = push to `main`.
 
-**Bookings and admin API: Cloudflare Worker** (free, no DNS change):
+**Bookings API: private VPS**, one command on the server as root (the first run asks for the mailbox password and the `/admin` password):
 
-1. a dash.cloudflare.com account, then `npx wrangler login`
-2. `npx wrangler d1 create ai-ucenie` → put the `database_id` into `worker/wrangler.toml`
-3. `npx wrangler secret put SMTP_HESLO -c worker/wrangler.toml` (password of `info@aiucenie.online`) and `npx wrangler secret put ADMIN_HESLO -c worker/wrangler.toml` (the `/admin` password)
-4. `npm run api:deploy` → prints `https://ai-ucenie.<account>.workers.dev`; put that address into the `API` variable in `index.html` and `admin/index.html` and push
+```bash
+curl -fsSL https://raw.githubusercontent.com/Apoliak7777/ai-ucenie/main/server/instaluj.sh | bash
+```
 
-Local testing in the same layout: `npm install`, `worker/.dev.vars` from `worker/.dev.vars.vzor`, `npm run api:dev` (Worker on 8787) and `python -m http.server 8791` (static), open `http://127.0.0.1:8791/`.
+The same command also updates it. Details in [`server/README.md`](server/README.md) (Slovak).
 
-**Bookings overview:** `/admin/` is a static page (`admin/index.html`) that, after the password is entered, fetches data from the Worker (`Authorization: Bearer`, secret `ADMIN_HESLO`); it lists upcoming and past bookings with all details and a Delete button that frees the slot again. Kept out of search indexes (`robots.txt`, `noindex`).
+Local testing in the same layout: `server/nastavenia.env` from `server/nastavenia.vzor`, `python server/rezervacie.py` (API on 8787) and `python -m http.server 8791` (static), open `http://127.0.0.1:8791/`.
 
-Alternatives: the whole site on Cloudflare Pages (`functions/` are ready; an apex domain then needs its DNS on Cloudflare, set `API = ""` in the HTML) or a private VPS (same logic in Python, see [`server/README.md`](server/README.md)).
+**Bookings overview:** `/admin/` is a static page (`admin/index.html`) that, after the password is entered, fetches data from the API (`Authorization: Bearer`, password `ADMIN_HESLO` in `server/nastavenia.env`); it lists upcoming and past bookings with all details and a Delete button that frees the slot again. Kept out of search indexes (`robots.txt`, `noindex`).
+
+Alternative (unused): the same logic as a Cloudflare Worker (`worker/`, `lib/`) or Pages Functions (`functions/`).
 
 ---
 
@@ -166,7 +165,7 @@ Alternatives: the whole site on Cloudflare Pages (`functions/` are ready; an ape
 
 - 🗓️ **Availability lives in the backend, not a calendar** - slots agreed outside the site (phone, e-mail) must be added to `OBSADENE` in `index.html`, otherwise the widget keeps offering them.
 - 📮 **When the backend is down, bookings go through `mailto:`** - if the client has no mail client configured, the booking may never be sent.
-- ✉️ **E-mails are best effort** - the booking is always stored; if SMTP fails (wrong password, outage) it is in the Worker log (`npm run api:logs`) and the booking stays in D1 and in `/admin`.
+- ✉️ **E-mails are best effort** - the booking is always stored; if SMTP fails (wrong password, outage) it is in the server log (`journalctl -u ai-ucenie -f`) and the booking stays in the database and in `/admin`.
 - 🕐 **Times are in Slovak time** - the widget does not convert time zones; the page says so.
 
 ---
