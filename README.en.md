@@ -93,9 +93,9 @@ ai-ucenie/
 ├── sitemap.xml           # single URL
 ├── .nojekyll             # disables Jekyll on GitHub Pages
 ├── PRECITAJ-MA.txt       # editing and deployment notes (Slovak)
-├── admin/index.html      # password-protected bookings overview (static, data from the VPS API)
-├── server/               # bookings API on the VPS: rezervacie.py, instaluj.sh (own README, Slovak)
-├── worker/, lib/, functions/   # the same logic for Cloudflare (Worker / Pages Functions), unused
+├── admin/index.html      # password-protected bookings overview (static, data from the Google Sheet)
+├── google/Code.gs        # Apps Script bound to a Google Sheet: bookings, taken slots, e-mails, /admin
+├── server/, worker/, lib/, functions/   # older versions for a VPS / Cloudflare, unused
 ├── schema.sql            # bookings table (also auto-created on first request)
 └── package.json          # worker-mailer + wrangler, only for the Cloudflare alternative
 ```
@@ -119,14 +119,14 @@ Everything is configured in one place — at the top of the `<script>` block in 
 
 | Variable | Meaning |
 |---|---|
-| `API` | VPS API address (`https://ai.apoliak.online`); on localhost `http://127.0.0.1:8787` is used automatically |
-| `ENDPOINT` | `API + "/api/rezervacia"` (default); empty = a pre-filled e-mail opens for the client |
-| `OBSADENE_URL` | `API + "/api/obsadene"` — the widget fetches already-taken slots from here on load |
-| `ENDPOINT_EXTRA` | extra fields in case `ENDPOINT` points at an external service |
+| `API` | Apps Script web app address (`…/exec`); on localhost the mock `http://127.0.0.1:8787/exec` is used automatically |
+| `ENDPOINT` | `= API` (POST with `akcia: "rezervacia"`); while `API` is not filled in it is empty and a pre-filled e-mail opens for the client |
+| `OBSADENE_URL` | `API + "?akcia=obsadene"` — the widget fetches already-taken slots from here on load |
+| `ENDPOINT_EXTRA` | extra fields in case `ENDPOINT` points at another service |
 
-The site is hosted on GitHub Pages, which serves static files only, so bookings are handled by a small Python server on a private VPS (`server/`): it stores the booking in SQLite, keeps the slot taken for everyone (a second visitor gets 409 and is sent back to pick another) and, via the SMTP of `info@aiucenie.online`, e-mails you plus a confirmation to the client. The API only accepts requests from `aiucenie.online`, `www.aiucenie.online`, `apoliak7777.github.io` and localhost (CORS).
+The site is hosted on GitHub Pages, which serves static files only, so bookings are stored in a **Google Sheet** through Apps Script (`google/Code.gs`): it records the booking, keeps the slot taken for everyone (a second visitor gets `{obsadene: true}` and is sent back to pick another) and e-mails you plus a confirmation to the client. Requests carry no custom headers (`text/plain`) because Apps Script cannot answer preflight requests; status is read from the JSON, not the HTTP code.
 
-When the API does not respond, the widget shows an error and offers e-mail as the fallback path on its own.
+When the script does not respond, the widget shows an error and offers e-mail as the fallback path on its own.
 
 ---
 
@@ -145,19 +145,17 @@ When the API does not respond, the widget shows an error and offers e-mail as th
 
 **Site: GitHub Pages** from `main` (`CNAME` = `aiucenie.online`, A records at Hostinger point to GitHub). Deploy = push to `main`.
 
-**Bookings API: private VPS**, one command on the server as root (the first run asks for the mailbox password and the `/admin` password):
+**Bookings: Google Sheet + Apps Script** (your own Google account, nothing else):
 
-```bash
-curl -fsSL https://raw.githubusercontent.com/Apoliak7777/ai-ucenie/main/server/instaluj.sh | bash
-```
+1. `sheets.new` → Extensions → Apps Script → paste `google/Code.gs` with `ADMIN_HESLO` filled in, save
+2. Deploy → New deployment → Web app, Execute as **Me**, Who has access **Anyone** → Deploy → Authorize access
+3. copy the `…/exec` address into the `API` variable in `index.html` and `admin/index.html`, push
 
-The same command also updates it. Details in [`server/README.md`](server/README.md) (Slovak).
+Changing the script = new code + Deploy → Manage deployments → new version. Full steps in `PRECITAJ-MA.txt` (Slovak).
 
-Local testing in the same layout: `server/nastavenia.env` from `server/nastavenia.vzor`, `python server/rezervacie.py` (API on 8787) and `python -m http.server 8791` (static), open `http://127.0.0.1:8791/`.
+**Bookings overview:** `/admin/` is a static page (`admin/index.html`) that, after the password is entered, fetches data from the script (`{akcia: "rezervacie", heslo}`); it lists upcoming and past bookings with all details and a Delete button that frees the slot again. Kept out of search indexes (`robots.txt`, `noindex`). The same data is visible directly in the sheet.
 
-**Bookings overview:** `/admin/` is a static page (`admin/index.html`) that, after the password is entered, fetches data from the API (`Authorization: Bearer`, password `ADMIN_HESLO` in `server/nastavenia.env`); it lists upcoming and past bookings with all details and a Delete button that frees the slot again. Kept out of search indexes (`robots.txt`, `noindex`).
-
-Alternative (unused): the same logic as a Cloudflare Worker (`worker/`, `lib/`) or Pages Functions (`functions/`).
+Older backends for a private VPS (`server/`) and Cloudflare (`worker/`, `lib/`, `functions/`) remain in the repo, unused.
 
 ---
 
@@ -165,7 +163,7 @@ Alternative (unused): the same logic as a Cloudflare Worker (`worker/`, `lib/`) 
 
 - 🗓️ **Availability lives in the backend, not a calendar** - slots agreed outside the site (phone, e-mail) must be added to `OBSADENE` in `index.html`, otherwise the widget keeps offering them.
 - 📮 **When the backend is down, bookings go through `mailto:`** - if the client has no mail client configured, the booking may never be sent.
-- ✉️ **E-mails are best effort** - the booking is always stored; if SMTP fails (wrong password, outage) it is in the server log (`journalctl -u ai-ucenie -f`) and the booking stays in the database and in `/admin`.
+- ✉️ **E-mails are best effort** - the booking is always stored; if SMTP fails (wrong password, outage) it is in Apps Script under Executions and the booking stays in the sheet and in `/admin`.
 - 🕐 **Times are in Slovak time** - the widget does not convert time zones; the page says so.
 
 ---

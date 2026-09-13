@@ -97,16 +97,16 @@ h2 span{font-family:var(--body);font-size:.9rem;font-weight:600;color:var(--mute
     <div class="zoznam" id="z1"></div>
     <h2>Prebehnuté <span id="n2"></span></h2>
     <div class="zoznam" id="z2"></div>
-    <p class="foot">Prihlásenie platí do zavretia karty. Heslo sa mení na serveri v <code>server/nastavenia.env</code>.</p>
+    <p class="foot">Prihlásenie platí do zavretia karty. Heslo sa mení v Apps Scripte (premenná <code>ADMIN_HESLO</code>), potom Nasadiť → Spravovať nasadenia → nová verzia.</p>
   </section>
 </main>
 <script>
 (function(){
   "use strict";
 
-  /* Adresa API s rezerváciami (Alexov VPS, server/). Pri lokálnom skúšaní sa použije server na 8787. */
-  var API = "https://ai.apoliak.online";
-  if (location.hostname === "127.0.0.1" || location.hostname === "localhost") API = "http://127.0.0.1:8787";
+  /* Adresa Apps Scriptu s rezerváciami (google/Code.gs), končí na /exec. Lokálne napodobenina na 8787. */
+  var API = "https://script.google.com/macros/s/SEM-PRIDE-ADRESA-SKRIPTU/exec";
+  if (location.hostname === "127.0.0.1" || location.hostname === "localhost") API = "http://127.0.0.1:8787/exec";
 
   var $ = function(id){ return document.getElementById(id); };
   var DNI = ["Ne","Po","Ut","St","Št","Pi","So"];
@@ -114,7 +114,8 @@ h2 span{font-family:var(--body);font-size:.9rem;font-weight:600;color:var(--mute
   var heslo = "";
   try { heslo = sessionStorage.getItem(KLUC) || ""; } catch (_) {}
 
-  function hlavicky(){ return { "Accept": "application/json", "Authorization": "Bearer " + heslo }; }
+  /* bez vlastných hlavičiek (text/plain), inak by prehliadač dopyt na Apps Script zastavil */
+  function posli(telo){ return fetch(API, { method: "POST", body: JSON.stringify(telo) }); }
 
   function slotNaDatum(slot){
     var m = slot.match(/^(\d{4})-(\d{2})-(\d{2}) (\d{1,2}):(\d{2})$/);
@@ -126,7 +127,7 @@ h2 span{font-family:var(--body);font-size:.9rem;font-weight:600;color:var(--mute
   }
   function prijate(kedy){
     /* D1 ukladá UTC bez označenia pásma */
-    var d = new Date(kedy.replace(" ", "T") + "Z");
+    var d = new Date(kedy);
     return isNaN(d) ? kedy : new Intl.DateTimeFormat("sk-SK", { dateStyle: "medium", timeStyle: "short" }).format(d);
   }
   function esc(s){ return String(s == null ? "" : s).replace(/[&<>"]/g, function(c){ return { "&":"&amp;", "<":"&lt;", ">":"&gt;", '"':"&quot;" }[c]; }); }
@@ -160,13 +161,13 @@ h2 span{font-family:var(--body);font-size:.9rem;font-weight:600;color:var(--mute
 
   function nacitaj(){
     $("stav").textContent = "Načítavam…"; $("stav").className = "stav";
-    return fetch(API + "/admin/api/rezervacie", { headers: hlavicky() })
+    return posli({ akcia: "rezervacie", heslo: heslo })
       .then(function(r){
-        if (r.status === 401) { odhlas("Nesprávne heslo."); throw { ticho: true }; }
         if (!r.ok) throw new Error("HTTP " + r.status);
         return r.json();
       })
       .then(function(j){
+        if (j && j.neopravneny) { odhlas("Nesprávne heslo."); throw { ticho: true }; }
         ukazObsah();
         var teraz = Date.now(), b = [], m = [];
         (j.rezervacie || []).forEach(function(r){
@@ -214,9 +215,9 @@ h2 span{font-family:var(--body);font-size:.9rem;font-weight:600;color:var(--mute
     var meno = el.querySelector(".r__kto b").textContent, kedy = el.querySelector(".r__kedy b").textContent;
     if (!confirm("Zmazať rezerváciu?\n\n" + meno + ", " + kedy + "\n\nTermín sa uvoľní späť do ponuky.")) return;
     b.disabled = true; b.textContent = "Mažem…";
-    fetch(API + "/admin/api/rezervacie/" + id, { method: "DELETE", headers: hlavicky() })
+    posli({ akcia: "zmaz", heslo: heslo, id: id })
       .then(function(r){ if (!r.ok) throw new Error("HTTP " + r.status); return r.json(); })
-      .then(function(){ nacitaj(); })
+      .then(function(j){ if (!j || !j.ok) throw new Error(j && j.chyba ? j.chyba : "chyba"); nacitaj(); })
       .catch(function(e){ b.disabled = false; b.textContent = "Zmazať"; alert("Nepodarilo sa zmazať (" + e.message + ")."); });
   });
 

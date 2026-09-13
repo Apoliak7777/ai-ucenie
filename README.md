@@ -93,9 +93,9 @@ ai-ucenie/
 ├── sitemap.xml           # jedna URL
 ├── .nojekyll             # vypína Jekyll na GitHub Pages
 ├── PRECITAJ-MA.txt       # poznámky k úpravám a nasadeniu
-├── admin/index.html      # prehľad rezervácií za heslom (statika, dáta z API na VPS)
-├── server/               # API rezervácií na VPS: rezervacie.py, instaluj.sh (vlastný README)
-├── worker/, lib/, functions/   # tá istá logika pre Cloudflare (Worker / Pages Functions), nepoužité
+├── admin/index.html      # prehľad rezervácií za heslom (statika, dáta z Google tabuľky)
+├── google/Code.gs        # Apps Script do Google tabuľky: rezervácie, obsadené termíny, maily, /admin
+├── server/, worker/, lib/, functions/   # staršie verzie pre VPS / Cloudflare, nepoužité
 ├── schema.sql            # tabuľka rezervácií (vzniká aj sama pri prvom dopyte)
 └── package.json          # worker-mailer + wrangler, len pre Cloudflare alternatívu
 ```
@@ -119,14 +119,14 @@ Všetko sa nastavuje na jednom mieste — na začiatku `<script>` bloku v `index
 
 | Premenná | Význam |
 |---|---|
-| `API` | adresa API na VPS (`https://ai.apoliak.online`); na localhoste sa automaticky použije `http://127.0.0.1:8787` |
-| `ENDPOINT` | `API + "/api/rezervacia"` (predvolené); prázdne = klientovi sa otvorí predvyplnený e-mail |
-| `OBSADENE_URL` | `API + "/api/obsadene"` — odtiaľ si widget pri načítaní stiahne už obsadené termíny |
-| `ENDPOINT_EXTRA` | polia navyše, keby sa `ENDPOINT` nasmeroval na externú službu |
+| `API` | adresa Apps Scriptu (`…/exec`); na localhoste sa automaticky použije napodobenina `http://127.0.0.1:8787/exec` |
+| `ENDPOINT` | `= API` (POST s `akcia: "rezervacia"`); kým `API` nie je doplnené, je prázdne a klientovi sa otvorí predvyplnený e-mail |
+| `OBSADENE_URL` | `API + "?akcia=obsadene"` — odtiaľ si widget pri načítaní stiahne už obsadené termíny |
+| `ENDPOINT_EXTRA` | polia navyše, keby sa `ENDPOINT` nasmeroval na inú službu |
 
-Stránka beží na GitHub Pages, ktorý vie len statické súbory, preto rezervácie spracúva malý server v Pythone na vlastnom VPS (`server/`): zapíše rezerváciu do SQLite, termín drží obsadený pre všetkých (druhý záujemca dostane 409 a widget ho vráti na výber) a cez SMTP schránky `info@aiucenie.online` pošle mail tebe aj potvrdenie klientovi. API prijíma dopyty len z `aiucenie.online`, `www.aiucenie.online`, `apoliak7777.github.io` a localhostu (CORS).
+Stránka beží na GitHub Pages, ktorý vie len statické súbory, preto rezervácie ukladá **Google tabuľka** cez Apps Script (`google/Code.gs`): zapíše rezerváciu, termín drží obsadený pre všetkých (druhý záujemca dostane `{obsadene: true}` a widget ho vráti na výber) a pošle mail tebe aj potvrdenie klientovi. Dopyty idú bez vlastných hlavičiek (`text/plain`), lebo Apps Script nevie odpovedať na preflight; stav sa číta z JSON, nie z HTTP kódu.
 
-Keď API neodpovedá, widget zobrazí chybu a sám ponúkne e-mail ako záložnú cestu.
+Keď skript neodpovedá, widget zobrazí chybu a sám ponúkne e-mail ako záložnú cestu.
 
 ---
 
@@ -145,19 +145,17 @@ Keď API neodpovedá, widget zobrazí chybu a sám ponúkne e-mail ako záložn�
 
 **Stránka: GitHub Pages** z vetvy `main` (súbor `CNAME` = `aiucenie.online`, A záznamy u Hostingera mieria na GitHub). Nasadenie = push do `main`.
 
-**API rezervácií: vlastný VPS**, jeden príkaz na serveri ako root (pri prvom behu sa spýta na heslo schránky a heslo do `/admin`):
+**Rezervácie: Google tabuľka + Apps Script** (vlastný Google účet, nič ďalšie):
 
-```bash
-curl -fsSL https://raw.githubusercontent.com/Apoliak7777/ai-ucenie/main/server/instaluj.sh | bash
-```
+1. `sheets.new` → Rozšírenia → Apps Script → vložiť `google/Code.gs` s doplneným `ADMIN_HESLO`, uložiť
+2. Nasadiť → Nová verzia nasadenia → Webová aplikácia, Spustiť ako **Ja**, Kto má prístup **Ktokoľvek** → Nasadiť → Povoliť prístup
+3. skopírovať adresu `…/exec` do premennej `API` v `index.html` a `admin/index.html`, pushnúť
 
-Ten istý príkaz slúži aj na aktualizáciu. Podrobnosti v [`server/README.md`](server/README.md).
+Zmena skriptu = nový kód + Nasadiť → Spravovať nasadenia → nová verzia. Podrobný postup v `PRECITAJ-MA.txt`.
 
-Lokálne skúšanie v rovnakom rozložení: `server/nastavenia.env` podľa `server/nastavenia.vzor`, `python server/rezervacie.py` (API na 8787) a `python -m http.server 8791` (statika), otvoriť `http://127.0.0.1:8791/`.
+**Prehľad rezervácií:** `/admin/` je statická stránka (`admin/index.html`), ktorá si po zadaní hesla ťahá dáta zo skriptu (`{akcia: "rezervacie", heslo}`); ukáže nadchádzajúce a prebehnuté rezervácie so všetkými údajmi a tlačidlom Zmazať, ktoré termín uvoľní späť do ponuky. Je mimo indexu (`robots.txt`, `noindex`). Tie isté dáta sú aj priamo v tabuľke.
 
-**Prehľad rezervácií:** `/admin/` je statická stránka (`admin/index.html`), ktorá si po zadaní hesla ťahá dáta z API (`Authorization: Bearer`, heslo `ADMIN_HESLO` v `server/nastavenia.env`); ukáže nadchádzajúce a prebehnuté rezervácie so všetkými údajmi a tlačidlom Zmazať, ktoré termín uvoľní späť do ponuky. Je mimo indexu (`robots.txt`, `noindex`).
-
-Alternatíva (nepoužitá): tá istá logika ako Cloudflare Worker (`worker/`, `lib/`) alebo Pages Functions (`functions/`).
+Staršie verzie backendu pre vlastný VPS (`server/`) a Cloudflare (`worker/`, `lib/`, `functions/`) ostávajú v repe, nepoužívajú sa.
 
 ---
 
@@ -165,7 +163,7 @@ Alternatíva (nepoužitá): tá istá logika ako Cloudflare Worker (`worker/`, `
 
 - 🗓️ **Obsadenosť drží backend, nie kalendár** - termíny dohodnuté mimo stránky (telefón, mail) treba dopísať do `OBSADENE` v `index.html`, inak ich widget ponúka ďalej.
 - 📮 **Keď backend nebeží, ide rezervácia cez `mailto:`** - ak klient nemá v systéme nastavený mailový program, rezervácia sa nemusí odoslať.
-- ✉️ **Maily sú „best effort“** - rezervácia sa zapíše vždy; keď SMTP zlyhá (zlé heslo, výpadok), je to v logu na serveri (`journalctl -u ai-ucenie -f`) a rezervácia ostáva v databáze aj v `/admin`.
+- ✉️ **Maily sú „best effort“** - rezervácia sa zapíše vždy; keď SMTP zlyhá (zlé heslo, výpadok), je to v Apps Scripte v položke Vykonania a rezervácia ostáva v tabuľke aj v `/admin`.
 - 🕐 **Časy sú v slovenskom čase** - widget neprepočítava časové pásma, na stránke je to uvedené.
 
 ---

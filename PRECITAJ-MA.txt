@@ -14,50 +14,44 @@ robots.txt          povoľuje indexovanie, ochranu údajov drží mimo Googlu
 sitemap.xml         jedna adresa, pri zmene webu prepíš lastmod
 .nojekyll           vypína Jekyll na GitHub Pages, nechať
 CNAME               doména pre GitHub Pages (aiucenie.online)
-admin/index.html    prehľad rezervácií za heslom (statická stránka, dáta si ťahá z API na VPS)
-server/             API rezervácií, ktoré beží na Alexovom VPS (Python, inštalátor), vlastný README
-worker/, lib/, functions/   tá istá logika pre Cloudflare (Worker / Pages Functions) — NEPOUŽÍVA SA,
-                    Alex Cloudflare nechce; ostáva v repe len ako alternatíva
+admin/index.html    prehľad rezervácií za heslom (statická stránka, dáta si ťahá z Google tabuľky)
+google/Code.gs      skript do Google tabuľky (Apps Script): ukladá rezervácie, drží obsadené termíny,
+                    posiela maily, odpovedá stránke /admin
+server/, worker/, lib/, functions/   staršie verzie toho istého pre vlastný server / Cloudflare —
+                    NEPOUŽÍVAJÚ SA (Alex chce len GitHub), ostávajú len ako alternatíva
 
 Kde to beží
 -----------
 Repo:      https://github.com/Apoliak7777/ai-ucenie
 Stránka:   https://aiucenie.online/   (GitHub Pages z vetvy main, súbor CNAME; A záznamy
-           u Hostingera mieria na GitHub 185.199.108-111.153, nameservery ostávajú Hostinger)
-API rezervácií a /admin:  Alexov VPS 172.93.185.182 (Debian, nginx), adresa https://ai.apoliak.online/
-           (tá už v DNS mieri na VPS, preto sa nič v DNS nemení); kód server/rezervacie.py,
-           databáza SQLite na serveri, maily cez SMTP info@aiucenie.online
-Admin:     https://aiucenie.online/admin/   (statická stránka admin/index.html, po zadaní hesla
-           si dáta ťahá z API; heslo je v server/nastavenia.env na VPS)
-Mail:      info@aiucenie.online (Hostinger Business Email; help@aiucenie.online je druhá schránka,
-           zatiaľ voľná)
+           u Hostingera mieria na GitHub 185.199.108-111.153)
+Rezervácie:  Alexova Google tabuľka + skript google/Code.gs nasadený ako webová aplikácia
+           (adresa …/exec je v index.html a admin/index.html v premennej API). Maily odchádzajú
+           z Alexovho Google účtu s odpoveďou na info@aiucenie.online.
+Admin:     https://aiucenie.online/admin/   (statická stránka, po zadaní hesla si dáta ťahá
+           zo skriptu; heslo je v Code.gs v premennej ADMIN_HESLO, v repe je len zástupný text)
+Mail:      info@aiucenie.online (Hostinger; help@aiucenie.online je druhá schránka, zatiaľ voľná)
 Zmena stránky = push do main, GitHub Pages sa prestaví do minúty-dvoch.
-Zmena API (server/) = push do main a na VPS znova spustiť inštalačný príkaz (stiahne nové, reštartuje).
+Zmena skriptu = nový kód do Apps Scriptu + Nasadiť → Spravovať nasadenia → nová verzia.
 
-Nasadenie API na VPS (raz) — jeden príkaz
------------------------------------------
-Na serveri ako root (konzola u xTom alebo SSH):
+Nasadenie skriptu (raz, v Alexovom Google účte)
+-----------------------------------------------
+  1. sheets.new → nová tabuľka (názov hocijaký)
+  2. Rozšírenia → Apps Script → zmazať ukážkový kód, vložiť google/Code.gs s doplneným
+     ADMIN_HESLO, Ctrl+S
+  3. Nasadiť → Nová verzia nasadenia → typ Webová aplikácia, Spustiť ako: Ja,
+     Kto má prístup: Ktokoľvek → Nasadiť → Povoliť prístup (Google sa spýta na súhlas
+     s tabuľkou a mailom; pri hláške o neoverenej aplikácii: Rozšírené → Prejsť na projekt)
+  4. skopírovať Webovú adresu aplikácie (…/exec) a dať ju do index.html a admin/index.html
+     do premennej API, pushnúť
+Kým adresa nie je doplnená, rezervácia na stránke otvorí mail (záložná cesta) a /admin
+napíše, že server neodpovedá.
+Rezervácie sú zároveň vidieť priamo v tabuľke (hárok "rezervacie"); mazať ich treba cez
+/admin alebo zmazaním riadku v tabuľke (termín sa uvoľní).
+Repo môže zostať public — heslo je len v Apps Scripte, v repe nie je nikde.
 
-  curl -fsSL https://raw.githubusercontent.com/Apoliak7777/ai-ucenie/main/server/instaluj.sh | bash
-
-Pri prvom behu sa spýta na dve heslá (píšu sa naslepo): heslo schránky info@aiucenie.online
-a heslo do /admin. Nainštaluje nginx + python + certbot, stiahne repo do /var/www/ai-ucenie,
-spustí službu ai-ucenie (systemd), zapne vhost ai.apoliak.online a vydá certifikát.
-Na konci vypíše HOTOVO. Ten istý príkaz = aktualizácia (heslá sa už nepýta).
-Podrobnosti, log a zmena hesla: server/README.md.
-Repo môže zostať public — heslá sú len na serveri v server/nastavenia.env (je v .gitignore).
-
-Rezervácie vidíš na https://aiucenie.online/admin/: po zadaní hesla meno, mail, telefón, balík,
-poznámka, kedy prišla; tlačidlo Zmazať uvoľní termín späť do ponuky. Stránka je mimo Googlu
-(robots.txt + noindex).
-
-Lokálne skúšanie (rovnaké rozloženie ako naostro): server/nastavenia.env podľa nastavenia.vzor,
-python server/rezervacie.py (API na 8787) + python -m http.server 8791 (statika), otvoriť
-http://127.0.0.1:8791/ — stránka aj /admin si API na 8787 nájdu samy.
-
-Alternatívy (nepoužité): tá istá logika existuje aj ako Cloudflare Worker (worker/, lib/) a Pages
-Functions (functions/); Alex Cloudflare odmietol, nechať tak.
-Stará adresa ai.apoliak.online slúži teraz len ako adresa API (v DNS apoliak.online mieri na VPS).
+Lokálne skúšanie: python -m http.server 8791 (statika) + napodobenina skriptu na 8787
+(mock_gas.py zo scratchpadu session), stránka aj /admin si ju na localhoste nájdu samy.
 
 Kde si upravíš termíny
 ----------------------
@@ -74,25 +68,27 @@ Odosielanie rezervácií
 ----------------------
 Tam istá časť skriptu:
 
-  API             adresa API na VPS (https://ai.apoliak.online); na 127.0.0.1 alebo localhoste
-                  sa automaticky použije http://127.0.0.1:8787 (python server/rezervacie.py)
-  ENDPOINT        API + "/api/rezervacia": rezervácia sa zapíše do databázy, termín ostane
-                  obsadený pre všetkých, mne príde mail a klientovi potvrdenie. Prázdne = klientovi
-                  sa otvorí jeho mail s vyplnenou rezerváciou (ak nemá mailový program, stratí sa).
-  OBSADENE_URL    API + "/api/obsadene" — odtiaľ si widget pri načítaní stiahne obsadené termíny,
-                  takže ich nevidí ani ďalší návštevník
-  ENDPOINT_EXTRA  polia navyše, keby sa ENDPOINT nasmeroval na externú službu
+  API             adresa Apps Scriptu (…/exec); na 127.0.0.1 alebo localhoste sa automaticky
+                  použije napodobenina na http://127.0.0.1:8787/exec
+  ENDPOINT        = API (POST s akcia "rezervacia"): rezervácia sa zapíše do tabuľky, termín
+                  ostane obsadený pre všetkých, mne príde mail a klientovi potvrdenie.
+                  Kým API nie je doplnené, je prázdne = klientovi sa otvorí jeho mail
+                  s vyplnenou rezerváciou (ak nemá mailový program, stratí sa).
+  OBSADENE_URL    API + "?akcia=obsadene" — odtiaľ si widget pri načítaní stiahne obsadené
+                  termíny, takže ich nevidí ani ďalší návštevník
+  ENDPOINT_EXTRA  polia navyše, keby sa ENDPOINT nasmeroval na inú službu
 
-Keď si termín medzitým vzal niekto iný, API vráti 409 a widget človeka vráti na výber
-s hláškou — NEpresmeruje ho na mail.
-Keď API neodpovedá vôbec, web ukáže chybu a otvorí mail ako záložnú cestu.
+Dopyty idú BEZ vlastných hlavičiek (text/plain), lebo Apps Script nevie odpovedať na
+preflight — pri pridaní hlavičky Content-Type: application/json by prehliadač dopyt zastavil.
+Apps Script vždy vráti HTTP 200, preto sa stav číta z JSON: {ok:true}, {ok:false, obsadene:true}
+(termín medzitým vzal niekto iný — widget vráti človeka na výber, NEpresmeruje na mail),
+{ok:false, neopravneny:true} (zlé heslo v /admin).
+Keď skript neodpovedá vôbec, web ukáže chybu a otvorí mail ako záložnú cestu.
 Formulár má aj skrytú pascu na roboty (pole "web") — ak ho niekto vyplní, rezervácia sa
-neodošle (API to ticho zahodí tiež).
-API prijíma dopyty len z aiucenie.online, www.aiucenie.online, apoliak7777.github.io
-a z localhostu (CORS: POVOLENE_ORIGINY v server/rezervacie.py).
+neodošle (skript to ticho zahodí tiež).
 
-Termíny dohodnuté mimo stránky (telefón, mail) dopíš do OBSADENE v index.html, API o nich
-nevie. POZOR: keby sa ENDPOINT niekedy presmeroval na cudziu službu, doplň ju do
+Termíny dohodnuté mimo stránky (telefón, mail) dopíš do OBSADENE v index.html alebo ako
+riadok do tabuľky. POZOR: keby sa ENDPOINT niekedy presmeroval na cudziu službu, doplň ju do
 ochrana-udajov.html do sekcie "Kde údaje sú" ako sprostredkovateľa.
 
 Čo ešte zostáva dorobiť
@@ -105,8 +101,8 @@ ochrana-udajov.html do sekcie "Kde údaje sú" ako sprostredkovateľa.
 4. fotka namiesto monogramu (miesto je pripravené v index.html, sekcia Kto ťa učí)
    a krátke video-ukážka jednej úlohy (dôvera)
 
-Hotové (09/2026): vlastný backend (Python na VPS; tá istá logika existuje aj ako Cloudflare
-Worker/Pages Functions, nepoužité) — rezervácia sa nestratí, klient dostane potvrdenie, termín ostáva
+Hotové (09/2026): rezervácie v Google tabuľke cez Apps Script (staršie verzie pre VPS a
+Cloudflare ostávajú v repe nepoužité) — rezervácia sa nestratí, klient dostane potvrdenie, termín ostáva
 obsadený pre všetkých. Lokálne skúšanie: npm install, .dev.vars, npm run dev.
 
 Rozhodnuté
@@ -129,9 +125,9 @@ Rozhodnuté
 - sekcia Príklady je bez čísel — ukazuje zmenu postupu
   (predtým / po hodine), nič sa nemusí dokladovať
 - stránka beží na GitHub Pages (Alex si ju tam 13.09.2026 sám pripojil a chce to tak);
-  GitHub nevie nič spúšťať, preto API rezervácií beží na Alexovom VPS (server/), ktorý už
-  platí — Cloudflare Alex odmietol (13.09.2026), nenavrhovať; doména aiucenie.online (kúpená
-  12.09.2026 na Hostingeri so schránkami info@ a help@), ai.apoliak.online je len adresa API
+  GitHub nevie nič spúšťať, preto rezervácie ukladá Alexova Google tabuľka cez Apps Script
+  (google/Code.gs) — Cloudflare aj VPS Alex odmietol (13.09.2026), nenavrhovať; doména
+  aiucenie.online (kúpená 12.09.2026 na Hostingeri so schránkami info@ a help@)
 - garancia „ak ti hodina nemá čo dať, poviem ti to pred platbou" je
   vytiahnutá z FAQ do hero (zelený pás pod nadpisom) — je to najsilnejší
   argument na stránke, vo FAQ ju nikto nevidel

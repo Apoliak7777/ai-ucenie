@@ -729,16 +729,17 @@ section{scroll-margin-top:20px}
   var POCET_DNI = 10;       /* koľko dní s voľnými termínmi ponúknuť */
   var MOJ_MAIL = "info@aiucenie.online";
 
-  /* Kam sa rezervácia odošle: na Worker (rezervácia ide na pozadí, klient nemusí nikam
-     klikať a termín ostane obsadený pre všetkých). Keď ENDPOINT vyprázdniš, klientovi sa
-     otvorí mail (funguje hneď, ale rezervácia sa môže stratiť).
+  /* Kam sa rezervácia odošle: do Google tabuľky (rezervácia ide na pozadí, klient nemusí nikam
+     klikať a termín ostane obsadený pre všetkých). Kým adresa skriptu nie je doplnená, klientovi
+     sa otvorí mail (funguje hneď, ale rezervácia sa môže stratiť).
      Ak odoslanie zlyhá, web sám ponúkne mail ako záložnú cestu. */
-  /* Adresa API s rezerváciami (stránka beží na GitHub Pages, API na Alexovom VPS, server/).
-     Pri lokálnom skúšaní sa použije server na porte 8787. */
-  var API = "https://ai.apoliak.online";
-  if (location.hostname === "127.0.0.1" || location.hostname === "localhost") API = "http://127.0.0.1:8787";
-  var ENDPOINT = API + "/api/rezervacia";
-  var OBSADENE_URL = API + "/api/obsadene";    /* odtiaľ si widget stiahne už obsadené termíny */
+  /* Rezervácie sa ukladajú do Alexovej Google tabuľky cez Apps Script (google/Code.gs).
+     Po nasadení skriptu (Nasadiť → Webová aplikácia) sem patrí jeho adresa končiaca na /exec.
+     Pri lokálnom skúšaní sa použije napodobenina na porte 8787. */
+  var API = "https://script.google.com/macros/s/SEM-PRIDE-ADRESA-SKRIPTU/exec";
+  if (location.hostname === "127.0.0.1" || location.hostname === "localhost") API = "http://127.0.0.1:8787/exec";
+  var ENDPOINT = API.indexOf("SEM-PRIDE") === -1 ? API : "";   /* POST rezervácia; prázdne = otvorí sa mail */
+  var OBSADENE_URL = ENDPOINT ? API + "?akcia=obsadene" : "";  /* odtiaľ si widget stiahne už obsadené termíny */
   var ENDPOINT_EXTRA = {};
   /* ========================================================== */
 
@@ -894,7 +895,7 @@ section{scroll-margin-top:20px}
 
   /* obsadené termíny zo servera, nech ich nevidí ani ďalší návštevník */
   if (ENDPOINT && OBSADENE_URL){
-    fetch(OBSADENE_URL, { headers: { "Accept": "application/json" } })
+    fetch(OBSADENE_URL)
       .then(function(r){ return r.ok ? r.json() : null; })
       .then(function(j){
         if (!j || !j.obsadene || !j.obsadene.length) return;
@@ -963,6 +964,7 @@ section{scroll-margin-top:20px}
     }
 
     var data = {
+      akcia: "rezervacia",
       termin: vybrany.label,
       slot: vybrany.slot,
       balik: balik,
@@ -975,20 +977,18 @@ section{scroll-margin-top:20px}
     Object.keys(ENDPOINT_EXTRA).forEach(function(k){ data[k] = ENDPOINT_EXTRA[k]; });
 
     busy(true);
-    fetch(ENDPOINT, {
-      method: "POST",
-      headers: { "Content-Type": "application/json", "Accept": "application/json" },
-      body: JSON.stringify(data)
-    }).then(function(r){
-      if (r.status === 409){
-        return r.json().catch(function(){ return {}; }).then(function(j){
-          busy(false);
-          zablokuj(vybrany.slot);
-          chyba(j.chyba || "Tento termín si medzitým vzal niekto iný. Klikni na Zmeniť a vyber si iný.");
-          throw { obsadene: true };
-        });
-      }
+    /* bez vlastných hlavičiek: Apps Script prijme len jednoduchý dopyt (text/plain), inak ho prehliadač zastaví */
+    fetch(ENDPOINT, { method: "POST", body: JSON.stringify(data) }).then(function(r){
       if (!r.ok) throw new Error("HTTP " + r.status);
+      return r.json();
+    }).then(function(j){
+      if (j && j.obsadene){
+        busy(false);
+        zablokuj(vybrany.slot);
+        chyba(j.chyba || "Tento termín si medzitým vzal niekto iný. Klikni na Zmeniť a vyber si iný.");
+        throw { obsadene: true };
+      }
+      if (!j || !j.ok) throw new Error(j && j.chyba ? j.chyba : "neznáma odpoveď");
       busy(false);
       zablokuj(vybrany.slot);
       $("mailBtn").textContent = "Napísať mi mail";
