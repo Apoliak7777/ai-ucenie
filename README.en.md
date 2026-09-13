@@ -123,7 +123,7 @@ Everything is configured in one place — at the top of the `<script>` block in 
 | `OBSADENE_URL` | `/api/obsadene` — the widget fetches already-taken slots from here on load |
 | `ENDPOINT_EXTRA` | extra fields in case `ENDPOINT` points at an external service (e.g. `access_key` for Web3Forms) |
 
-The backend (Cloudflare Pages Functions) stores the booking in D1, keeps the slot taken for everyone (a second visitor gets 409 and is sent back to pick another) and, via the SMTP of `apoliak@apoliak.online`, e-mails you plus a confirmation to the client. The only Cloudflare setup is the `SMTP_HESLO` secret and the `DB` D1 binding — everything else has defaults in `lib/rezervacie.js`.
+The backend (Cloudflare Pages Functions) stores the booking in D1, keeps the slot taken for everyone (a second visitor gets 409 and is sent back to pick another) and, via the SMTP of `info@aiucenie.online`, e-mails you plus a confirmation to the client. The only Cloudflare setup is the `SMTP_HESLO` secret and the `DB` D1 binding — everything else has defaults in `lib/rezervacie.js`.
 
 When the backend does not respond, the widget shows an error and offers e-mail as the fallback path on its own.
 
@@ -144,11 +144,12 @@ When the backend does not respond, the widget shows an error and offers e-mail a
 
 **Production: Cloudflare Pages** — static files and `/api/` from one repo, deploy = push to `main`, free.
 
+0. `aiucenie.online` is an apex domain, so its DNS has to live on Cloudflare: Add a domain → check that Hostinger's mail records were imported (MX, SPF, DKIM, DMARC, all DNS only) → switch the nameservers at Hostinger to the Cloudflare ones. The exact record list is in `PRECITAJ-MA.txt` (Slovak).
 1. Cloudflare → Workers & Pages → Create → Pages → Connect to Git → `Apoliak7777/ai-ucenie`. Empty build command, output directory `/`.
 2. Project → Settings → Bindings → Add → D1 database → create `ai-ucenie`, variable name **`DB`**.
-3. Settings → Variables and Secrets → Add → Secret **`SMTP_HESLO`** = password of `apoliak@apoliak.online`.
+3. Settings → Variables and Secrets → Add → Secret **`SMTP_HESLO`** = password of `info@aiucenie.online`, Secret **`ADMIN_HESLO`** = the `/admin` password.
 4. Deployments → Retry deployment (so it runs with the bindings).
-5. Custom domains → Set up → `ai.apoliak.online`; at Hostinger change the `ai` record from A to **CNAME → `ai-ucenie.pages.dev`**.
+5. Custom domains → Set up → `aiucenie.online` and `www.aiucenie.online` (DNS is on Cloudflare, the records are created automatically).
 
 Local testing: `npm install`, put `SMTP_HESLO=…` and `ADMIN_HESLO=…` into `.dev.vars` (template `.dev.vars.vzor`), `npm run dev` → `http://127.0.0.1:8788`.
 
@@ -179,6 +180,6 @@ This project is published without a license — all rights reserved. Feel free t
 
 [![Web](https://img.shields.io/badge/apoliak.online-0b1020?style=flat-square)](https://apoliak.online)
 [![GitHub](https://img.shields.io/badge/GitHub-Apoliak7777-181717?style=flat-square&logo=github)](https://github.com/Apoliak7777)
-[![Email](https://img.shields.io/badge/Email-alexpoliak21%40gmail.com-EA4335?style=flat-square&logo=gmail&logoColor=white)](mailto:alexpoliak21@gmail.com)
+[![Email](https://img.shields.io/badge/Email-alexpoliak21%40gmail.com-EA4335?style=flat-square&logo=gmail&logoColor=white)](mailto:info@aiucenie.online)
 
 </div>

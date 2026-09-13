@@ -3,4 +3,4 @@ Allow: /
 Disallow: /ochrana-udajov.html
 Disallow: /admin
 
-Sitemap: https://ai.apoliak.online/sitemap.xml
+Sitemap: https://aiucenie.online/sitemap.xml

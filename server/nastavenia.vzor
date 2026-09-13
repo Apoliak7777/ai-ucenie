@@ -5,13 +5,13 @@
 # Schránka, z ktorej odchádzajú potvrdenia (Hostinger).
 SMTP_SERVER=smtp.hostinger.com
 SMTP_PORT=465
-SMTP_UZIVATEL=apoliak@apoliak.online
+SMTP_UZIVATEL=info@aiucenie.online
 SMTP_HESLO=
 
 # Kam chodia nové rezervácie.
-MOJ_MAIL=apoliak@apoliak.online
+MOJ_MAIL=info@aiucenie.online
 
 # Voliteľné.
 ZNACKA=AI Učenie
-WEB=ai.apoliak.online
+WEB=aiucenie.online
 PORT=8787

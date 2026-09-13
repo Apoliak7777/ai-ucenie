@@ -1,5 +1,5 @@
 #!/bin/bash
-# Nasadenie ai.apoliak.online na VPS (Debian 12, nginx).
+# Nasadenie aiucenie.online na VPS (Debian 12, nginx).
 #
 # Spustenie na serveri ako root:
 #   git clone https://github.com/Apoliak7777/ai-ucenie.git /var/www/ai-ucenie
@@ -9,15 +9,15 @@
 #   cd /var/www/ai-ucenie && git pull && systemctl restart ai-ucenie
 #
 # Skript sa dá púšťať opakovane — nič existujúce na serveri neprepisuje,
-# okrem vlastného vhostu ai.apoliak.online a vlastnej systemd služby.
+# okrem vlastného vhostu aiucenie.online a vlastnej systemd služby.
 
 set -euo pipefail
 
-DOMENA="ai.apoliak.online"
+DOMENA="aiucenie.online"
 CIEL="/var/www/ai-ucenie"
 SLUZBA="ai-ucenie"
 PORT="8787"
-CERT_MAIL="apoliak@apoliak.online"
+CERT_MAIL="info@aiucenie.online"
 
 cerveny() { printf '\033[31m%s\033[0m\n' "$*"; }
 zeleny()  { printf '\033[32m%s\033[0m\n' "$*"; }

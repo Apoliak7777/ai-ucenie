@@ -1,5 +1,5 @@
-AI UČENIE — ai.apoliak.online
-=============================
+AI UČENIE — aiucenie.online
+===========================
 
 Obsah
 -----
@@ -13,36 +13,71 @@ fonts/              písma Newsreader (nadpisy, jedna váha 500) + Manrope (text
 robots.txt          povoľuje indexovanie, ochranu údajov drží mimo Googlu
 sitemap.xml         jedna adresa, pri zmene webu prepíš lastmod
 .nojekyll           vypína Jekyll na GitHub Pages, nechať
+CNAME               doména pre GitHub Pages (aiucenie.online); Cloudflare ho ignoruje, nechať
 
 Kde to beží
 -----------
 Repo:    https://github.com/Apoliak7777/ai-ucenie
-Ostrá:   https://ai.apoliak.online/   (Cloudflare Pages — statika + /api Functions + D1, 0 €)
+Ostrá:   https://aiucenie.online/   (Cloudflare Pages — statika + /api Functions + D1, 0 €)
+Mail:    info@aiucenie.online (Hostinger Business Email; help@aiucenie.online je druhá schránka, zatiaľ voľná)
 Náhľad:  https://apoliak7777.github.io/ai-ucenie/   (GitHub Pages, bez /api → rezervácia tam ide cez mailto)
+Prechodne (od 13.09.2026): doména aiucenie.online mieri A záznamami u Hostingera na GitHub Pages
+(súbor CNAME v repe), takže stránka na doméne beží, ale rezervácia ide cez mailto a /admin je 404,
+kým sa DNS neprenesie na Cloudflare podľa postupu nižšie.
 Zmena webu = push do main. Cloudflare aj GitHub Pages sa prestavajú samy do minúty-dvoch.
 
-Nasadenie na Cloudflare Pages (ai.apoliak.online) — jednorazovo, 5 klikov
---------------------------------------------------------------------------
-  1. dash.cloudflare.com → Workers & Pages → Create → Pages → Connect to Git
-     → repo Apoliak7777/ai-ucenie, názov projektu ai-ucenie,
-     build command PRÁZDNY, output directory "/" → Save and Deploy
-  2. projekt → Settings → Bindings → Add → D1 database → Create new: ai-ucenie,
+Nasadenie na Cloudflare Pages (aiucenie.online) — jednorazovo
+--------------------------------------------------------------
+aiucenie.online je apex doména (bez "www" ani "ai." pred ňou). Takú vie Cloudflare
+Pages obslúžiť len vtedy, keď DNS domény riadi Cloudflare. Preto sa najprv prenesie
+DNS na Cloudflare (mailové schránky ostávajú na Hostingeri, len ich záznamy sa
+budú čítať z Cloudflare) a až potom sa pripája Pages.
+
+  A. DNS na Cloudflare (raz)
+  1. Počkať, kým Hostinger doménu rozbehne: v hpanel → Emails → aiucenie.online
+     zmizne hláška "domain setup isn't complete" a skúšobný mail na info@ príde.
+     Cloudflare si pri pridaní domény existujúce záznamy sám skopíruje, tak nech
+     už existujú (čerstvá doména: 15 minút až 24 hodín).
+  2. dash.cloudflare.com (vlastný účet, plán Free) → Add a domain → aiucenie.online
+     → Continue. V zozname záznamov musia byť mailové záznamy Hostingeru, VŠETKY
+     ako "DNS only" (sivý oblak, nie oranžový):
+       MX    @                           mx1.hostinger.com  (priorita 5)
+       MX    @                           mx2.hostinger.com  (priorita 10)
+       TXT   @                           v=spf1 include:_spf.mail.hostinger.com ~all
+       CNAME hostingermail-a._domainkey  hostingermail-a.dkim.mail.hostinger.com
+       CNAME hostingermail-b._domainkey  hostingermail-b.dkim.mail.hostinger.com
+       CNAME hostingermail-c._domainkey  hostingermail-c.dkim.mail.hostinger.com
+       TXT   _dmarc                      v=DMARC1; p=none
+     Rozhodujúce sú hodnoty, ktoré ukazuje Hostinger (hpanel → Emails →
+     aiucenie.online → Connect domain / DNS records), nie tento zoznam. Ak niečo
+     chýba, dopísať ručne.
+  3. Cloudflare ukáže dva nameservery (xxx.ns.cloudflare.com). Hostinger: hpanel →
+     Domains → aiucenie.online → DNS / Nameservers → Change nameservers → Custom
+     → vložiť oba. Propagácia trvá pár hodín, Cloudflare potom pošle mail "Active".
+
+  B. Pages (5 klikov)
+  4. Workers & Pages → Create → Pages → Connect to Git → repo Apoliak7777/ai-ucenie,
+     názov projektu ai-ucenie, build command PRÁZDNY, output directory "/"
+     → Save and Deploy
+  5. projekt → Settings → Bindings → Add → D1 database → Create new: ai-ucenie,
      Variable name: DB
-  3. Settings → Variables and Secrets → Add → typ Secret, meno SMTP_HESLO,
-     hodnota = heslo schránky apoliak@apoliak.online
-     a druhé tajomstvo ADMIN_HESLO = heslo, ktorým sa prihlásiš do /admin
-  4. Deployments → ⋯ pri poslednom → Retry deployment (aby bežal s DB a heslom)
-  5. Custom domains → Set up a custom domain → ai.apoliak.online
-     a u Hostingera (hpanel → Domény → apoliak.online → DNS) zmeniť záznam "ai"
-     z typu A (172.93.185.182) na CNAME → ai-ucenie.pages.dev
+  6. Settings → Variables and Secrets → Add → typ Secret:
+       SMTP_HESLO  = heslo schránky info@aiucenie.online (z nej odchádzajú potvrdenia)
+       ADMIN_HESLO = heslo, ktorým sa prihlásiš do /admin
+  7. Deployments → ⋯ pri poslednom → Retry deployment (aby bežal s DB a heslami)
+  8. Custom domains → Set up a custom domain → aiucenie.online, a ešte raz
+     www.aiucenie.online. DNS je už na Cloudflare, takže záznamy si Pages
+     vytvorí samo a HTTPS nabehne do pár minút.
 Tabuľku v D1 si backend vytvorí sám pri prvom dopyte. Rezervácie vidíš na
-https://ai.apoliak.online/admin (meno ľubovoľné, heslo ADMIN_HESLO): meno, mail,
+https://aiucenie.online/admin (meno ľubovoľné, heslo ADMIN_HESLO): meno, mail,
 telefón, balík, poznámka, kedy prišla; tlačidlo Zmazať uvoľní termín späť do ponuky.
 Log Functions: Deployments → View details → Functions.
 Repo môže zostať public — heslo je len v Cloudflare, v repe nie je nikde.
 
 Záloha: tá istá logika v Pythone pre vlastný VPS je v server/ (README tam).
-Ak by sa niekedy išlo na VPS, prepnúť DNS "ai" späť na A záznam servera.
+Ak by sa niekedy išlo na VPS, v Cloudflare DNS nahradiť záznam @ za A záznam servera.
+Stará adresa ai.apoliak.online sa už nepoužíva (v DNS apoliak.online mieri na VPS,
+kde pre ňu nič nebeží; dá sa zmazať alebo presmerovať).
 
 Kde si upravíš termíny
 ----------------------
@@ -82,7 +117,9 @@ ochrana-udajov.html do sekcie "Kde údaje sú" ako sprostredkovateľa.
 
 Čo ešte zostáva dorobiť
 -----------------------
-1. odkaz na ai.apoliak.online doplniť aj do webu apoliak.online
+1. odkaz na aiucenie.online doplniť aj do webu apoliak.online
+   a po skončení skúšobného obdobia zaplatiť Business Email na Hostingeri
+   (bez neho prestane odchádzať potvrdenie rezervácie aj kampaň)
 2. živnosť pred prvou prijatou platbou (zatiaľ web len ako projekt)
 3. platba kartou (Stripe) namiesto prevodu vopred — menej odpadne ľudí
 4. fotka namiesto monogramu (miesto je pripravené v index.html, sekcia Kto ťa učí)
@@ -113,7 +150,8 @@ Rozhodnuté
   (predtým / po hodine), nič sa nemusí dokladovať
 - ostrá verzia beží na Cloudflare Pages (nie VPS, nie GitHub Pages) — Alex VPS
   nepoužíva a nechce spravovať; GitHub Pages nevie /api, takže rezervácia by
-  tam išla cez mailto; subdoména ostáva ai.apoliak.online (je v celej stránke)
+  tam išla cez mailto; doména je aiucenie.online (Alex kúpil 12.09.2026 na
+  Hostingeri aj so schránkami info@ a help@), stará ai.apoliak.online sa nepoužíva
 - garancia „ak ti hodina nemá čo dať, poviem ti to pred platbou" je
   vytiahnutá z FAQ do hero (zelený pás pod nadpisom) — je to najsilnejší
   argument na stránke, vo FAQ ju nikto nevidel

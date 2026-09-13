@@ -123,7 +123,7 @@ Všetko sa nastavuje na jednom mieste — na začiatku `<script>` bloku v `index
 | `OBSADENE_URL` | `/api/obsadene` — odtiaľ si widget pri načítaní stiahne už obsadené termíny |
 | `ENDPOINT_EXTRA` | polia navyše, keby sa `ENDPOINT` nasmeroval na externú službu (napr. `access_key` pre Web3Forms) |
 
-Backend (Cloudflare Pages Functions) zapíše rezerváciu do D1, termín drží obsadený pre všetkých (druhý záujemca dostane 409 a widget ho vráti na výber) a cez SMTP schránky `apoliak@apoliak.online` pošle mail tebe aj potvrdenie klientovi. Jediné, čo treba nastaviť v Cloudflare, je tajomstvo `SMTP_HESLO` a D1 binding `DB` — zvyšok má predvolené hodnoty v `lib/rezervacie.js`.
+Backend (Cloudflare Pages Functions) zapíše rezerváciu do D1, termín drží obsadený pre všetkých (druhý záujemca dostane 409 a widget ho vráti na výber) a cez SMTP schránky `info@aiucenie.online` pošle mail tebe aj potvrdenie klientovi. Jediné, čo treba nastaviť v Cloudflare, je tajomstvo `SMTP_HESLO` a D1 binding `DB` — zvyšok má predvolené hodnoty v `lib/rezervacie.js`.
 
 Keď backend neodpovedá, widget zobrazí chybu a sám ponúkne e-mail ako záložnú cestu.
 
@@ -144,11 +144,12 @@ Keď backend neodpovedá, widget zobrazí chybu a sám ponúkne e-mail ako zálo
 
 **Ostrá verzia: Cloudflare Pages** — statika aj `/api/` z jedného repa, nasadenie = push do `main`, 0 €.
 
+0. `aiucenie.online` je apex doména, preto jej DNS musí riadiť Cloudflare: Add a domain → skontrolovať, že sa skopírovali mailové záznamy Hostingeru (MX, SPF, DKIM, DMARC, všetky DNS only) → u Hostingera prepnúť nameservery na tie z Cloudflare. Presný zoznam záznamov je v `PRECITAJ-MA.txt`.
 1. Cloudflare → Workers & Pages → Create → Pages → Connect to Git → `Apoliak7777/ai-ucenie`. Build command prázdny, output directory `/`.
 2. Projekt → Settings → Bindings → Add → D1 database → vytvoriť `ai-ucenie`, variable name **`DB`**.
-3. Settings → Variables and Secrets → Add → Secret **`SMTP_HESLO`** = heslo schránky `apoliak@apoliak.online`.
+3. Settings → Variables and Secrets → Add → Secret **`SMTP_HESLO`** = heslo schránky `info@aiucenie.online`, Secret **`ADMIN_HESLO`** = heslo do `/admin`.
 4. Deployments → Retry deployment (aby bežal s bindingmi).
-5. Custom domains → Set up → `ai.apoliak.online`; u Hostingera zmeniť záznam `ai` z A na **CNAME → `ai-ucenie.pages.dev`**.
+5. Custom domains → Set up → `aiucenie.online` a `www.aiucenie.online` (DNS je na Cloudflare, záznamy vzniknú samy).
 
 Lokálne skúšanie: `npm install`, do `.dev.vars` dať `SMTP_HESLO=…` a `ADMIN_HESLO=…` (vzor `.dev.vars.vzor`), `npm run dev` → `http://127.0.0.1:8788`.
 
@@ -179,6 +180,6 @@ Tento projekt je zverejnený bez licencie — všetky práva vyhradené. Kód si
 
 [![Web](https://img.shields.io/badge/apoliak.online-0b1020?style=flat-square)](https://apoliak.online)
 [![GitHub](https://img.shields.io/badge/GitHub-Apoliak7777-181717?style=flat-square&logo=github)](https://github.com/Apoliak7777)
-[![Email](https://img.shields.io/badge/Email-alexpoliak21%40gmail.com-EA4335?style=flat-square&logo=gmail&logoColor=white)](mailto:alexpoliak21@gmail.com)
+[![Email](https://img.shields.io/badge/Email-alexpoliak21%40gmail.com-EA4335?style=flat-square&logo=gmail&logoColor=white)](mailto:info@aiucenie.online)
 
 </div>

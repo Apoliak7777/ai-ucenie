@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-Rezervačný backend pre ai.apoliak.online.
+Rezervačný backend pre aiucenie.online.
 
 Robí tri veci, ktoré statická stránka nevie:
   1. zapíše rezerváciu natrvalo (SQLite), takže sa nestratí
@@ -51,7 +51,7 @@ def nacitaj_nastavenia():
 N = nacitaj_nastavenia()
 PORT = int(N.get("PORT", "8787"))
 ZNACKA = N.get("ZNACKA", "AI Učenie")
-WEB = N.get("WEB", "ai.apoliak.online")
+WEB = N.get("WEB", "aiucenie.online")
 
 
 # ---------- databáza ----------

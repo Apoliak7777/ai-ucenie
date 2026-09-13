@@ -1,4 +1,4 @@
--- Rezervácie pre ai.apoliak.online (Cloudflare D1).
+-- Rezervácie pre aiucenie.online (Cloudflare D1).
 -- Spustiť raz v D1 konzole (Workers & Pages → D1 → ai-ucenie → Console), alebo lokálne: npm run db:local
 CREATE TABLE IF NOT EXISTS rezervacie (
   id        INTEGER PRIMARY KEY AUTOINCREMENT,

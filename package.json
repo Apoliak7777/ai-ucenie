@@ -1,7 +1,7 @@
 {
   "name": "ai-ucenie",
   "private": true,
-  "description": "ai.apoliak.online — statická stránka + rezervačné Functions pre Cloudflare Pages",
+  "description": "aiucenie.online — statická stránka + rezervačné Functions pre Cloudflare Pages",
   "scripts": {
     "dev": "wrangler pages dev . --d1 DB --compatibility-date 2026-09-01 --port 8788 --ip 127.0.0.1"
   },
