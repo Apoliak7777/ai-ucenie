@@ -590,7 +590,7 @@ section{scroll-margin-top:20px}
       <div class="panel" id="p3">
         <div class="done">
           <div class="done__tick"><!-- Phosphor Icons: Check --><svg width="22" height="22" viewBox="0 0 256 256" fill="currentColor" aria-hidden="true"><path d="M229.66,77.66l-128,128a8,8,0,0,1-11.32,0l-56-56a8,8,0,0,1,11.32-11.32L96,188.69,218.34,66.34a8,8,0,0,1,11.32,11.32Z"/></svg></div>
-          <h3>Termín je odoslaný</h3>
+          <h3 id="doneTitle">Termín je odoslaný</h3>
           <p id="doneText">Ozvem sa ti do 24 hodín s odkazom na meeting a podkladmi na platbu.</p>
           <div class="done__row">
             <button class="cta" type="button" id="icsBtn">Pridať do kalendára</button>
@@ -729,17 +729,13 @@ section{scroll-margin-top:20px}
   var POCET_DNI = 10;       /* koľko dní s voľnými termínmi ponúknuť */
   var MOJ_MAIL = "info@aiucenie.online";
 
-  /* Kam sa rezervácia odošle: do Google tabuľky (rezervácia ide na pozadí, klient nemusí nikam
-     klikať a termín ostane obsadený pre všetkých). Kým adresa skriptu nie je doplnená, klientovi
-     sa otvorí mail (funguje hneď, ale rezervácia sa môže stratiť).
+  /* Kam sa rezervácia odošle.
+     Prázdne  = klientovi sa otvorí jeho mailový program s vyplnenou rezerváciou pre MOJ_MAIL (predvolené).
+     Vyplnené = rezervácia sa odošle na pozadí na túto adresu a klient nemusí nikam klikať, napr. Web3Forms:
+       ENDPOINT = "https://api.web3forms.com/submit";
+       ENDPOINT_EXTRA = { access_key: "sem-vloz-kluc", subject: "Nová rezervácia: AI Učenie" };
      Ak odoslanie zlyhá, web sám ponúkne mail ako záložnú cestu. */
-  /* Rezervácie sa ukladajú do Alexovej Google tabuľky cez Apps Script (google/Code.gs).
-     Po nasadení skriptu (Nasadiť → Webová aplikácia) sem patrí jeho adresa končiaca na /exec.
-     Pri lokálnom skúšaní sa použije napodobenina na porte 8787. */
-  var API = "https://script.google.com/macros/s/SEM-PRIDE-ADRESA-SKRIPTU/exec";
-  if (location.hostname === "127.0.0.1" || location.hostname === "localhost") API = "http://127.0.0.1:8787/exec";
-  var ENDPOINT = API.indexOf("SEM-PRIDE") === -1 ? API : "";   /* POST rezervácia; prázdne = otvorí sa mail */
-  var OBSADENE_URL = ENDPOINT ? API + "?akcia=obsadene" : "";  /* odtiaľ si widget stiahne už obsadené termíny */
+  var ENDPOINT = "";
   var ENDPOINT_EXTRA = {};
   /* ========================================================== */
 
@@ -893,23 +889,6 @@ section{scroll-margin-top:20px}
     $("termin").scrollIntoView({ behavior: "smooth", block: "start" });
   }
 
-  /* obsadené termíny zo servera, nech ich nevidí ani ďalší návštevník */
-  if (ENDPOINT && OBSADENE_URL){
-    fetch(OBSADENE_URL)
-      .then(function(r){ return r.ok ? r.json() : null; })
-      .then(function(j){
-        if (!j || !j.obsadene || !j.obsadene.length) return;
-        j.obsadene.forEach(function(slot){
-          if (OBSADENE.indexOf(slot) === -1) OBSADENE.push(slot);
-          dni.forEach(function(den){
-            den.casy.forEach(function(c){ if (den.kluc + " " + c.cas === slot) c.obsadene = true; });
-          });
-        });
-        kresliCasy();
-      })
-      .catch(function(){});
-  }
-
   $("bkForm").addEventListener("submit", function(ev){
     ev.preventDefault();
     if (posielam) return;
@@ -955,16 +934,16 @@ section{scroll-margin-top:20px}
       return;
     }
 
-    /* bez endpointu ostáva pôvodná cesta: otvorí sa klientovi mail */
+    /* predvolená cesta: klientovi sa otvorí mail s vyplnenou rezerváciou a on ho odošle */
     if (!ENDPOINT){
       window.location.href = odkaz;
+      $("doneTitle").textContent = "Ešte odošli ten mail";
       $("mailBtn").textContent = "Neotvoril sa mail?";
-      hotovo("Držím ti " + vybrany.label + ". Skontroluj, či sa ti otvoril mail a rezerváciu odošli. Potom sa ti do 24 hodín ozvem s odkazom na meeting a podkladmi na platbu.");
+      hotovo("Otvoril sa ti mail s rezerváciou na " + vybrany.label + ". Stačí ho odoslať a do 24 hodín sa ti ozvem s odkazom na meeting a podkladmi na platbu.");
       return;
     }
 
     var data = {
-      akcia: "rezervacia",
       termin: vybrany.label,
       slot: vybrany.slot,
       balik: balik,
@@ -977,24 +956,17 @@ section{scroll-margin-top:20px}
     Object.keys(ENDPOINT_EXTRA).forEach(function(k){ data[k] = ENDPOINT_EXTRA[k]; });
 
     busy(true);
-    /* bez vlastných hlavičiek: Apps Script prijme len jednoduchý dopyt (text/plain), inak ho prehliadač zastaví */
-    fetch(ENDPOINT, { method: "POST", body: JSON.stringify(data) }).then(function(r){
+    fetch(ENDPOINT, {
+      method: "POST",
+      headers: { "Content-Type": "application/json", "Accept": "application/json" },
+      body: JSON.stringify(data)
+    }).then(function(r){
       if (!r.ok) throw new Error("HTTP " + r.status);
-      return r.json();
-    }).then(function(j){
-      if (j && j.obsadene){
-        busy(false);
-        zablokuj(vybrany.slot);
-        chyba(j.chyba || "Tento termín si medzitým vzal niekto iný. Klikni na Zmeniť a vyber si iný.");
-        throw { obsadene: true };
-      }
-      if (!j || !j.ok) throw new Error(j && j.chyba ? j.chyba : "neznáma odpoveď");
       busy(false);
       zablokuj(vybrany.slot);
       $("mailBtn").textContent = "Napísať mi mail";
       hotovo("Držím ti " + vybrany.label + ". Ozvem sa do 24 hodín s odkazom na meeting a podkladmi na platbu.");
-    }).catch(function(e){
-      if (e && e.obsadene) return;
+    }).catch(function(){
       busy(false);
       chyba("Odoslanie mi teraz nevyšlo. Skús to prosím znova, alebo mi termín pošli mailom.");
       $("mailBtn").textContent = "Poslať rezerváciu mailom";

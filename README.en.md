@@ -43,7 +43,7 @@
 
 The whole site lives in a single `index.html` file: markup, CSS and JavaScript are inline. There is no backend, no build step and no package manager. The booking widget computes free slots from a weekly plan, the client picks a day, time and package, and the booking is delivered either to a custom endpoint or via a pre-filled e-mail.
 
-The user interface is entirely in Slovak (`<html lang="sk">`). Design: paper and ink, light theme with a system dark variant, one blue accent, Newsreader serif headings, fonts self-hosted in the repo, no third-party requests on load. The hero shows a real sample of the summary a client receives after the lesson; the booking widget sits at the end of the page, with a sticky price bar on mobile.
+The user interface is entirely in Slovak (`<html lang="sk">`). Design: paper and ink, light theme with a system dark variant, one blue accent, Newsreader serif headings, fonts self-hosted in the repo, no third-party requests on load. The hero shows a real sample of the summary a client receives after the lesson; the booking widget sits at the end of the page, with a sticky price bar on mobile. A booking is a plain e-mail from the client, the site needs no server.
 
 ---
 
@@ -92,12 +92,8 @@ ai-ucenie/
 ├── robots.txt            # indexing allowed, privacy page excluded
 ├── sitemap.xml           # single URL
 ├── .nojekyll             # disables Jekyll on GitHub Pages
-├── PRECITAJ-MA.txt       # editing and deployment notes (Slovak)
-├── admin/index.html      # password-protected bookings overview (static, data from the Google Sheet)
-├── google/Code.gs        # Apps Script bound to a Google Sheet: bookings, taken slots, e-mails, /admin
-├── server/, worker/, lib/, functions/   # older versions for a VPS / Cloudflare, unused
-├── schema.sql            # bookings table (also auto-created on first request)
-└── package.json          # worker-mailer + wrangler, only for the Cloudflare alternative
+├── CNAME                 # aiucenie.online domain for GitHub Pages
+└── PRECITAJ-MA.txt       # editing and deployment notes (Slovak)
 ```
 
 ---
@@ -117,16 +113,22 @@ Everything is configured in one place — at the top of the `<script>` block in 
 
 ## 📮 Booking Delivery
 
+After clicking Confirm, the client's mail program opens with a ready-made e-mail for `MOJ_MAIL` (slot, package, name, e-mail, phone, note). They just send it; they also get an `.ics` calendar file and a "Mail did not open?" button.
+
 | Variable | Meaning |
 |---|---|
-| `API` | Apps Script web app address (`…/exec`); on localhost the mock `http://127.0.0.1:8787/exec` is used automatically |
-| `ENDPOINT` | `= API` (POST with `akcia: "rezervacia"`); while `API` is not filled in it is empty and a pre-filled e-mail opens for the client |
-| `OBSADENE_URL` | `API + "?akcia=obsadene"` — the widget fetches already-taken slots from here on load |
-| `ENDPOINT_EXTRA` | extra fields in case `ENDPOINT` points at another service |
+| `MOJ_MAIL` | where bookings go (`info@aiucenie.online`) |
+| `ENDPOINT` | empty = the e-mail path (default); set = the booking is sent via `fetch` in the background, e.g. to Web3Forms |
+| `ENDPOINT_EXTRA` | extra fields the service requires (e.g. `access_key`) |
 
-The site is hosted on GitHub Pages, which serves static files only, so bookings are stored in a **Google Sheet** through Apps Script (`google/Code.gs`): it records the booking, keeps the slot taken for everyone (a second visitor gets `{obsadene: true}` and is sent back to pick another) and e-mails you plus a confirmation to the client. Requests carry no custom headers (`text/plain`) because Apps Script cannot answer preflight requests; status is read from the JSON, not the HTTP code.
+Example for Web3Forms:
 
-When the script does not respond, the widget shows an error and offers e-mail as the fallback path on its own.
+```js
+var ENDPOINT = "https://api.web3forms.com/submit";
+var ENDPOINT_EXTRA = { access_key: "your-key", subject: "Nová rezervácia: AI Učenie" };
+```
+
+When delivery via `ENDPOINT` fails, the widget shows an error and offers e-mail as the fallback path on its own.
 
 ---
 
@@ -143,27 +145,14 @@ When the script does not respond, the widget shows an error and offers e-mail as
 
 ## 🌍 Deployment
 
-**Site: GitHub Pages** from `main` (`CNAME` = `aiucenie.online`, A records at Hostinger point to GitHub). Deploy = push to `main`.
-
-**Bookings: Google Sheet + Apps Script** (your own Google account, nothing else):
-
-1. `sheets.new` → Extensions → Apps Script → paste `google/Code.gs` with `ADMIN_HESLO` filled in, save
-2. Deploy → New deployment → Web app, Execute as **Me**, Who has access **Anyone** → Deploy → Authorize access
-3. copy the `…/exec` address into the `API` variable in `index.html` and `admin/index.html`, push
-
-Changing the script = new code + Deploy → Manage deployments → new version. Full steps in `PRECITAJ-MA.txt` (Slovak).
-
-**Bookings overview:** `/admin/` is a static page (`admin/index.html`) that, after the password is entered, fetches data from the script (`{akcia: "rezervacie", heslo}`); it lists upcoming and past bookings with all details and a Delete button that frees the slot again. Kept out of search indexes (`robots.txt`, `noindex`). The same data is visible directly in the sheet.
-
-Older backends for a private VPS (`server/`) and Cloudflare (`worker/`, `lib/`, `functions/`) remain in the repo, unused.
+GitHub Pages from `main`, `CNAME` = `aiucenie.online`, A records at Hostinger point to GitHub. Deploy = push to `main`, live within a minute or two. Nothing else is needed: the site is pure static files.
 
 ---
 
 ## ⚠️ Known Limitations
 
-- 🗓️ **Availability lives in the backend, not a calendar** - slots agreed outside the site (phone, e-mail) must be added to `OBSADENE` in `index.html`, otherwise the widget keeps offering them.
-- 📮 **When the backend is down, bookings go through `mailto:`** - if the client has no mail client configured, the booking may never be sent.
-- ✉️ **E-mails are best effort** - the booking is always stored; if SMTP fails (wrong password, outage) it is in Apps Script under Executions and the booking stays in the sheet and in `/admin`.
+- 🗓️ **`OBSADENE` is a manual list** - two people can book the same slot; a taken slot must be added to `OBSADENE` in `index.html` after every agreed lesson.
+- 📮 **Bookings go through `mailto:`** - the client's mail program opens with the e-mail pre-filled; without a configured mail client they have to write it themselves (the address and phone are on the page).
 - 🕐 **Times are in Slovak time** - the widget does not convert time zones; the page says so.
 
 ---

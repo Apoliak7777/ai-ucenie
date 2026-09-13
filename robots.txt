@@ -1,6 +1,5 @@
 User-agent: *
 Allow: /
 Disallow: /ochrana-udajov.html
-Disallow: /admin
 
 Sitemap: https://aiucenie.online/sitemap.xml

@@ -43,7 +43,7 @@
 
 Celý web žije v jednom súbore `index.html`: markup, CSS aj JavaScript sú inline. Nie je tu backend, build step ani package manager. Rezervačný widget si sám vypočíta voľné termíny z týždenného plánu, klient si vyberie deň, čas a balík, a rezervácia odíde buď na vlastný endpoint, alebo cez predvyplnený e-mail.
 
-Používateľské rozhranie je kompletne v slovenčine (`<html lang="sk">`). Dizajn: papier a atrament, svetlá téma s tmavou podľa systému, jeden modrý akcent, nadpisy serifom Newsreader, písma hostované priamo v repe, žiadne cudzie požiadavky pri načítaní. V hero stojí skutočná ukážka zápisu, ktorý klient po hodine dostane; rezervačný widget je na konci stránky, na mobile ho pripomína lepiaci pás.
+Používateľské rozhranie je kompletne v slovenčine (`<html lang="sk">`). Dizajn: papier a atrament, svetlá téma s tmavou podľa systému, jeden modrý akcent, nadpisy serifom Newsreader, písma hostované priamo v repe, žiadne cudzie požiadavky pri načítaní. V hero stojí skutočná ukážka zápisu, ktorý klient po hodine dostane; rezervačný widget je na konci stránky, na mobile ho pripomína lepiaci pás. Rezervácia je obyčajný e-mail od klienta, stránka nepotrebuje žiadny server.
 
 ---
 
@@ -92,12 +92,8 @@ ai-ucenie/
 ├── robots.txt            # indexovanie povolené, GDPR stránka mimo
 ├── sitemap.xml           # jedna URL
 ├── .nojekyll             # vypína Jekyll na GitHub Pages
-├── PRECITAJ-MA.txt       # poznámky k úpravám a nasadeniu
-├── admin/index.html      # prehľad rezervácií za heslom (statika, dáta z Google tabuľky)
-├── google/Code.gs        # Apps Script do Google tabuľky: rezervácie, obsadené termíny, maily, /admin
-├── server/, worker/, lib/, functions/   # staršie verzie pre VPS / Cloudflare, nepoužité
-├── schema.sql            # tabuľka rezervácií (vzniká aj sama pri prvom dopyte)
-└── package.json          # worker-mailer + wrangler, len pre Cloudflare alternatívu
+├── CNAME                 # doména aiucenie.online pre GitHub Pages
+└── PRECITAJ-MA.txt       # poznámky k úpravám a nasadeniu
 ```
 
 ---
@@ -117,16 +113,22 @@ Všetko sa nastavuje na jednom mieste — na začiatku `<script>` bloku v `index
 
 ## 📮 Odosielanie rezervácií
 
+Po kliknutí na Potvrdiť sa klientovi otvorí jeho mailový program s hotovým mailom pre `MOJ_MAIL` (termín, balík, meno, mail, telefón, poznámka). Stačí ho odoslať; k tomu dostane `.ics` do kalendára a tlačidlo „Neotvoril sa mail?“.
+
 | Premenná | Význam |
 |---|---|
-| `API` | adresa Apps Scriptu (`…/exec`); na localhoste sa automaticky použije napodobenina `http://127.0.0.1:8787/exec` |
-| `ENDPOINT` | `= API` (POST s `akcia: "rezervacia"`); kým `API` nie je doplnené, je prázdne a klientovi sa otvorí predvyplnený e-mail |
-| `OBSADENE_URL` | `API + "?akcia=obsadene"` — odtiaľ si widget pri načítaní stiahne už obsadené termíny |
-| `ENDPOINT_EXTRA` | polia navyše, keby sa `ENDPOINT` nasmeroval na inú službu |
+| `MOJ_MAIL` | kam rezervácie chodia (`info@aiucenie.online`) |
+| `ENDPOINT` | prázdne = cesta cez mail (predvolené); vyplnené = rezervácia sa odošle `fetch`-om na pozadí, napr. na Web3Forms |
+| `ENDPOINT_EXTRA` | polia navyše, ktoré služba vyžaduje (napr. `access_key`) |
 
-Stránka beží na GitHub Pages, ktorý vie len statické súbory, preto rezervácie ukladá **Google tabuľka** cez Apps Script (`google/Code.gs`): zapíše rezerváciu, termín drží obsadený pre všetkých (druhý záujemca dostane `{obsadene: true}` a widget ho vráti na výber) a pošle mail tebe aj potvrdenie klientovi. Dopyty idú bez vlastných hlavičiek (`text/plain`), lebo Apps Script nevie odpovedať na preflight; stav sa číta z JSON, nie z HTTP kódu.
+Príklad pre Web3Forms:
 
-Keď skript neodpovedá, widget zobrazí chybu a sám ponúkne e-mail ako záložnú cestu.
+```js
+var ENDPOINT = "https://api.web3forms.com/submit";
+var ENDPOINT_EXTRA = { access_key: "tvoj-kluc", subject: "Nová rezervácia: AI Učenie" };
+```
+
+Keď odoslanie cez `ENDPOINT` zlyhá, widget zobrazí chybu a sám ponúkne e-mail ako záložnú cestu.
 
 ---
 
@@ -143,27 +145,14 @@ Keď skript neodpovedá, widget zobrazí chybu a sám ponúkne e-mail ako zálo�
 
 ## 🌍 Nasadenie
 
-**Stránka: GitHub Pages** z vetvy `main` (súbor `CNAME` = `aiucenie.online`, A záznamy u Hostingera mieria na GitHub). Nasadenie = push do `main`.
-
-**Rezervácie: Google tabuľka + Apps Script** (vlastný Google účet, nič ďalšie):
-
-1. `sheets.new` → Rozšírenia → Apps Script → vložiť `google/Code.gs` s doplneným `ADMIN_HESLO`, uložiť
-2. Nasadiť → Nová verzia nasadenia → Webová aplikácia, Spustiť ako **Ja**, Kto má prístup **Ktokoľvek** → Nasadiť → Povoliť prístup
-3. skopírovať adresu `…/exec` do premennej `API` v `index.html` a `admin/index.html`, pushnúť
-
-Zmena skriptu = nový kód + Nasadiť → Spravovať nasadenia → nová verzia. Podrobný postup v `PRECITAJ-MA.txt`.
-
-**Prehľad rezervácií:** `/admin/` je statická stránka (`admin/index.html`), ktorá si po zadaní hesla ťahá dáta zo skriptu (`{akcia: "rezervacie", heslo}`); ukáže nadchádzajúce a prebehnuté rezervácie so všetkými údajmi a tlačidlom Zmazať, ktoré termín uvoľní späť do ponuky. Je mimo indexu (`robots.txt`, `noindex`). Tie isté dáta sú aj priamo v tabuľke.
-
-Staršie verzie backendu pre vlastný VPS (`server/`) a Cloudflare (`worker/`, `lib/`, `functions/`) ostávajú v repe, nepoužívajú sa.
+GitHub Pages z vetvy `main`, súbor `CNAME` = `aiucenie.online`, A záznamy u Hostingera mieria na GitHub. Nasadenie = push do `main`, o minútu-dve je zmena naživo. Nič iné netreba: stránka je čistá statika.
 
 ---
 
 ## ⚠️ Známe obmedzenia
 
-- 🗓️ **Obsadenosť drží backend, nie kalendár** - termíny dohodnuté mimo stránky (telefón, mail) treba dopísať do `OBSADENE` v `index.html`, inak ich widget ponúka ďalej.
-- 📮 **Keď backend nebeží, ide rezervácia cez `mailto:`** - ak klient nemá v systéme nastavený mailový program, rezervácia sa nemusí odoslať.
-- ✉️ **Maily sú „best effort“** - rezervácia sa zapíše vždy; keď SMTP zlyhá (zlé heslo, výpadok), je to v Apps Scripte v položke Vykonania a rezervácia ostáva v tabuľke aj v `/admin`.
+- 🗓️ **`OBSADENE` je ručný zoznam** - dvaja ľudia si vedia rezervovať ten istý čas; obsadený termín treba po každej dohodnutej hodine dopísať do `OBSADENE` v `index.html`.
+- 📮 **Rezervácia ide cez `mailto:`** - klientovi sa otvorí jeho mailový program s vyplneným mailom; ak žiadny nastavený nemá, musí mail napísať sám (adresa a telefón sú na stránke).
 - 🕐 **Časy sú v slovenskom čase** - widget neprepočítava časové pásma, na stránke je to uvedené.
 
 ---

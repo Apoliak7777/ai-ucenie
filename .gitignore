@@ -1,8 +1,6 @@
-server/nastavenia.env
-server/rezervacie.sqlite
-server/__pycache__/
+# lokálne zvyšky zo skúšania starších verzií s databázou (nie sú súčasťou stránky)
 node_modules/
 .wrangler/
 .dev.vars
-worker/.dev.vars
-worker/.wrangler/
+server/
+worker/

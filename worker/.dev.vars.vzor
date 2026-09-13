@@ -1,4 +1,0 @@
-# Lokálne tajomstvá pre `npm run api:dev` (skopíruj ako worker/.dev.vars, je v .gitignore).
-# V produkcii: npx wrangler secret put SMTP_HESLO -c worker/wrangler.toml  (a to isté pre ADMIN_HESLO)
-SMTP_HESLO=
-ADMIN_HESLO=
