@@ -43,7 +43,7 @@
 
 The whole site lives in a single `index.html` file: markup, CSS and JavaScript are inline. There is no backend, no build step and no package manager. The booking widget computes free slots from a weekly plan, the client chooses a free intro call or a paid lesson, a day and a time, and sends the booking in one click via Gmail, Outlook, their mail program, SMS or by copying it (or to a custom endpoint).
 
-The user interface is entirely in Slovak (`<html lang="sk">`), in the formal register. Design: paper and ink, light theme with a system dark variant, one blue accent, Newsreader serif headings, fonts and images self-hosted in the repo, no third-party requests on load. Order: hero with a real sample of the lesson summary and three facts → what AI can do in seven industries (tabs) → how it works → who teaches (with certificates) → pricing → FAQ → booking, with a sticky bar on mobile.
+The user interface is entirely in Slovak (`<html lang="sk">`), in the formal register. Design: neutral light theme with a system dark variant, near-black text and a single accent, a lime "highlighter" `#D6FF4B`; IBM Plex Sans for everything, IBM Plex Mono for AI prompts; fonts and images self-hosted in the repo, no third-party requests on load. Order: hero with a real sample of the lesson summary → guarantee and pricing strip → what AI can do in seven industries (tabs) → process timeline → who teaches (certificate fan) → pricing grid → FAQ → booking, with a sticky bar on mobile.
 
 ---
 
@@ -55,7 +55,8 @@ The user interface is entirely in Slovak (`<html lang="sk">`), in the formal reg
 - 🗓️ **Automatic free slots** - the next `POCET_DNI` days are generated from the weekly `PLAN`; today's slots are only offered 2 hours ahead and weekends are skipped.
 - 📦 **Package picker inside the booking** - single hour, two in a row, 3 h / 6 h bundle or a small team; the choice is included in the submitted data.
 - 📮 **One-click sending** - Gmail, Outlook, the mail program (`mailto:`), SMS on mobile or copying the text; optionally `fetch` to a custom endpoint (FormSubmit, Web3Forms) that falls back to these paths when it fails.
-- 🎓 **Verifiable certificates** - three certificate previews in `img/` with links to verify them with the issuer.
+- 🎓 **Verifiable certificates** - three certificate previews in `img/` laid out as a fan, with links to verify them with the issuer.
+- ✨ **Subtle motion** - a highlighter stroke under the headline, AI prompts typing themselves out, a sliding tab indicator, a timeline that draws itself, the certificate fan, a sticky header; `transform`/`opacity` only (the highlighter once via `background-size`), all disabled by `prefers-reduced-motion`.
 - 🕳️ **Honeypot** - a hidden `web` field; when a spam bot fills it in, the booking is silently dropped.
 - ⏰ **Stale-slot check** - if the tab was left open too long and the chosen slot has passed, the widget sends the client back to the picker instead of submitting a booking in the past.
 - 📆 **Calendar export (.ics)** - with reminders one day and one hour before the lesson, and the organizer set.
@@ -91,7 +92,7 @@ ai-ucenie/
 ├── 404.html              # custom not-found page
 ├── og-image.png          # 1200×630 link-sharing image
 ├── og-image.svg          # OG image source (fonts from fonts/, PNG is a browser capture of it)
-├── fonts/                # Newsreader (headings) + Manrope (text), self-hosted, no Google Fonts
+├── fonts/                # IBM Plex Sans + IBM Plex Mono, self-hosted, no Google Fonts (Newsreader and Manrope no longer used)
 ├── img/                  # certificate previews for the "who teaches you" section
 ├── robots.txt            # indexing allowed, privacy page excluded
 ├── sitemap.xml           # single URL

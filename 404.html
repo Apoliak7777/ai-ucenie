@@ -5,54 +5,58 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Stránka sa nenašla: AI Učenie</title>
 <meta name="robots" content="noindex">
-<meta name="theme-color" content="#F8F7F4">
-<meta name="theme-color" media="(prefers-color-scheme: dark)" content="#141416">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='8' fill='%231F45D8'/%3E%3Ctext x='32' y='44' font-family='Georgia,serif' font-weight='600' font-size='34' text-anchor='middle' fill='%23fff'%3EA%3C/text%3E%3C/svg%3E">
+<meta name="theme-color" content="#F3F4F1">
+<meta name="theme-color" media="(prefers-color-scheme: dark)" content="#101210">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%23121412'/%3E%3Crect x='14' y='40' width='36' height='9' fill='%23D6FF4B'/%3E%3Ctext x='32' y='41' font-family='Arial,Helvetica,sans-serif' font-weight='700' font-size='30' text-anchor='middle' fill='%23ffffff'%3EAI%3C/text%3E%3C/svg%3E">
 <style>
 /* 404 sa zobrazuje na ľubovoľnej adrese, preto sú cesty k písmam aj odkazy absolútne na doménu. */
-@font-face{font-family:'Newsreader';font-style:normal;font-weight:500;font-display:swap;src:url('https://aiucenie.online/fonts/newsreader-500-latin-ext.woff2') format('woff2');unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF}
-@font-face{font-family:'Newsreader';font-style:normal;font-weight:500;font-display:swap;src:url('https://aiucenie.online/fonts/newsreader-500-latin.woff2') format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
-@font-face{font-family:'Manrope';font-style:normal;font-weight:200 800;font-display:swap;src:url('https://aiucenie.online/fonts/manrope-latin-ext.woff2') format('woff2');unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF}
-@font-face{font-family:'Manrope';font-style:normal;font-weight:200 800;font-display:swap;src:url('https://aiucenie.online/fonts/manrope-latin.woff2') format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+@font-face{font-family:'IBM Plex Sans';font-style:normal;font-weight:400 700;font-display:swap;src:url('https://aiucenie.online/fonts/plex-sans-latin-ext.woff2') format('woff2');unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF}
+@font-face{font-family:'IBM Plex Sans';font-style:normal;font-weight:400 700;font-display:swap;src:url('https://aiucenie.online/fonts/plex-sans-latin.woff2') format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
 :root{
   color-scheme:light dark;
-  --bg:#F8F7F4; --surface:#FFFFFF; --ink:#151517; --ink-2:#3A3A3E; --muted:#6E6E74; --line:rgba(21,21,23,.13); --box-line:rgba(21,21,23,.08); --acc:#1F45D8; --acc-hover:#1836B4; --acc-ink:#FFFFFF; --acc-line:rgba(31,69,216,.32); --shadow:0 1px 2px rgba(21,21,23,.06),0 24px 48px -28px rgba(21,21,23,.32);
-  --display:"Newsreader",Georgia,"Times New Roman",serif;
-  --body:"Manrope","Segoe UI",system-ui,sans-serif;
-  --ease:cubic-bezier(.32,.72,0,1);
+  --bg:#F3F4F1; --ink:#121412; --ink-2:#3A3F3B; --muted:#5E655F; --line-strong:rgba(18,20,18,.24);
+  --lime:#D6FF4B; --lime-hover:#C9F53A; --lime-ink:#121412; --mark:#D6FF4B; --ring:#121412;
+  --font:"IBM Plex Sans","Segoe UI",system-ui,sans-serif;
+  --ease:cubic-bezier(.16,1,.3,1);
 }
 @media (prefers-color-scheme:dark){
-  :root{--bg:#141416; --surface:#1D1D20; --ink:#EDEBE6; --ink-2:#C9C7C1; --muted:#9A9893; --line:rgba(237,235,230,.15); --box-line:rgba(237,235,230,.10); --acc:#8FA5FF; --acc-hover:#A9B9FF; --acc-ink:#0E1330; --acc-line:rgba(143,165,255,.4); --shadow:0 1px 2px rgba(0,0,0,.4),0 24px 48px -28px rgba(0,0,0,.8)}
+  :root{--bg:#101210; --ink:#ECEFE9; --ink-2:#C4CAC2; --muted:#959C94; --line-strong:rgba(236,239,233,.26); --mark:rgba(214,255,75,.42); --ring:#D6FF4B}
 }
 *,*::before,*::after{box-sizing:border-box}
 body{margin:0;min-height:100dvh;display:grid;place-items:center;padding:32px 20px;
-  background:var(--bg);color:var(--ink);font-family:var(--body);line-height:1.6}
-main{max-width:520px}
+  background:var(--bg);color:var(--ink);font-family:var(--font);line-height:1.6}
+main{max-width:540px}
 a{color:inherit}
-:focus-visible{outline:2px solid var(--acc);outline-offset:3px;border-radius:6px}
-.brand{display:inline-block;text-decoration:none;font-family:var(--display);font-weight:500;font-size:1.06rem;letter-spacing:-.02em;margin-bottom:40px}
-.code{font-family:var(--display);font-weight:500;font-size:clamp(4.5rem,16vw,8rem);line-height:.9;letter-spacing:-.05em;margin:0;color:var(--acc)}
-h1{font-family:var(--display);font-weight:500;font-size:clamp(1.5rem,4vw,2.1rem);letter-spacing:-.022em;line-height:1.1;margin:18px 0 0;text-wrap:balance}
+:focus-visible{outline:2px solid var(--ring);outline-offset:3px;border-radius:4px}
+.brand{display:inline-flex;align-items:center;gap:10px;text-decoration:none;font-weight:600;font-size:1.06rem;letter-spacing:-.02em;margin-bottom:40px}
+.brand span{display:grid;place-items:center;width:30px;height:30px;border-radius:7px;background:var(--ink);color:var(--bg);font-size:.72rem;font-weight:700;
+  background-image:linear-gradient(var(--lime),var(--lime));background-repeat:no-repeat;background-size:62% 4px;background-position:50% 76%}
+.code{font-weight:600;font-size:clamp(4.5rem,16vw,8rem);line-height:.9;letter-spacing:-.05em;margin:0;font-variant-numeric:tabular-nums}
+.code span{background-image:linear-gradient(var(--mark),var(--mark));background-repeat:no-repeat;background-position:0 92%;background-size:100% .22em}
+h1{font-weight:600;font-size:clamp(1.5rem,4vw,2.1rem);letter-spacing:-.025em;line-height:1.1;margin:22px 0 0;text-wrap:balance}
 p{color:var(--ink-2);margin:14px 0 0;max-width:44ch;text-wrap:pretty}
-.row{display:flex;flex-wrap:wrap;gap:10px;margin-top:28px}
-.cta{display:inline-flex;align-items:center;justify-content:center;font-weight:700;font-size:.96rem;
-  padding:13px 22px;border-radius:6px;border:1px solid transparent;text-decoration:none;white-space:nowrap;
-  background:var(--acc);color:var(--acc-ink);transition:background-color .3s var(--ease),transform .3s var(--ease),border-color .3s var(--ease)}
-.cta:hover{background:var(--acc-hover);transform:translateY(-1px)}
-.cta:active{transform:scale(.98)}
-.cta--line{background:transparent;color:var(--ink);border-color:var(--line)}
-.cta--line:hover{background:transparent;border-color:var(--ink)}
+.row{display:flex;flex-wrap:wrap;gap:12px;margin-top:28px}
+.btn{display:inline-flex;align-items:center;justify-content:center;font-weight:600;font-size:.98rem;
+  padding:14px 20px;border-radius:8px;border:1px solid transparent;text-decoration:none;white-space:nowrap;touch-action:manipulation;
+  transition:background-color .25s var(--ease),transform .35s var(--ease),border-color .25s var(--ease)}
+.btn:active{transform:scale(.98)}
+.btn--lime{background:var(--lime);color:var(--lime-ink)}
+.btn--lime:hover{background:var(--lime-hover);transform:translateY(-1px)}
+.btn--lime:focus-visible{outline-color:var(--ink)}
+.btn--line{background:transparent;color:var(--ink);border-color:var(--line-strong)}
+.btn--line:hover{border-color:var(--ink)}
+@media (prefers-reduced-motion:reduce){.btn{transition:none}}
 </style>
 </head>
 <body>
   <main>
-    <a class="brand" href="https://aiucenie.online/">AI Učenie</a>
-    <p class="code">404</p>
+    <a class="brand" href="https://aiucenie.online/" translate="no"><span aria-hidden="true">AI</span>AI Učenie</a>
+    <p class="code"><span>404</span></p>
     <h1>Táto stránka tu nie je</h1>
     <p>Buď je v&nbsp;odkaze preklep, alebo som stránku presunul. Termín si vyberiete na hlavnej stránke, úvodný hovor je zadarmo.</p>
     <div class="row">
-      <a class="cta" href="https://aiucenie.online/#termin">Vybrať termín</a>
-      <a class="cta cta--line" href="tel:+421902464022">Zavolať 0902&nbsp;464&nbsp;022</a>
+      <a class="btn btn--lime" href="https://aiucenie.online/#termin">Vybrať termín</a>
+      <a class="btn btn--line" href="tel:+421902464022">Zavolať 0902&nbsp;464&nbsp;022</a>
     </div>
   </main>
 </body>

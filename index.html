@@ -5,8 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>AI školenie pre firmy a živnostníkov online | AI Učenie</title>
 <meta name="description" content="Naučím vás a váš tím pracovať s ChatGPT a Claude na vašich vlastných mailoch, ponukách a tabuľkách. Online, jeden na jedného, 25 € za hodinu, tím do štyroch ľudí 39 €. Úvodný 15-minútový hovor zadarmo.">
-<meta name="theme-color" content="#F8F7F4">
-<meta name="theme-color" media="(prefers-color-scheme: dark)" content="#141416">
+<meta name="theme-color" content="#F3F4F1">
+<meta name="theme-color" media="(prefers-color-scheme: dark)" content="#101210">
 <link rel="canonical" href="https://aiucenie.online/">
 <meta property="og:title" content="AI Učenie: naučím vás pracovať s AI na vašej vlastnej práci">
 <meta property="og:description" content="Online školenie AI pre malé firmy a živnostníkov. Vaše maily, ponuky a tabuľky, jeden na jedného. 25 € za hodinu, úvodný hovor zadarmo.">
@@ -20,348 +20,434 @@
 <meta name="twitter:title" content="AI Učenie: naučím vás pracovať s AI na vašej vlastnej práci">
 <meta name="twitter:description" content="Online školenie AI pre malé firmy a živnostníkov. Vaše maily, ponuky a tabuľky, jeden na jedného. 25 € za hodinu, úvodný hovor zadarmo.">
 <meta name="twitter:image" content="https://aiucenie.online/og-image.png">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='8' fill='%231F45D8'/%3E%3Ctext x='32' y='44' font-family='Georgia,serif' font-weight='600' font-size='34' text-anchor='middle' fill='%23fff'%3EA%3C/text%3E%3C/svg%3E">
-<link rel="preload" href="fonts/newsreader-500-latin.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="preload" href="fonts/newsreader-500-latin-ext.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="preload" href="fonts/manrope-latin.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="preload" href="fonts/manrope-latin-ext.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%23121412'/%3E%3Crect x='14' y='40' width='36' height='9' fill='%23D6FF4B'/%3E%3Ctext x='32' y='41' font-family='Arial,Helvetica,sans-serif' font-weight='700' font-size='30' text-anchor='middle' fill='%23ffffff'%3EAI%3C/text%3E%3C/svg%3E">
+<link rel="preload" href="fonts/plex-sans-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="fonts/plex-sans-latin-ext.woff2" as="font" type="font/woff2" crossorigin>
 <script>document.documentElement.classList.add("js");</script>
 <style>
-/* Písma sú hostované tu, nie na Google Fonts: pri načítaní stránky neodchádza žiadny cudzí dopyt. */
-@font-face{font-family:'Newsreader';font-style:normal;font-weight:500;font-display:swap;src:url('fonts/newsreader-500-latin-ext.woff2') format('woff2');unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF}
-@font-face{font-family:'Newsreader';font-style:normal;font-weight:500;font-display:swap;src:url('fonts/newsreader-500-latin.woff2') format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
-@font-face{font-family:'Manrope';font-style:normal;font-weight:200 800;font-display:swap;src:url('fonts/manrope-latin-ext.woff2') format('woff2');unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF}
-@font-face{font-family:'Manrope';font-style:normal;font-weight:200 800;font-display:swap;src:url('fonts/manrope-latin.woff2') format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+/* Písma sú hostované tu, nie na Google Fonts: pri načítaní stránky neodchádza žiadny cudzí dopyt.
+   IBM Plex Sans (variabilná 400 až 700) na všetko, IBM Plex Mono len na zadania pre AI a čísla. */
+@font-face{font-family:'IBM Plex Sans';font-style:normal;font-weight:400 700;font-display:swap;src:url('fonts/plex-sans-latin-ext.woff2') format('woff2');unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF}
+@font-face{font-family:'IBM Plex Sans';font-style:normal;font-weight:400 700;font-display:swap;src:url('fonts/plex-sans-latin.woff2') format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+@font-face{font-family:'IBM Plex Mono';font-style:normal;font-weight:400;font-display:swap;src:url('fonts/plex-mono-400-latin-ext.woff2') format('woff2');unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF}
+@font-face{font-family:'IBM Plex Mono';font-style:normal;font-weight:400;font-display:swap;src:url('fonts/plex-mono-400-latin.woff2') format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+@font-face{font-family:'IBM Plex Mono';font-style:normal;font-weight:500;font-display:swap;src:url('fonts/plex-mono-500-latin-ext.woff2') format('woff2');unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF}
+@font-face{font-family:'IBM Plex Mono';font-style:normal;font-weight:500;font-display:swap;src:url('fonts/plex-mono-500-latin.woff2') format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
 
 /* ---------- tokeny ----------
-   Papier a atrament: jedna svetlá téma (tmavá podľa systému), jeden modrý akcent,
-   nadpisy serifom Newsreader, všetko ostatné Manrope. Zaoblenia: prvky 6 px, hárky 8 px. */
+   Neutrálny svetlý podklad, takmer čierny text a jediný akcent: limetkový zvýrazňovač
+   (rovnaká farba ako na cv.apoliak.online). Limetka je len plocha, nikdy farba textu.
+   Zaoblenia: ovládacie prvky 8 px, plochy a hárky 14 px. */
 :root{
   color-scheme:light dark;
-  --bg:#F8F7F4; --surface:#FFFFFF; --surface-2:#EFEDE8;
-  --ink:#151517; --ink-2:#3A3A3E; --muted:#6E6E74;
-  --line:rgba(21,21,23,.13); --box-line:rgba(21,21,23,.08);
-  --acc:#1F45D8; --acc-hover:#1836B4; --acc-ink:#FFFFFF;
-  --acc-soft:rgba(31,69,216,.08); --acc-line:rgba(31,69,216,.32);
+  --bg:#F3F4F1; --surface:#FFFFFF; --surface-2:#E8EAE5;
+  --ink:#121412; --ink-2:#3A3F3B; --muted:#5E655F;
+  --line:rgba(18,20,18,.12); --line-strong:rgba(18,20,18,.24);
+  --lime:#D6FF4B; --lime-hover:#C9F53A; --lime-ink:#121412;
+  --mark:#D6FF4B; --ring:#121412;
+  --dark:#151815; --dark-ink:#EEF1EA; --dark-muted:#A7AFA5; --dark-line:rgba(238,241,234,.14);
   --err:#B3261E;
-  --shadow:0 1px 2px rgba(21,21,23,.06),0 24px 48px -28px rgba(21,21,23,.32);
-  --display:"Newsreader",Georgia,"Times New Roman",serif;
-  --body:"Manrope","Segoe UI",system-ui,sans-serif;
-  --ease:cubic-bezier(.32,.72,0,1);
-  --r:6px; --r-sheet:8px;
+  --shadow:0 1px 2px rgba(20,28,18,.06),0 22px 44px -26px rgba(20,28,18,.30);
+  --font:"IBM Plex Sans","Segoe UI",system-ui,sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,Consolas,monospace;
+  --ease:cubic-bezier(.16,1,.3,1);
+  --r-sm:8px; --r-lg:14px;
   --pad:clamp(20px,5vw,48px);
-  --gap:clamp(72px,9vw,120px);
+  --gap:clamp(84px,10vw,136px);
 }
 @media (prefers-color-scheme:dark){
   :root{
-    --bg:#141416; --surface:#1D1D20; --surface-2:#26262A;
-    --ink:#EDEBE6; --ink-2:#C9C7C1; --muted:#9A9893;
-    --line:rgba(237,235,230,.15); --box-line:rgba(237,235,230,.10);
-    --acc:#8FA5FF; --acc-hover:#A9B9FF; --acc-ink:#0E1330;
-    --acc-soft:rgba(143,165,255,.12); --acc-line:rgba(143,165,255,.4);
+    --bg:#101210; --surface:#181B18; --surface-2:#232723;
+    --ink:#ECEFE9; --ink-2:#C4CAC2; --muted:#959C94;
+    --line:rgba(236,239,233,.13); --line-strong:rgba(236,239,233,.26);
+    --mark:rgba(214,255,75,.42); --ring:#D6FF4B;
+    --dark:#0A0C0A; --dark-line:rgba(238,241,234,.16);
     --err:#F2A19A;
-    --shadow:0 1px 2px rgba(0,0,0,.4),0 24px 48px -28px rgba(0,0,0,.8);
+    --shadow:0 1px 2px rgba(0,0,0,.45),0 22px 44px -26px rgba(0,0,0,.85);
   }
 }
 
 /* ---------- základ ---------- */
 *,*::before,*::after{box-sizing:border-box}
 [hidden]{display:none!important}
-html{scroll-behavior:smooth;scroll-padding-bottom:88px}
-body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--body);
+html{scroll-behavior:smooth;scroll-padding-top:80px;scroll-padding-bottom:88px}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--font);
   font-size:clamp(16px,.3vw + 15px,17.5px);line-height:1.6;-webkit-tap-highlight-color:transparent}
-h1,h2,h3{font-family:var(--display);font-weight:500;font-optical-sizing:auto;margin:0;text-wrap:balance;letter-spacing:-.012em}
-h1{font-size:clamp(2.4rem,1.4rem + 2.4vw,3.2rem);line-height:1.06}
-h2{font-size:clamp(1.9rem,1.2rem + 1.8vw,2.7rem);line-height:1.1;max-width:24ch}
-h3{font-size:1.45rem;line-height:1.2}
+h1,h2,h3{font-weight:600;margin:0;text-wrap:balance;letter-spacing:-.022em}
+h1{font-size:clamp(2.55rem,1.25rem + 3.9vw,4.55rem);line-height:1.02;letter-spacing:-.035em}
+h2{font-size:clamp(1.95rem,1.2rem + 1.9vw,2.85rem);line-height:1.08;max-width:22ch}
+h3{font-size:1.2rem;line-height:1.3;letter-spacing:-.01em}
 p{margin:0}
 a{color:inherit}
 button{font:inherit;color:inherit}
-strong{font-weight:700}
-:focus-visible{outline:2px solid var(--acc);outline-offset:3px;border-radius:4px}
-.shell{max-width:1120px;margin-inline:auto;padding-inline:var(--pad)}
-.lead{font-size:1.15rem;line-height:1.55;color:var(--ink-2);max-width:52ch;text-wrap:pretty}
-.jump{position:absolute;left:-9999px;top:12px;z-index:5;padding:10px 14px;background:var(--surface);border-radius:var(--r);box-shadow:var(--shadow)}
+a,button,label,input,select,textarea,summary{touch-action:manipulation}
+strong,b{font-weight:600}
+:focus-visible{outline:2px solid var(--ring);outline-offset:3px;border-radius:4px}
+[tabindex="-1"]:focus{outline:none}
+::selection{background:var(--lime);color:var(--lime-ink)}
+.shell{max-width:1160px;margin-inline:auto;padding-inline:var(--pad)}
+.lead{font-size:clamp(1.08rem,.95rem + .4vw,1.24rem);line-height:1.55;color:var(--ink-2);max-width:52ch;text-wrap:pretty}
+.jump{position:absolute;left:-9999px;top:12px;z-index:6;padding:10px 14px;background:var(--surface);border-radius:var(--r-sm);box-shadow:var(--shadow)}
 .jump:focus{left:12px}
 .sr{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
-section{scroll-margin-top:20px}
+/* odstup pod lepiacu hlavičku rieši len scroll-padding-top na html; scroll-margin by sa k nemu pripočítal */
 .zone{padding-top:var(--gap)}
-.sec__lead{margin-top:16px}
+.sec__lead{margin-top:18px}
+.num{font-weight:600;font-variant-numeric:tabular-nums;letter-spacing:-.02em}
 
-/* ---------- tlačidlá ---------- */
-.cta{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:13px 20px;
-  border-radius:var(--r);background:var(--acc);color:var(--acc-ink);font-weight:700;font-size:.98rem;
-  border:1px solid transparent;text-decoration:none;cursor:pointer;white-space:nowrap;
-  transition:background-color .3s var(--ease),transform .3s var(--ease),border-color .3s var(--ease)}
-.cta:hover{background:var(--acc-hover);transform:translateY(-1px)}
-.cta:active{transform:translateY(0) scale(.98)}
-.cta:disabled{opacity:.7;cursor:progress;transform:none}
-.cta--line{background:transparent;color:var(--ink);border-color:var(--line)}
-.cta--line:hover{background:transparent;border-color:var(--ink)}
+/* zvýrazňovač: limetkový ťah pod slovami, pri objavení sa „dopíše“ zľava doprava */
+.mark{background-image:linear-gradient(var(--mark),var(--mark));background-repeat:no-repeat;
+  background-position:0 92%;background-size:100% .3em;padding-inline:.02em}
 
-/* ---------- hlavička ---------- */
-.top{display:flex;align-items:center;justify-content:space-between;gap:20px;height:72px}
-.brand{font-family:var(--display);font-weight:500;font-size:1.3rem;letter-spacing:-.01em;text-decoration:none;color:var(--ink)}
-.top nav{display:flex;align-items:center;gap:clamp(14px,2.2vw,28px);font-size:.93rem;font-weight:600}
-.top nav a:not(.cta){color:var(--ink-2);text-decoration:none;padding:10px 0;transition:color .25s var(--ease)}
-.top nav a:not(.cta):hover{color:var(--ink)}
-.top nav .cta{padding:10px 16px;font-size:.92rem}
-@media (max-width:899px){.top nav a:not(.cta){display:none}}
-@media (max-width:419px){.top nav .cta{padding:9px 12px;font-size:.86rem}}
+/* ---------- tlačidlá a odkazy ---------- */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:14px 20px;border-radius:var(--r-sm);
+  font-weight:600;font-size:1rem;line-height:1.2;text-decoration:none;border:1px solid transparent;cursor:pointer;white-space:nowrap;
+  transition:transform .35s var(--ease),background-color .25s var(--ease),border-color .25s var(--ease),color .25s var(--ease)}
+.btn svg{width:18px;height:18px;flex:none;transition:transform .35s var(--ease)}
+.btn:hover svg{transform:translateX(3px)}
+.btn:active{transform:scale(.98)}
+.btn:disabled{opacity:.7;cursor:progress;transform:none}
+.btn--lime{background:var(--lime);color:var(--lime-ink)}
+.btn--lime:hover{background:var(--lime-hover);transform:translateY(-1px)}
+.btn--lime:focus-visible{outline-color:var(--ink)}
+.btn--ink{background:var(--ink);color:var(--bg)}
+.btn--ink:hover{transform:translateY(-1px);background:color-mix(in srgb,var(--ink) 86%,var(--bg))}
+.btn--line{background:transparent;color:var(--ink);border-color:var(--line-strong)}
+.btn--line:hover{border-color:var(--ink)}
+.link{font-weight:600;text-decoration:none;color:var(--ink);padding:4px 0;
+  background-image:linear-gradient(var(--mark),var(--mark));background-repeat:no-repeat;background-position:0 100%;background-size:100% 2px;
+  transition:background-size .35s var(--ease)}
+.link:hover{background-size:100% 100%}
+.link--plain{background-image:linear-gradient(var(--line-strong),var(--line-strong))}
 
-/* ---------- hero: sľub vľavo, skutočný zápis vpravo ---------- */
-.hero{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:clamp(32px,5vw,72px);align-items:center;padding-top:clamp(24px,4vw,56px)}
-.hero>*{min-width:0}
-.hero__text{display:grid;gap:22px;justify-items:start}
-.hero__cta{display:flex;flex-wrap:wrap;gap:10px 14px;align-items:center;margin-top:4px}
-.hero__guar{font-size:.95rem;color:var(--ink-2);max-width:50ch;padding-left:14px;border-left:3px solid var(--acc);text-wrap:pretty}
-.hero__guar strong{color:var(--ink)}
-.sheet-wrap{margin:0;justify-self:center;width:100%;max-width:420px}
-.sheet{background:var(--surface);border:1px solid var(--box-line);border-top:3px solid var(--acc);border-radius:var(--r-sheet);
-  box-shadow:var(--shadow);padding:clamp(20px,2.4vw,28px) clamp(20px,2.6vw,30px);transform:rotate(-1.5deg);transform-origin:50% 50%}
-.sheet__head{display:flex;justify-content:space-between;gap:12px;font-size:.78rem;font-weight:600;color:var(--muted);margin-bottom:10px}
-.sheet__title{font-family:var(--display);font-weight:500;font-size:1.5rem;line-height:1.2;letter-spacing:-.012em;margin:0 0 12px}
-.sheet__steps{margin:0;padding-left:1.3em;display:grid;gap:9px;font-size:.92rem;line-height:1.5;color:var(--ink-2)}
-.sheet__steps li::marker{font-weight:700;color:var(--ink)}
-.sheet__steps b{color:var(--ink)}
-.sheet__note{margin-top:14px;padding-top:12px;border-top:1px solid var(--line);font-size:.86rem;color:var(--muted)}
-.sheet-wrap figcaption{margin-top:22px;font-size:.9rem;color:var(--muted);text-align:center;text-wrap:pretty}
+/* ---------- hlavička: lepí sa hore, po odrolovaní dostane podklad ---------- */
+.vrch{position:absolute;top:0;left:0;width:1px;height:8px;pointer-events:none}
+.top{position:sticky;top:0;z-index:5;transition:background-color .3s var(--ease),box-shadow .3s var(--ease)}
+.top.is-stuck{background:color-mix(in srgb,var(--bg) 86%,transparent);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);box-shadow:0 1px 0 var(--line)}
+.top__in{display:flex;align-items:center;justify-content:space-between;gap:20px;height:68px}
+.brand{display:inline-flex;align-items:center;gap:10px;font-weight:600;font-size:1.08rem;letter-spacing:-.02em;text-decoration:none;color:var(--ink)}
+.brand__znak{display:grid;place-items:center;width:30px;height:30px;border-radius:7px;background:var(--ink);color:var(--bg);font-size:.72rem;font-weight:700;letter-spacing:0;
+  background-image:linear-gradient(var(--lime),var(--lime));background-repeat:no-repeat;background-size:62% 4px;background-position:50% 76%}
+.top nav{display:flex;align-items:center;gap:clamp(16px,2vw,28px);font-size:.94rem;font-weight:500}
+.top nav a:not(.btn){color:var(--ink-2);text-decoration:none;padding:10px 0;transition:color .25s var(--ease)}
+.top nav a:not(.btn):hover{color:var(--ink)}
+.top nav .btn{padding:10px 15px;font-size:.92rem;gap:0}
+@media (max-width:1079px){.top nav a:not(.btn){display:none}}
+@media (max-width:479px){.top nav .btn{padding:9px 12px;font-size:.88rem}.dlhe{display:none}}
+
+/* ---------- hero: veta cez celú šírku, pod ňou text a skutočný zápis z hodiny ---------- */
+.hero{padding-top:clamp(28px,5vw,64px)}
+.hero h1{max-width:13.5em}
+.hero__row{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:clamp(32px,6vw,96px);align-items:start;margin-top:clamp(28px,4vw,48px)}
+.hero__row>*{min-width:0}
+.hero__text{display:grid;gap:28px;justify-items:start;padding-top:6px}
+.hero__cta{display:flex;flex-wrap:wrap;gap:14px 22px;align-items:center}
+.doc{margin:0;isolation:isolate;justify-self:end;width:100%;max-width:560px}
+.doc__sheet{position:relative;background:var(--surface);border:1px solid var(--line);border-radius:var(--r-lg);box-shadow:var(--shadow);
+  padding:clamp(22px,2.6vw,32px) clamp(22px,2.8vw,34px)}
+.doc__sheet::before{content:"";position:absolute;inset:12px -12px -12px 12px;z-index:-1;border-radius:var(--r-lg);background:var(--surface-2);border:1px solid var(--line)}
+.doc__head{display:flex;justify-content:space-between;align-items:baseline;gap:12px;font-size:.82rem;color:var(--muted);padding-bottom:12px;border-bottom:1px solid var(--line)}
+.doc__head .num{font-size:.76rem}
+.doc__title{font-size:1.35rem;font-weight:600;letter-spacing:-.02em;line-height:1.25;margin:16px 0 14px}
+.doc__steps{margin:0;padding:0;list-style:none;display:grid;gap:14px;counter-reset:krok;font-size:.95rem;line-height:1.55;color:var(--ink-2)}
+.doc__steps li{counter-increment:krok;display:grid;grid-template-columns:28px minmax(0,1fr);gap:10px}
+.doc__steps li::before{content:counter(krok);font-family:var(--mono);font-weight:500;font-size:.8rem;color:var(--ink);
+  width:24px;height:24px;border-radius:6px;background:var(--surface-2);display:grid;place-items:center;margin-top:1px}
+.doc__steps b{color:var(--ink)}
+.doc__prompt{display:block;margin-top:8px;padding:10px 12px;border-radius:var(--r-sm);background:var(--surface-2);
+  font-family:var(--mono);font-size:.82rem;line-height:1.55;color:var(--ink)}
+.doc__note{margin-top:18px;padding-top:14px;border-top:1px solid var(--line);font-size:.86rem;color:var(--muted);text-wrap:pretty}
+.doc figcaption{margin-top:26px;font-size:.88rem;color:var(--muted);text-wrap:pretty}
 @media (max-width:899px){
-  .hero{grid-template-columns:minmax(0,1fr)}
-  .sheet{transform:none}
-  .sheet-wrap{max-width:460px;justify-self:start}
-  .sheet-wrap figcaption{text-align:left}
+  .hero__row{grid-template-columns:minmax(0,1fr)}
+  .doc{justify-self:start;max-width:520px}
 }
 
-/* ---------- tri fakty pod herom ---------- */
-.facts{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));margin:clamp(44px,6vw,72px) 0 0;
-  border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
-.fact{margin:0;padding:18px 20px 18px 0}
-.fact+.fact{padding-left:20px;border-left:1px solid var(--line)}
-.fact dt{font-weight:700;color:var(--ink)}
-.fact dd{margin:2px 0 0;font-size:.92rem;color:var(--muted);text-wrap:pretty}
-@media (max-width:699px){
-  .facts{grid-template-columns:1fr}
-  .fact{padding:14px 0}
-  .fact+.fact{padding-left:0;border-left:0;border-top:1px solid var(--line)}
-}
+/* ---------- pás pod herom: záruka vľavo, ceny vpravo ---------- */
+.pas{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:24px clamp(32px,6vw,96px);align-items:center;
+  margin-top:clamp(56px,7vw,96px);padding-block:clamp(26px,3vw,36px);border-block:1px solid var(--line)}
+.pas__veta{font-size:clamp(1.25rem,1rem + .8vw,1.6rem);font-weight:500;line-height:1.3;letter-spacing:-.015em;text-wrap:balance}
+.pas__fakty{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:18px 24px;margin:0}
+.pas__fakty div{display:grid;gap:4px;align-content:start}
+.pas__fakty dt{font-size:.84rem;color:var(--muted)}
+.pas__fakty dd{margin:0;font-size:1.06rem}
+.pas__fakty a{text-decoration:none}
+@media (max-width:999px){.pas{grid-template-columns:minmax(0,1fr)}}
+@media (max-width:560px){.pas__fakty{grid-template-columns:repeat(2,minmax(0,1fr))}}
 
-/* ---------- odbory: záložky a čo sa na hodine dá spraviť ---------- */
-.tabs{display:none;gap:8px;margin-top:32px;flex-wrap:wrap}
-.js .tabs{display:flex}
-.tab{flex:none;padding:10px 15px;border-radius:var(--r);border:1px solid var(--line);background:var(--surface);
-  font-weight:600;font-size:.93rem;cursor:pointer;
-  transition:border-color .25s var(--ease),background-color .25s var(--ease),color .25s var(--ease)}
-.tab:hover{border-color:var(--ink)}
-.tab[aria-selected="true"]{background:var(--ink);border-color:var(--ink);color:var(--bg)}
+/* ---------- odbory: záložky s posuvnou čiarou, úlohy a zadanie pre AI ---------- */
+.tabs{display:none;position:relative;gap:clamp(18px,2.4vw,30px);margin-top:36px;border-bottom:1px solid var(--line)}
+.js .tabs{display:flex;flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none}
+.tabs::-webkit-scrollbar{display:none}
+.tab{flex:none;position:relative;padding:12px 0 14px;border:0;background:none;cursor:pointer;font-weight:500;font-size:.98rem;color:var(--muted);
+  transition:color .25s var(--ease)}
+.tab:hover{color:var(--ink)}
+.tab[aria-selected="true"]{color:var(--ink);font-weight:600}
+.tabs__ind{position:absolute;left:0;bottom:0;width:1px;height:4px;background:var(--lime);transform-origin:0 50%;pointer-events:none;
+  transition:transform .45s var(--ease)}
 @media (max-width:640px){
-  .js .tabs{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;margin-inline:calc(var(--pad) * -1);padding-inline:var(--pad);scroll-padding-inline:var(--pad)}
-  .tabs::-webkit-scrollbar{display:none}
+  .js .tabs{margin-inline:calc(var(--pad) * -1);padding-inline:var(--pad);scroll-padding-inline:var(--pad)}
 }
-.odbor{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:28px clamp(28px,4vw,64px);
-  margin-top:28px;padding-top:30px;border-top:1px solid var(--line);align-items:start}
-.js .odbor{animation:objav .45s var(--ease)}
-.odbor__name{grid-column:1/-1;font-size:1.5rem}
+.odbor{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:32px clamp(32px,5vw,72px);margin-top:36px;align-items:start}
+.js .odbor{animation:objav .5s var(--ease)}
+.odbor__name{grid-column:1/-1;font-size:1.35rem}
 .js .odbor__name{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap}
-.ulohy{list-style:none;margin:0;padding:0;display:grid;gap:20px}
-.uloha{display:grid;gap:4px;padding-left:22px;position:relative}
-.uloha::before{content:"";position:absolute;left:0;top:.72em;width:10px;height:2px;background:var(--acc)}
-.uloha b{font-weight:700;color:var(--ink)}
-.uloha span{color:var(--ink-2);text-wrap:pretty}
-.zadanie{background:var(--surface);border:1px solid var(--box-line);border-top:3px solid var(--acc);border-radius:var(--r-sheet);
-  box-shadow:var(--shadow);padding:clamp(18px,2.2vw,24px) clamp(18px,2.4vw,26px);display:grid;gap:12px}
-.zadanie small{font-size:.78rem;font-weight:600;color:var(--muted)}
-.zadanie q{font-family:var(--display);font-size:1.16rem;line-height:1.42;color:var(--ink);quotes:"„" "“"}
-.pozor{font-size:.9rem;color:var(--ink-2);padding-top:12px;border-top:1px solid var(--line);text-wrap:pretty}
-.pozor strong{color:var(--ink)}
-.odbory__foot{display:flex;flex-wrap:wrap;align-items:center;gap:14px 28px;margin-top:40px;padding-top:24px;border-top:1px solid var(--line)}
-.odbory__foot p{color:var(--ink-2);max-width:60ch;text-wrap:pretty}
-@media (max-width:899px){.odbor{grid-template-columns:1fr}}
+.ulohy{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:30px 32px}
+.uloha{display:grid;gap:6px;align-content:start}
+.uloha b{font-weight:600;font-size:1.04rem;color:var(--ink);letter-spacing:-.01em}
+.uloha span{color:var(--ink-2);font-size:.97rem;text-wrap:pretty}
+.js .odbor .uloha{animation:objav .55s var(--ease) both;animation-delay:calc(var(--i,0) * 70ms)}
+.zadanie{background:var(--dark);color:var(--dark-ink);border:1px solid var(--dark-line);border-radius:var(--r-lg);
+  padding:clamp(20px,2.4vw,28px);display:grid;gap:14px;box-shadow:var(--shadow)}
+.zadanie__lbl{font-size:.82rem;color:var(--dark-muted)}
+.zadanie__txt{font-family:var(--mono);font-size:.93rem;line-height:1.6;min-height:6.4em}
+.zadanie__vis.is-typing::after{content:"";display:inline-block;width:.55em;height:1.05em;margin-left:2px;vertical-align:-.16em;background:var(--lime);
+  animation:kurzor 1s steps(1) infinite}
+.zadanie__pozor{font-size:.86rem;line-height:1.5;color:var(--dark-muted);padding-top:14px;border-top:1px solid var(--dark-line);text-wrap:pretty}
+.zadanie__pozor strong{color:var(--dark-ink)}
+.odbory__foot{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:18px 32px;margin-top:48px;padding-top:28px;border-top:1px solid var(--line)}
+.odbory__foot p{color:var(--ink-2);max-width:62ch;text-wrap:pretty}
+@media (max-width:899px){.odbor{grid-template-columns:minmax(0,1fr)}}
+@media (max-width:560px){.ulohy{grid-template-columns:minmax(0,1fr);gap:22px}}
 
-/* ---------- ako to prebieha: tri kroky ---------- */
-.kroky{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:28px clamp(24px,3vw,44px);margin-top:40px;counter-reset:krok}
-.krok{border-top:1px solid var(--ink);padding-top:18px;display:grid;gap:10px;align-content:start}
-.krok__n{font-family:var(--display);font-size:2.4rem;line-height:1;color:var(--acc);font-variant-numeric:tabular-nums}
-.krok h3{font-size:1.5rem}
-.krok p{color:var(--ink-2);text-wrap:pretty}
-.pozn{margin-top:32px;color:var(--muted);max-width:64ch;text-wrap:pretty}
-@media (max-width:767px){.kroky{grid-template-columns:1fr}}
+/* ---------- priebeh: časová os, ktorá sa pri objavení nakreslí ---------- */
+.cas{--tcol:clamp(120px,14vw,190px);position:relative;list-style:none;margin:52px 0 0;padding:0;display:grid;gap:44px}
+.cas::before{content:"";position:absolute;left:calc(var(--tcol) + 32px + 11px);top:14px;bottom:14px;width:2px;background:var(--line-strong);
+  transform-origin:50% 0}
+.cas__krok{position:relative;display:grid;grid-template-columns:var(--tcol) 24px minmax(0,1fr);column-gap:32px;align-items:start}
+.cas__t{text-align:right;font-family:var(--mono);font-weight:500;font-size:clamp(1.2rem,.9rem + .9vw,1.6rem);line-height:1.1;letter-spacing:-.02em;padding-top:3px}
+.cas__uzol{width:24px;height:24px;border-radius:7px;background:var(--bg);border:2px solid var(--ink);margin-top:4px;position:relative;z-index:1;
+  transition:background-color .4s var(--ease)}
+.cas__obsah{display:grid;gap:8px;max-width:60ch}
+.cas__obsah h3{font-size:1.3rem}
+.cas__obsah p{color:var(--ink-2);text-wrap:pretty}
+.pozn{margin-top:44px;color:var(--muted);max-width:64ch;text-wrap:pretty}
+@media (max-width:699px){
+  .cas{--tcol:0px}
+  .cas::before{left:11px}
+  .cas__krok{grid-template-columns:24px minmax(0,1fr);column-gap:20px}
+  .cas__t{grid-column:2;grid-row:1;text-align:left;font-size:1.1rem;margin-bottom:6px}
+  .cas__uzol{grid-column:1;grid-row:1}
+  .cas__obsah{grid-column:2}
+}
 
-/* ---------- kto vás učí: text vľavo, vizitka vpravo ---------- */
-.kto{display:grid;grid-template-columns:minmax(0,8fr) minmax(0,4fr);gap:clamp(28px,5vw,72px);align-items:start}
-.vizitka{display:grid;gap:6px;justify-items:start;align-content:start;padding-top:10px;border-top:1px solid var(--ink)}
-.mono{width:52px;height:52px;border-radius:50%;background:var(--acc-soft);color:var(--acc);font-family:var(--display);
-  font-size:1.2rem;letter-spacing:-.02em;display:grid;place-items:center;margin:8px 0 10px}
-/* keď bude fotka: <img class="foto" src="img/alex.jpg" width="800" height="1000" alt="Alex Poliak" loading="lazy"> namiesto .mono */
-.foto{width:min(100%,260px);aspect-ratio:4/5;object-fit:cover;border-radius:var(--r-sheet);display:block;margin:8px 0 14px}
-.kto__name{font-family:var(--display);font-size:1.35rem;color:var(--ink);line-height:1.2}
-.kto__role{color:var(--muted);font-size:.95rem}
-.kto__links{display:grid;gap:2px;margin-top:10px;font-weight:600}
-.kto__links a{color:var(--ink);text-decoration:none;padding:8px 0;border-bottom:1px solid var(--acc-line);transition:border-color .25s var(--ease)}
-.kto__links a:hover{border-color:var(--acc)}
-.kto__text{display:grid;gap:14px}
+/* ---------- kto vás učí: text vľavo, vejár certifikátov vpravo ---------- */
+.kto{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:48px clamp(32px,6vw,96px);align-items:center}
+.kto__text{display:grid;gap:16px}
 .kto__text h2{margin-bottom:6px}
 .kto__text p{color:var(--ink-2);text-wrap:pretty;max-width:60ch}
-.kto__text h3{font-family:var(--body);font-weight:700;font-size:1.05rem;letter-spacing:0;margin-top:14px}
-.certy{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin-top:6px}
-.cert{margin:0;display:grid;gap:10px;align-content:start}
-.cert img{display:block;width:100%;height:auto;border-radius:var(--r);border:1px solid var(--box-line);background:#E4DCCF}
-.cert figcaption{font-size:.86rem;line-height:1.45;color:var(--muted)}
-.cert figcaption b{display:block;color:var(--ink);font-weight:700}
-.cert a{color:var(--ink);font-weight:600;text-decoration:none;border-bottom:1px solid var(--acc-line);padding:2px 0}
-.cert a:hover{border-color:var(--acc)}
-@media (max-width:899px){.kto{grid-template-columns:1fr}.vizitka{margin-top:8px}}
-@media (max-width:560px){.certy{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.kto__text h3{font-size:1.06rem;margin-top:12px}
+.kto__id{display:flex;align-items:center;gap:14px;margin-bottom:4px}
+.kto__mono{flex:none;width:52px;height:52px;border-radius:12px;background:var(--lime);color:var(--lime-ink);display:grid;place-items:center;font-weight:600;font-size:1.05rem}
+/* keď bude fotka: <img class="kto__foto" src="img/alex.jpg" width="104" height="104" alt="Alex Poliak"> namiesto .kto__mono */
+.kto__foto{flex:none;width:52px;height:52px;border-radius:12px;object-fit:cover}
+.kto__name{font-weight:600;font-size:1.1rem;color:var(--ink)}
+.kto__role{font-size:.92rem;color:var(--muted)}
+.overit{list-style:none;margin:0;padding:0;display:grid;gap:8px}
+.overit a{display:inline-flex;align-items:center;gap:8px}
+.overit svg{width:15px;height:15px;flex:none}
+.kto__kontakt{display:flex;flex-wrap:wrap;gap:8px 24px;margin-top:10px}
+.vejar{position:relative;height:clamp(250px,30vw,380px);margin:0}
+.vejar img{position:absolute;left:12%;top:14%;width:76%;height:auto;border-radius:10px;border:1px solid var(--line);background:#E4DCCF;
+  box-shadow:var(--shadow);transition:transform 1s var(--ease)}
+.vejar img:nth-child(1){z-index:1;transform:translate(-13%,6%) rotate(-7deg)}
+.vejar img:nth-child(2){z-index:2;transform:translate(0,-4%) rotate(1.5deg)}
+.vejar img:nth-child(3){z-index:3;transform:translate(13%,9%) rotate(7deg)}
+.vejar:hover img:nth-child(1){transform:translate(-18%,4%) rotate(-10deg)}
+.vejar:hover img:nth-child(3){transform:translate(18%,10%) rotate(10deg)}
+.vejar figcaption{position:absolute;left:0;right:0;bottom:-8px;text-align:center;font-size:.86rem;color:var(--muted)}
+@media (max-width:899px){.kto{grid-template-columns:minmax(0,1fr)}.vejar{max-width:520px;width:100%;justify-self:center}}
 
-/* ---------- cena ---------- */
-.cena{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:clamp(28px,5vw,72px);align-items:start;margin-top:36px}
-.cena__num{font-family:var(--display);font-size:clamp(4.2rem,9vw,7rem);line-height:.9;letter-spacing:-.03em;font-variant-numeric:tabular-nums}
-.cena__per{margin-top:12px;font-weight:600;color:var(--ink-2)}
-.cena__text{display:grid;gap:16px}
-.cena__text p{color:var(--ink-2);text-wrap:pretty;max-width:58ch}
-.cena__kotva{padding:14px 16px;border-left:3px solid var(--acc);background:var(--acc-soft);color:var(--ink)}
-.baliky{list-style:none;margin:6px 0 0;padding:0;border-top:1px solid var(--line)}
-.balik{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:2px 18px;padding:14px 0;border-bottom:1px solid var(--line);align-items:baseline}
-.balik__name{grid-column:1;grid-row:1;font-weight:700}
-.balik__desc{grid-column:1;grid-row:2;font-size:.9rem;color:var(--muted)}
-.balik__sum{grid-column:2;grid-row:1/3;font-family:var(--display);font-size:1.5rem;text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
-.balik__sum small{display:block;font-family:var(--body);font-size:.8rem;color:var(--muted)}
-.balik--free .balik__sum{color:var(--acc)}
-.fine{font-size:.9rem;color:var(--muted)}
-.cena__cta{display:flex;flex-wrap:wrap;gap:10px 14px}
-@media (max-width:899px){.cena{grid-template-columns:1fr;gap:28px}}
+/* ---------- cena: mriežka s jednou veľkou dlaždicou ---------- */
+.bento{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin-top:40px}
+.tile{display:grid;gap:10px;align-content:start;padding:clamp(22px,2.4vw,30px);border-radius:var(--r-lg);background:var(--surface);border:1px solid var(--line)}
+.tile h3{font-size:1.06rem}
+.tile__sum{font-size:clamp(2rem,1.5rem + 1.4vw,2.6rem);line-height:1;margin:4px 0 2px}
+.tile p:not(.tile__sum){color:var(--ink-2);font-size:.95rem;text-wrap:pretty}
+.tile .btn{justify-self:start;margin-top:10px}
+.tile--main{grid-column:span 2;grid-template-columns:minmax(0,1fr) auto;column-gap:32px}
+.tile--main h3,.tile--main p{grid-column:1}
+.tile--main .tile__sum{grid-column:2;grid-row:1/4;font-size:clamp(3.6rem,2.4rem + 4vw,6rem);align-self:center}
+.tile--main .btn{grid-column:1}
+.tile--lime{background:var(--lime);border-color:transparent;color:var(--lime-ink)}
+.tile--lime p:not(.tile__sum){color:var(--lime-ink)}
+.tile--lime .btn--ink{background:var(--lime-ink);color:#F3F4F1}
+.fine{margin-top:22px;font-size:.9rem;color:var(--muted);max-width:70ch}
+@media (max-width:899px){
+  .bento{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .tile--main{grid-column:1/-1}
+  .tile--lime{grid-column:1/-1}
+}
+@media (max-width:560px){
+  .bento{grid-template-columns:minmax(0,1fr)}
+  .tile--main{grid-template-columns:minmax(0,1fr)}
+  .tile--main .tile__sum{grid-column:1;grid-row:auto;font-size:3.4rem}
+}
 
 /* ---------- otázky ---------- */
-.qs{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:30px clamp(28px,4vw,60px);margin-top:36px}
-.q h3{font-family:var(--body);font-weight:700;font-size:1.02rem;letter-spacing:0;margin-bottom:6px;text-wrap:pretty}
+.qs{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:34px clamp(32px,5vw,72px);margin-top:40px}
+.q h3{font-size:1.04rem;margin-bottom:8px;text-wrap:pretty}
 .q p{color:var(--ink-2);text-wrap:pretty}
-@media (max-width:767px){.qs{grid-template-columns:1fr}}
+@media (max-width:767px){.qs{grid-template-columns:minmax(0,1fr);gap:28px}}
 
 /* ---------- rezervácia ---------- */
-.rez__lead{margin-top:14px;color:var(--ink-2);max-width:58ch;text-wrap:pretty}
-.bk{margin-top:36px;max-width:760px;background:var(--surface);border:1px solid var(--box-line);border-radius:var(--r-sheet);
-  box-shadow:var(--shadow);padding:clamp(20px,2.6vw,32px);min-width:0}
-.bk__steps{display:flex;flex-wrap:wrap;gap:6px 18px;font-size:.8rem;font-weight:600;color:var(--muted);margin:0 0 20px}
-.bk__step{margin:0;display:inline-flex;align-items:center;gap:7px;transition:color .3s var(--ease)}
-.bk__step i{font-style:normal;display:inline-grid;place-items:center;width:20px;height:20px;border-radius:50%;
-  background:var(--surface-2);color:var(--ink-2);font-size:.72rem;font-weight:700;transition:background-color .3s var(--ease),color .3s var(--ease)}
+.rez__lead{margin-top:16px;color:var(--ink-2);max-width:58ch;text-wrap:pretty}
+.bk{margin-top:36px;max-width:780px;background:var(--surface);border:1px solid var(--line);border-radius:var(--r-lg);
+  box-shadow:var(--shadow);padding:clamp(20px,2.8vw,34px);min-width:0}
+.bk__steps{display:flex;flex-wrap:wrap;gap:6px 20px;font-size:.82rem;font-weight:500;color:var(--muted);margin:0 0 22px}
+.bk__step{margin:0;display:inline-flex;align-items:center;gap:8px;transition:color .3s var(--ease)}
+.bk__step i{font-style:normal;font-family:var(--mono);display:inline-grid;place-items:center;width:22px;height:22px;border-radius:6px;
+  background:var(--surface-2);color:var(--ink-2);font-size:.74rem;font-weight:500;transition:background-color .3s var(--ease),color .3s var(--ease)}
 .bk__step.is-on{color:var(--ink)}
-.bk__step.is-on i{background:var(--acc);color:var(--acc-ink)}
-.bk__step.is-done i{background:var(--acc-soft);color:var(--acc)}
+.bk__step.is-on i{background:var(--lime);color:var(--lime-ink)}
+.bk__step.is-done i{background:var(--ink);color:var(--bg)}
 .panel{display:none}
 .panel.is-on{display:block;animation:objav .45s var(--ease)}
-@keyframes objav{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
-.typ{border:0;margin:0 0 22px;padding:0;min-width:0}
-.typ legend{padding:0;margin:0 0 12px;font-family:var(--display);font-size:1.5rem;line-height:1.2}
-.typ__opts{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
-.typ__opt{position:relative;display:grid;gap:2px;padding:12px 14px 12px 42px;border:1px solid var(--line);border-radius:var(--r);
+.typ{border:0;margin:0 0 24px;padding:0;min-width:0}
+.typ legend{padding:0;margin:0 0 12px;font-weight:600;font-size:1.2rem;letter-spacing:-.01em}
+.typ__opts{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.typ__opt{position:relative;display:grid;gap:2px;padding:14px 16px 14px 46px;border:1px solid var(--line-strong);border-radius:var(--r-sm);
   background:var(--surface);cursor:pointer;transition:border-color .25s var(--ease),background-color .25s var(--ease)}
 .typ__opt:hover{border-color:var(--ink)}
-.typ__opt input{position:absolute;left:14px;top:15px;width:18px;height:18px;margin:0;accent-color:var(--acc)}
-.typ__opt b{font-weight:700}
+.typ__opt input{position:absolute;left:16px;top:17px;width:18px;height:18px;margin:0;accent-color:var(--ink)}
+.typ__opt input:focus-visible{outline:none}
+.typ__opt:has(input:focus-visible){outline:2px solid var(--ring);outline-offset:3px}
+.typ__opt b{font-weight:600}
 .typ__opt small{font-size:.86rem;color:var(--muted)}
-.typ__opt.is-on{border-color:var(--acc);background:var(--acc-soft);box-shadow:inset 0 0 0 1px var(--acc)}
+.typ__opt.is-on{border-color:var(--ink);box-shadow:inset 0 0 0 1px var(--ink)}
 .typ__opt.is-on small{color:var(--ink-2)}
-@media (max-width:480px){.typ__opts{grid-template-columns:1fr}}
+@media (max-width:480px){.typ__opts{grid-template-columns:minmax(0,1fr)}}
 .bk__head{display:flex;align-items:baseline;justify-content:space-between;gap:12px;margin-bottom:14px}
-.bk__head h3{font-size:1.5rem}
-.bk__price{font-weight:700;white-space:nowrap;font-variant-numeric:tabular-nums}
-.bk__price small{font-weight:500;font-size:.82rem;color:var(--muted);margin-left:4px}
+.bk__head h3{font-size:1.2rem}
+.bk__price{font-weight:600;white-space:nowrap;font-variant-numeric:tabular-nums}
+.bk__price small{font-weight:400;font-size:.84rem;color:var(--muted);margin-left:6px}
 .dayscroll{position:relative;min-width:0}
 .dayscroll::after{content:"";position:absolute;top:0;right:0;bottom:4px;width:44px;pointer-events:none;
   background:linear-gradient(90deg,transparent,var(--surface));transition:opacity .3s var(--ease)}
 .dayscroll.is-end::after{opacity:0}
 .dayrow{display:flex;gap:8px;overflow-x:auto;padding-bottom:4px;scrollbar-width:none;scroll-snap-type:x proximity;min-width:0}
 .dayrow::-webkit-scrollbar{display:none}
-.daychip{flex:none;min-width:66px;padding:8px 10px;border-radius:var(--r);border:1px solid var(--line);
+.daychip{flex:none;min-width:68px;padding:8px 10px;border-radius:var(--r-sm);border:1px solid var(--line-strong);
   background:var(--surface);display:grid;gap:1px;text-align:center;cursor:pointer;scroll-snap-align:start;
   transition:border-color .25s var(--ease),background-color .25s var(--ease),color .25s var(--ease)}
-.daychip small{font-size:.68rem;font-weight:600;letter-spacing:.05em;text-transform:uppercase;color:var(--muted)}
-.daychip b{font-size:.96rem;font-weight:700;font-variant-numeric:tabular-nums}
+.daychip small{font-size:.7rem;font-weight:500;color:var(--muted)}
+.daychip b{font-family:var(--mono);font-size:.94rem;font-weight:500;font-variant-numeric:tabular-nums}
 .daychip:hover{border-color:var(--ink)}
 .daychip.is-on{background:var(--ink);border-color:var(--ink);color:var(--bg)}
-.daychip.is-on small{color:inherit;opacity:.72}
-.times{display:grid;grid-template-columns:repeat(auto-fill,minmax(86px,1fr));gap:8px;margin-top:12px}
-.slot{padding:11px 8px;border-radius:var(--r);border:1px solid var(--line);background:var(--surface);
-  font-weight:600;cursor:pointer;font-variant-numeric:tabular-nums;
+.daychip.is-on small{color:inherit;opacity:.75}
+.times{display:grid;grid-template-columns:repeat(auto-fill,minmax(88px,1fr));gap:8px;margin-top:12px}
+.slot{padding:12px 8px;border-radius:var(--r-sm);border:1px solid var(--line-strong);background:var(--surface);
+  font-family:var(--mono);font-weight:500;cursor:pointer;font-variant-numeric:tabular-nums;
   transition:border-color .25s var(--ease),background-color .25s var(--ease),transform .25s var(--ease)}
-.slot:hover{border-color:var(--ink)}
-.slot:active{transform:scale(.98)}
+.slot:hover{background:var(--lime);border-color:var(--lime);color:var(--lime-ink)}
+.slot:active{transform:scale(.97)}
 .slot:disabled{color:var(--muted);text-decoration:line-through;background:var(--surface-2);border-color:transparent;cursor:not-allowed}
-.times__none{grid-column:1/-1;margin:0;padding:12px 14px;border-radius:var(--r);background:var(--surface-2);font-size:.92rem;color:var(--ink-2)}
+.times__none{grid-column:1/-1;margin:0;padding:12px 14px;border-radius:var(--r-sm);background:var(--surface-2);font-size:.92rem;color:var(--ink-2)}
 .bk__note{margin-top:14px;font-size:.86rem;color:var(--muted);text-wrap:pretty}
 .bk__note a{color:var(--ink)}
 .chosen{display:flex;align-items:center;justify-content:space-between;gap:14px;padding:12px 14px;
-  border-radius:var(--r);background:var(--acc-soft);margin-bottom:18px}
-.chosen small{display:block;font-size:.78rem;color:var(--ink-2)}
-.chosen strong{font-weight:700}
-#changeBtn{font-weight:600;font-size:.86rem;background:transparent;border:1px solid var(--acc-line);color:var(--acc);
-  border-radius:var(--r);padding:7px 13px;cursor:pointer;white-space:nowrap;transition:background-color .25s var(--ease)}
-#changeBtn:hover{background:var(--surface)}
+  border-radius:var(--r-sm);background:var(--surface-2);margin-bottom:18px}
+.chosen small{display:block;font-size:.8rem;color:var(--ink-2)}
+.chosen strong{font-weight:600}
+#changeBtn{font-weight:600;font-size:.86rem;background:transparent;border:1px solid var(--line-strong);color:var(--ink);
+  border-radius:var(--r-sm);padding:7px 13px;cursor:pointer;white-space:nowrap;transition:border-color .25s var(--ease)}
+#changeBtn:hover{border-color:var(--ink)}
 .form{display:grid;gap:14px}
 .field{display:grid;gap:6px}
-.field label{font-size:.86rem;font-weight:600;color:var(--ink-2)}
-.field input,.field select,.field textarea{width:100%;padding:12px 14px;border:1px solid var(--line);border-radius:var(--r);
+.field label{font-size:.88rem;font-weight:500;color:var(--ink-2)}
+.field input,.field select,.field textarea{width:100%;padding:12px 14px;border:1px solid var(--line-strong);border-radius:var(--r-sm);
   background:var(--surface);color:var(--ink);font:inherit;line-height:1.4;
   transition:border-color .25s var(--ease),box-shadow .25s var(--ease)}
-.field input::placeholder,.field textarea::placeholder{color:var(--muted);opacity:.8}
-.field input:focus,.field select:focus,.field textarea:focus{outline:none;border-color:var(--acc);box-shadow:0 0 0 3px var(--acc-soft)}
+.field input::placeholder,.field textarea::placeholder{color:var(--muted);opacity:.85}
+.field input:focus,.field select:focus,.field textarea:focus{outline:none;border-color:var(--ink);box-shadow:0 0 0 3px color-mix(in srgb,var(--lime) 55%,transparent)}
 .field textarea{min-height:96px;resize:vertical}
 .pair{display:grid;grid-template-columns:1fr 1fr;gap:14px}
 @media (max-width:560px){.pair{grid-template-columns:1fr}}
 .trap{position:absolute;left:-10000px;top:auto;width:1px;height:1px;overflow:hidden}
 .msg{min-height:1.3em;font-size:.9rem;font-weight:600;color:var(--err)}
 .msg:empty{min-height:0}
-.garancia{padding:10px 0 2px 14px;border-left:3px solid var(--acc);font-size:.9rem;color:var(--ink-2);text-wrap:pretty}
+.garancia{font-size:.92rem;color:var(--ink-2);text-wrap:pretty}
 .garancia strong{color:var(--ink)}
-.gdpr{font-size:.82rem;color:var(--muted)}
+.form .btn{justify-self:start}
+.gdpr{font-size:.84rem;color:var(--muted)}
 .gdpr a{color:var(--ink-2)}
 .done{display:grid;gap:12px;justify-items:start}
-.done h3{font-size:1.5rem}
+.done h3{font-size:1.3rem}
 .done p{color:var(--ink-2);text-wrap:pretty;max-width:58ch}
 .send{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:8px;width:100%;margin-top:4px}
-.send .cta{width:100%}
-.send .cta.is-used{border-color:var(--acc);box-shadow:inset 0 0 0 1px var(--acc)}
+.send .btn{width:100%}
+.send .btn.is-used{border-color:var(--ink);box-shadow:inset 0 0 0 1px var(--ink)}
 .nahlad{width:100%}
 .nahlad summary{cursor:pointer;font-size:.88rem;font-weight:600;color:var(--ink-2);padding:6px 0}
-.nahlad pre{white-space:pre-wrap;word-break:break-word;font:inherit;font-size:.86rem;line-height:1.5;background:var(--surface-2);
-  color:var(--ink-2);padding:12px 14px;border-radius:var(--r);margin:6px 0 0}
+.nahlad pre{white-space:pre-wrap;word-break:break-word;font-family:var(--mono);font-size:.82rem;line-height:1.55;background:var(--surface-2);
+  color:var(--ink-2);padding:12px 14px;border-radius:var(--r-sm);margin:6px 0 0}
 .done__after{width:100%;display:flex;flex-wrap:wrap;align-items:center;gap:10px 18px;margin-top:6px;padding-top:16px;border-top:1px solid var(--line)}
 .done__after p{font-size:.9rem;color:var(--muted)}
 .done__after a{color:var(--ink)}
 
 /* ---------- kontakt a pätička ---------- */
-.strip{margin-top:var(--gap);padding:clamp(28px,4vw,44px) 0;border-top:1px solid var(--line);
+.strip{margin-top:var(--gap);padding-block:clamp(30px,4vw,48px);border-top:1px solid var(--line);
   display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:24px;align-items:center}
 .strip p{color:var(--ink-2);margin-top:10px;max-width:46ch;text-wrap:pretty}
-.strip__links{display:grid;gap:6px;justify-items:start}
-.strip__links a{font-family:var(--display);font-size:clamp(1.25rem,2vw,1.6rem);color:var(--ink);text-decoration:none;
-  border-bottom:2px solid transparent;transition:border-color .25s var(--ease)}
-.strip__links a:hover{border-color:var(--acc)}
+.strip__links{display:grid;gap:10px;justify-items:start}
+.strip__links a{font-size:clamp(1.25rem,1rem + .9vw,1.7rem)}
 @media (max-width:767px){.strip{grid-template-columns:1fr}}
 .foot{display:flex;flex-wrap:wrap;gap:12px 28px;align-items:center;padding:8px 0 44px;font-size:.88rem;color:var(--muted)}
 .foot nav{display:flex;flex-wrap:wrap;gap:8px 20px;margin-left:auto}
 .foot a{color:var(--ink-2);text-decoration:none;display:inline-block;padding:9px 0}
 .foot a:hover{color:var(--ink)}
-.foot .brand{font-size:1.1rem}
 
-/* ---------- lepiaci pás na mobile: ponuka a termín vždy po ruke ---------- */
-.lepka{position:fixed;left:0;right:0;bottom:0;z-index:4;display:none;align-items:center;justify-content:space-between;gap:12px;
-  padding:10px var(--pad) calc(10px + env(safe-area-inset-bottom));background:var(--surface);border-top:1px solid var(--line);
-  transform:translateY(100%);transition:transform .35s var(--ease)}
+/* ---------- lepiaci pás na mobile: jedno tlačidlo vždy po ruke ---------- */
+.lepka{position:fixed;left:0;right:0;bottom:0;z-index:4;display:none;
+  padding:10px var(--pad) calc(10px + env(safe-area-inset-bottom));background:color-mix(in srgb,var(--bg) 92%,transparent);
+  -webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);border-top:1px solid var(--line);
+  transform:translateY(100%);transition:transform .4s var(--ease)}
+.lepka .btn{width:100%}
 .lepka.is-on{transform:none}
-.lepka strong{font-weight:700}
-.lepka small{display:block;font-size:.8rem;font-weight:500;color:var(--muted)}
-@media (max-width:899px){.lepka{display:flex}.js body{padding-bottom:72px}}
+@media (max-width:899px){.lepka{display:block}.js body{padding-bottom:76px}}
 
-/* ---------- pohyb ---------- */
-.js .reveal{opacity:0;transform:translateY(16px);transition:opacity .8s var(--ease),transform .8s var(--ease)}
-.js .reveal.is-in{opacity:1;transform:none}
+/* ---------- pohyb ----------
+   Všetko len cez transform a opacity (zvýrazňovač cez background-size raz pri objavení).
+   Pri "obmedziť pohyb" sa nič nehýbe a všetko je hneď na mieste. */
+@keyframes objav{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+@keyframes vstup{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
+@keyframes kurzor{50%{opacity:0}}
+@keyframes zvyrazni{from{background-size:0 .3em}to{background-size:100% .3em}}
+@media (prefers-reduced-motion:no-preference){
+  /* hero pri načítaní: nadpis, text, zápis a jeho kroky postupne */
+  .js .hero h1{animation:vstup .7s var(--ease) both}
+  .js .hero__text{animation:vstup .7s var(--ease) .12s both}
+  .js .doc{animation:vstup .9s var(--ease) .22s both}
+  .js .doc__steps li{animation:vstup .6s var(--ease) both}
+  .js .doc__steps li:nth-child(1){animation-delay:.55s}
+  .js .doc__steps li:nth-child(2){animation-delay:.7s}
+  .js .doc__steps li:nth-child(3){animation-delay:.85s}
+  .js .hero .mark{animation:zvyrazni 1.1s var(--ease) .45s both}
+  .js .reveal .mark{background-size:0 .3em}
+  .js .reveal.is-in .mark{animation:zvyrazni 1.1s var(--ease) .3s both}
+  /* sekcie pri scrollovaní */
+  .js .reveal{opacity:0;transform:translateY(18px);transition:opacity .8s var(--ease),transform .8s var(--ease)}
+  .js .reveal.is-in{opacity:1;transform:none}
+  /* časová os sa nakreslí zhora a uzly sa postupne vyfarbia */
+  .js .cas::before{transform:scaleY(0);transition:transform 1.4s var(--ease) .2s}
+  .js .is-in .cas::before{transform:none}
+  .js .cas__krok{opacity:0;transform:translateY(12px);transition:opacity .7s var(--ease),transform .7s var(--ease);transition-delay:calc(.25s + var(--i) * .35s)}
+  .js .is-in .cas__krok{opacity:1;transform:none}
+  .js .is-in .cas__uzol{background:var(--lime);transition-delay:calc(.45s + var(--i) * .35s)}
+  /* certifikáty sa z kôpky roztiahnu do vejára */
+  .js .vejar img{transform:none}
+  .js .is-in .vejar img:nth-child(1){transform:translate(-13%,6%) rotate(-7deg)}
+  .js .is-in .vejar img:nth-child(2){transform:translate(0,-4%) rotate(1.5deg);transition-delay:.08s}
+  .js .is-in .vejar img:nth-child(3){transform:translate(13%,9%) rotate(7deg);transition-delay:.16s}
+  .js .is-in .vejar:hover img:nth-child(1){transform:translate(-18%,4%) rotate(-10deg)}
+  .js .is-in .vejar:hover img:nth-child(3){transform:translate(18%,10%) rotate(10deg)}
+}
 @media (prefers-reduced-motion:reduce){
   html{scroll-behavior:auto}
-  .js .reveal{opacity:1;transform:none;transition:none}
-  .panel.is-on,.js .odbor{animation:none}
-  .cta,.slot,.daychip,.tab,.lepka{transition:none}
+  .is-in .cas__uzol,.cas__uzol{background:var(--lime)}
+  .panel.is-on,.js .odbor,.js .odbor .uloha{animation:none}
+  .btn,.slot,.daychip,.tab,.tabs__ind,.lepka,.top,.vejar img{transition:none}
+  .zadanie__vis.is-typing::after{animation:none}
 }
 </style>
 
@@ -393,53 +479,62 @@ section{scroll-margin-top:20px}
 </head>
 <body>
 <a class="jump" href="#start">Preskočiť na obsah</a>
+<div class="vrch" id="vrch" aria-hidden="true"></div>
 
-<header class="shell top">
-  <a class="brand" href="./">AI Učenie</a>
-  <nav aria-label="Hlavná navigácia">
-    <a href="#odbory">Pre koho</a>
-    <a href="#priebeh">Ako to prebieha</a>
-    <a href="#cena">Cena</a>
-    <a href="#otazky">Otázky</a>
-    <a class="cta" href="#termin" data-typ="free">15 minút zadarmo</a>
-  </nav>
+<header class="top" id="top">
+  <div class="shell top__in">
+    <a class="brand" href="./" translate="no"><span class="brand__znak" aria-hidden="true">AI</span>AI Učenie</a>
+    <nav aria-label="Hlavná navigácia">
+      <a href="#odbory">Pre koho</a>
+      <a href="#priebeh">Ako to prebieha</a>
+      <a href="#cena">Cena</a>
+      <a href="#otazky">Otázky</a>
+      <a class="btn btn--lime" href="#termin" data-typ="free"><span class="dlhe">Dohodnúť&nbsp;</span>15 minút zadarmo</a>
+    </nav>
+  </div>
 </header>
 
 <main id="start">
 
   <!-- ================= HERO ================= -->
-  <section class="shell" id="hero">
-    <div class="hero">
+  <section class="shell hero" id="hero">
+    <h1>Naučím vás pracovať s&nbsp;AI na <span class="mark">vašej vlastnej práci.</span></h1>
+    <div class="hero__row">
       <div class="hero__text">
-        <h1>Naučím vás pracovať s&nbsp;AI na vašej vlastnej práci.</h1>
-        <p class="lead">Online školenie pre malé firmy a&nbsp;živnostníkov. Žiadna prednáška: otvoríte svoje maily, ponuky a&nbsp;tabuľky a&nbsp;spravíme ich spolu s&nbsp;ChatGPT alebo Claude. Hodina stojí 25&nbsp;€, celý tím do štyroch ľudí 39&nbsp;€.</p>
+        <p class="lead">Online školenie pre malé firmy a&nbsp;živnostníkov. Otvoríte svoje maily, ponuky a&nbsp;tabuľky a&nbsp;spravíme ich spolu s&nbsp;AI.</p>
         <div class="hero__cta">
-          <a class="cta" href="#termin" data-typ="free">Dohodnúť 15 minút zadarmo</a>
-          <a class="cta cta--line" href="#odbory">Čo AI zvládne vo vašom odbore</a>
+          <a class="btn btn--lime" href="#termin" data-typ="free">Dohodnúť 15 minút zadarmo<svg viewBox="0 0 256 256" fill="currentColor" aria-hidden="true"><path d="M221.66,133.66l-72,72a8,8,0,0,1-11.32-11.32L196.69,136H40a8,8,0,0,1,0-16H196.69L138.34,61.66a8,8,0,0,1,11.32-11.32l72,72A8,8,0,0,1,221.66,133.66Z"/></svg></a>
+          <a class="link" href="#odbory">Čo AI zvládne vo vašom odbore</a>
         </div>
-        <p class="hero__guar">Najprv si 15 minút zavoláme. <strong>Ak uvidím, že vám AI nepomôže, poviem vám to rovno a&nbsp;nič neplatíte.</strong></p>
       </div>
 
-      <figure class="sheet-wrap">
-        <div class="sheet" role="img" aria-label="Ukážka zápisu z hodiny na tému upomienky za neuhradené faktúry">
-          <div class="sheet__head"><span>Zápis z&nbsp;hodiny</span><span>ukážka</span></div>
-          <p class="sheet__title">Upomienky za neuhradené faktúry</p>
-          <ol class="sheet__steps">
-            <li><b>Tón si nastavte raz.</b> Do ChatGPT alebo Claude uložte zadanie: „Píšeš za mňa upomienky odberateľom. Krátko, slušne, bez fráz, vykáš, na konci vždy nový termín úhrady.“</li>
-            <li><b>Dajte mu len fakty.</b> Číslo faktúry, sumu, splatnosť a&nbsp;koľko dní je po nej. Nič viac.</li>
-            <li><b>Prečítajte, opravte jednu vec, odošlite.</b> Skontrolovať hotový text je rýchlejšie ako ho písať od nuly.</li>
+      <figure class="doc">
+        <div class="doc__sheet">
+          <div class="doc__head"><span>Zápis z&nbsp;hodiny</span><span class="num">ukážka</span></div>
+          <p class="doc__title">Upomienky za neuhradené faktúry</p>
+          <ol class="doc__steps">
+            <li><span><b>Tón si nastavte raz.</b> Do ChatGPT alebo Claude uložte zadanie: <span class="doc__prompt">Píšeš za mňa upomienky odberateľom. Krátko, slušne, bez fráz, vykáš, na konci vždy nový termín úhrady.</span></span></li>
+            <li><span><b>Dajte mu len fakty.</b> Číslo faktúry, sumu, splatnosť a&nbsp;koľko dní je po nej. Nič viac.</span></li>
+            <li><span><b>Prečítajte, opravte jednu vec, odošlite.</b> Skontrolovať hotový text je rýchlejšie ako ho písať od nuly.</span></li>
           </ol>
-          <p class="sheet__note">Nikdy tam nevkladajte IBAN ani údaje klienta. Namiesto mena firmy stačí „odberateľ A“.</p>
+          <p class="doc__note">Nikdy tam nevkladajte IBAN ani údaje klienta. Namiesto mena firmy stačí „odberateľ A“.</p>
         </div>
         <figcaption>Takto vyzerá zápis, ktorý vám pošlem do večera po hodine.</figcaption>
       </figure>
     </div>
+  </section>
 
-    <dl class="facts">
-      <div class="fact"><dt>21 certifikátov z&nbsp;AI</dt><dd>od Anthropic, tvorcu Claude, a&nbsp;Vanderbilt University</dd></div>
-      <div class="fact"><dt>Online, jeden na jedného</dt><dd>cez Google Meet alebo Zoom, nič neinštalujete</dd></div>
-      <div class="fact"><dt>Zápis do večera</dt><dd>postupy a&nbsp;hotové zadania, aby ste to zopakovali bez mňa</dd></div>
-    </dl>
+  <!-- ================= ZÁRUKA A CENY ================= -->
+  <section class="shell reveal" aria-label="Záruka a ceny">
+    <div class="pas">
+      <p class="pas__veta">Ak uvidím, že vám AI nepomôže, poviem to rovno a <span class="mark">nič neplatíte.</span></p>
+      <dl class="pas__fakty">
+        <div><dt>Úvodný hovor</dt><dd><span class="num">15 min</span>, zadarmo</dd></div>
+        <div><dt>Hodina online</dt><dd><span class="num">25&nbsp;€</span></dd></div>
+        <div><dt>Tím do&nbsp;4 ľudí</dt><dd><span class="num">39&nbsp;€</span> za hodinu</dd></div>
+        <div><dt>Certifikáty z&nbsp;AI</dt><dd><a class="link link--plain" href="#kto"><span class="num">21</span> kurzov</a></dd></div>
+      </dl>
+    </div>
   </section>
 
   <!-- ================= ODBORY ================= -->
@@ -455,139 +550,149 @@ section{scroll-margin-top:20px}
       <button class="tab" type="button" role="tab" id="tab-cestovny-ruch" aria-controls="odbor-cestovny-ruch" aria-selected="false" tabindex="-1">Cestovný ruch</button>
       <button class="tab" type="button" role="tab" id="tab-poistenie" aria-controls="odbor-poistenie" aria-selected="false" tabindex="-1">Poistenie a&nbsp;financie</button>
       <button class="tab" type="button" role="tab" id="tab-kancelaria" aria-controls="odbor-kancelaria" aria-selected="false" tabindex="-1">Iná kancelária</button>
+      <span class="tabs__ind" aria-hidden="true"></span>
     </div>
 
     <div class="odbor" role="tabpanel" id="odbor-uctovnictvo" aria-labelledby="tab-uctovnictvo">
       <h3 class="odbor__name">Účtovníctvo a&nbsp;mzdy</h3>
       <ul class="ulohy">
-        <li class="uloha"><b>Odpovede klientom na opakované otázky</b><span>Máte uložené zadanie s&nbsp;vaším tónom. Z&nbsp;dvoch viet o&nbsp;situácii vznikne celý mail a&nbsp;vy ho len skontrolujete.</span></li>
-        <li class="uloha"><b>Mesačné pripomienky dokladov</b><span>Jedna pripomienka, ktorú AI prispôsobí každému klientovi podľa toho, čo mu chýba: faktúry, výpisy alebo pokladničné doklady.</span></li>
-        <li class="uloha"><b>Zmeny v&nbsp;predpisoch zrozumiteľne pre klientov</b><span>AI z&nbsp;dlhého textu navrhne krátke zhrnutie pre klientov. Vy ho overíte v&nbsp;zdroji a&nbsp;pošlete.</span></li>
-        <li class="uloha"><b>Vzorce a&nbsp;kontroly v&nbsp;Exceli</b><span>Popíšete, čo chcete zistiť, a&nbsp;AI vám vzorec napíše aj vysvetlí, aby ste ho nabudúce upravili sami.</span></li>
+        <li class="uloha" style="--i:0"><b>Odpovede klientom na opakované otázky</b><span>Máte uložené zadanie s&nbsp;vaším tónom. Z&nbsp;dvoch viet o&nbsp;situácii vznikne celý mail a&nbsp;vy ho len skontrolujete.</span></li>
+        <li class="uloha" style="--i:1"><b>Mesačné pripomienky dokladov</b><span>Jedna pripomienka, ktorú AI prispôsobí každému klientovi podľa toho, čo mu chýba: faktúry, výpisy alebo pokladničné doklady.</span></li>
+        <li class="uloha" style="--i:2"><b>Zmeny v&nbsp;predpisoch zrozumiteľne pre klientov</b><span>AI z&nbsp;dlhého textu navrhne krátke zhrnutie pre klientov. Vy ho overíte v&nbsp;zdroji a&nbsp;pošlete.</span></li>
+        <li class="uloha" style="--i:3"><b>Vzorce a&nbsp;kontroly v&nbsp;Exceli</b><span>Popíšete, čo chcete zistiť, a&nbsp;AI vám vzorec napíše aj vysvetlí, aby ste ho nabudúce upravili sami.</span></li>
       </ul>
       <div class="zadanie">
-        <small>Ukážka zadania, ktoré si na hodine uložíte</small>
-        <q>Napíš krátku pripomienku klientovi, že do&nbsp;10. potrebujem doklady za minulý mesiac. Vykaj, buď milý, ale jasný. Na koniec daj zoznam: faktúry, pokladničné doklady, bankové výpisy.</q>
-        <p class="pozor"><strong>Pozor na údaje:</strong> rodné čísla, mzdy a&nbsp;mená zamestnancov do bežnej verzie AI nepatria. Na hodine vám ukážem, ako ich nahradiť, aby výsledok stále fungoval.</p>
+        <p class="zadanie__lbl">Zadanie, ktoré si na hodine uložíte</p>
+        <p class="zadanie__txt"><span class="sr">Napíš krátku pripomienku klientovi, že do&nbsp;10. potrebujem doklady za minulý mesiac. Vykaj, buď milý, ale jasný. Na koniec daj zoznam: faktúry, pokladničné doklady, bankové výpisy.</span><span class="zadanie__vis" aria-hidden="true">Napíš krátku pripomienku klientovi, že do&nbsp;10. potrebujem doklady za minulý mesiac. Vykaj, buď milý, ale jasný. Na koniec daj zoznam: faktúry, pokladničné doklady, bankové výpisy.</span></p>
+        <p class="zadanie__pozor"><strong>Pozor na údaje:</strong> rodné čísla, mzdy a&nbsp;mená zamestnancov do bežnej verzie AI nepatria. Na hodine vám ukážem, ako ich nahradiť, aby výsledok stále fungoval.</p>
       </div>
     </div>
 
     <div class="odbor" role="tabpanel" id="odbor-reality" aria-labelledby="tab-reality">
       <h3 class="odbor__name">Reality</h3>
       <ul class="ulohy">
-        <li class="uloha"><b>Inzeráty z&nbsp;vašich poznámok</b><span>Vložíte poznámky z&nbsp;obhliadky a&nbsp;AI z&nbsp;nich spraví text pre realitný portál, váš web aj sociálne siete.</span></li>
-        <li class="uloha"><b>Odpovede záujemcom</b><span>Rýchle a&nbsp;jednotné odpovede na otázky k&nbsp;ponuke, aj z&nbsp;telefónu mimo kancelárie.</span></li>
-        <li class="uloha"><b>Príspevky na sociálne siete</b><span>K&nbsp;novej ponuke hotový text pre Facebook aj Instagram vo vašom štýle.</span></li>
-        <li class="uloha"><b>Zhrnutie dlhých podkladov</b><span>Z&nbsp;dlhého dokumentu, napríklad z&nbsp;posudku, AI vytiahne podstatné body pre klienta.</span></li>
+        <li class="uloha" style="--i:0"><b>Inzeráty z&nbsp;vašich poznámok</b><span>Vložíte poznámky z&nbsp;obhliadky a&nbsp;AI z&nbsp;nich spraví text pre realitný portál, váš web aj sociálne siete.</span></li>
+        <li class="uloha" style="--i:1"><b>Odpovede záujemcom</b><span>Rýchle a&nbsp;jednotné odpovede na otázky k&nbsp;ponuke, aj z&nbsp;telefónu mimo kancelárie.</span></li>
+        <li class="uloha" style="--i:2"><b>Príspevky na sociálne siete</b><span>K&nbsp;novej ponuke hotový text pre Facebook aj Instagram vo vašom štýle.</span></li>
+        <li class="uloha" style="--i:3"><b>Zhrnutie dlhých podkladov</b><span>Z&nbsp;dlhého dokumentu, napríklad z&nbsp;posudku, AI vytiahne podstatné body pre klienta.</span></li>
       </ul>
       <div class="zadanie">
-        <small>Ukážka zadania, ktoré si na hodine uložíte</small>
-        <q>Z&nbsp;týchto poznámok z&nbsp;obhliadky napíš inzerát na trojizbový byt. Najprv krátky nadpis, potom päť viet pre realitný portál. Bez superlatívov, fakty na začiatok.</q>
-        <p class="pozor"><strong>Pozor na údaje:</strong> mená predávajúcich, rodné čísla a&nbsp;kontakty klientov do AI nevkladajte. Inzerát ani zhrnutie ich nepotrebujú.</p>
+        <p class="zadanie__lbl">Zadanie, ktoré si na hodine uložíte</p>
+        <p class="zadanie__txt"><span class="sr">Z&nbsp;týchto poznámok z&nbsp;obhliadky napíš inzerát na trojizbový byt. Najprv krátky nadpis, potom päť viet pre realitný portál. Bez superlatívov, fakty na začiatok.</span><span class="zadanie__vis" aria-hidden="true">Z&nbsp;týchto poznámok z&nbsp;obhliadky napíš inzerát na trojizbový byt. Najprv krátky nadpis, potom päť viet pre realitný portál. Bez superlatívov, fakty na začiatok.</span></p>
+        <p class="zadanie__pozor"><strong>Pozor na údaje:</strong> mená predávajúcich, rodné čísla a&nbsp;kontakty klientov do AI nevkladajte. Inzerát ani zhrnutie ich nepotrebujú.</p>
       </div>
     </div>
 
     <div class="odbor" role="tabpanel" id="odbor-marketing" aria-labelledby="tab-marketing">
       <h3 class="odbor__name">Marketing a&nbsp;reklama</h3>
       <ul class="ulohy">
-        <li class="uloha"><b>Varianty textov reklám</b><span>Z&nbsp;jedného briefu desať variantov nadpisov a&nbsp;textov na testovanie, každý s&nbsp;krátkym zdôvodnením.</span></li>
-        <li class="uloha"><b>Z&nbsp;briefu osnova kampane</b><span>AI pomôže rozložiť zadanie klienta na kroky a&nbsp;pripomenie otázky, ktoré treba klientovi ešte položiť.</span></li>
-        <li class="uloha"><b>Mesačné reporty klientom</b><span>Z&nbsp;tabuľky výsledkov zrozumiteľný komentár: čo fungovalo, čo nie a&nbsp;čo skúsiť ďalej.</span></li>
-        <li class="uloha"><b>Zápisy z&nbsp;porád a&nbsp;rozhovorov</b><span>Z&nbsp;vašich poznámok zhrnutie s&nbsp;úlohami, menami a&nbsp;termínmi.</span></li>
+        <li class="uloha" style="--i:0"><b>Varianty textov reklám</b><span>Z&nbsp;jedného briefu desať variantov nadpisov a&nbsp;textov na testovanie, každý s&nbsp;krátkym zdôvodnením.</span></li>
+        <li class="uloha" style="--i:1"><b>Z&nbsp;briefu osnova kampane</b><span>AI pomôže rozložiť zadanie klienta na kroky a&nbsp;pripomenie otázky, ktoré treba klientovi ešte položiť.</span></li>
+        <li class="uloha" style="--i:2"><b>Mesačné reporty klientom</b><span>Z&nbsp;tabuľky výsledkov zrozumiteľný komentár: čo fungovalo, čo nie a&nbsp;čo skúsiť ďalej.</span></li>
+        <li class="uloha" style="--i:3"><b>Zápisy z&nbsp;porád a&nbsp;rozhovorov</b><span>Z&nbsp;vašich poznámok zhrnutie s&nbsp;úlohami, menami a&nbsp;termínmi.</span></li>
       </ul>
       <div class="zadanie">
-        <small>Ukážka zadania, ktoré si na hodine uložíte</small>
-        <q>Tu je brief klienta. Napíš desať variantov nadpisu reklamy do&nbsp;40 znakov a&nbsp;ku každému jednu vetu, prečo by mohol fungovať.</q>
-        <p class="pozor"><strong>Pozor na údaje:</strong> interné čísla a&nbsp;nezverejnené plány klienta nahrádzajte zástupnými, kým nemáte firemnú verziu AI so zmluvou o&nbsp;spracúvaní údajov.</p>
+        <p class="zadanie__lbl">Zadanie, ktoré si na hodine uložíte</p>
+        <p class="zadanie__txt"><span class="sr">Tu je brief klienta. Napíš desať variantov nadpisu reklamy do&nbsp;40 znakov a&nbsp;ku každému jednu vetu, prečo by mohol fungovať.</span><span class="zadanie__vis" aria-hidden="true">Tu je brief klienta. Napíš desať variantov nadpisu reklamy do&nbsp;40 znakov a&nbsp;ku každému jednu vetu, prečo by mohol fungovať.</span></p>
+        <p class="zadanie__pozor"><strong>Pozor na údaje:</strong> interné čísla a&nbsp;nezverejnené plány klienta nahrádzajte zástupnými, kým nemáte firemnú verziu AI so zmluvou o&nbsp;spracúvaní údajov.</p>
       </div>
     </div>
 
     <div class="odbor" role="tabpanel" id="odbor-personalistika" aria-labelledby="tab-personalistika">
       <h3 class="odbor__name">Personalistika a&nbsp;nábor</h3>
       <ul class="ulohy">
-        <li class="uloha"><b>Inzeráty na pozície</b><span>Z&nbsp;interných poznámok inzerát, ktorý sa dá čítať: čo bude človek robiť, čo ponúkate a&nbsp;čo potrebujete.</span></li>
-        <li class="uloha"><b>Odpovede uchádzačom</b><span>Pozvánky na pohovor aj slušné odmietnutia, ktoré nepôsobia ako šablóna.</span></li>
-        <li class="uloha"><b>Otázky na pohovor</b><span>Podľa požiadaviek pozície sada otázok aj s&nbsp;tým, čo si pri odpovedi všímať.</span></li>
-        <li class="uloha"><b>Ponuky v&nbsp;inom jazyku</b><span>Inzerát alebo mail pre zahraničného uchádzača ako prvý návrh prekladu, ktorý doladíte.</span></li>
+        <li class="uloha" style="--i:0"><b>Inzeráty na pozície</b><span>Z&nbsp;interných poznámok inzerát, ktorý sa dá čítať: čo bude človek robiť, čo ponúkate a&nbsp;čo potrebujete.</span></li>
+        <li class="uloha" style="--i:1"><b>Odpovede uchádzačom</b><span>Pozvánky na pohovor aj slušné odmietnutia, ktoré nepôsobia ako šablóna.</span></li>
+        <li class="uloha" style="--i:2"><b>Otázky na pohovor</b><span>Podľa požiadaviek pozície sada otázok aj s&nbsp;tým, čo si pri odpovedi všímať.</span></li>
+        <li class="uloha" style="--i:3"><b>Ponuky v&nbsp;inom jazyku</b><span>Inzerát alebo mail pre zahraničného uchádzača ako prvý návrh prekladu, ktorý doladíte.</span></li>
       </ul>
       <div class="zadanie">
-        <small>Ukážka zadania, ktoré si na hodine uložíte</small>
-        <q>Z&nbsp;týchto poznámok sprav inzerát na pozíciu skladník. Štruktúra: čo budete robiť, čo ponúkame, čo potrebujeme. Bez fráz ako dynamický kolektív.</q>
-        <p class="pozor"><strong>Pozor na údaje:</strong> životopisy s&nbsp;menami a&nbsp;kontaktmi do bežnej AI nevkladajte a&nbsp;o uchádzačoch nikdy nenechajte rozhodovať AI. Výber je vždy na vás.</p>
+        <p class="zadanie__lbl">Zadanie, ktoré si na hodine uložíte</p>
+        <p class="zadanie__txt"><span class="sr">Z&nbsp;týchto poznámok sprav inzerát na pozíciu skladník. Štruktúra: čo budete robiť, čo ponúkame, čo potrebujeme. Bez fráz ako dynamický kolektív.</span><span class="zadanie__vis" aria-hidden="true">Z&nbsp;týchto poznámok sprav inzerát na pozíciu skladník. Štruktúra: čo budete robiť, čo ponúkame, čo potrebujeme. Bez fráz ako dynamický kolektív.</span></p>
+        <p class="zadanie__pozor"><strong>Pozor na údaje:</strong> životopisy s&nbsp;menami a&nbsp;kontaktmi do bežnej AI nevkladajte a&nbsp;o uchádzačoch nikdy nenechajte rozhodovať AI. Výber je vždy na vás.</p>
       </div>
     </div>
 
     <div class="odbor" role="tabpanel" id="odbor-cestovny-ruch" aria-labelledby="tab-cestovny-ruch">
       <h3 class="odbor__name">Cestovný ruch</h3>
       <ul class="ulohy">
-        <li class="uloha"><b>Odpovede na dopyty</b><span>Z&nbsp;požiadavky klienta a&nbsp;vašich ponúk hotový mail s&nbsp;prehľadným porovnaním možností.</span></li>
-        <li class="uloha"><b>Popisy zájazdov a&nbsp;hotelov</b><span>Vlastné texty namiesto skopírovaného katalógu, v&nbsp;dĺžke pre web aj newsletter.</span></li>
-        <li class="uloha"><b>Program na mieru</b><span>Návrh programu deň po dni podľa toho, čo klient chce, ako podklad, ktorý doladíte.</span></li>
-        <li class="uloha"><b>Newsletter a&nbsp;sociálne siete</b><span>Pravidelné texty o&nbsp;ponukách bez toho, aby ste ich zakaždým písali od nuly.</span></li>
+        <li class="uloha" style="--i:0"><b>Odpovede na dopyty</b><span>Z&nbsp;požiadavky klienta a&nbsp;vašich ponúk hotový mail s&nbsp;prehľadným porovnaním možností.</span></li>
+        <li class="uloha" style="--i:1"><b>Popisy zájazdov a&nbsp;hotelov</b><span>Vlastné texty namiesto skopírovaného katalógu, v&nbsp;dĺžke pre web aj newsletter.</span></li>
+        <li class="uloha" style="--i:2"><b>Program na mieru</b><span>Návrh programu deň po dni podľa toho, čo klient chce, ako podklad, ktorý doladíte.</span></li>
+        <li class="uloha" style="--i:3"><b>Newsletter a&nbsp;sociálne siete</b><span>Pravidelné texty o&nbsp;ponukách bez toho, aby ste ich zakaždým písali od nuly.</span></li>
       </ul>
       <div class="zadanie">
-        <small>Ukážka zadania, ktoré si na hodine uložíte</small>
-        <q>Klient chce sedem dní pri mori v&nbsp;júni pre dvoch dospelých a&nbsp;dieťa, rozpočet do&nbsp;2&nbsp;500&nbsp;€. Z&nbsp;týchto troch ponúk napíš krátky mail s&nbsp;porovnaním. Vykaj.</q>
-        <p class="pozor"><strong>Pozor na údaje:</strong> čísla dokladov, dátumy narodenia a&nbsp;mená cestujúcich do AI nepatria. Ponuku napíšete aj bez nich.</p>
+        <p class="zadanie__lbl">Zadanie, ktoré si na hodine uložíte</p>
+        <p class="zadanie__txt"><span class="sr">Klient chce sedem dní pri mori v&nbsp;júni pre dvoch dospelých a&nbsp;dieťa, rozpočet do&nbsp;2&nbsp;500&nbsp;€. Z&nbsp;týchto troch ponúk napíš krátky mail s&nbsp;porovnaním. Vykaj.</span><span class="zadanie__vis" aria-hidden="true">Klient chce sedem dní pri mori v&nbsp;júni pre dvoch dospelých a&nbsp;dieťa, rozpočet do&nbsp;2&nbsp;500&nbsp;€. Z&nbsp;týchto troch ponúk napíš krátky mail s&nbsp;porovnaním. Vykaj.</span></p>
+        <p class="zadanie__pozor"><strong>Pozor na údaje:</strong> čísla dokladov, dátumy narodenia a&nbsp;mená cestujúcich do AI nepatria. Ponuku napíšete aj bez nich.</p>
       </div>
     </div>
 
     <div class="odbor" role="tabpanel" id="odbor-poistenie" aria-labelledby="tab-poistenie">
       <h3 class="odbor__name">Poistenie a&nbsp;financie</h3>
       <ul class="ulohy">
-        <li class="uloha"><b>Produkt jednoduchou rečou</b><span>Podmienky produktu vysvetlené tak, aby im rozumel aj klient, ktorý nie je odborník.</span></li>
-        <li class="uloha"><b>Maily po stretnutí</b><span>Zhrnutie stretnutia a&nbsp;ďalšie kroky pre klienta hneď po tom, ako odíde.</span></li>
-        <li class="uloha"><b>Porovnanie podmienok</b><span>Dva produkty prehľadne vedľa seba v&nbsp;tabuľke ako podklad na rozhovor.</span></li>
-        <li class="uloha"><b>Pripomienky termínov</b><span>Texty k&nbsp;výročiu zmluvy alebo k&nbsp;termínu, ktoré nepôsobia ako hromadná správa.</span></li>
+        <li class="uloha" style="--i:0"><b>Produkt jednoduchou rečou</b><span>Podmienky produktu vysvetlené tak, aby im rozumel aj klient, ktorý nie je odborník.</span></li>
+        <li class="uloha" style="--i:1"><b>Maily po stretnutí</b><span>Zhrnutie stretnutia a&nbsp;ďalšie kroky pre klienta hneď po tom, ako odíde.</span></li>
+        <li class="uloha" style="--i:2"><b>Porovnanie podmienok</b><span>Dva produkty prehľadne vedľa seba v&nbsp;tabuľke ako podklad na rozhovor.</span></li>
+        <li class="uloha" style="--i:3"><b>Pripomienky termínov</b><span>Texty k&nbsp;výročiu zmluvy alebo k&nbsp;termínu, ktoré nepôsobia ako hromadná správa.</span></li>
       </ul>
       <div class="zadanie">
-        <small>Ukážka zadania, ktoré si na hodine uložíte</small>
-        <q>Vysvetli rozdiel medzi týmito dvoma poisteniami domácnosti klientovi, ktorý nie je odborník. Najviac šesť viet, bez cudzích slov.</q>
-        <p class="pozor"><strong>Pozor na údaje:</strong> odporúčanie klientovi je vždy vaše. AI pomáha s&nbsp;textom a&nbsp;prehľadom, osobné a&nbsp;finančné údaje klientov do nej nevkladajte.</p>
+        <p class="zadanie__lbl">Zadanie, ktoré si na hodine uložíte</p>
+        <p class="zadanie__txt"><span class="sr">Vysvetli rozdiel medzi týmito dvoma poisteniami domácnosti klientovi, ktorý nie je odborník. Najviac šesť viet, bez cudzích slov.</span><span class="zadanie__vis" aria-hidden="true">Vysvetli rozdiel medzi týmito dvoma poisteniami domácnosti klientovi, ktorý nie je odborník. Najviac šesť viet, bez cudzích slov.</span></p>
+        <p class="zadanie__pozor"><strong>Pozor na údaje:</strong> odporúčanie klientovi je vždy vaše. AI pomáha s&nbsp;textom a&nbsp;prehľadom, osobné a&nbsp;finančné údaje klientov do nej nevkladajte.</p>
       </div>
     </div>
 
     <div class="odbor" role="tabpanel" id="odbor-kancelaria" aria-labelledby="tab-kancelaria">
       <h3 class="odbor__name">Poradenstvo, právo, preklady a&nbsp;iné kancelárie</h3>
       <ul class="ulohy">
-        <li class="uloha"><b>Cenové ponuky</b><span>Zo šablóny a&nbsp;vašich poznámok hotová ponuka, ktorú už len skontrolujete.</span></li>
-        <li class="uloha"><b>Zápisnice z&nbsp;porád</b><span>Z&nbsp;vašich bodov zápisnica s&nbsp;rozhodnutiami, úlohami a&nbsp;termínmi.</span></li>
-        <li class="uloha"><b>Zhrnutie dlhých dokumentov</b><span>Zmluva alebo správa zhrnutá do bodov, aby ste vedeli, kde treba čítať pozorne.</span></li>
-        <li class="uloha"><b>Preklady a&nbsp;korektúry</b><span>Mail alebo dokument v&nbsp;inom jazyku ako prvý návrh, ktorý potom doladíte.</span></li>
+        <li class="uloha" style="--i:0"><b>Cenové ponuky</b><span>Zo šablóny a&nbsp;vašich poznámok hotová ponuka, ktorú už len skontrolujete.</span></li>
+        <li class="uloha" style="--i:1"><b>Zápisnice z&nbsp;porád</b><span>Z&nbsp;vašich bodov zápisnica s&nbsp;rozhodnutiami, úlohami a&nbsp;termínmi.</span></li>
+        <li class="uloha" style="--i:2"><b>Zhrnutie dlhých dokumentov</b><span>Zmluva alebo správa zhrnutá do bodov, aby ste vedeli, kde treba čítať pozorne.</span></li>
+        <li class="uloha" style="--i:3"><b>Preklady a&nbsp;korektúry</b><span>Mail alebo dokument v&nbsp;inom jazyku ako prvý návrh, ktorý potom doladíte.</span></li>
       </ul>
       <div class="zadanie">
-        <small>Ukážka zadania, ktoré si na hodine uložíte</small>
-        <q>Z&nbsp;týchto bodov z&nbsp;porady sprav zápisnicu: rozhodnutia, úlohy s&nbsp;menom a&nbsp;termínom a&nbsp;otvorené otázky.</q>
-        <p class="pozor"><strong>Pozor na údaje:</strong> pri zmluvách a&nbsp;právnych textoch je AI pomocník na prvý návrh a&nbsp;zhrnutie. Výsledok vždy kontroluje človek, ktorý za neho zodpovedá.</p>
+        <p class="zadanie__lbl">Zadanie, ktoré si na hodine uložíte</p>
+        <p class="zadanie__txt"><span class="sr">Z&nbsp;týchto bodov z&nbsp;porady sprav zápisnicu: rozhodnutia, úlohy s&nbsp;menom a&nbsp;termínom a&nbsp;otvorené otázky.</span><span class="zadanie__vis" aria-hidden="true">Z&nbsp;týchto bodov z&nbsp;porady sprav zápisnicu: rozhodnutia, úlohy s&nbsp;menom a&nbsp;termínom a&nbsp;otvorené otázky.</span></p>
+        <p class="zadanie__pozor"><strong>Pozor na údaje:</strong> pri zmluvách a&nbsp;právnych textoch je AI pomocník na prvý návrh a&nbsp;zhrnutie. Výsledok vždy kontroluje človek, ktorý za neho zodpovedá.</p>
       </div>
     </div>
 
     <div class="odbory__foot">
-      <p>Váš odbor tu nie je? Nevadí, hodina sa vždy točí okolo toho, čo máte na stole. Nie je to pre vás, ak hľadáte kurz s&nbsp;certifikátom a&nbsp;osnovou na tri mesiace alebo programovanie a&nbsp;napojenie systémov. To robím zvlášť na <a href="https://apoliak.online" target="_blank" rel="noopener">apoliak.online</a>.</p>
-      <a class="cta" href="#termin" data-typ="free">Dohodnúť 15 minút zadarmo</a>
+      <p>Váš odbor tu nie je? Nevadí, hodina sa vždy točí okolo toho, čo máte na stole. Nie je to pre vás, ak hľadáte kurz s&nbsp;certifikátom a&nbsp;osnovou na tri mesiace alebo programovanie a&nbsp;napojenie systémov. To robím zvlášť na <a class="link link--plain" href="https://apoliak.online" target="_blank" rel="noopener">apoliak.online</a>.</p>
+      <a class="btn btn--lime" href="#termin" data-typ="free">Dohodnúť 15 minút zadarmo<svg viewBox="0 0 256 256" fill="currentColor" aria-hidden="true"><path d="M221.66,133.66l-72,72a8,8,0,0,1-11.32-11.32L196.69,136H40a8,8,0,0,1,0-16H196.69L138.34,61.66a8,8,0,0,1,11.32-11.32l72,72A8,8,0,0,1,221.66,133.66Z"/></svg></a>
     </div>
   </section>
 
   <!-- ================= AKO TO PREBIEHA ================= -->
   <section class="shell zone reveal" id="priebeh">
     <h2>Od prvého hovoru po zápis do večera</h2>
-    <div class="kroky">
-      <article class="krok">
-        <span class="krok__n" aria-hidden="true">1</span>
-        <h3>Úvodný hovor, 15 minút zadarmo</h3>
-        <p>Poviete mi, čo vás vo firme najviac zdržuje. Ja vám poviem, či s&nbsp;tým AI pomôže a&nbsp;ako by vyzerala hodina. Ak nepomôže, poviem to rovno a&nbsp;nič neplatíte.</p>
-      </article>
-      <article class="krok">
-        <span class="krok__n" aria-hidden="true">2</span>
-        <h3>Hodina online, 60 minút</h3>
-        <p>Prvých 10 minút mi ukážete svoju prácu. Ďalších 40 ju robíme s&nbsp;AI, klávesnicu držíte vy a&nbsp;ja opravujem za chodu. Posledných 10 si povieme, čo použijete hneď zajtra.</p>
-      </article>
-      <article class="krok">
-        <span class="krok__n" aria-hidden="true">3</span>
-        <h3>Zápis do večera</h3>
-        <p>Pošlem vám postupy a&nbsp;hotové zadania, ktoré sme použili, aby ste to zopakovali bez mňa. Ďalšiu hodinu si objednáte, len ak budete chcieť.</p>
-      </article>
-    </div>
+    <ol class="cas">
+      <li class="cas__krok" style="--i:0">
+        <p class="cas__t">15 min</p>
+        <span class="cas__uzol" aria-hidden="true"></span>
+        <div class="cas__obsah">
+          <h3>Úvodný hovor zadarmo</h3>
+          <p>Poviete mi, čo vás vo firme najviac zdržuje. Ja vám poviem, či s&nbsp;tým AI pomôže a&nbsp;ako by vyzerala hodina. Ak nepomôže, poviem to rovno a&nbsp;nič neplatíte.</p>
+        </div>
+      </li>
+      <li class="cas__krok" style="--i:1">
+        <p class="cas__t">60 min</p>
+        <span class="cas__uzol" aria-hidden="true"></span>
+        <div class="cas__obsah">
+          <h3>Hodina online na vašej práci</h3>
+          <p>Prvých 10 minút mi ukážete svoju prácu. Ďalších 40 ju robíme s&nbsp;AI, klávesnicu držíte vy a&nbsp;ja opravujem za chodu. Posledných 10 si povieme, čo použijete hneď zajtra.</p>
+        </div>
+      </li>
+      <li class="cas__krok" style="--i:2">
+        <p class="cas__t">do večera</p>
+        <span class="cas__uzol" aria-hidden="true"></span>
+        <div class="cas__obsah">
+          <h3>Zápis s&nbsp;postupmi</h3>
+          <p>Pošlem vám postupy a&nbsp;hotové zadania, ktoré sme použili, aby ste to zopakovali bez mňa. Ďalšiu hodinu si objednáte, len ak budete chcieť.</p>
+        </div>
+      </li>
+    </ol>
     <p class="pozn">Nič neinštalujete. Stačí počítač s&nbsp;prehliadačom, odkaz na Google Meet alebo Zoom vám pošlem mailom. Začíname na bezplatných verziách AI, platiť za ňu nemusíte.</p>
   </section>
 
@@ -596,84 +701,64 @@ section{scroll-margin-top:20px}
     <div class="kto">
       <div class="kto__text">
         <h2>Kto vás bude učiť</h2>
-        <p>Volám sa Alex Poliak. V&nbsp;práci sa starám o&nbsp;administratívu, IT a&nbsp;firemný systém Odoo v&nbsp;poradenskej firme v&nbsp;Bratislave, takže AI používam každý deň na to isté, čo budete na hodine robiť vy: maily, tabuľky, dokumenty a&nbsp;ponuky.</p>
+        <div class="kto__id">
+          <!-- TODO: fotka Alexa (štvorec, aspoň 208×208 px) sem namiesto monogramu, pravidlo .kto__foto je pripravené -->
+          <span class="kto__mono" aria-hidden="true">AP</span>
+          <div><p class="kto__name">Alex Poliak</p><p class="kto__role">Školenia AI pre firmy, weby na mieru</p></div>
+        </div>
+        <p>V&nbsp;práci sa starám o&nbsp;administratívu, IT a&nbsp;firemný systém Odoo v&nbsp;poradenskej firme v&nbsp;Bratislave, takže AI používam každý deň na to isté, čo budete na hodine robiť vy: maily, tabuľky, dokumenty a&nbsp;ponuky.</p>
         <p>Popritom robím weby a&nbsp;malé nástroje pre firmy na apoliak.online. Na hodine nie je agentúra ani prezentácia, ste tam vy, vaša obrazovka a&nbsp;ja. Čo som na sebe nevyskúšal, to vám neodporučím.</p>
         <h3>Certifikáty z&nbsp;AI</h3>
-        <p>Absolvoval som 20 kurzov od Anthropic, firmy, ktorá vyvíja AI Claude, a&nbsp;kurz Prompt Engineering for ChatGPT od Vanderbilt University. Dva z&nbsp;nich si môžete overiť priamo u&nbsp;vydavateľa.</p>
-        <div class="certy">
-          <figure class="cert">
-            <img src="img/cert-claude-101.webp" width="560" height="424" loading="lazy" decoding="async" alt="Certifikát Claude 101 od Anthropic na meno Alex Poliak">
-            <figcaption><b>Claude 101</b>Anthropic · <a href="https://verify.skilljar.com/c/uq8homniz6fr" target="_blank" rel="noopener">overiť</a></figcaption>
-          </figure>
-          <figure class="cert">
-            <img src="img/cert-prompt-engineering-chatgpt.webp" width="560" height="425" loading="lazy" decoding="async" alt="Certifikát Prompt Engineering for ChatGPT od Vanderbilt University na meno Alex Poliak">
-            <figcaption><b>Prompt Engineering for ChatGPT</b>Vanderbilt University · <a href="https://coursera.org/verify/8A5BH7JHN4SU" target="_blank" rel="noopener">overiť</a></figcaption>
-          </figure>
-          <figure class="cert">
-            <img src="img/cert-ai-fluency.webp" width="560" height="415" loading="lazy" decoding="async" alt="Certifikát AI Fluency: Framework and Foundations od Anthropic na meno Alex Poliak">
-            <figcaption><b>AI Fluency: Framework &amp; Foundations</b>Anthropic</figcaption>
-          </figure>
-        </div>
+        <p>Absolvoval som 20 kurzov od Anthropic, firmy, ktorá vyvíja AI Claude, a&nbsp;kurz Prompt Engineering for ChatGPT od Vanderbilt University. Dva z&nbsp;nich si môžete overiť priamo u&nbsp;vydavateľa:</p>
+        <ul class="overit">
+          <li><a class="link link--plain" href="https://verify.skilljar.com/c/uq8homniz6fr" target="_blank" rel="noopener">Claude 101, Anthropic<svg viewBox="0 0 256 256" fill="currentColor" aria-hidden="true"><path d="M200,64V168a8,8,0,0,1-16,0V83.31L69.66,197.66a8,8,0,0,1-11.32-11.32L172.69,72H88a8,8,0,0,1,0-16H192A8,8,0,0,1,200,64Z"/></svg></a></li>
+          <li><a class="link link--plain" href="https://coursera.org/verify/8A5BH7JHN4SU" target="_blank" rel="noopener">Prompt Engineering for ChatGPT, Vanderbilt University<svg viewBox="0 0 256 256" fill="currentColor" aria-hidden="true"><path d="M200,64V168a8,8,0,0,1-16,0V83.31L69.66,197.66a8,8,0,0,1-11.32-11.32L172.69,72H88a8,8,0,0,1,0-16H192A8,8,0,0,1,200,64Z"/></svg></a></li>
+        </ul>
+        <p class="kto__kontakt"><a class="link" href="tel:+421902464022">0902&nbsp;464&nbsp;022</a><a class="link" href="mailto:info@aiucenie.online">info@aiucenie.online</a><a class="link link--plain" href="https://apoliak.online" target="_blank" rel="noopener">apoliak.online</a></p>
       </div>
-      <aside class="vizitka" aria-label="Kontakt na lektora">
-        <!-- TODO: fotka Alexa (na výšku 4:5, aspoň 800×1000 px) sem namiesto monogramu, pravidlo .foto je pripravené -->
-        <span class="mono" aria-hidden="true">AP</span>
-        <p class="kto__name">Alex Poliak</p>
-        <p class="kto__role">Školenia AI pre firmy · weby na mieru</p>
-        <div class="kto__links">
-          <a href="tel:+421902464022">0902&nbsp;464&nbsp;022</a>
-          <a href="mailto:info@aiucenie.online">info@aiucenie.online</a>
-          <a href="https://apoliak.online" target="_blank" rel="noopener">apoliak.online</a>
-        </div>
-      </aside>
+      <figure class="vejar">
+        <img src="img/cert-claude-101.webp" width="560" height="424" loading="lazy" decoding="async" alt="Certifikát Claude 101 od Anthropic na meno Alex Poliak">
+        <img src="img/cert-prompt-engineering-chatgpt.webp" width="560" height="425" loading="lazy" decoding="async" alt="Certifikát Prompt Engineering for ChatGPT od Vanderbilt University na meno Alex Poliak">
+        <img src="img/cert-ai-fluency.webp" width="560" height="415" loading="lazy" decoding="async" alt="Certifikát AI Fluency: Framework and Foundations od Anthropic na meno Alex Poliak">
+        <figcaption>Tri z&nbsp;21 certifikátov z&nbsp;AI</figcaption>
+      </figure>
     </div>
   </section>
 
   <!-- ================= CENA ================= -->
   <section class="shell zone reveal" id="cena">
     <h2>Ceny bez predplatného</h2>
-    <div class="cena">
-      <div>
-        <p class="cena__num">25&nbsp;€</p>
-        <p class="cena__per">za 60 minút, jeden na jedného</p>
-      </div>
-      <div class="cena__text">
-        <p>Platíte len hodiny, ktoré si rezervujete. Celá hodina ide na vaše úlohy, nie na prednášku, ktorú si viete pozrieť na internete. Po hodine vám pošlem zápis s&nbsp;postupmi, ktoré sme použili.</p>
-        <p class="cena__kotva">Skupinový AI kurz stojí 150 až 550&nbsp;€ za jedného človeka a&nbsp;ide podľa osnovy. Tu celá hodina patrí vašej práci a&nbsp;tím do štyroch ľudí stojí 39&nbsp;€ za celú hodinu.</p>
-        <ul class="baliky">
-          <li class="balik balik--free">
-            <span class="balik__name">Úvodný hovor</span>
-            <span class="balik__desc">15 minút po telefóne alebo cez Meet, zistíme, či vám AI pomôže</span>
-            <span class="balik__sum">0&nbsp;€<small>zadarmo</small></span>
-          </li>
-          <li class="balik">
-            <span class="balik__name">Jedna hodina</span>
-            <span class="balik__desc">60 minút online, jeden na jedného, so zápisom</span>
-            <span class="balik__sum">25&nbsp;€<small>za hodinu</small></span>
-          </li>
-          <li class="balik">
-            <span class="balik__name">Malý tím</span>
-            <span class="balik__desc">Dvaja až štyria ľudia pri jednej obrazovke, cena za celú hodinu</span>
-            <span class="balik__sum">39&nbsp;€<small>za hodinu</small></span>
-          </li>
-          <li class="balik">
-            <span class="balik__name">Tri hodiny</span>
-            <span class="balik__desc">Tri samostatné termíny, platnosť 4 mesiace</span>
-            <span class="balik__sum">69&nbsp;€<small>23&nbsp;€ za hodinu</small></span>
-          </li>
-          <li class="balik">
-            <span class="balik__name">Šesť hodín</span>
-            <span class="balik__desc">Dajú sa rozdeliť aj medzi dvoch ľudí, platnosť 6 mesiacov</span>
-            <span class="balik__sum">132&nbsp;€<small>22&nbsp;€ za hodinu</small></span>
-          </li>
-        </ul>
-        <p class="fine">Platí sa prevodom na účet pred hodinou. Sumu a&nbsp;číslo účtu vám pošlem mailom po potvrdení termínu. Termín môžete presunúť najneskôr 24 hodín vopred, bez poplatku.</p>
-        <div class="cena__cta">
-          <a class="cta" href="#termin" data-typ="free">Začať hovorom zadarmo</a>
-          <a class="cta cta--line" href="#termin" data-typ="paid">Rezervovať rovno hodinu</a>
-        </div>
-      </div>
+    <p class="lead sec__lead">Skupinový AI kurz stojí 150 až 550&nbsp;€ za jedného človeka a&nbsp;ide podľa osnovy. Tu celá hodina patrí vašej práci a&nbsp;platíte len hodiny, ktoré si rezervujete.</p>
+    <div class="bento">
+      <article class="tile tile--main">
+        <h3>Jedna hodina</h3>
+        <p>60 minút online, jeden na jedného. Do večera dostanete zápis s&nbsp;postupmi, ktoré sme použili.</p>
+        <p class="tile__sum num">25&nbsp;€</p>
+        <a class="btn btn--ink" href="#termin" data-typ="paid">Rezervovať hodinu</a>
+      </article>
+      <article class="tile tile--lime">
+        <h3>Úvodný hovor</h3>
+        <p class="tile__sum num">0&nbsp;€</p>
+        <p>15 minút po telefóne alebo cez Meet. Zistíme, či vám AI pomôže.</p>
+        <a class="btn btn--ink" href="#termin" data-typ="free">Dohodnúť 15 minút zadarmo</a>
+      </article>
+      <article class="tile">
+        <h3>Malý tím</h3>
+        <p class="tile__sum num">39&nbsp;€</p>
+        <p>Dvaja až štyria ľudia pri jednej obrazovke, cena za celú hodinu.</p>
+      </article>
+      <article class="tile">
+        <h3>Tri hodiny</h3>
+        <p class="tile__sum num">69&nbsp;€</p>
+        <p>23&nbsp;€ za hodinu. Tri samostatné termíny, platnosť 4 mesiace.</p>
+      </article>
+      <article class="tile">
+        <h3>Šesť hodín</h3>
+        <p class="tile__sum num">132&nbsp;€</p>
+        <p>22&nbsp;€ za hodinu. Dajú sa rozdeliť aj medzi dvoch ľudí, platnosť 6 mesiacov.</p>
+      </article>
     </div>
+    <p class="fine">Platí sa prevodom na účet pred hodinou. Sumu a&nbsp;číslo účtu vám pošlem mailom po potvrdení termínu. Termín môžete presunúť najneskôr 24 hodín vopred, bez poplatku.</p>
   </section>
 
   <!-- ================= OTÁZKY ================= -->
@@ -775,7 +860,7 @@ section{scroll-margin-top:20px}
           </div>
           <p class="garancia">Ak uvidím, že vám hodina nemá čo dať, poviem vám to <strong>ešte pred platbou</strong> a&nbsp;termín zrušíme.</p>
           <p class="msg" id="msg" role="alert"></p>
-          <button class="cta" type="submit" id="sendBtn">Pokračovať</button>
+          <button class="btn btn--lime" type="submit" id="sendBtn">Pokračovať</button>
           <p class="gdpr">Kontakt použijem len na dohodnutie termínu. Viac v <a href="ochrana-udajov.html">ochrane údajov</a>.</p>
         </form>
       </div>
@@ -783,21 +868,21 @@ section{scroll-margin-top:20px}
       <!-- krok 3 -->
       <div class="panel" id="p3">
         <div class="done">
-          <h3 id="doneTitle">Posledný krok: odošlite rezerváciu</h3>
+          <h3 id="doneTitle" tabindex="-1">Posledný krok: odošlite rezerváciu</h3>
           <p id="doneText">Rezerváciu máte pripravenú. Odošlite ju z&nbsp;mailu, ktorý používate, a&nbsp;do&nbsp;24 hodín vám termín potvrdím.</p>
           <div class="send" id="sendOpts">
-            <a class="cta cta--line" id="sendGmail" href="#" target="_blank" rel="noopener">Odoslať cez Gmail</a>
-            <a class="cta cta--line" id="sendOutlook" href="#" target="_blank" rel="noopener">Odoslať cez Outlook</a>
-            <a class="cta cta--line" id="sendMail" href="#">Iný e-mailový program</a>
-            <a class="cta cta--line" id="sendSms" href="#" hidden>Poslať ako SMS</a>
-            <button class="cta cta--line" id="copyBtn" type="button">Skopírovať text</button>
+            <a class="btn btn--line" id="sendGmail" href="#" target="_blank" rel="noopener">Odoslať cez Gmail</a>
+            <a class="btn btn--line" id="sendOutlook" href="#" target="_blank" rel="noopener">Odoslať cez Outlook</a>
+            <a class="btn btn--line" id="sendMail" href="#">Iný e-mailový program</a>
+            <a class="btn btn--line" id="sendSms" href="#" hidden>Poslať ako SMS</a>
+            <button class="btn btn--line" id="copyBtn" type="button">Skopírovať text</button>
           </div>
           <details class="nahlad" id="nahlad">
             <summary>Čo sa odošle</summary>
             <pre id="nahladText"></pre>
           </details>
           <div class="done__after">
-            <button class="cta" type="button" id="icsBtn">Pridať do kalendára</button>
+            <button class="btn btn--ink" type="button" id="icsBtn">Pridať do kalendára</button>
             <p>Nič z&nbsp;toho nejde? Zavolajte mi na <a href="tel:+421902464022">0902&nbsp;464&nbsp;022</a> a&nbsp;termín zapíšem hneď.</p>
           </div>
         </div>
@@ -813,8 +898,8 @@ section{scroll-margin-top:20px}
         <p>Zavolajte alebo napíšte. Odpovedám zvyčajne ešte v&nbsp;ten istý deň, najneskôr do&nbsp;24 hodín.</p>
       </div>
       <div class="strip__links">
-        <a href="tel:+421902464022">0902&nbsp;464&nbsp;022</a>
-        <a href="mailto:info@aiucenie.online">info@aiucenie.online</a>
+        <a class="link num" href="tel:+421902464022">0902&nbsp;464&nbsp;022</a>
+        <a class="link link--plain" href="mailto:info@aiucenie.online">info@aiucenie.online</a>
       </div>
     </div>
   </section>
@@ -822,7 +907,7 @@ section{scroll-margin-top:20px}
 </main>
 
 <footer class="shell foot">
-  <a class="brand" href="./">AI Učenie</a>
+  <a class="brand" href="./" translate="no"><span class="brand__znak" aria-hidden="true">AI</span>AI Učenie</a>
   <span>aiucenie.online</span>
   <nav aria-label="Pätička">
     <a href="#odbory">Pre koho</a>
@@ -834,8 +919,7 @@ section{scroll-margin-top:20px}
 </footer>
 
 <div class="lepka" id="lepka" aria-hidden="true">
-  <div><strong>15 minút zadarmo</strong><small>potom 25&nbsp;€ za hodinu</small></div>
-  <a class="cta" href="#termin" data-typ="free" tabindex="-1">Vybrať termín</a>
+  <a class="btn btn--lime" href="#termin" data-typ="free" tabindex="-1">Dohodnúť 15 minút zadarmo</a>
 </div>
 
 <script type="application/ld+json">
@@ -904,12 +988,51 @@ section{scroll-margin-top:20px}
   var $ = function(id){ return document.getElementById(id); };
   var pad = function(n){ return n < 10 ? "0" + n : "" + n; };
   var enc = encodeURIComponent;
+  var bezPohybu = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  /* ---------- hlavička: po odrolovaní z vrchu dostane podklad ---------- */
+  if ("IntersectionObserver" in window){
+    new IntersectionObserver(function(ev){
+      $("top").classList.toggle("is-stuck", !ev[0].isIntersecting);
+    }).observe($("vrch"));
+  }
+
+  /* ---------- odbory: zadanie pre AI sa vypíše ako pri písaní ---------- */
+  var pisanie = null;
+  function napis(panel){
+    var el = panel.querySelector(".zadanie__vis");
+    if (!el) return;
+    var cele = el.getAttribute("data-cele");
+    if (cele === null){ cele = el.textContent; el.setAttribute("data-cele", cele); }
+    clearTimeout(pisanie);
+    document.querySelectorAll(".zadanie__vis.is-typing").forEach(function(x){ x.classList.remove("is-typing"); x.textContent = x.getAttribute("data-cele") || x.textContent; });
+    if (bezPohybu){ el.textContent = cele; return; }
+    var i = 0;
+    el.textContent = "";
+    el.classList.add("is-typing");
+    (function dalsi(){
+      i = Math.min(cele.length, i + 2);
+      el.textContent = cele.slice(0, i);
+      if (i < cele.length) pisanie = setTimeout(dalsi, 26);
+      else pisanie = setTimeout(function(){ el.classList.remove("is-typing"); }, 1400);
+    })();
+  }
 
   /* ---------- odbory: záložky (šípky, Home/End, odkaz #reality otvorí rovno Reality) ---------- */
   var tabs = Array.prototype.slice.call(document.querySelectorAll('#odbory [role="tab"]'));
   var panely = tabs.map(function(t){ return $(t.getAttribute("aria-controls")); });
+  var ind = document.querySelector(".tabs__ind");
+  var aktivnyOdbor = 0, odboryVidno = false;
+
+  function posunCiaru(){
+    var t = tabs[aktivnyOdbor];
+    if (!ind || !t) return;
+    ind.style.transform = "translateX(" + t.offsetLeft + "px) scaleX(" + t.offsetWidth + ")";
+  }
 
   function ukazOdbor(i, sFokusom){
+    var zmena = i !== aktivnyOdbor;
+    aktivnyOdbor = i;
     tabs.forEach(function(t, j){
       var on = i === j;
       t.setAttribute("aria-selected", on ? "true" : "false");
@@ -918,9 +1041,15 @@ section{scroll-margin-top:20px}
     });
     if (sFokusom) tabs[i].focus();
     tabs[i].scrollIntoView({ block: "nearest", inline: "nearest" });
+    posunCiaru();
+    if (zmena || odboryVidno) napis(panely[i]);
   }
   tabs.forEach(function(t, i){
-    t.addEventListener("click", function(){ ukazOdbor(i); });
+    t.addEventListener("click", function(){
+      ukazOdbor(i);
+      /* adresa ukazuje vybraný odbor, odkaz sa dá rovno poslať ďalej (bez rolovania a bez hashchange) */
+      if (history.replaceState) history.replaceState(null, "", "#" + panely[i].id.replace(/^odbor-/, ""));
+    });
     t.addEventListener("keydown", function(e){
       var n = tabs.length, j = -1;
       if (e.key === "ArrowRight") j = (i + 1) % n;
@@ -934,7 +1063,22 @@ section{scroll-margin-top:20px}
   });
   if (tabs.length){
     panely.forEach(function(p, j){ p.hidden = j !== 0; });
+    posunCiaru();
+    window.addEventListener("resize", posunCiaru);
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(posunCiaru);
+    /* prvé zadanie sa vypíše, keď sekcia príde na obrazovku */
+    if ("IntersectionObserver" in window){
+      var ioOdbory = new IntersectionObserver(function(ev){
+        if (ev[0].isIntersecting){
+          odboryVidno = true;
+          napis(panely[aktivnyOdbor]);
+          ioOdbory.disconnect();
+        }
+      }, { threshold: .35 });
+      ioOdbory.observe($("odbory"));
+    }
   }
+
   /* panely majú id "odbor-reality", odkaz je len "#reality": prehliadač tak sám nikam neroluje
      a stránka zastaví na sekcii odborov tak, aby boli vidno aj záložky */
   function odborZOdkazu(plynulo){
@@ -944,11 +1088,24 @@ section{scroll-margin-top:20px}
         ukazOdbor(i);
         $("odbory").classList.add("is-in");
         $("odbory").scrollIntoView({ behavior: plynulo === true ? "smooth" : "instant", block: "start" });
-        return;
+        return true;
       }
     }
+    return false;
   }
-  odborZOdkazu();
+  /* pri otvorení stránky rovno na odbor: keď sa dotiahnu písma, obsah nad sekciou zmení výšku,
+     preto sa zarovná ešte raz, ale len ak človek medzitým sám nezačal rolovať */
+  if (odborZOdkazu()){
+    var sam = false;
+    ["wheel","touchstart","keydown","mousedown"].forEach(function(t){
+      window.addEventListener(t, function(){ sam = true; }, { once: true, passive: true });
+    });
+    var zarovnaj = function(){
+      if (!sam) $("odbory").scrollIntoView({ behavior: "instant", block: "start" });
+    };
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(zarovnaj);
+    window.addEventListener("load", zarovnaj, { once: true });
+  }
   window.addEventListener("hashchange", function(){ odborZOdkazu(true); });
 
   /* ---------- typ rezervácie: úvodný hovor zdarma alebo platená hodina ---------- */
@@ -1099,7 +1256,21 @@ section{scroll-margin-top:20px}
   var posielam = false;
   var sprava = null;      /* hotová rezervácia: predmet, telo, dĺžka v minútach */
 
-  function chyba(t, el){ msg.textContent = t; if (el) el.focus(); }
+  /* chyba sa zobrazí pod formulárom, pole sa označí ako neplatné a čítačka k nemu prečíta text chyby */
+  function chyba(t, el){
+    msg.textContent = t;
+    if (el){
+      el.setAttribute("aria-invalid", "true");
+      el.setAttribute("aria-describedby", "msg");
+      el.focus();
+    }
+  }
+  function zrusChyby(){
+    ["f-name","f-mail","f-tel"].forEach(function(id){
+      $(id).removeAttribute("aria-invalid");
+      $(id).removeAttribute("aria-describedby");
+    });
+  }
 
   function busy(zapni){
     posielam = zapni;
@@ -1126,6 +1297,8 @@ section{scroll-margin-top:20px}
     $("nahlad").hidden = !sMoznostami;
     krok(3);
     $("termin").scrollIntoView({ behavior: "smooth", block: "start" });
+    /* fokus na nový nadpis, aby čítačka obrazovky vedela, že sa krok zmenil */
+    $("doneTitle").focus({ preventScroll: true });
   }
 
   /* odkazy na odoslanie: Gmail a Outlook v prehliadači, e-mailový program, SMS z mobilu */
@@ -1177,6 +1350,7 @@ section{scroll-margin-top:20px}
   $("bkForm").addEventListener("submit", function(ev){
     ev.preventDefault();
     if (posielam) return;
+    zrusChyby();
 
     var meno  = $("f-name").value.trim();
     var mail  = $("f-mail").value.trim();
@@ -1304,7 +1478,6 @@ section{scroll-margin-top:20px}
 
   /* ---------- odhalenie sekcií pri scrollovaní ---------- */
   var ciele = document.querySelectorAll(".reveal");
-  var bezPohybu = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   if ("IntersectionObserver" in window && !bezPohybu){
     var io = new IntersectionObserver(function(ev){
       ev.forEach(function(x){

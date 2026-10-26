@@ -9,7 +9,10 @@ ochrana-udajov.html podstránka, odkazuje sa na ňu z formulára a z pätičky
 og-image.png        obrázok 1200x630 na zdieľanie odkazu
 og-image.svg        zdroj toho obrázka (uprav tu, PNG potom vyrenderuj znova:
                     otvoriť SVG v prehliadači z priečinka repa a odfotiť 1200x630)
-fonts/              písma Newsreader (nadpisy, jedna váha 500) + Manrope (text), hostované tu (nie Google Fonts)
+fonts/              písma hostované tu (nie Google Fonts): IBM Plex Sans (plex-sans-*, celý web, váhy 400 až 700)
+                    + IBM Plex Mono (plex-mono-*, zadania pre AI, časová os, časy v rezervácii).
+                    Newsreader a Manrope (newsreader-*, manrope-*) sa od 10/2026 nepoužívajú, ostali v repe,
+                    zmazať len na tvoj pokyn
 img/                náhľady troch certifikátov (kópia z repa Apoliak-CV-online, certifikaty/nahlady)
 robots.txt          povoľuje indexovanie, ochranu údajov drží mimo Googlu
 sitemap.xml         jedna adresa, pri zmene webu prepíš lastmod
@@ -97,6 +100,25 @@ v histórii commitov (naposledy 65ebf21), keby sa k tomu niekedy vracal.
 
 Rozhodnuté
 ----------
+- DIZAJN 10/2026, štvrtá verzia (Alex 26.10.: predošlý vzhľad pôsobil šablónovito,
+  k tomu menšie animácie):
+  * serif Newsreader na krémovom papieri bol najtypickejší AI vzhľad -> IBM Plex Sans na všetko,
+    IBM Plex Mono len tam, kde ide o „písaný“ text (zadania pre AI, časy)
+  * farby: neutrálna svetlá sivá #F3F4F1 (tmavá #101210), takmer čierna #121412 a jediný akcent
+    limetková #D6FF4B z cv.apoliak.online (zvýrazňovač, tlačidlá, vybraná záložka); limetka nikdy
+    nie je farba textu
+  * preč: modré pásiky vľavo, natočená karta, tri rovnaké stĺpce, pomlčky v zoznamoch, čiary pod
+    každým riadkom cenníka; nové: hero s vetou cez celú šírku, pás so zárukou a cenami, záložky
+    s posuvnou čiarou, tmavá karta so zadaním, časová os priebehu, vejár certifikátov, cenník ako
+    mriežka (veľká dlaždica 25 €, limetková 0 €, tri malé)
+  * jemné animácie (všetky vypína „obmedziť pohyb“): zvýrazňovač pod nadpisom sa dopíše (CSS
+    animácia, nie cez JS), zápis z hodiny a jeho kroky postupne, zadanie pre AI sa vypíše ako pri
+    písaní (pri každom prepnutí odboru), čiara záložiek sa presunie, časová os sa nakreslí a uzly
+    sa vyfarbia, certifikáty sa roztiahnu do vejára, hlavička sa prilepí a dostane podklad,
+    tlačidlá s posunom šípky
+  * hlavička je prilepená: odstup pod ňu rieši len html{scroll-padding-top:80px}; scroll-margin
+    na sekciách NEDÁVAŤ, sčíta sa s ním a odkazy potom zastavia o 80 px nižšie
+  * klik na záložku odboru prepíše adresu na #reality a pod. (odkaz sa dá poslať ďalej)
 - PREROBENÉ 10/2026 (Alex 25.10.: web nepriniesol rezervácie). Vzhľad ostal,
   zmenilo sa to, čo predáva:
   * VYKANIE namiesto tykania — mail kampane vyká a ide majiteľom účtovných, realitných,
@@ -115,7 +137,7 @@ Rozhodnuté
     posielajú odberateľom, nie dodávateľom)
   * SEO: titulok "AI školenie pre firmy a živnostníkov online", JSON-LD so všetkými
     ponukami vrátane hovoru za 0 €
-- dizajn 09/2026 (tretia verzia, po Alexovom „vyzerá to ako AI“): papier a atrament,
+- (NAHRADENÉ štvrtou verziou vyššie) dizajn 09/2026 (tretia verzia, po Alexovom „vyzerá to ako AI“): papier a atrament,
   svetlá téma (tmavá podľa systému), jeden modrý akcent, nadpisy serifom Newsreader,
   text Manrope, obe písma vo fonts/; žiadne Google Fonts, gradienty, ikony, karty,
   eyebrowy ani pomlčky v texte. Poradie: hero (sľub + ukážka zápisu z hodiny) ->

@@ -43,7 +43,7 @@
 
 Celý web žije v jednom súbore `index.html`: markup, CSS aj JavaScript sú inline. Nie je tu backend, build step ani package manager. Rezervačný widget si sám vypočíta voľné termíny z týždenného plánu, klient si vyberie úvodný hovor zadarmo alebo platenú hodinu, deň a čas, a rezerváciu odošle jedným klikom cez Gmail, Outlook, svoj e-mailový program, SMS alebo skopírovaním (prípadne na vlastný endpoint).
 
-Používateľské rozhranie je kompletne v slovenčine (`<html lang="sk">`), s vykaním. Dizajn: papier a atrament, svetlá téma s tmavou podľa systému, jeden modrý akcent, nadpisy serifom Newsreader, písma aj obrázky hostované priamo v repe, žiadne cudzie požiadavky pri načítaní. Poradie: hero so skutočnou ukážkou zápisu a tromi faktami → čo AI zvládne v siedmich odboroch (záložky) → ako to prebieha → kto učí (s certifikátmi) → cena → otázky → rezervácia; na mobile ju pripomína lepiaci pás.
+Používateľské rozhranie je kompletne v slovenčine (`<html lang="sk">`), s vykaním. Dizajn: neutrálna svetlá téma s tmavou podľa systému, takmer čierny text a jediný akcent – limetkový „zvýrazňovač“ `#D6FF4B`; IBM Plex Sans na všetko, IBM Plex Mono na zadania pre AI; písma aj obrázky hostované priamo v repe, žiadne cudzie požiadavky pri načítaní. Poradie: hero so skutočnou ukážkou zápisu → pás so zárukou a cenami → čo AI zvládne v siedmich odboroch (záložky) → časová os priebehu → kto učí (vejár certifikátov) → cenník ako mriežka → otázky → rezervácia; na mobile ju pripomína lepiaci pás.
 
 ---
 
@@ -55,7 +55,8 @@ Používateľské rozhranie je kompletne v slovenčine (`<html lang="sk">`), s v
 - 🗓️ **Automatické voľné termíny** - z týždenného plánu `PLAN` sa vygeneruje najbližších `POCET_DNI` dní; dnešné termíny sa ponúkajú len 2 hodiny dopredu a víkend sa vynecháva.
 - 📦 **Výber balíka priamo v rezervácii** - jedna hodina, dve za sebou, balík 3 h / 6 h alebo malý tím; vybraný balík ide aj do odoslaných dát.
 - 📮 **Odoslanie jedným klikom** - Gmail, Outlook, e-mailový program (`mailto:`), SMS na mobile alebo skopírovanie textu; voliteľne `fetch` na vlastný endpoint (FormSubmit, Web3Forms) s návratom na tieto cesty, keď zlyhá.
-- 🎓 **Certifikáty s overením** - náhľady troch certifikátov v `img/` s odkazmi na overenie u vydavateľa.
+- 🎓 **Certifikáty s overením** - náhľady troch certifikátov v `img/` ako vejár, s odkazmi na overenie u vydavateľa.
+- ✨ **Jemné animácie** - zvýrazňovač pod nadpisom, zadanie pre AI sa vypíše ako pri písaní, posuvná čiara záložiek, časová os, ktorá sa nakreslí, vejár certifikátov, lepiaca hlavička; len `transform`/`opacity` (zvýrazňovač raz cez `background-size`), všetko vypína `prefers-reduced-motion`.
 - 🕳️ **Pasca na roboty** - skryté pole `web`; keď ho spam bot vyplní, rezervácia sa ticho zahodí.
 - ⏰ **Kontrola prešlého termínu** - ak mal klient stránku otvorenú pridlho a termín medzitým prešiel, widget ho vráti na výber namiesto odoslania rezervácie do minulosti.
 - 📆 **Export do kalendára (.ics)** - s pripomienkou deň vopred aj hodinu pred začiatkom a organizátorom.
@@ -91,7 +92,7 @@ ai-ucenie/
 ├── 404.html              # vlastná stránka pre neexistujúce adresy
 ├── og-image.png          # obrázok 1200×630 na zdieľanie odkazu
 ├── og-image.svg          # zdroj OG obrázka (písma z fonts/, PNG sa z neho fotí v prehliadači)
-├── fonts/                # Newsreader (nadpisy) + Manrope (text), hostované tu, nie na Google Fonts
+├── fonts/                # IBM Plex Sans + IBM Plex Mono, hostované tu, nie na Google Fonts (Newsreader a Manrope sa už nepoužívajú)
 ├── img/                  # náhľady certifikátov v sekcii Kto vás bude učiť
 ├── robots.txt            # indexovanie povolené, GDPR stránka mimo
 ├── sitemap.xml           # jedna URL

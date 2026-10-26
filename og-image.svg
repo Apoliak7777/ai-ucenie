@@ -1,29 +1,28 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
   <!-- Zdroj obrázka na zdieľanie odkazu. PNG sa z neho renderuje v prehliadači (fonts/ vedľa). -->
   <style>
-    @font-face{font-family:'Newsreader';font-weight:500;src:url('fonts/newsreader-500-latin-ext.woff2') format('woff2');unicode-range:U+0100-02BA,U+1E00-1EFF}
-    @font-face{font-family:'Newsreader';font-weight:500;src:url('fonts/newsreader-500-latin.woff2') format('woff2');unicode-range:U+0000-00FF,U+2000-206F,U+20AC}
-    @font-face{font-family:'Manrope';font-weight:200 800;src:url('fonts/manrope-latin-ext.woff2') format('woff2');unicode-range:U+0100-02BA,U+1E00-1EFF}
-    @font-face{font-family:'Manrope';font-weight:200 800;src:url('fonts/manrope-latin.woff2') format('woff2');unicode-range:U+0000-00FF,U+2000-206F,U+20AC}
-    .d{font-family:'Newsreader',Georgia,serif;font-weight:500}
-    .b{font-family:'Manrope','Segoe UI',sans-serif}
+    @font-face{font-family:'IBM Plex Sans';font-weight:400 700;src:url('fonts/plex-sans-latin-ext.woff2') format('woff2');unicode-range:U+0100-02BA,U+1E00-1EFF}
+    @font-face{font-family:'IBM Plex Sans';font-weight:400 700;src:url('fonts/plex-sans-latin.woff2') format('woff2');unicode-range:U+0000-00FF,U+2000-206F,U+20AC}
+    .s{font-family:'IBM Plex Sans','Segoe UI',sans-serif}
   </style>
 
-  <rect width="1200" height="630" fill="#F8F7F4"/>
-  <rect x="0" y="0" width="1200" height="6" fill="#1F45D8"/>
+  <rect width="1200" height="630" fill="#F3F4F1"/>
 
   <!-- značka -->
-  <text x="88" y="112" class="d" font-size="34" fill="#151517">AI Učenie</text>
+  <rect x="88" y="76" width="44" height="44" rx="10" fill="#121412"/>
+  <rect x="98" y="106" width="24" height="5" fill="#D6FF4B"/>
+  <text x="110" y="105" class="s" font-size="17" font-weight="700" fill="#ffffff" text-anchor="middle">AI</text>
+  <text x="146" y="108" class="s" font-size="30" font-weight="600" fill="#121412" letter-spacing="-0.5">AI Učenie</text>
 
-  <!-- nadpis -->
-  <text x="88" y="290" class="d" font-size="84" fill="#151517" letter-spacing="-1.5">Naučím vás pracovať s AI</text>
-  <text x="88" y="380" class="d" font-size="84" fill="#151517" letter-spacing="-1.5">na vašej vlastnej práci.</text>
+  <!-- nadpis so zvýrazňovačom -->
+  <rect x="88" y="349" width="856" height="26" fill="#D6FF4B"/>
+  <text x="84" y="270" class="s" font-size="92" font-weight="600" fill="#121412" letter-spacing="-3.2">Naučím vás pracovať s AI</text>
+  <text x="84" y="368" class="s" font-size="92" font-weight="600" fill="#121412" letter-spacing="-3.2">na vašej vlastnej práci.</text>
 
-  <text x="88" y="446" class="b" font-size="27" font-weight="500" fill="#3A3A3E">Online školenie pre malé firmy a živnostníkov, jeden na jedného.</text>
+  <text x="88" y="446" class="s" font-size="29" font-weight="400" fill="#3A3F3B">Online školenie pre malé firmy a živnostníkov, jeden na jedného.</text>
 
   <!-- cena -->
-  <text x="88" y="562" class="d" font-size="72" fill="#151517" letter-spacing="-2">25 €</text>
-  <text x="262" y="558" class="b" font-size="24" font-weight="600" fill="#6E6E74">za hodinu, úvodný hovor zadarmo</text>
-
-  <text x="1112" y="558" class="b" font-size="24" font-weight="600" fill="#6E6E74" text-anchor="end">aiucenie.online</text>
+  <text x="88" y="560" class="s" font-size="64" font-weight="600" fill="#121412" letter-spacing="-2">25 €</text>
+  <text x="236" y="553" class="s" font-size="25" font-weight="500" fill="#5E655F">za hodinu, úvodný hovor zadarmo</text>
+  <text x="1112" y="553" class="s" font-size="25" font-weight="500" fill="#5E655F" text-anchor="end">aiucenie.online</text>
 </svg>
