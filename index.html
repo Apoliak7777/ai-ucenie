@@ -3,13 +3,13 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>AI Učenie: hodina AI na tvojej vlastnej robote za 25 €</title>
-<meta name="description" content="Online hodina AI pre živnostníkov a malé firmy. Otvoríš svoj mail, tabuľku alebo ponuky a naučím ťa robiť tú istú robotu s AI. 25 € za 60 minút, tím do štyroch ľudí 39 €, zápis s postupmi po hodine.">
+<title>AI školenie pre firmy a živnostníkov online | AI Učenie</title>
+<meta name="description" content="Naučím vás a váš tím pracovať s ChatGPT a Claude na vašich vlastných mailoch, ponukách a tabuľkách. Online, jeden na jedného, 25 € za hodinu, tím do štyroch ľudí 39 €. Úvodný 15-minútový hovor zadarmo.">
 <meta name="theme-color" content="#F8F7F4">
 <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#141416">
 <link rel="canonical" href="https://aiucenie.online/">
-<meta property="og:title" content="AI Učenie: hodina AI na tvojej vlastnej robote za 25 €">
-<meta property="og:description" content="Otvoríš svoj mail, tabuľku alebo e-shop a naučím ťa robiť tú istú robotu s AI. Jeden na jedného, so zápisom po hodine.">
+<meta property="og:title" content="AI Učenie: naučím vás pracovať s AI na vašej vlastnej práci">
+<meta property="og:description" content="Online školenie AI pre malé firmy a živnostníkov. Vaše maily, ponuky a tabuľky, jeden na jedného. 25 € za hodinu, úvodný hovor zadarmo.">
 <meta property="og:url" content="https://aiucenie.online/">
 <meta property="og:type" content="website">
 <meta property="og:locale" content="sk_SK">
@@ -17,8 +17,8 @@
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="AI Učenie: hodina AI na tvojej vlastnej robote za 25 €">
-<meta name="twitter:description" content="Otvoríš svoj mail, tabuľku alebo e-shop a naučím ťa robiť tú istú robotu s AI. Jeden na jedného, so zápisom po hodine.">
+<meta name="twitter:title" content="AI Učenie: naučím vás pracovať s AI na vašej vlastnej práci">
+<meta name="twitter:description" content="Online školenie AI pre malé firmy a živnostníkov. Vaše maily, ponuky a tabuľky, jeden na jedného. 25 € za hodinu, úvodný hovor zadarmo.">
 <meta name="twitter:image" content="https://aiucenie.online/og-image.png">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='8' fill='%231F45D8'/%3E%3Ctext x='32' y='44' font-family='Georgia,serif' font-weight='600' font-size='34' text-anchor='middle' fill='%23fff'%3EA%3C/text%3E%3C/svg%3E">
 <link rel="preload" href="fonts/newsreader-500-latin.woff2" as="font" type="font/woff2" crossorigin>
@@ -66,11 +66,12 @@
 
 /* ---------- základ ---------- */
 *,*::before,*::after{box-sizing:border-box}
+[hidden]{display:none!important}
 html{scroll-behavior:smooth;scroll-padding-bottom:88px}
 body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--body);
   font-size:clamp(16px,.3vw + 15px,17.5px);line-height:1.6;-webkit-tap-highlight-color:transparent}
 h1,h2,h3{font-family:var(--display);font-weight:500;font-optical-sizing:auto;margin:0;text-wrap:balance;letter-spacing:-.012em}
-h1{font-size:clamp(2.4rem,1.4rem + 2.4vw,3.1rem);line-height:1.06}
+h1{font-size:clamp(2.4rem,1.4rem + 2.4vw,3.2rem);line-height:1.06}
 h2{font-size:clamp(1.9rem,1.2rem + 1.8vw,2.7rem);line-height:1.1;max-width:24ch}
 h3{font-size:1.45rem;line-height:1.2}
 p{margin:0}
@@ -79,9 +80,10 @@ button{font:inherit;color:inherit}
 strong{font-weight:700}
 :focus-visible{outline:2px solid var(--acc);outline-offset:3px;border-radius:4px}
 .shell{max-width:1120px;margin-inline:auto;padding-inline:var(--pad)}
-.lead{font-size:1.15rem;line-height:1.55;color:var(--ink-2);max-width:50ch;text-wrap:pretty}
+.lead{font-size:1.15rem;line-height:1.55;color:var(--ink-2);max-width:52ch;text-wrap:pretty}
 .jump{position:absolute;left:-9999px;top:12px;z-index:5;padding:10px 14px;background:var(--surface);border-radius:var(--r);box-shadow:var(--shadow)}
 .jump:focus{left:12px}
+.sr{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
 section{scroll-margin-top:20px}
 .zone{padding-top:var(--gap)}
 .sec__lead{margin-top:16px}
@@ -104,13 +106,16 @@ section{scroll-margin-top:20px}
 .top nav a:not(.cta){color:var(--ink-2);text-decoration:none;padding:10px 0;transition:color .25s var(--ease)}
 .top nav a:not(.cta):hover{color:var(--ink)}
 .top nav .cta{padding:10px 16px;font-size:.92rem}
-@media (max-width:767px){.top nav a{display:none}}
+@media (max-width:899px){.top nav a:not(.cta){display:none}}
+@media (max-width:419px){.top nav .cta{padding:9px 12px;font-size:.86rem}}
 
 /* ---------- hero: sľub vľavo, skutočný zápis vpravo ---------- */
 .hero{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:clamp(32px,5vw,72px);align-items:center;padding-top:clamp(24px,4vw,56px)}
 .hero>*{min-width:0}
 .hero__text{display:grid;gap:22px;justify-items:start}
-.hero__cta{display:flex;flex-wrap:wrap;gap:10px 14px;align-items:center;margin-top:6px}
+.hero__cta{display:flex;flex-wrap:wrap;gap:10px 14px;align-items:center;margin-top:4px}
+.hero__guar{font-size:.95rem;color:var(--ink-2);max-width:50ch;padding-left:14px;border-left:3px solid var(--acc);text-wrap:pretty}
+.hero__guar strong{color:var(--ink)}
 .sheet-wrap{margin:0;justify-self:center;width:100%;max-width:420px}
 .sheet{background:var(--surface);border:1px solid var(--box-line);border-top:3px solid var(--acc);border-radius:var(--r-sheet);
   box-shadow:var(--shadow);padding:clamp(20px,2.4vw,28px) clamp(20px,2.6vw,30px);transform:rotate(-1.5deg);transform-origin:50% 50%}
@@ -128,42 +133,66 @@ section{scroll-margin-top:20px}
   .sheet-wrap figcaption{text-align:left}
 }
 
-/* ---------- ako hodina prebieha: tri časové bloky ---------- */
-.kroky{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:28px clamp(24px,3vw,44px);margin-top:40px}
+/* ---------- tri fakty pod herom ---------- */
+.facts{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));margin:clamp(44px,6vw,72px) 0 0;
+  border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.fact{margin:0;padding:18px 20px 18px 0}
+.fact+.fact{padding-left:20px;border-left:1px solid var(--line)}
+.fact dt{font-weight:700;color:var(--ink)}
+.fact dd{margin:2px 0 0;font-size:.92rem;color:var(--muted);text-wrap:pretty}
+@media (max-width:699px){
+  .facts{grid-template-columns:1fr}
+  .fact{padding:14px 0}
+  .fact+.fact{padding-left:0;border-left:0;border-top:1px solid var(--line)}
+}
+
+/* ---------- odbory: záložky a čo sa na hodine dá spraviť ---------- */
+.tabs{display:none;gap:8px;margin-top:32px;flex-wrap:wrap}
+.js .tabs{display:flex}
+.tab{flex:none;padding:10px 15px;border-radius:var(--r);border:1px solid var(--line);background:var(--surface);
+  font-weight:600;font-size:.93rem;cursor:pointer;
+  transition:border-color .25s var(--ease),background-color .25s var(--ease),color .25s var(--ease)}
+.tab:hover{border-color:var(--ink)}
+.tab[aria-selected="true"]{background:var(--ink);border-color:var(--ink);color:var(--bg)}
+@media (max-width:640px){
+  .js .tabs{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;margin-inline:calc(var(--pad) * -1);padding-inline:var(--pad);scroll-padding-inline:var(--pad)}
+  .tabs::-webkit-scrollbar{display:none}
+}
+.odbor{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:28px clamp(28px,4vw,64px);
+  margin-top:28px;padding-top:30px;border-top:1px solid var(--line);align-items:start}
+.js .odbor{animation:objav .45s var(--ease)}
+.odbor__name{grid-column:1/-1;font-size:1.5rem}
+.js .odbor__name{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap}
+.ulohy{list-style:none;margin:0;padding:0;display:grid;gap:20px}
+.uloha{display:grid;gap:4px;padding-left:22px;position:relative}
+.uloha::before{content:"";position:absolute;left:0;top:.72em;width:10px;height:2px;background:var(--acc)}
+.uloha b{font-weight:700;color:var(--ink)}
+.uloha span{color:var(--ink-2);text-wrap:pretty}
+.zadanie{background:var(--surface);border:1px solid var(--box-line);border-top:3px solid var(--acc);border-radius:var(--r-sheet);
+  box-shadow:var(--shadow);padding:clamp(18px,2.2vw,24px) clamp(18px,2.4vw,26px);display:grid;gap:12px}
+.zadanie small{font-size:.78rem;font-weight:600;color:var(--muted)}
+.zadanie q{font-family:var(--display);font-size:1.16rem;line-height:1.42;color:var(--ink);quotes:"„" "“"}
+.pozor{font-size:.9rem;color:var(--ink-2);padding-top:12px;border-top:1px solid var(--line);text-wrap:pretty}
+.pozor strong{color:var(--ink)}
+.odbory__foot{display:flex;flex-wrap:wrap;align-items:center;gap:14px 28px;margin-top:40px;padding-top:24px;border-top:1px solid var(--line)}
+.odbory__foot p{color:var(--ink-2);max-width:60ch;text-wrap:pretty}
+@media (max-width:899px){.odbor{grid-template-columns:1fr}}
+
+/* ---------- ako to prebieha: tri kroky ---------- */
+.kroky{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:28px clamp(24px,3vw,44px);margin-top:40px;counter-reset:krok}
 .krok{border-top:1px solid var(--ink);padding-top:18px;display:grid;gap:10px;align-content:start}
+.krok__n{font-family:var(--display);font-size:2.4rem;line-height:1;color:var(--acc);font-variant-numeric:tabular-nums}
 .krok h3{font-size:1.5rem}
 .krok p{color:var(--ink-2);text-wrap:pretty}
-.pozn{margin-top:32px;color:var(--muted);max-width:62ch;text-wrap:pretty}
+.pozn{margin-top:32px;color:var(--muted);max-width:64ch;text-wrap:pretty}
 @media (max-width:767px){.kroky{grid-template-columns:1fr}}
 
-/* ---------- príklady: názov vľavo, predtým a po hodine vpravo ---------- */
-.pr{display:grid;grid-template-columns:minmax(0,4fr) minmax(0,8fr);gap:14px clamp(24px,4vw,64px);padding:30px 0;border-top:1px solid var(--line)}
-.pr:first-of-type{margin-top:36px}
-.pr:last-of-type{border-bottom:1px solid var(--line)}
-.pr__dvoj{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}
-.pr__cell small{display:block;font-size:.8rem;font-weight:700;color:var(--muted);margin-bottom:6px}
-.pr__cell p{color:var(--ink-2);text-wrap:pretty}
-.pr__po{background:var(--acc-soft);border-left:3px solid var(--acc);border-radius:0 var(--r) var(--r) 0;padding:14px 16px}
-.pr__po p{color:var(--ink)}
-.pr__po small{color:var(--ink-2)}   /* na tónovanom podklade má --muted kontrast pod 4,5:1 */
-@media (max-width:899px){.pr{grid-template-columns:1fr}}
-@media (max-width:560px){.pr__dvoj{grid-template-columns:1fr}}
-
-/* ---------- pre koho ---------- */
-.pk{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:28px clamp(28px,5vw,72px);margin-top:36px}
-.pk h3{font-family:var(--body);font-weight:700;font-size:1.05rem;letter-spacing:0;margin-bottom:12px}
-.pk ul{list-style:none;margin:0;padding:0;display:grid;gap:10px}
-.pk li{position:relative;padding-left:22px;color:var(--ink-2);text-wrap:pretty}
-.pk li::before{content:"";position:absolute;left:0;top:.72em;width:10px;height:2px;background:var(--acc)}
-.pk--nie li::before{background:var(--muted)}
-@media (max-width:640px){.pk{grid-template-columns:1fr}}
-
-/* ---------- kto ťa učí: vizitka vľavo, text vpravo ---------- */
-.kto{display:grid;grid-template-columns:minmax(0,4fr) minmax(0,8fr);gap:clamp(28px,5vw,72px);align-items:start}
+/* ---------- kto vás učí: text vľavo, vizitka vpravo ---------- */
+.kto{display:grid;grid-template-columns:minmax(0,8fr) minmax(0,4fr);gap:clamp(28px,5vw,72px);align-items:start}
 .vizitka{display:grid;gap:6px;justify-items:start;align-content:start;padding-top:10px;border-top:1px solid var(--ink)}
 .mono{width:52px;height:52px;border-radius:50%;background:var(--acc-soft);color:var(--acc);font-family:var(--display);
   font-size:1.2rem;letter-spacing:-.02em;display:grid;place-items:center;margin:8px 0 10px}
-/* keď bude fotka: <img class="foto" src="alex.jpg" width="800" height="1000" alt="Alex Poliak" loading="lazy"> namiesto .mono */
+/* keď bude fotka: <img class="foto" src="img/alex.jpg" width="800" height="1000" alt="Alex Poliak" loading="lazy"> namiesto .mono */
 .foto{width:min(100%,260px);aspect-ratio:4/5;object-fit:cover;border-radius:var(--r-sheet);display:block;margin:8px 0 14px}
 .kto__name{font-family:var(--display);font-size:1.35rem;color:var(--ink);line-height:1.2}
 .kto__role{color:var(--muted);font-size:.95rem}
@@ -172,9 +201,17 @@ section{scroll-margin-top:20px}
 .kto__links a:hover{border-color:var(--acc)}
 .kto__text{display:grid;gap:14px}
 .kto__text h2{margin-bottom:6px}
-.kto__text p{color:var(--ink-2);text-wrap:pretty;max-width:58ch}
-@media (min-width:900px){.vizitka{order:-1}}
+.kto__text p{color:var(--ink-2);text-wrap:pretty;max-width:60ch}
+.kto__text h3{font-family:var(--body);font-weight:700;font-size:1.05rem;letter-spacing:0;margin-top:14px}
+.certy{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin-top:6px}
+.cert{margin:0;display:grid;gap:10px;align-content:start}
+.cert img{display:block;width:100%;height:auto;border-radius:var(--r);border:1px solid var(--box-line);background:#E4DCCF}
+.cert figcaption{font-size:.86rem;line-height:1.45;color:var(--muted)}
+.cert figcaption b{display:block;color:var(--ink);font-weight:700}
+.cert a{color:var(--ink);font-weight:600;text-decoration:none;border-bottom:1px solid var(--acc-line);padding:2px 0}
+.cert a:hover{border-color:var(--acc)}
 @media (max-width:899px){.kto{grid-template-columns:1fr}.vizitka{margin-top:8px}}
+@media (max-width:560px){.certy{grid-template-columns:repeat(2,minmax(0,1fr))}}
 
 /* ---------- cena ---------- */
 .cena{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:clamp(28px,5vw,72px);align-items:start;margin-top:36px}
@@ -189,7 +226,9 @@ section{scroll-margin-top:20px}
 .balik__desc{grid-column:1;grid-row:2;font-size:.9rem;color:var(--muted)}
 .balik__sum{grid-column:2;grid-row:1/3;font-family:var(--display);font-size:1.5rem;text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
 .balik__sum small{display:block;font-family:var(--body);font-size:.8rem;color:var(--muted)}
+.balik--free .balik__sum{color:var(--acc)}
 .fine{font-size:.9rem;color:var(--muted)}
+.cena__cta{display:flex;flex-wrap:wrap;gap:10px 14px}
 @media (max-width:899px){.cena{grid-template-columns:1fr;gap:28px}}
 
 /* ---------- otázky ---------- */
@@ -199,10 +238,10 @@ section{scroll-margin-top:20px}
 @media (max-width:767px){.qs{grid-template-columns:1fr}}
 
 /* ---------- rezervácia ---------- */
-.rez__lead{margin-top:14px;color:var(--ink-2);max-width:56ch;text-wrap:pretty}
+.rez__lead{margin-top:14px;color:var(--ink-2);max-width:58ch;text-wrap:pretty}
 .bk{margin-top:36px;max-width:760px;background:var(--surface);border:1px solid var(--box-line);border-radius:var(--r-sheet);
   box-shadow:var(--shadow);padding:clamp(20px,2.6vw,32px);min-width:0}
-.bk__steps{display:flex;flex-wrap:wrap;gap:6px 18px;font-size:.8rem;font-weight:600;color:var(--muted);margin:0 0 18px}
+.bk__steps{display:flex;flex-wrap:wrap;gap:6px 18px;font-size:.8rem;font-weight:600;color:var(--muted);margin:0 0 20px}
 .bk__step{margin:0;display:inline-flex;align-items:center;gap:7px;transition:color .3s var(--ease)}
 .bk__step i{font-style:normal;display:inline-grid;place-items:center;width:20px;height:20px;border-radius:50%;
   background:var(--surface-2);color:var(--ink-2);font-size:.72rem;font-weight:700;transition:background-color .3s var(--ease),color .3s var(--ease)}
@@ -212,6 +251,18 @@ section{scroll-margin-top:20px}
 .panel{display:none}
 .panel.is-on{display:block;animation:objav .45s var(--ease)}
 @keyframes objav{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+.typ{border:0;margin:0 0 22px;padding:0;min-width:0}
+.typ legend{padding:0;margin:0 0 12px;font-family:var(--display);font-size:1.5rem;line-height:1.2}
+.typ__opts{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+.typ__opt{position:relative;display:grid;gap:2px;padding:12px 14px 12px 42px;border:1px solid var(--line);border-radius:var(--r);
+  background:var(--surface);cursor:pointer;transition:border-color .25s var(--ease),background-color .25s var(--ease)}
+.typ__opt:hover{border-color:var(--ink)}
+.typ__opt input{position:absolute;left:14px;top:15px;width:18px;height:18px;margin:0;accent-color:var(--acc)}
+.typ__opt b{font-weight:700}
+.typ__opt small{font-size:.86rem;color:var(--muted)}
+.typ__opt.is-on{border-color:var(--acc);background:var(--acc-soft);box-shadow:inset 0 0 0 1px var(--acc)}
+.typ__opt.is-on small{color:var(--ink-2)}
+@media (max-width:480px){.typ__opts{grid-template-columns:1fr}}
 .bk__head{display:flex;align-items:baseline;justify-content:space-between;gap:12px;margin-bottom:14px}
 .bk__head h3{font-size:1.5rem}
 .bk__price{font-weight:700;white-space:nowrap;font-variant-numeric:tabular-nums}
@@ -260,13 +311,24 @@ section{scroll-margin-top:20px}
 @media (max-width:560px){.pair{grid-template-columns:1fr}}
 .trap{position:absolute;left:-10000px;top:auto;width:1px;height:1px;overflow:hidden}
 .msg{min-height:1.3em;font-size:.9rem;font-weight:600;color:var(--err)}
+.msg:empty{min-height:0}
 .garancia{padding:10px 0 2px 14px;border-left:3px solid var(--acc);font-size:.9rem;color:var(--ink-2);text-wrap:pretty}
 .garancia strong{color:var(--ink)}
 .gdpr{font-size:.82rem;color:var(--muted)}
 .gdpr a{color:var(--ink-2)}
 .done{display:grid;gap:12px;justify-items:start}
-.done__tick{width:44px;height:44px;border-radius:50%;background:var(--acc-soft);color:var(--acc);display:grid;place-items:center}
-.done__row{display:flex;flex-wrap:wrap;gap:10px;margin-top:6px}
+.done h3{font-size:1.5rem}
+.done p{color:var(--ink-2);text-wrap:pretty;max-width:58ch}
+.send{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:8px;width:100%;margin-top:4px}
+.send .cta{width:100%}
+.send .cta.is-used{border-color:var(--acc);box-shadow:inset 0 0 0 1px var(--acc)}
+.nahlad{width:100%}
+.nahlad summary{cursor:pointer;font-size:.88rem;font-weight:600;color:var(--ink-2);padding:6px 0}
+.nahlad pre{white-space:pre-wrap;word-break:break-word;font:inherit;font-size:.86rem;line-height:1.5;background:var(--surface-2);
+  color:var(--ink-2);padding:12px 14px;border-radius:var(--r);margin:6px 0 0}
+.done__after{width:100%;display:flex;flex-wrap:wrap;align-items:center;gap:10px 18px;margin-top:6px;padding-top:16px;border-top:1px solid var(--line)}
+.done__after p{font-size:.9rem;color:var(--muted)}
+.done__after a{color:var(--ink)}
 
 /* ---------- kontakt a pätička ---------- */
 .strip{margin-top:var(--gap);padding:clamp(28px,4vw,44px) 0;border-top:1px solid var(--line);
@@ -283,7 +345,7 @@ section{scroll-margin-top:20px}
 .foot a:hover{color:var(--ink)}
 .foot .brand{font-size:1.1rem}
 
-/* ---------- lepiaci pás na mobile: cena + termín vždy po ruke ---------- */
+/* ---------- lepiaci pás na mobile: ponuka a termín vždy po ruke ---------- */
 .lepka{position:fixed;left:0;right:0;bottom:0;z-index:4;display:none;align-items:center;justify-content:space-between;gap:12px;
   padding:10px var(--pad) calc(10px + env(safe-area-inset-bottom));background:var(--surface);border-top:1px solid var(--line);
   transform:translateY(100%);transition:transform .35s var(--ease)}
@@ -298,8 +360,8 @@ section{scroll-margin-top:20px}
 @media (prefers-reduced-motion:reduce){
   html{scroll-behavior:auto}
   .js .reveal{opacity:1;transform:none;transition:none}
-  .panel.is-on{animation:none}
-  .cta,.slot,.daychip,.lepka{transition:none}
+  .panel.is-on,.js .odbor{animation:none}
+  .cta,.slot,.daychip,.tab,.lepka{transition:none}
 }
 </style>
 
@@ -307,18 +369,25 @@ section{scroll-margin-top:20px}
 {
   "@context": "https://schema.org",
   "@type": "Service",
-  "name": "AI Učenie: súkromná online hodina práce s AI",
-  "serviceType": "Individuálne online školenie práce s AI",
+  "name": "AI Učenie: online školenie AI pre firmy a živnostníkov",
+  "serviceType": "Individuálne online školenie práce s AI (ChatGPT, Claude)",
   "url": "https://aiucenie.online/",
   "areaServed": "SK",
-  "provider": { "@type": "Person", "name": "Alex Poliak", "url": "https://apoliak.online" },
-  "offers": {
-    "@type": "Offer",
-    "price": "25",
-    "priceCurrency": "EUR",
-    "description": "60 minút súkromnej online hodiny",
-    "availability": "https://schema.org/InStock"
-  }
+  "availableLanguage": "sk",
+  "provider": {
+    "@type": "Person",
+    "name": "Alex Poliak",
+    "url": "https://apoliak.online",
+    "telephone": "+421902464022",
+    "email": "info@aiucenie.online"
+  },
+  "offers": [
+    { "@type": "Offer", "name": "Úvodný hovor, 15 minút", "price": "0", "priceCurrency": "EUR" },
+    { "@type": "Offer", "name": "Jedna hodina, 60 minút", "price": "25", "priceCurrency": "EUR" },
+    { "@type": "Offer", "name": "Malý tím, 2 až 4 ľudia, 60 minút", "price": "39", "priceCurrency": "EUR" },
+    { "@type": "Offer", "name": "Balík 3 hodiny", "price": "69", "priceCurrency": "EUR" },
+    { "@type": "Offer", "name": "Balík 6 hodín", "price": "132", "priceCurrency": "EUR" }
+  ]
 }
 </script>
 </head>
@@ -328,130 +397,233 @@ section{scroll-margin-top:20px}
 <header class="shell top">
   <a class="brand" href="./">AI Učenie</a>
   <nav aria-label="Hlavná navigácia">
+    <a href="#odbory">Pre koho</a>
     <a href="#priebeh">Ako to prebieha</a>
     <a href="#cena">Cena</a>
     <a href="#otazky">Otázky</a>
-    <a class="cta" href="#termin">Vybrať termín</a>
+    <a class="cta" href="#termin" data-typ="free">15 minút zadarmo</a>
   </nav>
 </header>
 
 <main id="start">
 
   <!-- ================= HERO ================= -->
-  <section class="shell hero" id="hero">
-    <div class="hero__text">
-      <h1>Naučím ťa AI na tvojej vlastnej robote.</h1>
-      <p class="lead">Pre živnostníkov a malé firmy. Jedna hodina online na tvojom maili, tabuľke alebo ponukách. Bez prednášky, od 25 €.</p>
-      <div class="hero__cta">
-        <a class="cta" href="#termin">Vybrať termín</a>
-        <a class="cta cta--line" href="#priebeh">Ako hodina prebieha</a>
+  <section class="shell" id="hero">
+    <div class="hero">
+      <div class="hero__text">
+        <h1>Naučím vás pracovať s&nbsp;AI na vašej vlastnej práci.</h1>
+        <p class="lead">Online školenie pre malé firmy a&nbsp;živnostníkov. Žiadna prednáška: otvoríte svoje maily, ponuky a&nbsp;tabuľky a&nbsp;spravíme ich spolu s&nbsp;ChatGPT alebo Claude. Hodina stojí 25&nbsp;€, celý tím do štyroch ľudí 39&nbsp;€.</p>
+        <div class="hero__cta">
+          <a class="cta" href="#termin" data-typ="free">Dohodnúť 15 minút zadarmo</a>
+          <a class="cta cta--line" href="#odbory">Čo AI zvládne vo vašom odbore</a>
+        </div>
+        <p class="hero__guar">Najprv si 15 minút zavoláme. <strong>Ak uvidím, že vám AI nepomôže, poviem vám to rovno a&nbsp;nič neplatíte.</strong></p>
+      </div>
+
+      <figure class="sheet-wrap">
+        <div class="sheet" role="img" aria-label="Ukážka zápisu z hodiny na tému upomienky za neuhradené faktúry">
+          <div class="sheet__head"><span>Zápis z&nbsp;hodiny</span><span>ukážka</span></div>
+          <p class="sheet__title">Upomienky za neuhradené faktúry</p>
+          <ol class="sheet__steps">
+            <li><b>Tón si nastavte raz.</b> Do ChatGPT alebo Claude uložte zadanie: „Píšeš za mňa upomienky odberateľom. Krátko, slušne, bez fráz, vykáš, na konci vždy nový termín úhrady.“</li>
+            <li><b>Dajte mu len fakty.</b> Číslo faktúry, sumu, splatnosť a&nbsp;koľko dní je po nej. Nič viac.</li>
+            <li><b>Prečítajte, opravte jednu vec, odošlite.</b> Skontrolovať hotový text je rýchlejšie ako ho písať od nuly.</li>
+          </ol>
+          <p class="sheet__note">Nikdy tam nevkladajte IBAN ani údaje klienta. Namiesto mena firmy stačí „odberateľ A“.</p>
+        </div>
+        <figcaption>Takto vyzerá zápis, ktorý vám pošlem do večera po hodine.</figcaption>
+      </figure>
+    </div>
+
+    <dl class="facts">
+      <div class="fact"><dt>21 certifikátov z&nbsp;AI</dt><dd>od Anthropic, tvorcu Claude, a&nbsp;Vanderbilt University</dd></div>
+      <div class="fact"><dt>Online, jeden na jedného</dt><dd>cez Google Meet alebo Zoom, nič neinštalujete</dd></div>
+      <div class="fact"><dt>Zápis do večera</dt><dd>postupy a&nbsp;hotové zadania, aby ste to zopakovali bez mňa</dd></div>
+    </dl>
+  </section>
+
+  <!-- ================= ODBORY ================= -->
+  <section class="shell zone reveal" id="odbory">
+    <h2>Čo s&nbsp;AI zvládnete vo vašom odbore</h2>
+    <p class="lead sec__lead">Vyberte, čím sa živíte. Toto sú úlohy, ktoré na hodine prejdeme na vašich vlastných podkladoch.</p>
+
+    <div class="tabs" role="tablist" aria-label="Odbory">
+      <button class="tab" type="button" role="tab" id="tab-uctovnictvo" aria-controls="odbor-uctovnictvo" aria-selected="true">Účtovníctvo</button>
+      <button class="tab" type="button" role="tab" id="tab-reality" aria-controls="odbor-reality" aria-selected="false" tabindex="-1">Reality</button>
+      <button class="tab" type="button" role="tab" id="tab-marketing" aria-controls="odbor-marketing" aria-selected="false" tabindex="-1">Marketing a&nbsp;reklama</button>
+      <button class="tab" type="button" role="tab" id="tab-personalistika" aria-controls="odbor-personalistika" aria-selected="false" tabindex="-1">Personalistika</button>
+      <button class="tab" type="button" role="tab" id="tab-cestovny-ruch" aria-controls="odbor-cestovny-ruch" aria-selected="false" tabindex="-1">Cestovný ruch</button>
+      <button class="tab" type="button" role="tab" id="tab-poistenie" aria-controls="odbor-poistenie" aria-selected="false" tabindex="-1">Poistenie a&nbsp;financie</button>
+      <button class="tab" type="button" role="tab" id="tab-kancelaria" aria-controls="odbor-kancelaria" aria-selected="false" tabindex="-1">Iná kancelária</button>
+    </div>
+
+    <div class="odbor" role="tabpanel" id="odbor-uctovnictvo" aria-labelledby="tab-uctovnictvo">
+      <h3 class="odbor__name">Účtovníctvo a&nbsp;mzdy</h3>
+      <ul class="ulohy">
+        <li class="uloha"><b>Odpovede klientom na opakované otázky</b><span>Máte uložené zadanie s&nbsp;vaším tónom. Z&nbsp;dvoch viet o&nbsp;situácii vznikne celý mail a&nbsp;vy ho len skontrolujete.</span></li>
+        <li class="uloha"><b>Mesačné pripomienky dokladov</b><span>Jedna pripomienka, ktorú AI prispôsobí každému klientovi podľa toho, čo mu chýba: faktúry, výpisy alebo pokladničné doklady.</span></li>
+        <li class="uloha"><b>Zmeny v&nbsp;predpisoch zrozumiteľne pre klientov</b><span>AI z&nbsp;dlhého textu navrhne krátke zhrnutie pre klientov. Vy ho overíte v&nbsp;zdroji a&nbsp;pošlete.</span></li>
+        <li class="uloha"><b>Vzorce a&nbsp;kontroly v&nbsp;Exceli</b><span>Popíšete, čo chcete zistiť, a&nbsp;AI vám vzorec napíše aj vysvetlí, aby ste ho nabudúce upravili sami.</span></li>
+      </ul>
+      <div class="zadanie">
+        <small>Ukážka zadania, ktoré si na hodine uložíte</small>
+        <q>Napíš krátku pripomienku klientovi, že do&nbsp;10. potrebujem doklady za minulý mesiac. Vykaj, buď milý, ale jasný. Na koniec daj zoznam: faktúry, pokladničné doklady, bankové výpisy.</q>
+        <p class="pozor"><strong>Pozor na údaje:</strong> rodné čísla, mzdy a&nbsp;mená zamestnancov do bežnej verzie AI nepatria. Na hodine vám ukážem, ako ich nahradiť, aby výsledok stále fungoval.</p>
       </div>
     </div>
 
-    <figure class="sheet-wrap">
-      <div class="sheet" role="img" aria-label="Ukážka zápisu z hodiny na tému upomienky dodávateľom">
-        <div class="sheet__head"><span>Zápis z hodiny</span><span>ukážka</span></div>
-        <p class="sheet__title">Upomienky dodávateľom</p>
-        <ol class="sheet__steps">
-          <li><b>Nastav si tón raz.</b> Do ChatGPT (alebo inej AI) ulož zadanie: „Píšeš za mňa maily dodávateľom. Krátko, slušne, bez fráz, na konci vždy termín.“</li>
-          <li><b>Daj mu len fakty.</b> Číslo faktúry, suma, splatnosť, koľko dní po. Nič viac.</li>
-          <li><b>Prečítaj, oprav jednu vec, pošli.</b> Kontrola trvá 20 sekúnd, písanie od nuly 10 minút.</li>
-        </ol>
-        <p class="sheet__note">Nikdy tam nevkladaj IBAN ani údaje klienta. Namiesto mena firmy stačí „dodávateľ A“.</p>
+    <div class="odbor" role="tabpanel" id="odbor-reality" aria-labelledby="tab-reality">
+      <h3 class="odbor__name">Reality</h3>
+      <ul class="ulohy">
+        <li class="uloha"><b>Inzeráty z&nbsp;vašich poznámok</b><span>Vložíte poznámky z&nbsp;obhliadky a&nbsp;AI z&nbsp;nich spraví text pre realitný portál, váš web aj sociálne siete.</span></li>
+        <li class="uloha"><b>Odpovede záujemcom</b><span>Rýchle a&nbsp;jednotné odpovede na otázky k&nbsp;ponuke, aj z&nbsp;telefónu mimo kancelárie.</span></li>
+        <li class="uloha"><b>Príspevky na sociálne siete</b><span>K&nbsp;novej ponuke hotový text pre Facebook aj Instagram vo vašom štýle.</span></li>
+        <li class="uloha"><b>Zhrnutie dlhých podkladov</b><span>Z&nbsp;dlhého dokumentu, napríklad z&nbsp;posudku, AI vytiahne podstatné body pre klienta.</span></li>
+      </ul>
+      <div class="zadanie">
+        <small>Ukážka zadania, ktoré si na hodine uložíte</small>
+        <q>Z&nbsp;týchto poznámok z&nbsp;obhliadky napíš inzerát na trojizbový byt. Najprv krátky nadpis, potom päť viet pre realitný portál. Bez superlatívov, fakty na začiatok.</q>
+        <p class="pozor"><strong>Pozor na údaje:</strong> mená predávajúcich, rodné čísla a&nbsp;kontakty klientov do AI nevkladajte. Inzerát ani zhrnutie ich nepotrebujú.</p>
       </div>
-      <figcaption>Takto vyzerá zápis, ktorý ti pošlem do večera po hodine.</figcaption>
-    </figure>
+    </div>
+
+    <div class="odbor" role="tabpanel" id="odbor-marketing" aria-labelledby="tab-marketing">
+      <h3 class="odbor__name">Marketing a&nbsp;reklama</h3>
+      <ul class="ulohy">
+        <li class="uloha"><b>Varianty textov reklám</b><span>Z&nbsp;jedného briefu desať variantov nadpisov a&nbsp;textov na testovanie, každý s&nbsp;krátkym zdôvodnením.</span></li>
+        <li class="uloha"><b>Z&nbsp;briefu osnova kampane</b><span>AI pomôže rozložiť zadanie klienta na kroky a&nbsp;pripomenie otázky, ktoré treba klientovi ešte položiť.</span></li>
+        <li class="uloha"><b>Mesačné reporty klientom</b><span>Z&nbsp;tabuľky výsledkov zrozumiteľný komentár: čo fungovalo, čo nie a&nbsp;čo skúsiť ďalej.</span></li>
+        <li class="uloha"><b>Zápisy z&nbsp;porád a&nbsp;rozhovorov</b><span>Z&nbsp;vašich poznámok zhrnutie s&nbsp;úlohami, menami a&nbsp;termínmi.</span></li>
+      </ul>
+      <div class="zadanie">
+        <small>Ukážka zadania, ktoré si na hodine uložíte</small>
+        <q>Tu je brief klienta. Napíš desať variantov nadpisu reklamy do&nbsp;40 znakov a&nbsp;ku každému jednu vetu, prečo by mohol fungovať.</q>
+        <p class="pozor"><strong>Pozor na údaje:</strong> interné čísla a&nbsp;nezverejnené plány klienta nahrádzajte zástupnými, kým nemáte firemnú verziu AI so zmluvou o&nbsp;spracúvaní údajov.</p>
+      </div>
+    </div>
+
+    <div class="odbor" role="tabpanel" id="odbor-personalistika" aria-labelledby="tab-personalistika">
+      <h3 class="odbor__name">Personalistika a&nbsp;nábor</h3>
+      <ul class="ulohy">
+        <li class="uloha"><b>Inzeráty na pozície</b><span>Z&nbsp;interných poznámok inzerát, ktorý sa dá čítať: čo bude človek robiť, čo ponúkate a&nbsp;čo potrebujete.</span></li>
+        <li class="uloha"><b>Odpovede uchádzačom</b><span>Pozvánky na pohovor aj slušné odmietnutia, ktoré nepôsobia ako šablóna.</span></li>
+        <li class="uloha"><b>Otázky na pohovor</b><span>Podľa požiadaviek pozície sada otázok aj s&nbsp;tým, čo si pri odpovedi všímať.</span></li>
+        <li class="uloha"><b>Ponuky v&nbsp;inom jazyku</b><span>Inzerát alebo mail pre zahraničného uchádzača ako prvý návrh prekladu, ktorý doladíte.</span></li>
+      </ul>
+      <div class="zadanie">
+        <small>Ukážka zadania, ktoré si na hodine uložíte</small>
+        <q>Z&nbsp;týchto poznámok sprav inzerát na pozíciu skladník. Štruktúra: čo budete robiť, čo ponúkame, čo potrebujeme. Bez fráz ako dynamický kolektív.</q>
+        <p class="pozor"><strong>Pozor na údaje:</strong> životopisy s&nbsp;menami a&nbsp;kontaktmi do bežnej AI nevkladajte a&nbsp;o uchádzačoch nikdy nenechajte rozhodovať AI. Výber je vždy na vás.</p>
+      </div>
+    </div>
+
+    <div class="odbor" role="tabpanel" id="odbor-cestovny-ruch" aria-labelledby="tab-cestovny-ruch">
+      <h3 class="odbor__name">Cestovný ruch</h3>
+      <ul class="ulohy">
+        <li class="uloha"><b>Odpovede na dopyty</b><span>Z&nbsp;požiadavky klienta a&nbsp;vašich ponúk hotový mail s&nbsp;prehľadným porovnaním možností.</span></li>
+        <li class="uloha"><b>Popisy zájazdov a&nbsp;hotelov</b><span>Vlastné texty namiesto skopírovaného katalógu, v&nbsp;dĺžke pre web aj newsletter.</span></li>
+        <li class="uloha"><b>Program na mieru</b><span>Návrh programu deň po dni podľa toho, čo klient chce, ako podklad, ktorý doladíte.</span></li>
+        <li class="uloha"><b>Newsletter a&nbsp;sociálne siete</b><span>Pravidelné texty o&nbsp;ponukách bez toho, aby ste ich zakaždým písali od nuly.</span></li>
+      </ul>
+      <div class="zadanie">
+        <small>Ukážka zadania, ktoré si na hodine uložíte</small>
+        <q>Klient chce sedem dní pri mori v&nbsp;júni pre dvoch dospelých a&nbsp;dieťa, rozpočet do&nbsp;2&nbsp;500&nbsp;€. Z&nbsp;týchto troch ponúk napíš krátky mail s&nbsp;porovnaním. Vykaj.</q>
+        <p class="pozor"><strong>Pozor na údaje:</strong> čísla dokladov, dátumy narodenia a&nbsp;mená cestujúcich do AI nepatria. Ponuku napíšete aj bez nich.</p>
+      </div>
+    </div>
+
+    <div class="odbor" role="tabpanel" id="odbor-poistenie" aria-labelledby="tab-poistenie">
+      <h3 class="odbor__name">Poistenie a&nbsp;financie</h3>
+      <ul class="ulohy">
+        <li class="uloha"><b>Produkt jednoduchou rečou</b><span>Podmienky produktu vysvetlené tak, aby im rozumel aj klient, ktorý nie je odborník.</span></li>
+        <li class="uloha"><b>Maily po stretnutí</b><span>Zhrnutie stretnutia a&nbsp;ďalšie kroky pre klienta hneď po tom, ako odíde.</span></li>
+        <li class="uloha"><b>Porovnanie podmienok</b><span>Dva produkty prehľadne vedľa seba v&nbsp;tabuľke ako podklad na rozhovor.</span></li>
+        <li class="uloha"><b>Pripomienky termínov</b><span>Texty k&nbsp;výročiu zmluvy alebo k&nbsp;termínu, ktoré nepôsobia ako hromadná správa.</span></li>
+      </ul>
+      <div class="zadanie">
+        <small>Ukážka zadania, ktoré si na hodine uložíte</small>
+        <q>Vysvetli rozdiel medzi týmito dvoma poisteniami domácnosti klientovi, ktorý nie je odborník. Najviac šesť viet, bez cudzích slov.</q>
+        <p class="pozor"><strong>Pozor na údaje:</strong> odporúčanie klientovi je vždy vaše. AI pomáha s&nbsp;textom a&nbsp;prehľadom, osobné a&nbsp;finančné údaje klientov do nej nevkladajte.</p>
+      </div>
+    </div>
+
+    <div class="odbor" role="tabpanel" id="odbor-kancelaria" aria-labelledby="tab-kancelaria">
+      <h3 class="odbor__name">Poradenstvo, právo, preklady a&nbsp;iné kancelárie</h3>
+      <ul class="ulohy">
+        <li class="uloha"><b>Cenové ponuky</b><span>Zo šablóny a&nbsp;vašich poznámok hotová ponuka, ktorú už len skontrolujete.</span></li>
+        <li class="uloha"><b>Zápisnice z&nbsp;porád</b><span>Z&nbsp;vašich bodov zápisnica s&nbsp;rozhodnutiami, úlohami a&nbsp;termínmi.</span></li>
+        <li class="uloha"><b>Zhrnutie dlhých dokumentov</b><span>Zmluva alebo správa zhrnutá do bodov, aby ste vedeli, kde treba čítať pozorne.</span></li>
+        <li class="uloha"><b>Preklady a&nbsp;korektúry</b><span>Mail alebo dokument v&nbsp;inom jazyku ako prvý návrh, ktorý potom doladíte.</span></li>
+      </ul>
+      <div class="zadanie">
+        <small>Ukážka zadania, ktoré si na hodine uložíte</small>
+        <q>Z&nbsp;týchto bodov z&nbsp;porady sprav zápisnicu: rozhodnutia, úlohy s&nbsp;menom a&nbsp;termínom a&nbsp;otvorené otázky.</q>
+        <p class="pozor"><strong>Pozor na údaje:</strong> pri zmluvách a&nbsp;právnych textoch je AI pomocník na prvý návrh a&nbsp;zhrnutie. Výsledok vždy kontroluje človek, ktorý za neho zodpovedá.</p>
+      </div>
+    </div>
+
+    <div class="odbory__foot">
+      <p>Váš odbor tu nie je? Nevadí, hodina sa vždy točí okolo toho, čo máte na stole. Nie je to pre vás, ak hľadáte kurz s&nbsp;certifikátom a&nbsp;osnovou na tri mesiace alebo programovanie a&nbsp;napojenie systémov. To robím zvlášť na <a href="https://apoliak.online" target="_blank" rel="noopener">apoliak.online</a>.</p>
+      <a class="cta" href="#termin" data-typ="free">Dohodnúť 15 minút zadarmo</a>
+    </div>
   </section>
 
-  <!-- ================= AKO HODINA PREBIEHA ================= -->
+  <!-- ================= AKO TO PREBIEHA ================= -->
   <section class="shell zone reveal" id="priebeh">
-    <h2>Šesťdesiat minút, ktoré sa točia okolo tvojej obrazovky</h2>
+    <h2>Od prvého hovoru po zápis do večera</h2>
     <div class="kroky">
       <article class="krok">
-        <h3>Prvých 10 minút</h3>
-        <p>Ukážeš mi, čo robíš a čo ťa najviac zdržuje. Otvoríš svoj mail, tabuľku alebo e-shop. Nič si nepripravuješ.</p>
+        <span class="krok__n" aria-hidden="true">1</span>
+        <h3>Úvodný hovor, 15 minút zadarmo</h3>
+        <p>Poviete mi, čo vás vo firme najviac zdržuje. Ja vám poviem, či s&nbsp;tým AI pomôže a&nbsp;ako by vyzerala hodina. Ak nepomôže, poviem to rovno a&nbsp;nič neplatíte.</p>
       </article>
       <article class="krok">
-        <h3>Ďalších 40 minút</h3>
-        <p>Robíme tvoju robotu s AI. Klávesnicu držíš ty, ja opravujem za chodu. Preto si to zapamätáš.</p>
+        <span class="krok__n" aria-hidden="true">2</span>
+        <h3>Hodina online, 60 minút</h3>
+        <p>Prvých 10 minút mi ukážete svoju prácu. Ďalších 40 ju robíme s&nbsp;AI, klávesnicu držíte vy a&nbsp;ja opravujem za chodu. Posledných 10 si povieme, čo použijete hneď zajtra.</p>
       </article>
       <article class="krok">
-        <h3>Posledných 10 minút</h3>
-        <p>Prejdeme, čo z toho použiješ hneď zajtra. Do večera ti pošlem zápis s postupmi, nemusíš si nič písať.</p>
+        <span class="krok__n" aria-hidden="true">3</span>
+        <h3>Zápis do večera</h3>
+        <p>Pošlem vám postupy a&nbsp;hotové zadania, ktoré sme použili, aby ste to zopakovali bez mňa. Ďalšiu hodinu si objednáte, len ak budete chcieť.</p>
       </article>
     </div>
-    <p class="pozn">Hodina beží cez Google Meet alebo Zoom. Platíš len hodinu, ktorú si rezervuješ, žiadne predplatné ani kurz na tri mesiace.</p>
+    <p class="pozn">Nič neinštalujete. Stačí počítač s&nbsp;prehliadačom, odkaz na Google Meet alebo Zoom vám pošlem mailom. Začíname na bezplatných verziách AI, platiť za ňu nemusíte.</p>
   </section>
 
-  <!-- ================= PRÍKLADY ================= -->
-  <section class="shell zone reveal" id="priklady">
-    <h2>Tri veci, ktoré ľudia riešia najčastejšie</h2>
-    <p class="lead sec__lead">Nebudem ti sľubovať vymyslené čísla. Radšej ti presne ukážem, ako sa tá istá robota zmení.</p>
-
-    <article class="pr">
-      <h3>Upomienka dodávateľovi</h3>
-      <div class="pr__dvoj">
-        <div class="pr__cell"><small>Predtým</small><p>Otvoríš starý mail, prepisuješ ho, hľadáš správny tón a dvakrát to celé zmažeš.</p></div>
-        <div class="pr__cell pr__po"><small>Po hodine</small><p>Máš uložené zadanie so svojím tónom. Napíšeš dve vety o situácii, AI z nich spraví celý mail a ty ho len prečítaš a pošleš.</p></div>
-      </div>
-    </article>
-    <article class="pr">
-      <h3>Popisy do e-shopu</h3>
-      <div class="pr__dvoj">
-        <div class="pr__cell"><small>Predtým</small><p>Desať produktov, každý text vymýšľaš od nuly a do večera hotové nie sú.</p></div>
-        <div class="pr__cell pr__po"><small>Po hodine</small><p>Vložíš tabuľku parametrov a jeden vzorový popis. AI drží tvoj štýl pri všetkých desiatich naraz, ty už len dolaďuješ detaily.</p></div>
-      </div>
-    </article>
-    <article class="pr">
-      <h3>Mesačný prehľad</h3>
-      <div class="pr__dvoj">
-        <div class="pr__cell"><small>Predtým</small><p>Vzorce, ktoré si už nepamätáš, a text hlásenia skladáš každý mesiac nanovo.</p></div>
-        <div class="pr__cell pr__po"><small>Po hodine</small><p>AI ti vzorec napíše aj vysvetlí. Prehľad vzniká zo šablóny minulého mesiaca a mení sa len to, čo sa naozaj stalo.</p></div>
-      </div>
-    </article>
-  </section>
-
-  <!-- ================= PRE KOHO ================= -->
-  <section class="shell zone reveal" id="prekoho">
-    <h2>Je to pre teba?</h2>
-    <div class="pk">
-      <div>
-        <h3>Áno, ak</h3>
-        <ul>
-          <li>máš firmu alebo živnosť a každý týždeň sa u vás opakuje tá istá administratíva: maily, ponuky, tabuľky,</li>
-          <li>AI ste už skúšali, ale nevieš, kde vo vašej práci naozaj pomôže,</li>
-          <li>chceš, aby to vedeli robiť tvoji ľudia sami, nie externá agentúra.</li>
-        </ul>
-      </div>
-      <div class="pk--nie">
-        <h3>Nie, ak</h3>
-        <ul>
-          <li>hľadáš kurz s certifikátom alebo osnovou na tri mesiace,</li>
-          <li>chceš, aby AI robila prácu za vás bez toho, aby sa jej niekto dotkol,</li>
-          <li>potrebuješ programovanie alebo napojenie systémov. To robím tiež, ale na <a href="https://apoliak.online" target="_blank" rel="noopener">apoliak.online</a>, nie na hodine.</li>
-        </ul>
-      </div>
-    </div>
-  </section>
-
-  <!-- ================= KTO ŤA UČÍ ================= -->
+  <!-- ================= KTO VÁS UČÍ ================= -->
   <section class="shell zone reveal" id="kto">
     <div class="kto">
       <div class="kto__text">
-        <h2>Žiadna agentúra, na hodine sme len my dvaja</h2>
-        <p>Robím weby na mieru. Sám, bez agentúry. AI používam každý deň na to isté, čo budeš robiť ty: písanie textov, prechádzanie tabuliek, opakovanú administratívu. Nie na prednášky o tom, ako AI zmení svet.</p>
-        <p>Preto tá hodina vyzerá tak, ako vyzerá: otvoríš svoju prácu, klávesnicu držíš ty a ja ti hovorím, kde to ide rýchlejšie. Čo som na sebe nevyskúšal, to ti nebudem odporúčať.</p>
-        <p>Ak si chceš najprv pozrieť, čo reálne robím, kód mám verejne na GitHube a weby na apoliak.online.</p>
+        <h2>Kto vás bude učiť</h2>
+        <p>Volám sa Alex Poliak. V&nbsp;práci sa starám o&nbsp;administratívu, IT a&nbsp;firemný systém Odoo v&nbsp;poradenskej firme v&nbsp;Bratislave, takže AI používam každý deň na to isté, čo budete na hodine robiť vy: maily, tabuľky, dokumenty a&nbsp;ponuky.</p>
+        <p>Popritom robím weby a&nbsp;malé nástroje pre firmy na apoliak.online. Na hodine nie je agentúra ani prezentácia, ste tam vy, vaša obrazovka a&nbsp;ja. Čo som na sebe nevyskúšal, to vám neodporučím.</p>
+        <h3>Certifikáty z&nbsp;AI</h3>
+        <p>Absolvoval som 20 kurzov od Anthropic, firmy, ktorá vyvíja AI Claude, a&nbsp;kurz Prompt Engineering for ChatGPT od Vanderbilt University. Dva z&nbsp;nich si môžete overiť priamo u&nbsp;vydavateľa.</p>
+        <div class="certy">
+          <figure class="cert">
+            <img src="img/cert-claude-101.webp" width="560" height="424" loading="lazy" decoding="async" alt="Certifikát Claude 101 od Anthropic na meno Alex Poliak">
+            <figcaption><b>Claude 101</b>Anthropic · <a href="https://verify.skilljar.com/c/uq8homniz6fr" target="_blank" rel="noopener">overiť</a></figcaption>
+          </figure>
+          <figure class="cert">
+            <img src="img/cert-prompt-engineering-chatgpt.webp" width="560" height="425" loading="lazy" decoding="async" alt="Certifikát Prompt Engineering for ChatGPT od Vanderbilt University na meno Alex Poliak">
+            <figcaption><b>Prompt Engineering for ChatGPT</b>Vanderbilt University · <a href="https://coursera.org/verify/8A5BH7JHN4SU" target="_blank" rel="noopener">overiť</a></figcaption>
+          </figure>
+          <figure class="cert">
+            <img src="img/cert-ai-fluency.webp" width="560" height="415" loading="lazy" decoding="async" alt="Certifikát AI Fluency: Framework and Foundations od Anthropic na meno Alex Poliak">
+            <figcaption><b>AI Fluency: Framework &amp; Foundations</b>Anthropic</figcaption>
+          </figure>
+        </div>
       </div>
       <aside class="vizitka" aria-label="Kontakt na lektora">
         <!-- TODO: fotka Alexa (na výšku 4:5, aspoň 800×1000 px) sem namiesto monogramu, pravidlo .foto je pripravené -->
         <span class="mono" aria-hidden="true">AP</span>
         <p class="kto__name">Alex Poliak</p>
-        <p class="kto__role">Weby na mieru · AI v každodennej práci</p>
+        <p class="kto__role">Školenia AI pre firmy · weby na mieru</p>
         <div class="kto__links">
+          <a href="tel:+421902464022">0902&nbsp;464&nbsp;022</a>
+          <a href="mailto:info@aiucenie.online">info@aiucenie.online</a>
           <a href="https://apoliak.online" target="_blank" rel="noopener">apoliak.online</a>
-          <a href="https://github.com/Apoliak7777" target="_blank" rel="noopener">github.com/Apoliak7777</a>
-          <a href="tel:+421902464022">0902 464 022</a>
         </div>
       </aside>
     </div>
@@ -459,80 +631,102 @@ section{scroll-margin-top:20px}
 
   <!-- ================= CENA ================= -->
   <section class="shell zone reveal" id="cena">
-    <h2>Jedna cena, jedna hodina</h2>
+    <h2>Ceny bez predplatného</h2>
     <div class="cena">
       <div>
-        <p class="cena__num">25 €</p>
+        <p class="cena__num">25&nbsp;€</p>
         <p class="cena__per">za 60 minút, jeden na jedného</p>
       </div>
       <div class="cena__text">
-        <p>Platíš iba hodiny, ktoré si rezervuješ. Celá hodina ide na tvoje úlohy, nie na prednášku, ktorú si vieš pozrieť na internete. Po hodine ti pošlem zápis a postupy, ktoré sme použili.</p>
-        <p class="cena__kotva">Skupinový AI kurz stojí 150 až 550 € za jedného človeka a ide podľa osnovy. Tu ide 60 minút len o vašu robotu a tím do štyroch ľudí stojí 39 € za celú hodinu.</p>
+        <p>Platíte len hodiny, ktoré si rezervujete. Celá hodina ide na vaše úlohy, nie na prednášku, ktorú si viete pozrieť na internete. Po hodine vám pošlem zápis s&nbsp;postupmi, ktoré sme použili.</p>
+        <p class="cena__kotva">Skupinový AI kurz stojí 150 až 550&nbsp;€ za jedného človeka a&nbsp;ide podľa osnovy. Tu celá hodina patrí vašej práci a&nbsp;tím do štyroch ľudí stojí 39&nbsp;€ za celú hodinu.</p>
         <ul class="baliky">
-          <li class="balik">
-            <span class="balik__name">Tri hodiny</span>
-            <span class="balik__desc">Tri samostatné termíny, platnosť 4 mesiace</span>
-            <span class="balik__sum">69 €<small>23 € za hodinu</small></span>
+          <li class="balik balik--free">
+            <span class="balik__name">Úvodný hovor</span>
+            <span class="balik__desc">15 minút po telefóne alebo cez Meet, zistíme, či vám AI pomôže</span>
+            <span class="balik__sum">0&nbsp;€<small>zadarmo</small></span>
           </li>
           <li class="balik">
-            <span class="balik__name">Šesť hodín</span>
-            <span class="balik__desc">Vieš ich rozdeliť aj medzi dvoch ľudí, platnosť 6 mesiacov</span>
-            <span class="balik__sum">132 €<small>22 € za hodinu</small></span>
+            <span class="balik__name">Jedna hodina</span>
+            <span class="balik__desc">60 minút online, jeden na jedného, so zápisom</span>
+            <span class="balik__sum">25&nbsp;€<small>za hodinu</small></span>
           </li>
           <li class="balik">
             <span class="balik__name">Malý tím</span>
             <span class="balik__desc">Dvaja až štyria ľudia pri jednej obrazovke, cena za celú hodinu</span>
-            <span class="balik__sum">39 €<small>jedna hodina</small></span>
+            <span class="balik__sum">39&nbsp;€<small>za hodinu</small></span>
+          </li>
+          <li class="balik">
+            <span class="balik__name">Tri hodiny</span>
+            <span class="balik__desc">Tri samostatné termíny, platnosť 4 mesiace</span>
+            <span class="balik__sum">69&nbsp;€<small>23&nbsp;€ za hodinu</small></span>
+          </li>
+          <li class="balik">
+            <span class="balik__name">Šesť hodín</span>
+            <span class="balik__desc">Dajú sa rozdeliť aj medzi dvoch ľudí, platnosť 6 mesiacov</span>
+            <span class="balik__sum">132&nbsp;€<small>22&nbsp;€ za hodinu</small></span>
           </li>
         </ul>
-        <p class="fine">Platí sa prevodom na účet pred hodinou. Číslo účtu a sumu ti pošlem mailom po potvrdení termínu. Termín vieš presunúť najneskôr 24 hodín predtým, bez poplatku.</p>
-        <div><a class="cta" href="#termin">Vybrať termín</a></div>
+        <p class="fine">Platí sa prevodom na účet pred hodinou. Sumu a&nbsp;číslo účtu vám pošlem mailom po potvrdení termínu. Termín môžete presunúť najneskôr 24 hodín vopred, bez poplatku.</p>
+        <div class="cena__cta">
+          <a class="cta" href="#termin" data-typ="free">Začať hovorom zadarmo</a>
+          <a class="cta cta--line" href="#termin" data-typ="paid">Rezervovať rovno hodinu</a>
+        </div>
       </div>
     </div>
   </section>
 
   <!-- ================= OTÁZKY ================= -->
   <section class="shell zone reveal" id="otazky">
-    <h2>Na čo sa ľudia pýtajú pred prvou hodinou</h2>
+    <h2>Na čo sa firmy pýtajú pred prvou hodinou</h2>
     <div class="qs">
-      <div class="q"><h3>Sme firma. Môže prísť viac ľudí naraz?</h3><p>Áno. Balík Malý tím je pre dvoch až štyroch ľudí pri jednej obrazovke za 39 € za celú hodinu. Väčší tím rozdelíme na dve hodiny, napíš mi a dohodneme to.</p></div>
-      <div class="q"><h3>Musíme mať zaplatenú verziu AI?</h3><p>Nemusíte. Začneme na bezplatných verziách a počas hodiny uvidíš, kde platená naozaj niečo pridá a kde je to jedno. Nič ti nepredávam.</p></div>
-      <div class="q"><h3>Naši ľudia o AI nič nevedia. Nebude to strata času?</h3><p>Naopak, s úplným začiatkom ide práca najrýchlejšie, lebo nikto nemá zlé návyky. Stačí prísť s dvomi alebo tromi úlohami, ktoré sa u vás opakujú každý týždeň.</p></div>
-      <div class="q"><h3>Môžeme otvoriť firemné dokumenty a údaje klientov?</h3><p>Časť hodiny venujeme presne tomuto: čo do AI patrí a čo nie. Ukážem ti, ako údaje klientov a interné čísla nahradiť zástupnými, aby výsledok fungoval a dáta zostali u vás.</p></div>
-      <div class="q"><h3>Funguje to aj pre naše odvetvie?</h3><p>Ak vo firme píšete maily, robíte ponuky, tabuľky alebo dokumenty, áno. Je jedno, či je to autoservis, účtovníctvo alebo e-shop, hodina ide vždy na to, čo máte na stole. Napojenie systémov a programovanie riešim zvlášť na apoliak.online.</p></div>
-      <div class="q"><h3>Ako to platíme?</h3><p>Prevodom na účet pred hodinou. Po potvrdení termínu pošlem mailom podklady na platbu. Termín vieš presunúť najneskôr 24 hodín predtým, bez poplatku.</p></div>
-      <div class="q"><h3>Dá sa dohodnúť viac hodín?</h3><p>Áno. Dve za sebou vyberieš rovno v rezervácii, na dlhšie sú balíky 3 a 6 hodín so zľavou a platnosťou 4 a 6 mesiacov. Šesť hodín si vieš rozdeliť medzi dvoch ľudí.</p></div>
-      <div class="q"><h3>Ako viem, či nám to pomôže?</h3><p>Do rezervácie napíš, na čom chcete pracovať. Ak uvidím, že hodina nemá čo dať, ozvem sa ešte pred platbou a termín zrušíme. Nebudem ti brať peniaze za niečo, čo nepomôže.</p></div>
+      <div class="q"><h3>Čo presne je úvodný hovor zadarmo?</h3><p>Pätnásť minút po telefóne alebo cez Google Meet. Poviete mi, čo vás vo firme najviac zdržuje, a&nbsp;ja vám poviem, či a&nbsp;ako s&nbsp;tým AI pomôže. Nič vám nevnucujem. Ak hodina nedáva zmysel, poviem to rovno.</p></div>
+      <div class="q"><h3>Sme firma. Môže prísť viac ľudí naraz?</h3><p>Áno. Malý tím sú dvaja až štyria ľudia pri jednej obrazovke a&nbsp;celá hodina stojí 39&nbsp;€. Väčší tím rozdelíme na viac hodín, stačí napísať.</p></div>
+      <div class="q"><h3>Musíme mať platenú verziu AI?</h3><p>Nie. Začneme na bezplatných verziách ChatGPT alebo Claude a&nbsp;počas hodiny uvidíte, kde platená verzia naozaj niečo pridá a&nbsp;kde je to jedno.</p></div>
+      <div class="q"><h3>Naši ľudia o&nbsp;AI nič nevedia. Nebude to strata času?</h3><p>Naopak, so začiatočníkmi ide práca najrýchlejšie, lebo nikto nemá zlé návyky. Stačí prísť s&nbsp;dvomi alebo tromi úlohami, ktoré sa u&nbsp;vás opakujú každý týždeň.</p></div>
+      <div class="q"><h3>Môžeme do AI vkladať dokumenty a&nbsp;údaje klientov?</h3><p>Časť hodiny venujeme presne tomu, čo do AI patrí a&nbsp;čo nie. Ukážem vám, ako mená, rodné čísla a&nbsp;interné čísla nahradiť zástupnými, aby výsledok fungoval a&nbsp;údaje ostali u&nbsp;vás.</p></div>
+      <div class="q"><h3>Funguje to aj v&nbsp;našom odbore?</h3><p>Ak vo firme píšete maily, robíte ponuky, tabuľky alebo dokumenty, áno. Je jedno, či ide o&nbsp;účtovníctvo, reality alebo cestovnú kanceláriu, hodina sa točí okolo toho, čo máte na stole.</p></div>
+      <div class="q"><h3>Musíme niečo inštalovať?</h3><p>Nie. Stačí počítač s&nbsp;prehliadačom. Odkaz na Google Meet alebo Zoom vám pošlem mailom a&nbsp;AI si otvoríme spolu v&nbsp;prehliadači.</p></div>
+      <div class="q"><h3>Ako to platíme?</h3><p>Prevodom na účet pred hodinou. Po potvrdení termínu vám pošlem mailom sumu a&nbsp;číslo účtu. Termín môžete presunúť najneskôr 24 hodín vopred, bez poplatku.</p></div>
+      <div class="q"><h3>Dá sa dohodnúť viac hodín?</h3><p>Áno. Dve hodiny za sebou si vyberiete priamo v&nbsp;rezervácii. Na dlhšie sú balíky 3 a&nbsp;6 hodín so zľavou a&nbsp;platnosťou 4 a&nbsp;6 mesiacov.</p></div>
+      <div class="q"><h3>Čo ak nám hodina nepomôže?</h3><p>Na úvodnom hovore alebo z&nbsp;vašej poznámky v&nbsp;rezervácii zistím, či vám hodina má čo dať. Ak nie, poviem vám to ešte pred platbou a&nbsp;termín zrušíme. Nebudem vám brať peniaze za niečo, čo nepomôže.</p></div>
     </div>
   </section>
 
   <!-- ================= REZERVÁCIA ================= -->
   <section class="shell zone reveal" id="rezervacia">
-    <h2>Vyber si termín</h2>
-    <p class="rez__lead">Termín ti podržím a do 24 hodín ti pošlem odkaz na stretnutie a podklady na platbu. Ak uvidím, že ti hodina nemá čo dať, poviem ti to ešte predtým.</p>
+    <h2>Vyberte si termín</h2>
+    <p class="rez__lead">Úvodný hovor aj hodinu si rezervujete rovnako. Termín vám potvrdím do&nbsp;24 hodín a&nbsp;pošlem odkaz na hovor. Ak uvidím, že vám hodina nemá čo dať, poviem vám to ešte pred platbou.</p>
 
     <div class="bk" id="termin">
       <div class="bk__steps">
         <p class="bk__step is-on" id="st1"><i>1</i>Termín</p>
         <p class="bk__step" id="st2"><i>2</i>Kontakt</p>
-        <p class="bk__step" id="st3"><i>3</i>Hotovo</p>
+        <p class="bk__step" id="st3"><i>3</i>Odoslanie</p>
       </div>
 
       <!-- krok 1 -->
       <div class="panel is-on" id="p1">
+        <fieldset class="typ">
+          <legend>Čo si rezervujete?</legend>
+          <div class="typ__opts">
+            <label class="typ__opt is-on"><input type="radio" name="typ" value="free" checked><b>Úvodný hovor</b><small>15 minút, zadarmo</small></label>
+            <label class="typ__opt"><input type="radio" name="typ" value="paid"><b>Hodina AI</b><small>60 minút, od 25&nbsp;€</small></label>
+          </div>
+        </fieldset>
         <div class="bk__head">
-          <h3>Kedy ti to sedí?</h3>
-          <span class="bk__price">25 €<small>za 60 min</small></span>
+          <h3>Kedy vám to vyhovuje?</h3>
+          <span class="bk__price" id="bkPrice">0&nbsp;€<small>15 min</small></span>
         </div>
         <div class="dayscroll" id="dayscroll">
           <div class="dayrow" id="dayrow"></div>
         </div>
         <div class="times" id="times"></div>
-        <p class="bk__note">Termíny sú v pracovné dni od 15:00. Hodina má 60 minút, medzi hodinami mám 10 minút pauzu. Ak chceš dve za sebou, vyber si v ďalšom kroku balík. Časy sú v slovenskom čase.</p>
+        <p class="bk__note">Termíny sú v&nbsp;pracovné dni od 15:00, v&nbsp;slovenskom čase. Medzi hodinami mám 10 minút pauzu. Iný čas? Zavolajte mi na <a href="tel:+421902464022">0902&nbsp;464&nbsp;022</a>.</p>
         <noscript>
-          <p class="bk__note">Na výber termínu potrebuješ zapnutý JavaScript. Ak ho nemáš, napíš mi na
-            <a href="mailto:info@aiucenie.online">info@aiucenie.online</a> alebo zavolaj na
-            <a href="tel:+421902464022">0902 464 022</a> a termín dohodneme priamo.</p>
+          <p class="bk__note">Na výber termínu potrebujete zapnutý JavaScript. Bez neho mi napíšte na
+            <a href="mailto:info@aiucenie.online">info@aiucenie.online</a> alebo zavolajte na
+            <a href="tel:+421902464022">0902&nbsp;464&nbsp;022</a> a&nbsp;termín dohodneme priamo.</p>
         </noscript>
       </div>
 
@@ -540,14 +734,14 @@ section{scroll-margin-top:20px}
       <div class="panel" id="p2">
         <div class="chosen">
           <div>
-            <small>Vybraný termín</small>
+            <small id="chosenKind">Úvodný hovor zdarma</small>
             <strong id="chosenText">…</strong>
           </div>
           <button type="button" id="changeBtn">Zmeniť</button>
         </div>
         <form class="form" id="bkForm" novalidate>
           <div class="field">
-            <label for="f-name">Meno a priezvisko</label>
+            <label for="f-name">Meno a&nbsp;priezvisko</label>
             <input id="f-name" name="meno" type="text" autocomplete="name" placeholder="Ján Novák">
           </div>
           <div class="pair">
@@ -560,28 +754,28 @@ section{scroll-margin-top:20px}
               <input id="f-tel" name="tel" type="tel" autocomplete="tel" inputmode="tel" placeholder="0900 123 456">
             </div>
           </div>
-          <div class="field">
-            <label for="f-balik">Čo si rezervuješ?</label>
+          <div class="field" id="balikField" hidden>
+            <label for="f-balik">Čo si rezervujete?</label>
             <select id="f-balik" name="balik">
-              <option>Jedna hodina (25 €)</option>
-              <option>Dve hodiny za sebou (50 €)</option>
-              <option>Balík 3 hodiny (69 €, 23 € za hodinu)</option>
-              <option>Balík 6 hodín (132 €, 22 € za hodinu)</option>
-              <option>Malý tím, 2 až 4 ľudia (39 € za hodinu)</option>
+              <option>Jedna hodina (25&nbsp;€)</option>
+              <option>Dve hodiny za sebou (50&nbsp;€)</option>
+              <option>Malý tím, 2 až 4 ľudia (39&nbsp;€ za hodinu)</option>
+              <option>Balík 3 hodiny (69&nbsp;€, 23&nbsp;€ za hodinu)</option>
+              <option>Balík 6 hodín (132&nbsp;€, 22&nbsp;€ za hodinu)</option>
             </select>
           </div>
           <div class="field">
-            <label for="f-note">Na čom chceš pracovať? (nepovinné)</label>
-            <textarea id="f-note" name="poznamka" placeholder="Napr. písanie mailov zákazníkom a popisy do e-shopu…"></textarea>
+            <label for="f-note" id="noteLabel">Čo vás vo firme najviac zdržuje? (nepovinné)</label>
+            <textarea id="f-note" name="poznamka" placeholder="Napr. odpovede na maily klientov, cenové ponuky, tabuľky…"></textarea>
           </div>
           <!-- pasca na roboty: človek toto pole nevidí, robot ho vyplní -->
           <div class="trap" aria-hidden="true">
             <label for="f-web">Webová stránka</label>
             <input id="f-web" name="web" type="text" tabindex="-1" autocomplete="off">
           </div>
-          <p class="garancia">Ak z tvojej poznámky uvidím, že ti hodina nemá čo dať, poviem ti to <strong>ešte pred platbou</strong> a termín zrušíme.</p>
+          <p class="garancia">Ak uvidím, že vám hodina nemá čo dať, poviem vám to <strong>ešte pred platbou</strong> a&nbsp;termín zrušíme.</p>
           <p class="msg" id="msg" role="alert"></p>
-          <button class="cta" type="submit" id="sendBtn">Potvrdiť rezerváciu</button>
+          <button class="cta" type="submit" id="sendBtn">Pokračovať</button>
           <p class="gdpr">Kontakt použijem len na dohodnutie termínu. Viac v <a href="ochrana-udajov.html">ochrane údajov</a>.</p>
         </form>
       </div>
@@ -589,12 +783,22 @@ section{scroll-margin-top:20px}
       <!-- krok 3 -->
       <div class="panel" id="p3">
         <div class="done">
-          <div class="done__tick"><!-- Phosphor Icons: Check --><svg width="22" height="22" viewBox="0 0 256 256" fill="currentColor" aria-hidden="true"><path d="M229.66,77.66l-128,128a8,8,0,0,1-11.32,0l-56-56a8,8,0,0,1,11.32-11.32L96,188.69,218.34,66.34a8,8,0,0,1,11.32,11.32Z"/></svg></div>
-          <h3 id="doneTitle">Termín je odoslaný</h3>
-          <p id="doneText">Ozvem sa ti do 24 hodín s odkazom na meeting a podkladmi na platbu.</p>
-          <div class="done__row">
+          <h3 id="doneTitle">Posledný krok: odošlite rezerváciu</h3>
+          <p id="doneText">Rezerváciu máte pripravenú. Odošlite ju z&nbsp;mailu, ktorý používate, a&nbsp;do&nbsp;24 hodín vám termín potvrdím.</p>
+          <div class="send" id="sendOpts">
+            <a class="cta cta--line" id="sendGmail" href="#" target="_blank" rel="noopener">Odoslať cez Gmail</a>
+            <a class="cta cta--line" id="sendOutlook" href="#" target="_blank" rel="noopener">Odoslať cez Outlook</a>
+            <a class="cta cta--line" id="sendMail" href="#">Iný e-mailový program</a>
+            <a class="cta cta--line" id="sendSms" href="#" hidden>Poslať ako SMS</a>
+            <button class="cta cta--line" id="copyBtn" type="button">Skopírovať text</button>
+          </div>
+          <details class="nahlad" id="nahlad">
+            <summary>Čo sa odošle</summary>
+            <pre id="nahladText"></pre>
+          </details>
+          <div class="done__after">
             <button class="cta" type="button" id="icsBtn">Pridať do kalendára</button>
-            <a class="cta cta--line" href="mailto:info@aiucenie.online" id="mailBtn">Neotvoril sa mail?</a>
+            <p>Nič z&nbsp;toho nejde? Zavolajte mi na <a href="tel:+421902464022">0902&nbsp;464&nbsp;022</a> a&nbsp;termín zapíšem hneď.</p>
           </div>
         </div>
       </div>
@@ -605,12 +809,12 @@ section{scroll-margin-top:20px}
   <section class="shell reveal">
     <div class="strip">
       <div>
-        <h2>Radšej sa najprv spýtaš?</h2>
-        <p>Napíš alebo zavolaj. Odpovedám zvyčajne ešte v ten istý deň, najneskôr do 24 hodín.</p>
+        <h2>Radšej zavoláte?</h2>
+        <p>Zavolajte alebo napíšte. Odpovedám zvyčajne ešte v&nbsp;ten istý deň, najneskôr do&nbsp;24 hodín.</p>
       </div>
       <div class="strip__links">
+        <a href="tel:+421902464022">0902&nbsp;464&nbsp;022</a>
         <a href="mailto:info@aiucenie.online">info@aiucenie.online</a>
-        <a href="tel:+421902464022">0902 464 022</a>
       </div>
     </div>
   </section>
@@ -621,6 +825,7 @@ section{scroll-margin-top:20px}
   <a class="brand" href="./">AI Učenie</a>
   <span>aiucenie.online</span>
   <nav aria-label="Pätička">
+    <a href="#odbory">Pre koho</a>
     <a href="#cena">Cena</a>
     <a href="#otazky">Otázky</a>
     <a href="https://apoliak.online" target="_blank" rel="noopener">Weby na mieru</a>
@@ -629,8 +834,8 @@ section{scroll-margin-top:20px}
 </footer>
 
 <div class="lepka" id="lepka" aria-hidden="true">
-  <div><strong>25 € za hodinu</strong><small>jeden na jedného, online</small></div>
-  <a class="cta" href="#termin" tabindex="-1">Vybrať termín</a>
+  <div><strong>15 minút zadarmo</strong><small>potom 25&nbsp;€ za hodinu</small></div>
+  <a class="cta" href="#termin" data-typ="free" tabindex="-1">Vybrať termín</a>
 </div>
 
 <script type="application/ld+json">
@@ -638,70 +843,26 @@ section{scroll-margin-top:20px}
   "@context": "https://schema.org",
   "@type": "FAQPage",
   "mainEntity": [
-    {
-      "@type": "Question",
-      "name": "Sme firma. Môže prísť viac ľudí naraz?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Áno. Balík Malý tím je pre dvoch až štyroch ľudí pri jednej obrazovke za 39 € za celú hodinu. Väčší tím rozdelíme na dve hodiny, napíš mi a dohodneme to."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Musíme mať zaplatenú verziu AI?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Nemusíte. Začneme na bezplatných verziách a počas hodiny uvidíš, kde platená naozaj niečo pridá a kde je to jedno. Nič ti nepredávam."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Naši ľudia o AI nič nevedia. Nebude to strata času?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Naopak, s úplným začiatkom ide práca najrýchlejšie, lebo nikto nemá zlé návyky. Stačí prísť s dvomi alebo tromi úlohami, ktoré sa u vás opakujú každý týždeň."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Môžeme otvoriť firemné dokumenty a údaje klientov?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Časť hodiny venujeme presne tomuto: čo do AI patrí a čo nie. Ukážem ti, ako údaje klientov a interné čísla nahradiť zástupnými, aby výsledok fungoval a dáta zostali u vás."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Funguje to aj pre naše odvetvie?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Ak vo firme píšete maily, robíte ponuky, tabuľky alebo dokumenty, áno. Je jedno, či je to autoservis, účtovníctvo alebo e-shop, hodina ide vždy na to, čo máte na stole. Napojenie systémov a programovanie riešim zvlášť na apoliak.online."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Ako to platíme?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Prevodom na účet pred hodinou. Po potvrdení termínu pošlem mailom podklady na platbu. Termín vieš presunúť najneskôr 24 hodín predtým, bez poplatku."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Dá sa dohodnúť viac hodín?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Áno. Dve za sebou vyberieš rovno v rezervácii, na dlhšie sú balíky 3 a 6 hodín so zľavou a platnosťou 4 a 6 mesiacov. Šesť hodín si vieš rozdeliť medzi dvoch ľudí."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Ako viem, či nám to pomôže?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Do rezervácie napíš, na čom chcete pracovať. Ak uvidím, že hodina nemá čo dať, ozvem sa ešte pred platbou a termín zrušíme. Nebudem ti brať peniaze za niečo, čo nepomôže."
-      }
-    }
+    { "@type": "Question", "name": "Čo presne je úvodný hovor zadarmo?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Pätnásť minút po telefóne alebo cez Google Meet. Poviete mi, čo vás vo firme najviac zdržuje, a ja vám poviem, či a ako s tým AI pomôže. Nič vám nevnucujem. Ak hodina nedáva zmysel, poviem to rovno." } },
+    { "@type": "Question", "name": "Sme firma. Môže prísť viac ľudí naraz?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Áno. Malý tím sú dvaja až štyria ľudia pri jednej obrazovke a celá hodina stojí 39 €. Väčší tím rozdelíme na viac hodín, stačí napísať." } },
+    { "@type": "Question", "name": "Musíme mať platenú verziu AI?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Nie. Začneme na bezplatných verziách ChatGPT alebo Claude a počas hodiny uvidíte, kde platená verzia naozaj niečo pridá a kde je to jedno." } },
+    { "@type": "Question", "name": "Naši ľudia o AI nič nevedia. Nebude to strata času?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Naopak, so začiatočníkmi ide práca najrýchlejšie, lebo nikto nemá zlé návyky. Stačí prísť s dvomi alebo tromi úlohami, ktoré sa u vás opakujú každý týždeň." } },
+    { "@type": "Question", "name": "Môžeme do AI vkladať dokumenty a údaje klientov?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Časť hodiny venujeme presne tomu, čo do AI patrí a čo nie. Ukážem vám, ako mená, rodné čísla a interné čísla nahradiť zástupnými, aby výsledok fungoval a údaje ostali u vás." } },
+    { "@type": "Question", "name": "Funguje to aj v našom odbore?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Ak vo firme píšete maily, robíte ponuky, tabuľky alebo dokumenty, áno. Je jedno, či ide o účtovníctvo, reality alebo cestovnú kanceláriu, hodina sa točí okolo toho, čo máte na stole." } },
+    { "@type": "Question", "name": "Musíme niečo inštalovať?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Nie. Stačí počítač s prehliadačom. Odkaz na Google Meet alebo Zoom vám pošlem mailom a AI si otvoríme spolu v prehliadači." } },
+    { "@type": "Question", "name": "Ako to platíme?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Prevodom na účet pred hodinou. Po potvrdení termínu vám pošlem mailom sumu a číslo účtu. Termín môžete presunúť najneskôr 24 hodín vopred, bez poplatku." } },
+    { "@type": "Question", "name": "Dá sa dohodnúť viac hodín?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Áno. Dve hodiny za sebou si vyberiete priamo v rezervácii. Na dlhšie sú balíky 3 a 6 hodín so zľavou a platnosťou 4 a 6 mesiacov." } },
+    { "@type": "Question", "name": "Čo ak nám hodina nepomôže?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Na úvodnom hovore alebo z vašej poznámky v rezervácii zistím, či vám hodina má čo dať. Ak nie, poviem vám to ešte pred platbou a termín zrušíme. Nebudem vám brať peniaze za niečo, čo nepomôže." } }
   ]
 }
 </script>
@@ -714,6 +875,7 @@ section{scroll-margin-top:20px}
      NASTAVENIE TERMÍNOV: jediné miesto, kde to upravuješ
      Hodina 60 min + 10 min pauza, preto časy idú po 70 minútach.
      Pondelok až piatok od 15:00, posledná hodina 19:40 až 20:40.
+     Úvodný hovor (15 min) sa rezervuje do tých istých časov.
      Kľúč = deň v týždni (1 = pondelok ... 6 = sobota, 0 = nedeľa)
      ========================================================== */
   var PLAN = {
@@ -728,13 +890,12 @@ section{scroll-margin-top:20px}
   var OBSADENE = [];        /* termíny dohodnuté mimo stránky, napr. "2026-07-28 9:00" */
   var POCET_DNI = 10;       /* koľko dní s voľnými termínmi ponúknuť */
   var MOJ_MAIL = "info@aiucenie.online";
+  var MOJ_TEL = "+421902464022";
 
   /* Kam sa rezervácia odošle.
-     Prázdne  = klientovi sa otvorí jeho mailový program s vyplnenou rezerváciou pre MOJ_MAIL (predvolené).
-     Vyplnené = rezervácia sa odošle na pozadí na túto adresu a klient nemusí nikam klikať, napr. Web3Forms:
-       ENDPOINT = "https://api.web3forms.com/submit";
-       ENDPOINT_EXTRA = { access_key: "sem-vloz-kluc", subject: "Nová rezervácia: AI Učenie" };
-     Ak odoslanie zlyhá, web sám ponúkne mail ako záložnú cestu. */
+     Prázdne  = klient ju odošle sám jedným klikom: Gmail, Outlook, e-mailový program, SMS alebo skopírovaním (predvolené).
+     Vyplnené = rezervácia sa odošle na pozadí na túto adresu a klient nemusí nikam klikať, napr. FormSubmit alebo Web3Forms
+       (postup je v PRECITAJ-MA.txt). Ak odoslanie zlyhá, web sám ponúkne cesty cez mail. */
   var ENDPOINT = "";
   var ENDPOINT_EXTRA = {};
   /* ========================================================== */
@@ -742,6 +903,80 @@ section{scroll-margin-top:20px}
   var DNI = ["Ne","Po","Ut","St","Št","Pi","So"];
   var $ = function(id){ return document.getElementById(id); };
   var pad = function(n){ return n < 10 ? "0" + n : "" + n; };
+  var enc = encodeURIComponent;
+
+  /* ---------- odbory: záložky (šípky, Home/End, odkaz #reality otvorí rovno Reality) ---------- */
+  var tabs = Array.prototype.slice.call(document.querySelectorAll('#odbory [role="tab"]'));
+  var panely = tabs.map(function(t){ return $(t.getAttribute("aria-controls")); });
+
+  function ukazOdbor(i, sFokusom){
+    tabs.forEach(function(t, j){
+      var on = i === j;
+      t.setAttribute("aria-selected", on ? "true" : "false");
+      t.tabIndex = on ? 0 : -1;
+      panely[j].hidden = !on;
+    });
+    if (sFokusom) tabs[i].focus();
+    tabs[i].scrollIntoView({ block: "nearest", inline: "nearest" });
+  }
+  tabs.forEach(function(t, i){
+    t.addEventListener("click", function(){ ukazOdbor(i); });
+    t.addEventListener("keydown", function(e){
+      var n = tabs.length, j = -1;
+      if (e.key === "ArrowRight") j = (i + 1) % n;
+      else if (e.key === "ArrowLeft") j = (i - 1 + n) % n;
+      else if (e.key === "Home") j = 0;
+      else if (e.key === "End") j = n - 1;
+      if (j < 0) return;
+      e.preventDefault();
+      ukazOdbor(j, true);
+    });
+  });
+  if (tabs.length){
+    panely.forEach(function(p, j){ p.hidden = j !== 0; });
+  }
+  /* panely majú id "odbor-reality", odkaz je len "#reality": prehliadač tak sám nikam neroluje
+     a stránka zastaví na sekcii odborov tak, aby boli vidno aj záložky */
+  function odborZOdkazu(plynulo){
+    var h = location.hash.slice(1);
+    for (var i = 0; i < panely.length; i++){
+      if (panely[i].id === "odbor-" + h){
+        ukazOdbor(i);
+        $("odbory").classList.add("is-in");
+        $("odbory").scrollIntoView({ behavior: plynulo === true ? "smooth" : "instant", block: "start" });
+        return;
+      }
+    }
+  }
+  odborZOdkazu();
+  window.addEventListener("hashchange", function(){ odborZOdkazu(true); });
+
+  /* ---------- typ rezervácie: úvodný hovor zdarma alebo platená hodina ---------- */
+  var typ = "free";
+  var typVolby = Array.prototype.slice.call(document.querySelectorAll('input[name="typ"]'));
+
+  function nastavTyp(t){
+    var predtym = typ;
+    typ = t === "paid" ? "paid" : "free";
+    /* pripravená rezervácia patrí k starému typu, preto ju treba poslať znova z kroku 2 */
+    if (typ !== predtym && $("p3").classList.contains("is-on")) krok(2);
+    typVolby.forEach(function(r){
+      r.checked = r.value === typ;
+      r.parentNode.classList.toggle("is-on", r.checked);
+    });
+    $("bkPrice").innerHTML = typ === "paid" ? "25 €<small>za 60 min</small>" : "0 €<small>15 min</small>";
+    $("balikField").hidden = typ !== "paid";
+    $("chosenKind").textContent = typ === "paid" ? "Hodina AI" : "Úvodný hovor zdarma, 15 minút";
+    $("noteLabel").textContent = typ === "paid"
+      ? "Na čom chcete na hodine pracovať? (nepovinné)"
+      : "Čo vás vo firme najviac zdržuje? (nepovinné)";
+  }
+  typVolby.forEach(function(r){
+    r.addEventListener("change", function(){ if (r.checked) nastavTyp(r.value); });
+  });
+  document.querySelectorAll("[data-typ]").forEach(function(a){
+    a.addEventListener("click", function(){ nastavTyp(a.getAttribute("data-typ")); });
+  });
 
   /* ---------- príprava dní ---------- */
   var dnes = new Date();
@@ -813,7 +1048,7 @@ section{scroll-margin-top:20px}
     timesEl.innerHTML = "";
     var den = dni[aktivny];
     if (!den){
-      timesEl.innerHTML = '<p class="times__none">Momentálne nemám voľné termíny. Napíš mi mail a dohodneme sa.</p>';
+      timesEl.innerHTML = '<p class="times__none">Momentálne nemám voľné termíny. Zavolajte mi alebo napíšte a dohodneme sa.</p>';
       return;
     }
     den.casy.forEach(function(c){
@@ -862,6 +1097,7 @@ section{scroll-margin-top:20px}
   var msg = $("msg");
   var sendBtn = $("sendBtn");
   var posielam = false;
+  var sprava = null;      /* hotová rezervácia: predmet, telo, dĺžka v minútach */
 
   function chyba(t, el){ msg.textContent = t; if (el) el.focus(); }
 
@@ -869,7 +1105,7 @@ section{scroll-margin-top:20px}
     posielam = zapni;
     sendBtn.disabled = zapni;
     sendBtn.setAttribute("aria-busy", zapni ? "true" : "false");
-    sendBtn.textContent = zapni ? "Posielam…" : "Potvrdiť rezerváciu";
+    sendBtn.textContent = zapni ? "Posielam…" : "Pokračovať";
   }
 
   /* termín, ktorý si niekto rezervoval, hneď zmizne z ponuky */
@@ -883,11 +1119,60 @@ section{scroll-margin-top:20px}
     kresliCasy();
   }
 
-  function hotovo(text){
+  function ukazKrok3(titulok, text, sMoznostami){
+    $("doneTitle").textContent = titulok;
     $("doneText").textContent = text;
+    $("sendOpts").hidden = !sMoznostami;
+    $("nahlad").hidden = !sMoznostami;
     krok(3);
     $("termin").scrollIntoView({ behavior: "smooth", block: "start" });
   }
+
+  /* odkazy na odoslanie: Gmail a Outlook v prehliadači, e-mailový program, SMS z mobilu */
+  function pripravOdkazy(s){
+    $("sendGmail").href = "https://mail.google.com/mail/?view=cm&fs=1&to=" + enc(MOJ_MAIL) +
+                          "&su=" + enc(s.predmet) + "&body=" + enc(s.telo);
+    $("sendOutlook").href = "https://outlook.office.com/mail/deeplink/compose?to=" + enc(MOJ_MAIL) +
+                            "&subject=" + enc(s.predmet) + "&body=" + enc(s.telo);
+    $("sendMail").href = "mailto:" + MOJ_MAIL + "?subject=" + enc(s.predmet) + "&body=" + enc(s.telo);
+    $("sendSms").href = "sms:" + MOJ_TEL + "?&body=" + enc(s.sms);
+    $("nahladText").textContent = "Komu: " + MOJ_MAIL + "\nPredmet: " + s.predmet + "\n\n" + s.telo;
+    document.querySelectorAll("#sendOpts .is-used").forEach(function(el){ el.classList.remove("is-used"); });
+  }
+
+  /* SMS ponúkame len na dotykových zariadeniach, na počítači by sa nemala čím odoslať */
+  if (window.matchMedia && window.matchMedia("(pointer: coarse)").matches) $("sendSms").hidden = false;
+
+  ["sendGmail","sendOutlook","sendMail","sendSms"].forEach(function(id){
+    $(id).addEventListener("click", function(){ $(id).classList.add("is-used"); });
+  });
+
+  $("copyBtn").addEventListener("click", function(){
+    if (!sprava) return;
+    var text = "Komu: " + MOJ_MAIL + "\nPredmet: " + sprava.predmet + "\n\n" + sprava.telo;
+    var btn = $("copyBtn");
+    function hotovo(){
+      btn.classList.add("is-used");
+      btn.textContent = "Skopírované, vložte do mailu";
+    }
+    function zaloha(){
+      var ta = document.createElement("textarea");
+      ta.value = text;
+      ta.setAttribute("readonly", "");
+      ta.style.position = "fixed";
+      ta.style.opacity = "0";
+      document.body.appendChild(ta);
+      ta.select();
+      try { if (document.execCommand("copy")) hotovo(); } catch (e) {}
+      ta.remove();
+      $("nahlad").open = true;
+    }
+    if (navigator.clipboard && window.isSecureContext){
+      navigator.clipboard.writeText(text).then(hotovo, zaloha);
+    } else {
+      zaloha();
+    }
+  });
 
   $("bkForm").addEventListener("submit", function(ev){
     ev.preventDefault();
@@ -897,11 +1182,11 @@ section{scroll-margin-top:20px}
     var mail  = $("f-mail").value.trim();
     var tel   = $("f-tel").value.trim();
     var pozn  = $("f-note").value.trim();
-    var balik = $("f-balik").value;
+    var balik = typ === "paid" ? $("f-balik").value : "Úvodný hovor zdarma, 15 minút";
 
     if (!vybrany) return krok(1);
-    if (meno.length < 3) return chyba("Napíš mi prosím meno.", $("f-name"));
-    if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(mail)) return chyba("E-mail nevyzerá správne, skontroluj ho prosím.", $("f-mail"));
+    if (meno.length < 3) return chyba("Napíšte mi prosím meno.", $("f-name"));
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(mail)) return chyba("E-mail nevyzerá správne, skontrolujte ho prosím.", $("f-mail"));
     if (tel.replace(/\D/g, "").length < 9) return chyba("Telefón musí mať aspoň 9 číslic.", $("f-tel"));
 
     /* stránka mohla byť otvorená pol dňa, termín musí stále platiť */
@@ -911,39 +1196,42 @@ section{scroll-margin-top:20px}
       krok(1);
       msg.textContent = "";
       timesEl.insertAdjacentHTML("afterbegin",
-        '<p class="times__none">Tento termín už medzitým prešiel. Vyber si prosím iný.</p>');
+        '<p class="times__none">Tento termín už medzitým prešiel. Vyberte si prosím iný.</p>');
       return;
     }
     msg.textContent = "";
 
-    var telo = "Termín: " + vybrany.label + " (" + vybrany.slot + ")\n" +
-               "Rezervuje si: " + balik + "\n" +
+    var minut = typ === "paid" ? (/^Dve hodiny/.test(balik) ? 120 : 60) : 15;
+    var predmet = (typ === "paid" ? "Rezervácia hodiny: " : "Úvodný hovor zdarma: ") + vybrany.label;
+    var telo = "Dobrý deň,\n\nposielam rezerváciu z webu aiucenie.online.\n\n" +
+               "Termín: " + vybrany.label + " (" + vybrany.slot + ")\n" +
+               "Rezervujem: " + balik + "\n" +
                "Meno: " + meno + "\n" +
                "E-mail: " + mail + "\n" +
                "Telefón: " + tel + "\n" +
-               "Na čom chce pracovať: " + (pozn || "-") + "\n";
-
-    var odkaz = "mailto:" + MOJ_MAIL +
-                "?subject=" + encodeURIComponent("Rezervácia hodiny: " + vybrany.label) +
-                "&body=" + encodeURIComponent(telo);
-    $("mailBtn").setAttribute("href", odkaz);
+               (typ === "paid" ? "Na čom chcem pracovať: " : "Čo ma najviac zdržuje: ") + (pozn || "-") + "\n";
+    var sms = "AI Učenie, " + predmet + ". " + meno + ", " + mail + ", " + tel +
+              (pozn ? ". " + (pozn.length > 160 ? pozn.slice(0, 157) + "…" : pozn) : "");
+    sprava = { predmet: predmet, telo: telo, sms: sms, minut: minut };
+    pripravOdkazy(sprava);
+    $("copyBtn").textContent = "Skopírovať text";
 
     /* robot vyplnil skrytú pascu: nič neposielame, ale nech si myslí, že prešiel */
     if ($("f-web").value){
-      hotovo("Termín je zapísaný. Ozvem sa ti mailom.");
+      ukazKrok3("Termín je zapísaný", "Ozvem sa vám mailom.", false);
       return;
     }
 
-    /* predvolená cesta: klientovi sa otvorí mail s vyplnenou rezerváciou a on ho odošle */
+    /* predvolená cesta: klient rezerváciu odošle sám jedným klikom */
     if (!ENDPOINT){
-      window.location.href = odkaz;
-      $("doneTitle").textContent = "Ešte odošli ten mail";
-      $("mailBtn").textContent = "Neotvoril sa mail?";
-      hotovo("Otvoril sa ti mail s rezerváciou na " + vybrany.label + ". Stačí ho odoslať a do 24 hodín sa ti ozvem s odkazom na meeting a podkladmi na platbu.");
+      zablokuj(vybrany.slot);
+      ukazKrok3("Posledný krok: odošlite rezerváciu",
+        "Rezerváciu na " + vybrany.label + " máte pripravenú. Odošlite ju z mailu, ktorý používate, a do 24 hodín vám termín potvrdím.", true);
       return;
     }
 
     var data = {
+      typ: typ === "paid" ? "hodina" : "uvodny hovor",
       termin: vybrany.label,
       slot: vybrany.slot,
       balik: balik,
@@ -961,28 +1249,33 @@ section{scroll-margin-top:20px}
       headers: { "Content-Type": "application/json", "Accept": "application/json" },
       body: JSON.stringify(data)
     }).then(function(r){
-      if (!r.ok) throw new Error("HTTP " + r.status);
+      /* FormSubmit aj Web3Forms vedia vrátiť HTTP 200 so "success": false (napr. neaktivovaný formulár) */
+      return r.json().catch(function(){ return {}; }).then(function(j){
+        if (!r.ok || j.success === false || j.success === "false") throw new Error("HTTP " + r.status);
+      });
+    }).then(function(){
       busy(false);
       zablokuj(vybrany.slot);
-      $("mailBtn").textContent = "Napísať mi mail";
-      hotovo("Držím ti " + vybrany.label + ". Ozvem sa do 24 hodín s odkazom na meeting a podkladmi na platbu.");
+      ukazKrok3("Hotovo, termín vám držím",
+        "Rezervácia na " + vybrany.label + " mi prišla. Do 24 hodín vám ju potvrdím mailom aj s odkazom na hovor.", false);
     }).catch(function(){
       busy(false);
-      chyba("Odoslanie mi teraz nevyšlo. Skús to prosím znova, alebo mi termín pošli mailom.");
-      $("mailBtn").textContent = "Poslať rezerváciu mailom";
-      window.location.href = odkaz;
+      zablokuj(vybrany.slot);
+      ukazKrok3("Odošlite rezerváciu mailom",
+        "Automatické odoslanie teraz nevyšlo. Rezerváciu na " + vybrany.label + " odošlete jedným klikom z mailu, ktorý používate.", true);
     });
   });
 
   /* ---------- pridanie do kalendára (.ics) ---------- */
   $("icsBtn").addEventListener("click", function(){
-    if (!vybrany) return;
+    if (!vybrany || !sprava) return;
     var s = vybrany.start;
-    var e = new Date(s.getTime() + 60 * 60 * 1000);
+    var e = new Date(s.getTime() + sprava.minut * 60 * 1000);
     function utc(dt){
       return dt.getUTCFullYear() + pad(dt.getUTCMonth()+1) + pad(dt.getUTCDate()) +
              "T" + pad(dt.getUTCHours()) + pad(dt.getUTCMinutes()) + "00Z";
     }
+    var nazov = typ === "paid" ? "Hodina AI Ucenie" : "Uvodny hovor AI Ucenie";
     var ics = [
       "BEGIN:VCALENDAR","VERSION:2.0","PRODID:-//AI Ucenie//SK","CALSCALE:GREGORIAN","METHOD:PUBLISH",
       "BEGIN:VEVENT",
@@ -990,20 +1283,20 @@ section{scroll-margin-top:20px}
       "DTSTAMP:" + utc(new Date()),
       "DTSTART:" + utc(s),
       "DTEND:" + utc(e),
-      "SUMMARY:Hodina AI Ucenie",
-      "DESCRIPTION:Sukromna online hodina jeden na jedneho. Odkaz na meeting posielam mailom. Kontakt: " + MOJ_MAIL,
+      "SUMMARY:" + nazov,
+      "DESCRIPTION:Online, jeden na jedneho. Odkaz na hovor posielam mailom. Kontakt: " + MOJ_MAIL + "\\, 0902 464 022",
       "LOCATION:Online",
       "ORGANIZER;CN=Alex Poliak:mailto:" + MOJ_MAIL,
       "STATUS:TENTATIVE",
       /* pripomienka deň vopred a hodinu pred začiatkom */
-      "BEGIN:VALARM","TRIGGER:-P1D","ACTION:DISPLAY","DESCRIPTION:Zajtra mas hodinu AI Ucenie","END:VALARM",
-      "BEGIN:VALARM","TRIGGER:-PT60M","ACTION:DISPLAY","DESCRIPTION:O hodinu zacina hodina AI Ucenie","END:VALARM",
+      "BEGIN:VALARM","TRIGGER:-P1D","ACTION:DISPLAY","DESCRIPTION:Zajtra: " + nazov,"END:VALARM",
+      "BEGIN:VALARM","TRIGGER:-PT60M","ACTION:DISPLAY","DESCRIPTION:O hodinu: " + nazov,"END:VALARM",
       "END:VEVENT","END:VCALENDAR"
     ].join("\r\n");
 
     var a = document.createElement("a");
     a.href = "data:text/calendar;charset=utf-8," + encodeURIComponent(ics);
-    a.download = "hodina-ai-ucenie.ics";
+    a.download = typ === "paid" ? "hodina-ai-ucenie.ics" : "uvodny-hovor-ai-ucenie.ics";
     document.body.appendChild(a);
     a.click();
     a.remove();
@@ -1027,7 +1320,7 @@ section{scroll-margin-top:20px}
   var lepka = $("lepka"), hero = $("hero"), rez = $("rezervacia");
   if (lepka && "IntersectionObserver" in window){
     var heroVidno = true, rezVidno = false;
-    function prepniLepku(){ lepka.classList.toggle("is-on", !heroVidno && !rezVidno); }
+    var prepniLepku = function(){ lepka.classList.toggle("is-on", !heroVidno && !rezVidno); };
     new IntersectionObserver(function(ev){ heroVidno = ev[0].isIntersecting; prepniLepku(); }, { threshold: .05 }).observe(hero);
     new IntersectionObserver(function(ev){ rezVidno = ev[0].isIntersecting; prepniLepku(); }, { threshold: .05 }).observe(rez);
   }

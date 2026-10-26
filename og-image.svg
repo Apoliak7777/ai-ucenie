@@ -16,14 +16,14 @@
   <text x="88" y="112" class="d" font-size="34" fill="#151517">AI Učenie</text>
 
   <!-- nadpis -->
-  <text x="88" y="300" class="d" font-size="88" fill="#151517" letter-spacing="-1.5">Naučím ťa AI na tvojej</text>
-  <text x="88" y="392" class="d" font-size="88" fill="#151517" letter-spacing="-1.5">vlastnej robote.</text>
+  <text x="88" y="290" class="d" font-size="84" fill="#151517" letter-spacing="-1.5">Naučím vás pracovať s AI</text>
+  <text x="88" y="380" class="d" font-size="84" fill="#151517" letter-spacing="-1.5">na vašej vlastnej práci.</text>
 
-  <text x="88" y="456" class="b" font-size="27" font-weight="500" fill="#3A3A3E">Jedna hodina online, jeden na jedného, na tvojom maili, tabuľke alebo e-shope.</text>
+  <text x="88" y="446" class="b" font-size="27" font-weight="500" fill="#3A3A3E">Online školenie pre malé firmy a živnostníkov, jeden na jedného.</text>
 
   <!-- cena -->
   <text x="88" y="562" class="d" font-size="72" fill="#151517" letter-spacing="-2">25 €</text>
-  <text x="262" y="558" class="b" font-size="24" font-weight="600" fill="#6E6E74">za 60 minút, bez predplatného</text>
+  <text x="262" y="558" class="b" font-size="24" font-weight="600" fill="#6E6E74">za hodinu, úvodný hovor zadarmo</text>
 
   <text x="1112" y="558" class="b" font-size="24" font-weight="600" fill="#6E6E74" text-anchor="end">aiucenie.online</text>
 </svg>

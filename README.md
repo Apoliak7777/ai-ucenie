@@ -8,7 +8,7 @@
 
 # 🎓 AI Učenie
 
-**Statická web stránka na rezerváciu súkromných online hodín práce s AI — jeden na jedného, 25 € za 60 minút, s trojkrokovým rezervačným widgetom bez jediného backendu.**
+**Statická web stránka online školenia AI pre malé firmy a živnostníkov — úvodný 15-minútový hovor zadarmo, potom 25 € za 60 minút jeden na jedného, s rezervačným widgetom bez jediného backendu.**
 
 ![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=flat-square&logo=html5&logoColor=white)
 ![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=flat-square&logo=css3&logoColor=white)
@@ -39,25 +39,28 @@
 
 ## 🔎 Prehľad
 
-**AI Učenie** je prezentačná a rezervačná stránka pre súkromné online hodiny, na ktorých sa človek učí používať AI na svojej vlastnej práci — zdieľaná obrazovka, jeho reálne úlohy, žiadna prednáška.
+**AI Učenie** je prezentačná a rezervačná stránka pre online školenie AI pre malé firmy a živnostníkov, na ktorom sa človek učí používať AI (ChatGPT, Claude) na svojej vlastnej práci — zdieľaná obrazovka, jeho reálne úlohy, žiadna prednáška.
 
-Celý web žije v jednom súbore `index.html`: markup, CSS aj JavaScript sú inline. Nie je tu backend, build step ani package manager. Rezervačný widget si sám vypočíta voľné termíny z týždenného plánu, klient si vyberie deň, čas a balík, a rezervácia odíde buď na vlastný endpoint, alebo cez predvyplnený e-mail.
+Celý web žije v jednom súbore `index.html`: markup, CSS aj JavaScript sú inline. Nie je tu backend, build step ani package manager. Rezervačný widget si sám vypočíta voľné termíny z týždenného plánu, klient si vyberie úvodný hovor zadarmo alebo platenú hodinu, deň a čas, a rezerváciu odošle jedným klikom cez Gmail, Outlook, svoj e-mailový program, SMS alebo skopírovaním (prípadne na vlastný endpoint).
 
-Používateľské rozhranie je kompletne v slovenčine (`<html lang="sk">`). Dizajn: papier a atrament, svetlá téma s tmavou podľa systému, jeden modrý akcent, nadpisy serifom Newsreader, písma hostované priamo v repe, žiadne cudzie požiadavky pri načítaní. V hero stojí skutočná ukážka zápisu, ktorý klient po hodine dostane; rezervačný widget je na konci stránky, na mobile ho pripomína lepiaci pás. Rezervácia je obyčajný e-mail od klienta, stránka nepotrebuje žiadny server.
+Používateľské rozhranie je kompletne v slovenčine (`<html lang="sk">`), s vykaním. Dizajn: papier a atrament, svetlá téma s tmavou podľa systému, jeden modrý akcent, nadpisy serifom Newsreader, písma aj obrázky hostované priamo v repe, žiadne cudzie požiadavky pri načítaní. Poradie: hero so skutočnou ukážkou zápisu a tromi faktami → čo AI zvládne v siedmich odboroch (záložky) → ako to prebieha → kto učí (s certifikátmi) → cena → otázky → rezervácia; na mobile ju pripomína lepiaci pás.
 
 ---
 
 ## ✨ Funkcie
 
-- 📅 **Trojkrokový rezervačný widget** - výber termínu → kontakt → potvrdenie, s vizuálnym stavom krokov a animovanými prechodmi.
+- 📅 **Trojkrokový rezervačný widget** - termín → kontakt → odoslanie, s vizuálnym stavom krokov a animovanými prechodmi.
+- 🆓 **Úvodný hovor zadarmo alebo hodina** - prepínač v prvom kroku; tlačidlá na stránke (`data-typ="free"` / `"paid"`) ho nastavia samy, mení sa cena, otázka v poznámke aj dĺžka v `.ics`.
+- 🗂️ **Odbory v záložkách** - sedem odborov (účtovníctvo, reality, marketing, personalistika, cestovný ruch, poistenie, iné kancelárie) so štyrmi úlohami, ukážkou zadania a upozornením na osobné údaje; odkaz `aiucenie.online/#reality` otvorí rovno daný odbor (na cielené kampane).
 - 🗓️ **Automatické voľné termíny** - z týždenného plánu `PLAN` sa vygeneruje najbližších `POCET_DNI` dní; dnešné termíny sa ponúkajú len 2 hodiny dopredu a víkend sa vynecháva.
 - 📦 **Výber balíka priamo v rezervácii** - jedna hodina, dve za sebou, balík 3 h / 6 h alebo malý tím; vybraný balík ide aj do odoslaných dát.
-- 📮 **Dve cesty odoslania** - `fetch` na vlastný endpoint (napr. Web3Forms), s automatickým návratom na predvyplnený `mailto:` keď endpoint nie je nastavený alebo zlyhá.
+- 📮 **Odoslanie jedným klikom** - Gmail, Outlook, e-mailový program (`mailto:`), SMS na mobile alebo skopírovanie textu; voliteľne `fetch` na vlastný endpoint (FormSubmit, Web3Forms) s návratom na tieto cesty, keď zlyhá.
+- 🎓 **Certifikáty s overením** - náhľady troch certifikátov v `img/` s odkazmi na overenie u vydavateľa.
 - 🕳️ **Pasca na roboty** - skryté pole `web`; keď ho spam bot vyplní, rezervácia sa ticho zahodí.
 - ⏰ **Kontrola prešlého termínu** - ak mal klient stránku otvorenú pridlho a termín medzitým prešiel, widget ho vráti na výber namiesto odoslania rezervácie do minulosti.
 - 📆 **Export do kalendára (.ics)** - s pripomienkou deň vopred aj hodinu pred začiatkom a organizátorom.
 - 🚫 **Funguje aj bez JavaScriptu** - obsah stránky je viditeľný a v rezervačnom boxe sa zobrazí e-mail a telefón.
-- ♿ **Prístupnosť** - skip-link, `aria-pressed` na dňoch, `aria-label` na termínoch, `role="alert"` na chybách, `prefers-reduced-motion`.
+- ♿ **Prístupnosť** - skip-link, záložky podľa vzoru WAI-ARIA (šípky, Home/End), `aria-pressed` na dňoch, `aria-label` na termínoch, `role="alert"` na chybách, `prefers-reduced-motion`, pevné medzery za jednopísmenovými predložkami.
 - 🔍 **SEO a zdieľanie** - JSON-LD (`Service` + `FAQPage`), Open Graph s vlastným obrázkom 1200×630, sitemap, robots.txt, vlastná 404.
 
 ---
@@ -89,6 +92,7 @@ ai-ucenie/
 ├── og-image.png          # obrázok 1200×630 na zdieľanie odkazu
 ├── og-image.svg          # zdroj OG obrázka (písma z fonts/, PNG sa z neho fotí v prehliadači)
 ├── fonts/                # Newsreader (nadpisy) + Manrope (text), hostované tu, nie na Google Fonts
+├── img/                  # náhľady certifikátov v sekcii Kto vás bude učiť
 ├── robots.txt            # indexovanie povolené, GDPR stránka mimo
 ├── sitemap.xml           # jedna URL
 ├── .nojekyll             # vypína Jekyll na GitHub Pages
@@ -113,22 +117,23 @@ Všetko sa nastavuje na jednom mieste — na začiatku `<script>` bloku v `index
 
 ## 📮 Odosielanie rezervácií
 
-Po kliknutí na Potvrdiť sa klientovi otvorí jeho mailový program s hotovým mailom pre `MOJ_MAIL` (termín, balík, meno, mail, telefón, poznámka). Stačí ho odoslať; k tomu dostane `.ics` do kalendára a tlačidlo „Neotvoril sa mail?“.
+Po kliknutí na Pokračovať dostane klient v treťom kroku hotovú rezerváciu (typ, termín, balík, meno, mail, telefón, poznámka) a odošle ju jedným klikom: **Gmail** a **Outlook** sa otvoria v prehliadači s vyplneným mailom, **Iný e-mailový program** otvorí `mailto:`, na mobile je **SMS** na `MOJ_TEL` a **Skopírovať text** dá celú rezerváciu do schránky. K tomu `.ics` do kalendára a telefón, keby nič z toho nešlo.
 
 | Premenná | Význam |
 |---|---|
 | `MOJ_MAIL` | kam rezervácie chodia (`info@aiucenie.online`) |
-| `ENDPOINT` | prázdne = cesta cez mail (predvolené); vyplnené = rezervácia sa odošle `fetch`-om na pozadí, napr. na Web3Forms |
+| `MOJ_TEL` | číslo pre SMS (`+421902464022`) |
+| `ENDPOINT` | prázdne = klient odošle sám (predvolené); vyplnené = rezervácia sa odošle `fetch`-om na pozadí, napr. na FormSubmit alebo Web3Forms |
 | `ENDPOINT_EXTRA` | polia navyše, ktoré služba vyžaduje (napr. `access_key`) |
 
-Príklad pre Web3Forms:
+Príklad pre FormSubmit (bez registrácie, prvú rezerváciu treba potvrdiť v maili od FormSubmit):
 
 ```js
-var ENDPOINT = "https://api.web3forms.com/submit";
-var ENDPOINT_EXTRA = { access_key: "tvoj-kluc", subject: "Nová rezervácia: AI Učenie" };
+var ENDPOINT = "https://formsubmit.co/ajax/info@aiucenie.online";
+var ENDPOINT_EXTRA = { _subject: "Nová rezervácia: AI Učenie", _template: "table" };
 ```
 
-Keď odoslanie cez `ENDPOINT` zlyhá, widget zobrazí chybu a sám ponúkne e-mail ako záložnú cestu.
+Keď odoslanie cez `ENDPOINT` zlyhá, widget ponúkne cesty cez mail sám. Pri zapnutí `ENDPOINT` treba službu doplniť do `ochrana-udajov.html` ako sprostredkovateľa.
 
 ---
 
@@ -136,7 +141,7 @@ Keď odoslanie cez `ENDPOINT` zlyhá, widget zobrazí chybu a sám ponúkne e-ma
 
 | Technológia | Použitie |
 |---|---|
-| HTML5 | sémantický markup, `<details>` pre FAQ, natívny `<form>` |
+| HTML5 | sémantický markup, záložky s `role="tablist"`, `<details>` pre náhľad rezervácie, natívny `<form>` |
 | CSS3 | custom properties, grid, `clamp()`, gradienty, animácie |
 | Vanilla JS (ES5) | rezervačný widget, generovanie termínov, `.ics` export |
 | JSON-LD | štruktúrované dáta `Service` a `FAQPage` |
@@ -152,7 +157,8 @@ GitHub Pages z vetvy `main`, súbor `CNAME` = `aiucenie.online`, A záznamy u Ho
 ## ⚠️ Známe obmedzenia
 
 - 🗓️ **`OBSADENE` je ručný zoznam** - dvaja ľudia si vedia rezervovať ten istý čas; obsadený termín treba po každej dohodnutej hodine dopísať do `OBSADENE` v `index.html`.
-- 📮 **Rezervácia ide cez `mailto:`** - klientovi sa otvorí jeho mailový program s vyplneným mailom; ak žiadny nastavený nemá, musí mail napísať sám (adresa a telefón sú na stránke).
+- 📮 **Rezerváciu odosiela klient** - bez `ENDPOINT` stránka nevie, či rezervácia naozaj odišla; ponúka preto päť ciest (Gmail, Outlook, `mailto:`, SMS, kopírovanie) a telefón.
+- 📊 **Žiadna analytika** - stránka nemeria návštevy, takže sa nedá zistiť, koľko ľudí z kampane web otvorilo.
 - 🕐 **Časy sú v slovenskom čase** - widget neprepočítava časové pásma, na stránke je to uvedené.
 
 ---

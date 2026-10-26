@@ -3,13 +3,14 @@ AI UČENIE — aiucenie.online
 
 Obsah
 -----
-index.html          hlavná stránka (rezervácia, kto ťa učí, cenník, otázky)
+index.html          hlavná stránka (hero, odbory, priebeh, kto vás učí, cenník, otázky, rezervácia)
 ochrana-udajov.html podstránka, odkazuje sa na ňu z formulára a z pätičky
 404.html            stránka pre neexistujúce adresy (GitHub Pages ju berie sám)
 og-image.png        obrázok 1200x630 na zdieľanie odkazu
 og-image.svg        zdroj toho obrázka (uprav tu, PNG potom vyrenderuj znova:
                     otvoriť SVG v prehliadači z priečinka repa a odfotiť 1200x630)
 fonts/              písma Newsreader (nadpisy, jedna váha 500) + Manrope (text), hostované tu (nie Google Fonts)
+img/                náhľady troch certifikátov (kópia z repa Apoliak-CV-online, certifikaty/nahlady)
 robots.txt          povoľuje indexovanie, ochranu údajov drží mimo Googlu
 sitemap.xml         jedna adresa, pri zmene webu prepíš lastmod
 .nojekyll           vypína Jekyll na GitHub Pages, nechať
@@ -35,24 +36,42 @@ V index.html, na začiatku <script> úplne dole v súbore:
   OBSADENE    obsadené termíny vo formáte "2026-07-28 9:00"
   POCET_DNI   koľko dní s voľnými termínmi sa ponúkne
   MOJ_MAIL    kam chodia rezervácie
+  MOJ_TEL     číslo, na ktoré ide rezervácia ako SMS (+421902464022)
+
+Úvodný 15-minútový hovor sa rezervuje do tých istých časov ako hodina.
 
 Odosielanie rezervácií
 ----------------------
-Klient si vyberie termín, vyplní meno, mail, telefón, balík a poznámku, klikne Potvrdiť
-a otvorí sa mu jeho mailový program s hotovým mailom pre MOJ_MAIL (info@aiucenie.online):
-termín, balík, meno, mail, telefón, na čom chce pracovať. On ho odošle, ty mu do 24 hodín
-odpíšeš s odkazom na meeting a podkladmi na platbu. Stránka mu k tomu ponúkne .ics do
-kalendára a tlačidlo "Neotvoril sa mail?" (otvorí ten istý mail znova).
+Klient si v 1. kroku vyberie Úvodný hovor (zadarmo, 15 min) alebo Hodinu AI, potom deň
+a čas, v 2. kroku vyplní meno, mail, telefón, pri hodine aj balík, a poznámku. V 3. kroku
+mu stránka ponúkne odoslanie jedným klikom:
+  Odoslať cez Gmail       otvorí Gmail v prehliadači s vyplneným mailom pre MOJ_MAIL
+  Odoslať cez Outlook     to isté pre Outlook / Microsoft 365
+  Iný e-mailový program   mailto: (Outlook v počítači, Pošta, Thunderbird...)
+  Poslať ako SMS          len na mobile, SMS na MOJ_TEL
+  Skopírovať text         celá rezervácia do schránky, vloží si ju do Zoznamu, Azetu a pod.
+Pod tým je "Čo sa odošle" (náhľad), .ics do kalendára a telefón, keby nič nešlo.
+Mail má predmet "Úvodný hovor zdarma: <termín>" alebo "Rezervácia hodiny: <termín>".
+Ty mu do 24 hodín odpíšeš s odkazom na hovor (a pri hodine s podkladmi na platbu).
+
+Odkazy na konkrétny odbor (do cielených mailov): aiucenie.online/#uctovnictvo, #reality,
+#marketing, #personalistika, #cestovny-ruch, #poistenie, #kancelaria — stránka otvorí
+rovno ten odbor.
 
 Tam istá časť skriptu:
 
   MOJ_MAIL        kam mail smeruje
-  ENDPOINT        prázdne (predvolené) = cesta cez mail, opísaná vyššie
-                  vyplnené = rezervácia sa odošle na pozadí na túto adresu a klient nemusí
-                  nikam klikať (napr. Web3Forms, zdarma, bez servera):
+  ENDPOINT        prázdne (predvolené) = klient odošle sám, opísané vyššie
+                  vyplnené = rezervácia sa odošle na pozadí a klient nemusí nikam klikať.
+                  Najjednoduchšie je FormSubmit (zdarma, bez registrácie):
+                    ENDPOINT = "https://formsubmit.co/ajax/info@aiucenie.online";
+                    ENDPOINT_EXTRA = { _subject: "Nová rezervácia: AI Učenie", _template: "table" };
+                  Po zapnutí sprav jednu skúšobnú rezerváciu: FormSubmit pošle na info@
+                  mail s tlačidlom Activate, klikni naň, odvtedy chodí všetko.
+                  Alebo Web3Forms (kľúč z web3forms.com):
                     ENDPOINT = "https://api.web3forms.com/submit";
                     ENDPOINT_EXTRA = { access_key: "tvoj-kluc", subject: "Nová rezervácia: AI Učenie" };
-                  keď odoslanie zlyhá, web ukáže chybu a otvorí mail ako záložnú cestu
+                  keď odoslanie zlyhá, web ponúkne cesty cez mail ako záložné
   ENDPOINT_EXTRA  polia navyše, ktoré tá služba vyžaduje
 
 Formulár má aj skrytú pascu na roboty (pole "web") — ak ho niekto vyplní, nič sa neodošle.
@@ -64,10 +83,12 @@ POZOR: keď ENDPOINT zapneš, doplň do ochrana-udajov.html do sekcie "Kde údaj
 Čo ešte zostáva dorobiť
 -----------------------
 1. odkaz na aiucenie.online doplniť aj do webu apoliak.online
-   a po skončení skúšobného obdobia zaplatiť Business Email na Hostingeri
-2. živnosť pred prvou prijatou platbou (zatiaľ web len ako projekt)
-3. platba kartou (Stripe) namiesto prevodu vopred — menej odpadne ľudí
-4. fotka namiesto monogramu (miesto je pripravené v index.html, sekcia Kto ťa učí)
+2. živnosť pred prvou prijatou platbou — firmy chcú faktúru, bez nej si hodinu nedajú do nákladov
+3. meranie návštev (napr. GoatCounter, zdarma, bez cookies), aby bolo vidno, koľko ľudí
+   z kampane web otvorí a kde odchádzajú
+4. ENDPOINT cez FormSubmit (pozri vyššie), aby rezervácia odišla aj bez mailu klienta
+5. platba kartou (Stripe) namiesto prevodu vopred — menej odpadne ľudí
+6. fotka namiesto monogramu (miesto je pripravené v index.html, sekcia Kto vás bude učiť)
    a krátke video-ukážka jednej úlohy (dôvera)
 
 Ukladanie rezervácií do databázy s prehľadom /admin (verzie pre vlastný server,
@@ -76,6 +97,24 @@ v histórii commitov (naposledy 65ebf21), keby sa k tomu niekedy vracal.
 
 Rozhodnuté
 ----------
+- PREROBENÉ 10/2026 (Alex 25.10.: web nepriniesol rezervácie). Vzhľad ostal,
+  zmenilo sa to, čo predáva:
+  * VYKANIE namiesto tykania — mail kampane vyká a ide majiteľom účtovných, realitných,
+    poradenských a podobných firiem; tykanie na webe pôsobilo neprofesionálne
+  * prvý krok je ÚVODNÝ HOVOR ZADARMO (15 min), nie hneď platená hodina od cudzieho
+    človeka; platená hodina sa dá rezervovať rovno tiež
+  * rezervácia už nestojí na mailto (pri Gmaile či Outlooku v prehliadači sa nič neotvorilo
+    a rezervácia sa stratila): Gmail, Outlook, mailto, SMS, kopírovanie + telefón
+  * sekcia ODBORY so 7 záložkami podľa NACE kampane (6920, 6831, 731x, 78xx, 791x,
+    6622/6619, 7020/6910/7430) — konkrétne úlohy, ukážka zadania, pozor na údaje;
+    nahradila všeobecné príklady s e-shopom
+  * DÔVERA: 21 certifikátov z AI (20 Anthropic + Prompt Engineering for ChatGPT,
+    Vanderbilt), dva s overovacím odkazom; text o Alexovi podľa jeho CV (administratíva,
+    IT a Odoo v poradenskej firme, weby na apoliak.online) — bez veku a bez odkazu na CV
+  * hero ukážka zápisu opravená na "Upomienky za neuhradené faktúry" (upomienky sa
+    posielajú odberateľom, nie dodávateľom)
+  * SEO: titulok "AI školenie pre firmy a živnostníkov online", JSON-LD so všetkými
+    ponukami vrátane hovoru za 0 €
 - dizajn 09/2026 (tretia verzia, po Alexovom „vyzerá to ako AI“): papier a atrament,
   svetlá téma (tmavá podľa systému), jeden modrý akcent, nadpisy serifom Newsreader,
   text Manrope, obe písma vo fonts/; žiadne Google Fonts, gradienty, ikony, karty,
@@ -87,6 +126,7 @@ Rozhodnuté
 - cieľovka sú FIRMY a živnostníci (Alex 12.09.): otázky sú písané pre majiteľa firmy
   (viac ľudí naraz, údaje klientov, naše odvetvie, ako to platíme), otázka o nahrávaní
   meetingu je vyhodená, tímová cena 39 € je v hero aj pri cene; tykanie ostáva
+  (10/2026 zmenené na vykanie, pozri vyššie)
 - fotka: kým nie je, stojí v sekcii Kto ťa učí monogram AP; skutočná fotka
   (na výšku, 4:5, aspoň 800x1000) je to najlepšie, čo sa dá pre dôveru
   spraviť: kupuje sa hodina s konkrétnym človekom; do HTML je pripravený
