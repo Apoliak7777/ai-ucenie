@@ -119,6 +119,10 @@ Rozhodnuté
   * hlavička je prilepená: odstup pod ňu rieši len html{scroll-padding-top:80px}; scroll-margin
     na sekciách NEDÁVAŤ, sčíta sa s ním a odkazy potom zastavia o 80 px nižšie
   * klik na záložku odboru prepíše adresu na #reality a pod. (odkaz sa dá poslať ďalej)
+  * po UX audite (desktop aj mobil): na mobile hlavička odroluje preč a tlačidlo
+    drží len spodný pás (predtým dve rovnaké tlačidlá naraz), chyba formulára sa ukáže priamo
+    pod poľom, odoslanie v mriežke 2x2, tlačidlo „Pokračovať k odoslaniu“, hover sa na dotyku
+    nezasekáva (@media hover:none), tlačidlo v hlavičke má 44 px
 - PREROBENÉ 10/2026 (Alex 25.10.: web nepriniesol rezervácie). Vzhľad ostal,
   zmenilo sa to, čo predáva:
   * VYKANIE namiesto tykania — mail kampane vyká a ide majiteľom účtovných, realitných,

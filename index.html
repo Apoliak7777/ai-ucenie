@@ -131,8 +131,10 @@ strong,b{font-weight:600}
 .top nav{display:flex;align-items:center;gap:clamp(16px,2vw,28px);font-size:.94rem;font-weight:500}
 .top nav a:not(.btn){color:var(--ink-2);text-decoration:none;padding:10px 0;transition:color .25s var(--ease)}
 .top nav a:not(.btn):hover{color:var(--ink)}
-.top nav .btn{padding:10px 15px;font-size:.92rem;gap:0}
+.top nav .btn{padding:10px 15px;font-size:.92rem;gap:0;min-height:44px}
 @media (max-width:1079px){.top nav a:not(.btn){display:none}}
+/* na mobile hlavička odroluje preč: tlačidlo potom drží spodný pás pri palci, nie dve rovnaké tlačidlá naraz */
+@media (max-width:899px){.top{position:relative}html{scroll-padding-top:16px}}
 @media (max-width:479px){.top nav .btn{padding:9px 12px;font-size:.88rem}.dlhe{display:none}}
 
 /* ---------- hero: veta cez celú šírku, pod ňou text a skutočný zápis z hodiny ---------- */
@@ -164,13 +166,14 @@ strong,b{font-weight:600}
 }
 
 /* ---------- pás pod herom: záruka vľavo, ceny vpravo ---------- */
-.pas{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:24px clamp(32px,6vw,96px);align-items:center;
+.pas{display:grid;grid-template-columns:minmax(0,4fr) minmax(0,7fr);gap:24px clamp(32px,6vw,96px);align-items:center;
   margin-top:clamp(56px,7vw,96px);padding-block:clamp(26px,3vw,36px);border-block:1px solid var(--line)}
 .pas__veta{font-size:clamp(1.25rem,1rem + .8vw,1.6rem);font-weight:500;line-height:1.3;letter-spacing:-.015em;text-wrap:balance}
 .pas__fakty{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:18px 24px;margin:0}
 .pas__fakty div{display:grid;gap:4px;align-content:start}
 .pas__fakty dt{font-size:.84rem;color:var(--muted)}
-.pas__fakty dd{margin:0;font-size:1.06rem}
+.pas__fakty dd{margin:0;font-size:1rem;color:var(--ink-2)}
+.pas__fakty dd .num{font-size:1.4rem;color:var(--ink)}
 .pas__fakty a{text-decoration:none}
 @media (max-width:999px){.pas{grid-template-columns:minmax(0,1fr)}}
 @media (max-width:560px){.pas__fakty{grid-template-columns:repeat(2,minmax(0,1fr))}}
@@ -374,7 +377,9 @@ strong,b{font-weight:600}
 .done{display:grid;gap:12px;justify-items:start}
 .done h3{font-size:1.3rem}
 .done p{color:var(--ink-2);text-wrap:pretty;max-width:58ch}
-.send{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:8px;width:100%;margin-top:4px}
+.send{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;width:100%;margin-top:4px}
+@media (max-width:480px){.send{grid-template-columns:minmax(0,1fr)}}
+.field .msg{margin-top:2px}
 .send .btn{width:100%}
 .send .btn.is-used{border-color:var(--ink);box-shadow:inset 0 0 0 1px var(--ink)}
 .nahlad{width:100%}
@@ -441,6 +446,16 @@ strong,b{font-weight:600}
   .js .is-in .vejar img:nth-child(3){transform:translate(13%,9%) rotate(7deg);transition-delay:.16s}
   .js .is-in .vejar:hover img:nth-child(1){transform:translate(-18%,4%) rotate(-10deg)}
   .js .is-in .vejar:hover img:nth-child(3){transform:translate(18%,10%) rotate(10deg)}
+}
+/* dotykové obrazovky: stav „hover“ by po ťuknutí ostal visieť na tlačidle */
+@media (hover:none){
+  .btn--lime:hover{background:var(--lime);transform:none}
+  .btn--ink:hover{background:var(--ink);transform:none}
+  .tile--lime .btn--ink:hover{background:var(--lime-ink)}
+  .btn--line:hover,.typ__opt:hover,.daychip:hover{border-color:var(--line-strong)}
+  .slot:hover{background:var(--surface);border-color:var(--line-strong);color:var(--ink)}
+  .link:hover{background-size:100% 2px}
+  .btn:hover svg{transform:none}
 }
 @media (prefers-reduced-motion:reduce){
   html{scroll-behavior:auto}
@@ -529,9 +544,9 @@ strong,b{font-weight:600}
     <div class="pas">
       <p class="pas__veta">Ak uvidím, že vám AI nepomôže, poviem to rovno a <span class="mark">nič neplatíte.</span></p>
       <dl class="pas__fakty">
-        <div><dt>Úvodný hovor</dt><dd><span class="num">15 min</span>, zadarmo</dd></div>
+        <div><dt>Hovor 15 min</dt><dd><span class="num">0&nbsp;€</span></dd></div>
         <div><dt>Hodina online</dt><dd><span class="num">25&nbsp;€</span></dd></div>
-        <div><dt>Tím do&nbsp;4 ľudí</dt><dd><span class="num">39&nbsp;€</span> za hodinu</dd></div>
+        <div><dt>Tím do&nbsp;4 ľudí</dt><dd><span class="num">39&nbsp;€</span> / hodina</dd></div>
         <div><dt>Certifikáty z&nbsp;AI</dt><dd><a class="link link--plain" href="#kto"><span class="num">21</span> kurzov</a></dd></div>
       </dl>
     </div>
@@ -860,7 +875,7 @@ strong,b{font-weight:600}
           </div>
           <p class="garancia">Ak uvidím, že vám hodina nemá čo dať, poviem vám to <strong>ešte pred platbou</strong> a&nbsp;termín zrušíme.</p>
           <p class="msg" id="msg" role="alert"></p>
-          <button class="btn btn--lime" type="submit" id="sendBtn">Pokračovať</button>
+          <button class="btn btn--lime" type="submit" id="sendBtn">Pokračovať k&nbsp;odoslaniu</button>
           <p class="gdpr">Kontakt použijem len na dohodnutie termínu. Viac v <a href="ochrana-udajov.html">ochrane údajov</a>.</p>
         </form>
       </div>
@@ -1258,25 +1273,30 @@ strong,b{font-weight:600}
 
   /* chyba sa zobrazí pod formulárom, pole sa označí ako neplatné a čítačka k nemu prečíta text chyby */
   function chyba(t, el){
-    msg.textContent = t;
     if (el){
+      /* hláška sa presunie priamo pod pole, ktorého sa týka */
+      var pole = el.closest(".field");
+      if (pole) pole.appendChild(msg);
       el.setAttribute("aria-invalid", "true");
       el.setAttribute("aria-describedby", "msg");
-      el.focus();
     }
+    msg.textContent = t;
+    if (el) el.focus();
   }
   function zrusChyby(){
     ["f-name","f-mail","f-tel"].forEach(function(id){
       $(id).removeAttribute("aria-invalid");
       $(id).removeAttribute("aria-describedby");
     });
+    msg.textContent = "";
+    sendBtn.parentNode.insertBefore(msg, sendBtn);
   }
 
   function busy(zapni){
     posielam = zapni;
     sendBtn.disabled = zapni;
     sendBtn.setAttribute("aria-busy", zapni ? "true" : "false");
-    sendBtn.textContent = zapni ? "Posielam…" : "Pokračovať";
+    sendBtn.textContent = zapni ? "Posielam…" : "Pokračovať k odoslaniu";
   }
 
   /* termín, ktorý si niekto rezervoval, hneď zmizne z ponuky */
