@@ -172,7 +172,7 @@ Tento projekt je zverejnený bez licencie — všetky práva vyhradené. Kód si
 
 <div align="center">
 
-**Alex Poliak**
+**Apoliak**
 
 [![Web](https://img.shields.io/badge/apoliak.online-0b1020?style=flat-square)](https://apoliak.online)
 [![GitHub](https://img.shields.io/badge/GitHub-Apoliak7777-181717?style=flat-square&logo=github)](https://github.com/Apoliak7777)
