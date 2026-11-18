@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="sk">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Údaje o podnikateľovi | AI Učenie</title>
+<meta name="description" content="Údaje o podnikateľovi podľa zákona o elektronickom obchode.">
+<meta name="theme-color" content="#F3F4F1">
+<meta name="theme-color" media="(prefers-color-scheme: dark)" content="#101210">
+<meta name="robots" content="noindex">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%23121412'/%3E%3Crect x='14' y='40' width='36' height='9' fill='%23D6FF4B'/%3E%3Ctext x='32' y='41' font-family='Arial,Helvetica,sans-serif' font-weight='700' font-size='30' text-anchor='middle' fill='%23ffffff'%3EAI%3C/text%3E%3C/svg%3E">
+<style>
+@font-face{font-family:'IBM Plex Sans';font-style:normal;font-weight:400 700;font-display:swap;src:url('fonts/plex-sans-latin-ext.woff2') format('woff2');unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF}
+@font-face{font-family:'IBM Plex Sans';font-style:normal;font-weight:400 700;font-display:swap;src:url('fonts/plex-sans-latin.woff2') format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+:root{
+  color-scheme:light dark;
+  --bg:#F3F4F1; --surface:#FFFFFF; --ink:#121412; --ink-2:#3A3F3B; --muted:#5E655F;
+  --line:rgba(18,20,18,.12); --line-strong:rgba(18,20,18,.24);
+  --lime:#D6FF4B; --mark:#D6FF4B; --ring:#121412;
+  --shadow:0 1px 2px rgba(20,28,18,.06),0 22px 44px -26px rgba(20,28,18,.30);
+  --font:"IBM Plex Sans","Segoe UI",system-ui,sans-serif;
+  --ease:cubic-bezier(.16,1,.3,1);
+}
+@media (prefers-color-scheme:dark){
+  :root{--bg:#101210; --surface:#181B18; --ink:#ECEFE9; --ink-2:#C4CAC2; --muted:#959C94;
+    --line:rgba(236,239,233,.13); --line-strong:rgba(236,239,233,.26); --mark:rgba(214,255,75,.42); --ring:#D6FF4B;
+    --shadow:0 1px 2px rgba(0,0,0,.45),0 22px 44px -26px rgba(0,0,0,.85)}
+}
+*,*::before,*::after{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--font);
+  font-size:clamp(15.5px,.3vw + 14.5px,17px);line-height:1.65}
+a{color:inherit;touch-action:manipulation}
+:focus-visible{outline:2px solid var(--ring);outline-offset:3px;border-radius:4px}
+.shell{max-width:760px;margin-inline:auto;padding-inline:clamp(20px,5vw,40px)}
+.top{display:flex;align-items:center;justify-content:space-between;height:68px;gap:18px}
+.brand{display:inline-flex;align-items:center;gap:10px;text-decoration:none;font-weight:600;font-size:1.06rem;letter-spacing:-.02em}
+.brand span{display:grid;place-items:center;width:30px;height:30px;border-radius:7px;background:var(--ink);color:var(--bg);font-size:.72rem;font-weight:700;
+  background-image:linear-gradient(var(--lime),var(--lime));background-repeat:no-repeat;background-size:62% 4px;background-position:50% 76%}
+.back{font-size:.92rem;font-weight:500;color:var(--ink-2);text-decoration:none;transition:color .25s var(--ease)}
+.back:hover{color:var(--ink)}
+h1{font-weight:600;font-size:clamp(1.9rem,5vw,2.7rem);letter-spacing:-.03em;line-height:1.06;margin:clamp(36px,6vw,64px) 0 0;text-wrap:balance}
+.sub{color:var(--ink-2);margin:16px 0 0;text-wrap:pretty}
+h2{font-weight:600;font-size:1.15rem;letter-spacing:-.01em;margin:40px 0 10px}
+p,ul{margin:0 0 14px;color:var(--ink-2)}
+ul{padding-left:20px}
+li{margin-bottom:6px}
+strong{font-weight:600;color:var(--ink)}
+.box{border:1px solid var(--line);border-radius:14px;background:var(--surface);box-shadow:var(--shadow);padding:22px 24px;margin:34px 0 0}
+.box p{margin:0 0 6px}
+.box p:last-child{margin:0}
+main a{color:var(--ink);font-weight:500;text-decoration:none;background-image:linear-gradient(var(--mark),var(--mark));background-repeat:no-repeat;
+  background-position:0 100%;background-size:100% 2px;transition:background-size .35s var(--ease)}
+main a:hover{background-size:100% 100%}
+.date{font-size:.88rem;color:var(--muted);margin-top:34px}
+.foot{border-top:1px solid var(--line);margin-top:56px;padding-block:26px 44px;font-size:.88rem;color:var(--muted);display:flex;flex-wrap:wrap;gap:12px 24px}
+.foot a{text-decoration:none;color:var(--ink-2)}
+.foot a:hover{color:var(--ink)}
+@media (prefers-reduced-motion:reduce){.back,main a{transition:none}}
+</style>
+</head>
+<body>
+
+<header class="shell top">
+  <a class="brand" href="index.html" translate="no"><span aria-hidden="true">AI</span>AI Učenie</a>
+  <a class="back" href="index.html">Späť na stránku</a>
+</header>
+
+<main class="shell">
+  <h1>Údaje o podnikateľovi</h1>
+  <p class="sub">Údaje podľa § 4 zákona č. 22/2004 Z.&nbsp;z. o&nbsp;elektronickom obchode a § 3a Obchodného zákonníka.</p>
+
+  <table><tbody><tr><th scope="row">Obchodné meno</th><td>Alex Poliak (značka Apoliak)</td></tr><tr><th scope="row">IČO</th><td>57&nbsp;990&nbsp;883</td></tr><tr><th scope="row">Zápis</th><td>živnostenský register Okresného úradu Senec, č.&nbsp;140-39176</td></tr><tr><th scope="row">DPH</th><td>nie som platiteľ DPH</td></tr><tr><th scope="row">Kontakt</th><td><a href="mailto:info@aiucenie.online">info@aiucenie.online</a>, <a href="tel:+421902464022">0902&nbsp;464&nbsp;022</a></td></tr><tr><th scope="row">Orgán dozoru</th><td>Slovenská obchodná inšpekcia, Inšpektorát SOI pre Bratislavský kraj, Bajkalská 21/A, P.&nbsp;O.&nbsp;BOX&nbsp;5, 820&nbsp;07 Bratislava</td></tr></tbody></table>
+</main>
+
+<footer class="shell foot">
+  <span>AI Učenie · aiucenie.online · IČO 57&nbsp;990&nbsp;883</span>
+  <span><a href="udaje-o-podnikatelovi.html">Údaje o podnikateľovi</a> · <a href="index.html">Späť na stránku</a></span>
+</footer>
+
+</body>
+</html>
