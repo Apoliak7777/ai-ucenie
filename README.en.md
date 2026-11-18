@@ -122,7 +122,7 @@ After clicking Continue, the third step shows the finished booking (type, slot, 
 
 | Variable | Meaning |
 |---|---|
-| `MOJ_MAIL` | where bookings go (`info@aiucenie.online`) |
+| `MOJ_MAIL` | where bookings go (`efaktury@apoliak.sk`) |
 | `MOJ_TEL` | number for SMS (`+421902464022`) |
 | `ENDPOINT` | empty = the client sends it (default); set = the booking is sent via `fetch` in the background, e.g. to FormSubmit or Web3Forms |
 | `ENDPOINT_EXTRA` | extra fields the service requires (e.g. `access_key`) |
@@ -130,7 +130,7 @@ After clicking Continue, the third step shows the finished booking (type, slot, 
 Example for FormSubmit (no sign-up, the first booking has to be confirmed in an e-mail from FormSubmit):
 
 ```js
-var ENDPOINT = "https://formsubmit.co/ajax/info@aiucenie.online";
+var ENDPOINT = "https://formsubmit.co/ajax/efaktury@apoliak.sk";
 var ENDPOINT_EXTRA = { _subject: "Nová rezervácia: AI Učenie", _template: "table" };
 ```
 
@@ -176,6 +176,6 @@ This project is published without a license — all rights reserved. Feel free t
 
 [![Web](https://img.shields.io/badge/apoliak.online-0b1020?style=flat-square)](https://apoliak.online)
 [![GitHub](https://img.shields.io/badge/GitHub-Apoliak7777-181717?style=flat-square&logo=github)](https://github.com/Apoliak7777)
-[![Email](https://img.shields.io/badge/Email-alexpoliak21%40gmail.com-EA4335?style=flat-square&logo=gmail&logoColor=white)](mailto:info@aiucenie.online)
+[![Email](https://img.shields.io/badge/Email-alexpoliak21%40gmail.com-EA4335?style=flat-square&logo=gmail&logoColor=white)](mailto:efaktury@apoliak.sk)
 
 </div>
