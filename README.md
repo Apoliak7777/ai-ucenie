@@ -122,7 +122,7 @@ Po kliknutí na Pokračovať dostane klient v treťom kroku hotovú rezerváciu 
 
 | Premenná | Význam |
 |---|---|
-| `MOJ_MAIL` | kam rezervácie chodia (`efaktury@apoliak.sk`) |
+| `MOJ_MAIL` | kam rezervácie chodia (`info@apoliak.sk`) |
 | `MOJ_TEL` | číslo pre SMS (`+421902464022`) |
 | `ENDPOINT` | prázdne = klient odošle sám (predvolené); vyplnené = rezervácia sa odošle `fetch`-om na pozadí, napr. na FormSubmit alebo Web3Forms |
 | `ENDPOINT_EXTRA` | polia navyše, ktoré služba vyžaduje (napr. `access_key`) |
@@ -130,7 +130,7 @@ Po kliknutí na Pokračovať dostane klient v treťom kroku hotovú rezerváciu 
 Príklad pre FormSubmit (bez registrácie, prvú rezerváciu treba potvrdiť v maili od FormSubmit):
 
 ```js
-var ENDPOINT = "https://formsubmit.co/ajax/efaktury@apoliak.sk";
+var ENDPOINT = "https://formsubmit.co/ajax/info@apoliak.sk";
 var ENDPOINT_EXTRA = { _subject: "Nová rezervácia: AI Učenie", _template: "table" };
 ```
 
@@ -176,6 +176,6 @@ Tento projekt je zverejnený bez licencie — všetky práva vyhradené. Kód si
 
 [![Web](https://img.shields.io/badge/apoliak.online-0b1020?style=flat-square)](https://apoliak.online)
 [![GitHub](https://img.shields.io/badge/GitHub-Apoliak7777-181717?style=flat-square&logo=github)](https://github.com/Apoliak7777)
-[![Email](https://img.shields.io/badge/Email-alexpoliak21%40gmail.com-EA4335?style=flat-square&logo=gmail&logoColor=white)](mailto:efaktury@apoliak.sk)
+[![Email](https://img.shields.io/badge/Email-alexpoliak21%40gmail.com-EA4335?style=flat-square&logo=gmail&logoColor=white)](mailto:info@apoliak.sk)
 
 </div>
