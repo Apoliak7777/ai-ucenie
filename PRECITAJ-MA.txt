@@ -24,7 +24,7 @@ Kde to beží
 Repo:      https://github.com/Apoliak7777/ai-ucenie
 Stránka:   https://aiucenie.online/   (GitHub Pages z vetvy main, súbor CNAME; A záznamy
            u Hostingera mieria na GitHub 185.199.108-111.153)
-Mail:      info@apoliak.sk (Hostinger Business Email) — sem chodia rezervácie;
+Mail:      kontakt@aiucenie.online (Hostinger Business Email) — sem chodia rezervácie;
            help@aiucenie.online je druhá schránka, zatiaľ voľná
 Zmena webu = push do main, GitHub Pages sa prestaví do minúty-dvoch.
 Nič iné netreba: stránka je čistá statika, rezervácia je mail od klienta.
@@ -67,7 +67,7 @@ Tam istá časť skriptu:
   ENDPOINT        prázdne (predvolené) = klient odošle sám, opísané vyššie
                   vyplnené = rezervácia sa odošle na pozadí a klient nemusí nikam klikať.
                   Najjednoduchšie je FormSubmit (zdarma, bez registrácie):
-                    ENDPOINT = "https://formsubmit.co/ajax/info@apoliak.sk";
+                    ENDPOINT = "https://formsubmit.co/ajax/kontakt@aiucenie.online";
                     ENDPOINT_EXTRA = { _subject: "Nová rezervácia: AI Učenie", _template: "table" };
                   Po zapnutí sprav jednu skúšobnú rezerváciu: FormSubmit pošle na info@
                   mail s tlačidlom Activate, klikni naň, odvtedy chodí všetko.
@@ -160,7 +160,7 @@ Rozhodnuté
 - sekcia Príklady je bez čísel — ukazuje zmenu postupu
   (predtým / po hodine), nič sa nemusí dokladovať
 - stránka beží na GitHub Pages (Alex si ju tam 13.09.2026 sám pripojil) a rezervácia je
-  mail od klienta na info@apoliak.sk — žiadny server, žiadna databáza, žiadny /admin
+  mail od klienta na kontakt@aiucenie.online — žiadny server, žiadna databáza, žiadny /admin
   (Alex 13.09.2026: Cloudflare, VPS aj Google tabuľku odmietol, chce to jednoducho);
   doména aiucenie.online (kúpená 12.09.2026 na Hostingeri so schránkami info@ a help@)
 - garancia „ak ti hodina nemá čo dať, poviem ti to pred platbou" je
